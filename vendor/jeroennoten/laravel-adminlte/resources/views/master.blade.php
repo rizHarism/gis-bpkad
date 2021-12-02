@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-geoman.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet.contextmenu.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-search.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet.responsive.popup.css') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-sidebar.css') }}" /> --}}
 
     <style>

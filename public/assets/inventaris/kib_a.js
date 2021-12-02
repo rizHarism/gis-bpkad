@@ -24,12 +24,12 @@ $(function () {
             method: "GET"
         },
         columns: [
-            { data: 'id' },
-            { data: 'id' },
-            { data: 'nama_skpd' },
-            { data: 'kode_master_barang' },
-            { data: 'nama_master_barang' },
-            { data: 'nama_inventaris' },
+            { data: 'rownum' },
+            // { data: 'id' },
+            { data: 'master_skpd.nama' },
+            { data: 'master_barang.kode_barang' },
+            { data: 'master_barang.nama' },
+            { data: 'nama' },
             { data: 'alamat' },
             { data: 'status', render: sertifikat },
         ],
@@ -43,7 +43,7 @@ $(function () {
         callback: function (key, options) {
             var row = table.row(options.$trigger)
             const id = row.data().id;
-            console.log(row)
+            console.log(id)
             // Memanggil Modal Detail Data
 
             function callDetail() {
@@ -61,25 +61,25 @@ $(function () {
                             $.each(inv, (i, property) => {
 
                                 const sertifikat = (property.status == 1) ? "Bersertifikat" : "Belum Bersertifikat";
-                                const hb = property.harga_beli,
+                                const hb = property.nilai_aset,
                                     na = property.nilai_aset,
-                                    lt = property.luas_tanah,
-                                    ns = property.nilai_sekarang
-
-                                $('#detailTitle').append(property.nama_skpd)
+                                    lt = property.luas,
+                                    ns = property.nilai_aset
+                                console.log(property)
+                                $('#detailTitle').append(property.master_skpd.nama)
                                 $('#detailData').append(`
                                         <table class="table table-striped">
                                         <tr>
                                           <th>Pemilik Inventaris </th>
-                                          <td>`+ property.nama_skpd + `</td>
+                                          <td>`+ property.master_skpd.nama + `</td>
                                         </tr>
                                         <tr>
                                           <th>Nama Inventaris </th>
-                                          <td>`+ property.nama_inventaris + `</td>
+                                          <td>`+ property.nama + `</td>
                                         </tr>
                                         <tr>
                                           <th>Kode Inventaris </th>
-                                          <td>`+ property.kode_master_barang + `</td>
+                                          <td>`+ property.master_barang.kode_barang + `</td>
                                         </tr>
                                         <tr>
                                           <th>Tahun Perolehan :</th>
@@ -91,7 +91,7 @@ $(function () {
                                         </tr>
                                         <tr>
                                           <th>Nilai Aset </th>
-                                          <td>`+ `Rp ` + rupiah(na) + `</td>
+                                          <td>`+ `Rp ` + na + `</td>
                                         </tr>
                                         <tr>
                                           <th>Alamat </th>
@@ -99,27 +99,20 @@ $(function () {
                                         </tr>
                                         <tr>
                                           <th>Luas Tanah </th>
-                                          <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
+                                          <td>` + lt + ` Meter Persegi` + `</td>
                                         </tr>
                                         <tr>
                                           <th>No Sertifikat </th>
-                                          <td>`+ property.no_sertifikat + `</td>
+                                          <td>`+ property.no_dokumen_sertifikat + `</td>
                                         </tr>
-                                        <tr>
-                                          <th>Tgl Sertifikat </th>
-                                          <td>`+ property.tgl_sertifikat + `</td>
-                                        </tr>
+
                                         <tr>
                                           <th>Status </th>
                                           <td>`+ sertifikat + `</td>
                                         </tr>
                                         <tr>
-                                          <th>Sumber Dana </th>
-                                          <td>`+ property.sumber_dana + `</td>
-                                        </tr>
-                                        <tr>
                                           <th>Nilai Saat Ini </th>
-                                          <td>`+ `Rp ` + rupiah(ns) + `</td>
+                                          <td>`+ `Rp ` + ns + `</td>
                                         </tr>
                                     </table>
                                         `);
@@ -142,106 +135,138 @@ $(function () {
                             $.each(inv, (i, property) => {
 
                                 // verifikasi sudah ada map atau belum
-                                const verifMap = property.polygon
-                                if (verifMap == null) {
-                                    alert('data spatial belum tersedia')
+                                var verifMap = property.geometry
+                                console.log(verifMap)
+                                // if (!verifMap) {
+                                //     alert('data spatial belum tersedia')
+                                // } else {
+
+                                $('#mapDetail').empty()
+                                $('#mapTittle').empty()
+                                $('#mapTittle').append('Peta Aset  ' + property.nama)
+                                $('#mapDetail').append(`<div id="map" class="" style="height: 500px; width:100%;"></div>`)
+
+                                var map = L.map('map').setView([-8.098611, 112.165278], 13);
+
+                                L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+                                    attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community",
+                                    maxZoom: 19
+                                }).addTo(map);
+
+                                L.PM.initialize({
+                                    optIn: true
+
+                                });
+
+                                if (verifMap) {
+                                    map.pm.addControls({
+                                        drawMarker: false,
+                                        drawCircleMarker: false,
+                                        drawPolyline: false,
+                                        drawRectangle: false,
+                                        drawPolygon: false,
+                                        drawCircle: false,
+                                        cutPolygon: false,
+                                        rotateMode: false,
+                                        editControls: true,
+                                    });
                                 } else {
-
-                                    $('#mapDetail').empty()
-                                    $('#mapTittle').empty()
-                                    $('#mapTittle').append('Peta Aset  ' + property.nama_inventaris)
-                                    $('#mapDetail').append(`<div id="map" class="" style="height: 500px; width:100%;"></div>`)
-
-                                    var map = L.map('map').setView([-8.098611, 112.165278], 13);
-
-                                    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
-                                        attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community",
-                                        maxZoom: 19
-                                    }).addTo(map);
-
-                                    L.PM.initialize({
-                                        optIn: true
+                                    map.pm.addControls({
+                                        drawMarker: false,
+                                        drawCircleMarker: false,
+                                        drawPolyline: false,
+                                        drawRectangle: false,
+                                        drawPolygon: true,
+                                        drawCircle: false,
+                                        cutPolygon: false,
+                                        rotateMode: false,
+                                        editControls: false,
                                     });
+                                }
 
-                                    map.pm.addControls();
 
-                                    map.on('pm:create', ({
-                                        layer
-                                    }) => {
-                                        layer.on('pm:edit', e => {
-                                            console.log(e);
-                                            var nf = Intl.NumberFormat();
-                                            var seeArea = turf.area(layer.toGeoJSON());
-                                            var ha = seeArea / 10000;
-                                            var content = "<table class='table table-striped table-bordered table-sm'>" +
-                                                "<tr><th colspan='2'>Luas</th></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(ha.toFixed(2)) + " Hektare" +
-                                                "</td></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(seeArea.toFixed(2)) + " Meter²" +
-                                                "</td></tr>" +
-                                                "</table>"
-                                            layer.bindPopup(content);
-                                            console.log(seeArea);
-                                            var g = JSON.stringify(layer.toGeoJSON())
-                                            var g = JSON.parse(g)
-                                            let gdb = JSON.stringify(g.geometry)
-
-                                        });
-                                    });
-
-                                    map.on('pm:create', function (e) {
+                                map.on('pm:create', ({
+                                    layer
+                                }) => {
+                                    layer.on('pm:edit', e => {
                                         console.log(e);
-                                        var shape = e.shape,
-                                            layer = e.layer
                                         var nf = Intl.NumberFormat();
-                                        // alert(turf.area(layer.toGeoJSON()))
-
-                                        console.log(JSON.stringify(layer.toGeoJSON()))
-                                        if (shape === 'Polygon') {
-
-                                            var seeArea = turf.area(layer.toGeoJSON());
-                                            var ha = seeArea / 10000;
-                                            var content = "<table class='table table-striped table-bordered table-sm'>" +
-                                                "<tr><th colspan='2'>Luas</th></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(ha.toFixed(2)) + " Hektare" +
-                                                "</td></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(seeArea.toFixed(2)) + " Meter²" +
-                                                "</td></tr>" +
-                                                "</table>"
-
-                                            layer.bindPopup(content);
-                                            var g = JSON.stringify(layer.toGeoJSON())
-                                            // var g = JSON.parse(g)
-                                            // let gdb = JSON.stringify(g.geometry)
-
-                                            // console.log(g)
-                                        }
+                                        var seeArea = turf.area(layer.toGeoJSON());
+                                        var ha = seeArea / 10000;
+                                        var content = "<table class='table table-striped table-bordered table-sm'>" +
+                                            "<tr><th colspan='2'>Luas</th></tr>" +
+                                            "<tr><td>" +
+                                            nf.format(ha.toFixed(2)) + " Hektare" +
+                                            "</td></tr>" +
+                                            "<tr><td>" +
+                                            nf.format(seeArea.toFixed(2)) + " Meter²" +
+                                            "</td></tr>" +
+                                            "</table>"
+                                        layer.bindPopup(content);
+                                        console.log(seeArea);
+                                        var g = JSON.stringify(layer.toGeoJSON())
+                                        var g = JSON.parse(g)
+                                        let gdb = JSON.stringify(g.geometry)
 
                                     });
+                                });
 
-                                    var x = property.polygon
-                                    geo = JSON.parse(x)
-                                    console.log(JSON.stringify(geo));
+                                map.on('pm:create', function (e) {
+                                    console.log(e);
+                                    var shape = e.shape,
+                                        layer = e.layer
+                                    var nf = Intl.NumberFormat();
+                                    // alert(turf.area(layer.toGeoJSON()))
 
-                                    $('#mapModal').modal('show');
+                                    console.log(JSON.stringify(layer.toGeoJSON()))
+                                    if (shape === 'Polygon') {
 
-                                    $('#mapModal').on('shown.bs.modal', function () {
-                                        setTimeout(function () {
-                                            map.invalidateSize();
+                                        var seeArea = turf.area(layer.toGeoJSON());
+                                        var ha = seeArea / 10000;
+                                        var content = "<table class='table table-striped table-bordered table-sm'>" +
+                                            "<tr><th colspan='2'>Luas</th></tr>" +
+                                            "<tr><td>" +
+                                            nf.format(ha.toFixed(2)) + " Hektare" +
+                                            "</td></tr>" +
+                                            "<tr><td>" +
+                                            nf.format(seeArea.toFixed(2)) + " Meter²" +
+                                            "</td></tr>" +
+                                            "</table>"
+
+                                        layer.bindPopup(content);
+                                        var g = JSON.stringify(layer.toGeoJSON())
+                                        // var g = JSON.parse(g)
+                                        // let gdb = JSON.stringify(g.geometry)
+
+                                        // console.log(g)
+                                    }
+
+                                });
+
+
+                                // console.log(JSON.stringify(geo));
+
+                                $('#mapModal').modal('show');
+
+                                $('#mapModal').on('shown.bs.modal', function () {
+                                    setTimeout(function () {
+                                        map.invalidateSize();
+                                        if (verifMap == null) {
+                                            // alert('data spatial belum tersedia')
+                                        } else {
+                                            var x = property.geometry.polygon
+                                            geo = JSON.parse(x)
                                             var poly = new L.geoJson(geo)
                                             point = L.marker(poly.getBounds().getCenter())
                                             // console.log(point)
                                             poly.addTo(map)
                                             // point.addTo(map)
 
-                                            map.setView(point.getLatLng(), 16)
-                                        }, 200);
-                                    });
-                                }
+                                            map.setView(point.getLatLng(), 18)
+                                        }
+                                    }, 200);
+                                });
+                                // }
                             })
                         }
                     }
@@ -261,6 +286,11 @@ $(function () {
                     callMap()
 
                     break
+                case 'edit':
+
+                    $('#updateModal').modal('show');
+
+                    break
                 case 'print':
                     row.data().nama_inventaris
                     alert(row.data().nama_inventaris)
@@ -273,6 +303,7 @@ $(function () {
         items: {
             "map": { name: "Lihat Peta Aset", icon: "delete" },
             "detail": { name: "Lihat Detail Aset", icon: "delete" },
+            "edit": { name: "Edit Laporan Aset", icon: "delete" },
             "print": { name: "Print Laporan Aset", icon: "delete" },
         }
     })

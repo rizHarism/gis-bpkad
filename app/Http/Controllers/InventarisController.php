@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Geometry;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Inventaris;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class InventarisController extends Controller
 {
@@ -20,21 +22,13 @@ class InventarisController extends Controller
 
     public function index()
     {
-        //
-        $inventaris = Inventaris::get()->all();
-        $nonSertifikat = Inventaris::where('status', 0)->GET();
-        $sertifikat = Inventaris::where('status', 1)->GET();
-        $count_all = count($inventaris);
-        $count_not_sertifikat = count($nonSertifikat);
-        $count_sertifikat = count($sertifikat);
-
+        // Menampilkan semua data Inventaris
+        $inventaris = Inventaris::with('master_barang:id,nama', 'master_skpd:id,nama', 'geometry:id,inventaris_id,polygon')
+            ->get();
         $response = [
-            'message' => 'List Data Transaksi order by time',
-            // 'data' => $sertifikat
-            'data' => $inventaris,
-            'total_aset' => $count_all,
-            'bersertifikat' => $count_sertifikat,
-            'tidak_bersertifikat' => $count_not_sertifikat,
+            'message' => 'Data Inventaris',
+            'count' => count($inventaris),
+            'data' => $inventaris
         ];
 
         return response()->json($response, Response::HTTP_OK);
@@ -42,7 +36,7 @@ class InventarisController extends Controller
 
     public function dashboard()
     {
-        //
+        //Menampilkan Total Aset Tanah pada Halaman Dashboard
         $inventaris = Inventaris::get()->all();
         $nonSertifikat = Inventaris::where('status', 0)->GET();
         $sertifikat = Inventaris::where('status', 1)->GET();
@@ -64,28 +58,52 @@ class InventarisController extends Controller
 
     public function getInventaris(Request $request)
     {
+        //Get data untuk yajra datatables pada halaman Inventaris
 
-        $inventaris = DataTables::eloquent(Inventaris::query())->make(true);
-        // $inventaris = Datatables::eloquent(Inventaris::where('status', 1))->make(true);
-        // $inventaris = Datatables::eloquent(Inventaris::where('status', 1))->make(true);
-        return $inventaris;
+        DB::statement(DB::raw('set @rownum=0'));
+
+        $inventaris = Inventaris::select([
+            DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+            'id',
+            'jenis_inventaris',
+            'nama',
+            'tahun_perolehan',
+            'nilai_aset',
+            'luas',
+            'status',
+            'alamat',
+            'no_dokumen_sertifikat',
+            'skpd_id',
+            'master_barang_id',
+        ])->with('master_barang', 'master_skpd');
+
+        $datatables = Datatables::of($inventaris);
+
+        // $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd'))
+        //     ->make(true);
+        return $datatables->make(true);
     }
 
     public function searchInventaris($keyword)
     {
-        // $inventaris = Inventaris::select('id', 'nama_skpd', 'nama_inventaris', 'polygon', 'point')->whereNotNull('polygon')
-        $inventaris = Inventaris::whereNotNull('polygon')
-            ->where('nama_skpd', 'like', "%" . $keyword . "%")->whereNotNull('polygon')
-            ->orWhere('kode_master_barang', 'like', "%" . $keyword . "%")->whereNotNull('polygon')
-            ->orWhere('nama_master_barang', 'like', "%" . $keyword . "%")->whereNotNull('polygon')
-            ->orWhere('nama_inventaris', 'like', "%" . $keyword . "%")->whereNotNull('polygon')
+        // fitur pencarian pada halaman Peta Sebaran aset (index)
+        $inventaris = Inventaris::with('master_barang:id,nama')
+            ->with('master_skpd:id,nama')
+            ->with('geometry:id,inventaris_id,polygon,lat,lng')
+            ->where('nama', 'like', "%" . $keyword . "%")->has('geometry')
+            ->orWhereHas('master_barang', function ($q) use ($keyword) {
+                $q->where('nama', 'like', "%" . $keyword . "%");
+            })->has('geometry')
+            ->orWhereHas('master_skpd', function ($q) use ($keyword) {
+                $q->where('nama', 'like', "%" . $keyword . "%");
+            })->has('geometry')
             ->get();
+
         $response = [
             'message' => 'List Pencarian Data',
             'jumlah' => count($inventaris),
             'data' => $inventaris
         ];
-        // dd($inventaris);
         return response()->json($response, Response::HTTP_OK);
     }
     /**
@@ -117,15 +135,13 @@ class InventarisController extends Controller
      */
     public function show($id)
     {
-        //
-        // $inventaris = Inventaris::findOrFail($id);
-        $inventaris = Inventaris::where('id', $id)->get();
+        //Menampilkan satuan data inventaris
+        $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'galery', 'document')->where('id', $id)->get();
 
         $response = [
-            'message' => "Detail Transaksi",
+            'message' => "Detail Inventaris",
             'data' => $inventaris
         ];
-        // dd($response);
         return response()->json($response, Response::HTTP_OK);
     }
 
@@ -156,8 +172,6 @@ class InventarisController extends Controller
             'jenis_inventaris' => ['required']
 
         ]);
-
-        // dd($validator);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), response::HTTP_UNPROCESSABLE_ENTITY);

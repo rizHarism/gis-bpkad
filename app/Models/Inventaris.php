@@ -11,5 +11,31 @@ class Inventaris extends Model
 
     protected $table = 'inventaris';
 
-    protected $fillable = ['jenis_inventaris', 'polygon', 'point'];
+    protected $fillable = ['id', 'jenis_inventaris', 'nama', 'tahun_perolehan', 'nilai_aset', 'luas', 'status', 'alamat', 'no_dokumen_sertifikat', 'skpd_id', 'master_barang_id'];
+
+
+    public function master_barang()
+    {
+        return $this->belongsTo(MasterBarang::class);
+    }
+
+    public function master_skpd()
+    {
+        return $this->belongsTo(Skpd::class, 'skpd_id');
+    }
+
+    public function geometry()
+    {
+        return $this->hasOne(Geometry::class);
+    }
+
+    public function galery()
+    {
+        return $this->hasOne(Galery::class);
+    }
+
+    public function document()
+    {
+        return $this->hasOne(Document::class);
+    }
 }

@@ -17,9 +17,10 @@
 @section('js')
     <script>
         console.log('Hi!');
+        var api = 'http://127.0.0.1:8000/api'
 
         function allAset() {
-            $.getJSON('http://127.0.0.1:8000/api/inventaris/dashboard', (data) => {
+            $.getJSON(api + '/inventaris/dashboard', (data) => {
                 let allAset = data.total_aset;
                 let sertifikat = data.bersertifikat;
                 let nonSertifikat = data.tidak_bersertifikat;
@@ -27,13 +28,11 @@
 
 
                 $('#all_aset').html('')
-                // $('#all_aset').append(allAset)
-                $('#all_aset').append('1456')
+                $('#all_aset').append(allAset)
                 $('#bersertifikat').html('')
                 $('#bersertifikat').append(sertifikat)
                 $('#non_sertifikat').html('')
-                // $('#non_sertifikat').append(nonSertifikat)
-                $('#non_sertifikat').append('913')
+                $('#non_sertifikat').append(nonSertifikat)
 
             })
         };

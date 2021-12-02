@@ -1,0 +1,55 @@
+﻿id,nama,kode_skpd
+836,Dinas Pendidikan,1.01.01
+837,Dinas Kesehatan,1.02.01
+838,Rumah Sakit Umum Daerah Mardi Waluyo,1.02.02
+839,Dinas Pekerjaan Umum dan Penataan Ruang,1.03.01
+841,Dinas Lingkungan Hidup,2.05.01
+842,Dinas Kependudukan dan Pencatatan Sipil,2.06.01
+843,Dinas Ketahanan Pangan dan Pertanian,2.03.01
+844,"Badan Kesatuan Bangsa, Politik dan Penanggulangan Bencana",4.01.06
+848,Pengelola Barang Milik Daerah,4.01.02
+849,Sekretariat DPRD,4.01.04
+850,"Badan Pendapatan, Keuangan dan Aset Daerah",4.04.01
+851,Inspektorat,4.02.01
+852,Kecamatan Kepanjenkidul,4.01.0501
+853,Kecamatan Sukorejo,4.01.0502
+854,Kecamatan Sananwetan,4.01.0503
+855,Kelurahan Ngadirejo,4.01.050102
+857,Dinas Pariwisata dan Kebudayaan,3.02.01
+858,Dinas Sosial,1.06.01
+860,Kelurahan Sentul,4.01.050103
+861,Dinas Perdagangan dan Perindustrian,3.06.01
+865,UPT Satuan Pendidikan SMPN 1,1.01.010201
+866,UPT Satuan Pendidikan SMPN 2,1.01.010202
+868,UPT Satuan Pendidikan SMPN 4,1.01.010204
+871,UPT Satuan Pendidikan SMPN 7,1.01.010207
+872,UPT Satuan Pendidikan SMPN 8,1.01.010208
+873,UPT Satuan Pendidikan SMPN 9,1.01.010209
+877,Bagian Umum,4.01.0204
+882,Kelurahan Kauman,4.01.050104
+883,Kelurahan Tanggung,4.01.050105
+884,Kelurahan Bendo,4.01.050106
+885,Kelurahan Kepanjenlor,4.01.050107
+886,Kelurahan Kepanjenkidul,4.01.050101
+887,Kelurahan Pakunden,4.01.050201
+888,Kelurahan Blitar,4.01.050202
+889,Kelurahan Tlumpu,4.01.050203
+890,Kelurahan Turi,4.01.050204
+891,Kelurahan Karangsari,4.01.050205
+892,Kelurahan Sukorejo,4.01.050206
+893,Kelurahan Tanjungsari,4.01.050207
+894,Kelurahan Gedog,4.01.050301
+895,Kelurahan Plosokerep,4.01.050302
+896,Kelurahan Klampok,4.01.050303
+897,Kelurahan Sananwetan,4.01.050304
+898,Kelurahan Rembang,4.01.050305
+899,Kelurahan Karangtengah,4.01.050306
+900,Kelurahan Bendogerit,4.01.050307
+906,Dinas Perumahan Rakyat,1.04.01
+907,Dinas Perhubungan,2.09.01
+908,"Dinas Penanaman Modal,Tenaga Kerja dan PTSP",2.12.01
+911,Dinas Kepemudaan dan Olah Raga,2.13.01
+912,Dinas Perpustakaan dan Kearsipan,2.17.01
+982,UPTD DINAS KESEHATAN KEC.KEPANJENKIDUL,1.02.0201
+983,UPTD DINAS KESEHATAN KEC.SANANWETAN,1.02.0202
+984,UPTD DINAS KESEHATAN KEC.SUKOREJO,1.02.0203
