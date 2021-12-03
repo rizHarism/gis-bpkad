@@ -8,6 +8,7 @@ function rupiah(x) {
     return x;
 }
 
+
 var map = L.map('maps', {
     zoomControl: false,
     contextmenu: false,
@@ -375,10 +376,6 @@ batas.addTo(map)
 
 
 
-
-
-
-
 map.on('pm:create', (e) => {
     var layer = e.layer,
         shape = e.shape,
@@ -471,26 +468,6 @@ function zoomOut(e) {
 //     position: "right"
 // }).addTo(map);
 
-L.Control.textbox = L.Control.extend({
-    onAdd: function (map) {
-
-        var text = L.DomUtil.create('div');
-        text.id = "info_text";
-        text.innerHTML = "<strong>koselamase</strong>"
-        return text;
-    },
-
-    onRemove: function (map) {
-        // Nothing to do here
-    }
-});
-L.control.textbox = function (opts) {
-    return new L.Control.textbox(opts);
-}
-L.control.textbox({
-    position: 'topleft'
-}).addTo(map);
-
 //leaflet search
 function searchByAjax(text, callResponse) //callback for 3rd party ajax requests
 {
@@ -521,3 +498,44 @@ map.addControl(new L.Control.Search({
     text: 'Lokasi',
     markerLocation: true
 }));
+
+// custom button admin
+
+var customControl = L.Control.extend({
+
+    options: {
+        position: 'topright'
+    },
+
+    onAdd: function (map) {
+        var container = L.DomUtil.create('input');
+        container.type = "button";
+        container.title = "Halaman Admin";
+        // container.value = "42";
+
+        //container.style.backgroundColor = 'white';
+        container.style.backgroundImage = "url(assets/leaflet/plugin/css/images/setting.png)";
+        container.style.backgroundSize = "25px";
+        container.style.backgroundRepeat = "no-repeat";
+        container.style.backgroundPosition = "center";
+        container.style.borderRadius = "4px";
+        container.style.borderWidth = "thin";
+        container.style.width = '45px';
+        container.style.height = '45px';
+
+        container.onmouseover = function () {
+            container.style.backgroundColor = '';
+        }
+        container.onmouseout = function () {
+            container.style.backgroundColor = 'white';
+        }
+
+        container.onclick = function () {
+            location.href = '/dashboard'
+        }
+
+        return container;
+    }
+});
+
+map.addControl(new customControl());
