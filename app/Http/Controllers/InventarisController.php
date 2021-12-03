@@ -36,21 +36,26 @@ class InventarisController extends Controller
 
     public function dashboard()
     {
-        //Menampilkan Total Aset Tanah pada Halaman Dashboard
-        $inventaris = Inventaris::get()->all();
-        $nonSertifikat = Inventaris::where('status', 0)->GET();
-        $sertifikat = Inventaris::where('status', 1)->GET();
-        $count_all = count($inventaris);
-        $count_not_sertifikat = count($nonSertifikat);
-        $count_sertifikat = count($sertifikat);
+        //count Total Aset Tanah bersertifikat pada Halaman Dashboard
+        $inventaris = count(Inventaris::get()->all());
+        $non_sertifikat = count(Inventaris::where('status', 0)->GET());
+        $sertifikat = count(Inventaris::where('status', 1)->GET());
+
+        //count aset bersertifikat terpetakan
+        $mapped_sertifikat = count(Inventaris::with('geometry')
+            ->has('geometry')
+            ->get());
+        $not_mapped_inventaris = $sertifikat - $mapped_sertifikat;
 
         $response = [
             'message' => 'List Data Transaksi order by time',
             // 'data' => $sertifikat
-            'total_aset' => $count_all,
-            'bersertifikat' => $count_sertifikat,
-            'tidak_bersertifikat' => $count_not_sertifikat,
-            // 'data' => $inventaris
+            'total_aset' => $inventaris,
+            'bersertifikat' => $sertifikat,
+            'tidak_bersertifikat' => $non_sertifikat,
+            'terpetakan' => $mapped_sertifikat,
+            'belum_terpetakan' => $not_mapped_inventaris
+
         ];
 
         return response()->json($response, Response::HTTP_OK);
@@ -106,6 +111,7 @@ class InventarisController extends Controller
         ];
         return response()->json($response, Response::HTTP_OK);
     }
+
     /**
      * Show the form for creating a new resource.
      *
