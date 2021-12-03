@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\MasterBarang;
 use App\Http\Requests\StoreMasterBarangRequest;
 use App\Http\Requests\UpdateMasterBarangRequest;
+use Symfony\Component\HttpFoundation\Response;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class MasterBarangController extends Controller
 {
@@ -15,7 +18,16 @@ class MasterBarangController extends Controller
      */
     public function index()
     {
-        //
+        //call master barang
+        DB::statement(DB::raw('set @rownum=0'));
+        $master_barang = MasterBarang::select([
+            DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+            'id',
+            'nama',
+            'kode_barang'
+        ]);
+        $datatables = DataTables::of($master_barang)->addIndexColumn();
+        return $datatables->make(true);
     }
 
     /**

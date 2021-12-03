@@ -242,19 +242,19 @@ return [
         ['header' => 'MANAJEMEN PENDATAAN'],
 
         [
-            'text' => 'Data Dasar Aset',
-            'url'  => 'admin/settings',
+            'text' => 'Data Dasar BMD',
+            'url'  => 'datadasarbmd',
             'icon' => 'fas fa-fw fa-file-alt',
-            'submenu' => [
-                [
-                    'text'  => 'Master Aset',
-                    'url'   => '#',
-                ],
-                [
-                    'text'  => 'Konfigurasi Penyusutan',
-                    'url'   => '#',
-                ]
-            ]
+            // 'submenu' => [
+            //     [
+            //         'text'  => 'Master Aset',
+            //         'url'   => '#',
+            //     ],
+            //     [
+            //         'text'  => 'Konfigurasi Penyusutan',
+            //         'url'   => '#',
+            //     ]
+            // ]
         ],
         [
             'text'      => 'Data Aset',

@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\MasterBarangController;
+use App\Models\MasterBarang;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,3 +27,4 @@ Route::get('/getinventaris', [InventarisController::Class, 'getInventaris']);
 Route::get('/inventaris/{keywoard}/search', [InventarisController::Class, 'searchInventaris']);
 Route::get('/inventaris/{id}', [InventarisController::Class, 'show']);
 Route::put('/inventaris/{id}', [InventarisController::Class, 'update']);
+Route::get('/masterbarang', [MasterBarangController::Class, 'index']);
