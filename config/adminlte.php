@@ -228,7 +228,7 @@ return [
     'menu' => [
         [
             'text'        => 'Dashboard',
-            'url'         => 'home',
+            'url'         => 'dashboard',
             'icon'        => 'fas fa-tachometer-alt',
             'label_color' => 'success',
         ],
@@ -256,11 +256,6 @@ return [
                 ]
             ]
         ],
-        // [
-        //     'text' => 'Data RKBMD',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-file-alt',
-        // ],
         [
             'text'      => 'Data Aset',
             'url'       => 'admin/settings',
