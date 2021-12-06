@@ -1,9 +1,9 @@
 @extends('adminlte::master')
 
-@section('title', 'Dashboard')
+@section('title', 'Peta Sebaran Aset')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    {{-- <h1>Dashboard</h1> --}}
 @stop
 
 @section('body')
