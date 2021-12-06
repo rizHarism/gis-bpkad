@@ -115,84 +115,83 @@
     </ul>
 </nav> --}}
 
-{{-- <div id="sidebarV2" class="sidebarV2 collapsed " style="border-color: transparent; margin-top: 60px; height: 50%">
+<div id="sidebarV2" class="sidebarV2 collapsed " style=" margin-bottom: 100px; margin-right: 5px">
     <!-- Nav tabs -->
     <div class="sidebarV2-tabs">
         <ul role="tablist">
-            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+            <li><a href="#layers" role="tab"><i class="fas fa-layer-group"></i></a></li>
+            <li><a href="#query" role="tab"><i class="fas fa-database"></i></a></li>
             <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-            <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-            <li><a href="https://github.com/Turbo87/sidebarV2-v2" role="tab" target="_blank"><i
-                        class="fa fa-github"></i></a></li>
+            <li><a href="#information" role="tab"><i class="fas fa-info-circle"></i></a></li>
+            <li><a href="/dashboard" role="tab"><i class="fa fa-cog"></i></a></li>
         </ul>
 
         <ul role="tablist">
-            <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+            <li><a href="#information" role="tab"><i class="fas fa-info-circle"></i></a></li>
         </ul>
     </div>
 
     <!-- Tab panes -->
     <div class="sidebarV2-content">
-        <div class="sidebarV2-pane" id="home">
+        <div class="sidebarV2-pane" id="layers">
             <h1 class="sidebarV2-header">
-                sidebarV2-v2
-                <span class="sidebarV2-close"><i class="fa fa-caret-left"></i></span>
-            </h1>
-
-            <p>A responsive sidebarV2 for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a
-                    href="http://openlayers.org/">OpenLayers</a>.</p>
-
-            <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
-
-            <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
-
-            <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
-
-            <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
-        </div>
-
-        <div class="sidebarV2-pane" id="profile">
-            <h1 class="sidebarV2-header">Profile<span class="sidebarV2-close"><i class="fa fa-caret-left"></i></span>
+                Si-Mantab
+                <span class="sidebarV2-close"><i class="fa fa-caret-right"></i></span>
             </h1>
         </div>
 
-        <div class="sidebarV2-pane" id="messages">
-            <h1 class="sidebarV2-header">Messages<span class="sidebarV2-close"><i class="fa fa-caret-left"></i></span>
+        <div class="sidebarV2-pane" id="query">
+            <h1 class="sidebarV2-header">Query Pencarian<span class="sidebarV2-close"><i
+                        class="fa fa-caret-right"></i></span>
+            </h1>
+
+            <div class="container-fluid">
+
+                <div class="form-check form-control-sm mt-3">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                    <label class="form-check-label fw-bold" for="flexRadioDefault1">
+                        Bersertifikat
+                    </label>
+                </div>
+                <div class="form-check form-control-sm">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label fw-bold" for="flexRadioDefault2">
+                        Non Sertifikat
+                    </label>
+                </div>
+
+                <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example">
+                    <option selected>Semua SKPD</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+
+                <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example">
+                    <option selected>Semua Kelurahan</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="sidebarV2-pane" id="information">
+            <h1 class="sidebarV2-header">Informasi Aplikasi<span class="sidebarV2-close"><i
+                        class="fa fa-caret-right"></i></span>
             </h1>
         </div>
 
         <div class="sidebarV2-pane" id="settings">
-            <h1 class="sidebarV2-header">Settings<span class="sidebarV2-close"><i class="fa fa-caret-left"></i></span>
+            <h1 class="sidebarV2-header">Settings<span class="sidebarV2-close"><i class="fa fa-caret-right"></i></span>
             </h1>
         </div>
     </div>
-</div> --}}
+</div>
 
-<div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+{{-- <div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -215,4 +214,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}

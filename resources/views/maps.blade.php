@@ -10,7 +10,7 @@
     @include('layouts.navbar_maps')
 
     <div id="maps"></div>
-
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/core/leaflet-src.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-providers.js') }}"></script>
@@ -24,6 +24,7 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-sidebar.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-search.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.responsive.popup.js') }}"></script>
+    <script src="{{ asset('assets/leaflet/plugin/js/L.Control.Layers.Tree.js') }}"></script>
     <script src="{{ asset('assets/inventaris/maps.js') }}"></script>
 
     <script>
