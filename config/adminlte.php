@@ -245,6 +245,7 @@ return [
             'text' => 'Data Dasar BMD',
             'url'  => 'datadasarbmd',
             'icon' => 'fas fa-fw fa-file-alt',
+            'can'  => 'dasar bmd.index',
             // 'submenu' => [
             //     [
             //         'text'  => 'Master Aset',
@@ -259,19 +260,23 @@ return [
         [
             'text'      => 'Data Aset',
             'url'       => 'admin/settings',
+            'can'       => 'data aset.index',
             'icon'      => 'fas fa-fw fa-file-alt',
             'submenu'   => [
                 [
                     'text'  => 'Aset Tanah (KIB A)',
-                    'url'   => 'inventaris_kib_a'
+                    'url'   => 'inventaris_kib_a',
+                    'can'   => 'data aset.inventaris kib a',
                 ],
                 [
                     'text'  => 'Aset Gedung (KIB C)',
-                    'url'   => 'inventaris_kib_c'
+                    'url'   => 'inventaris_kib_c',
+                    'can'   => 'data aset.inventaris kib c',
                 ],
                 [
                     'text'  => 'Aset jaringan (KIB D)',
-                    'url'   => 'inventaris_kib_d'
+                    'url'   => 'inventaris_kib_d',
+                    'can'   => 'data aset.inventaris kib d',
                 ],
                 // [
                 //     'text'  => 'KIB F - Kontruksi Dalam Pengerjaan',
@@ -282,15 +287,18 @@ return [
         [
             'text'      => 'Pengelolaan Aset',
             'url'       => 'admin/tatausaha',
+            'can'       => 'pengelolaan aset.index',
             'icon'      => 'fa fa-fw fa-recycle',
             'submenu'   => [
                 [
                     'text'  => 'Pengadaan',
-                    'url'   => '#'
+                    'url'   => '#',
+                    'can'   => 'pengelolaan aset.pengadaan',
                 ],
                 [
                     'text'  => 'Mutasi Aset',
-                    'url'   => '#'
+                    'url'   => '#',
+                    'can'   => 'pengelolaan aset.mutasi aset'
                 ]
             ]
         ],
@@ -299,15 +307,18 @@ return [
         [
             'text' => 'Administrator',
             'url'  => 'admin/opd',
+            'can'  => 'administrator.index',
             'icon' => 'fas  fa-fw fa-cogs',
             'submenu'   => [
                 [
                     'text'  => 'Setting Profil',
-                    'url'   => 'admin/konfigurasi'
+                    'url'   => 'admin/konfigurasi',
+                    'can'   => 'adminstrator.setting profil'
                 ],
                 [
                     'text'  => 'Konfigurasi Simantab',
-                    'url'   => 'admin/konfigurasi'
+                    'url'   => 'admin/konfigurasi',
+                    'can'   => 'administrator.konfigurasi simantab'
                 ],
 
             ],
@@ -315,6 +326,7 @@ return [
         [
             'text' => 'Data OPD',
             'url'  => 'admin/opd',
+            'can'  => 'data opd.index',
             'icon' => 'fas fa-fw  fa-users',
         ],
 
