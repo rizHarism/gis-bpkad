@@ -24,8 +24,8 @@ $(function () {
             method: "GET"
         },
         columns: [
-            { data: 'rownum' },
-            // { data: 'id' },
+            // { data: 'rownum' },
+            { data: 'id' },
             { data: 'master_skpd.nama' },
             { data: 'master_barang.kode_barang' },
             { data: 'master_barang.nama' },
