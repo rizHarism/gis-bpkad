@@ -25,7 +25,6 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-search.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.responsive.popup.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/L.Control.Layers.Tree.js') }}"></script>
-    <script src="{{ asset('assets/swal2/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/inventaris/maps.js') }}"></script>
 
 @stop
