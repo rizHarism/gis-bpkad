@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\skpd;
 use App\Http\Requests\StoreskpdRequest;
 use App\Http\Requests\UpdateskpdRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class SkpdController extends Controller
 {
@@ -15,7 +16,15 @@ class SkpdController extends Controller
      */
     public function index()
     {
-        //
+        //call all data skpd from skpd table
+        $skpd = Skpd::get()->all();
+        $response = [
+            'message' => 'semua data skpd',
+            'count' => count($skpd),
+            'data' => $skpd
+        ];
+        // dd($response);
+        return response()->json($response, Response::HTTP_OK);
     }
 
     /**

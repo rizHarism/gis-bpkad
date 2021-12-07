@@ -6,6 +6,7 @@ use App\Models\Geometry;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Inventaris;
+use App\Models\MasterBarang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,7 +62,7 @@ class InventarisController extends Controller
         return response()->json($response, Response::HTTP_OK);
     }
 
-    public function getInventaris(Request $request)
+    public function getInventaris()
     {
         //Get data untuk yajra datatables pada halaman Inventaris
 
@@ -112,6 +113,31 @@ class InventarisController extends Controller
         return response()->json($response, Response::HTTP_OK);
     }
 
+
+
+    public function queryInventaris($status, $skpd_id /*, $kelurahan_id*/)
+    {
+
+        // query inventaris untuk pencarian data geometry/polygon (filterisasi)
+        if ($skpd_id === 'Semua SKPD') {
+            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry')
+                ->has('geometry')
+                ->get();
+        } else {
+
+            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry')
+                ->where('skpd_id',  $skpd_id)->has('geometry')
+                ->where('status',  $status)->has('geometry')
+                ->get();
+        }
+
+        $response = [
+            'message' => 'List Query Pencarian Data',
+            'count' => count($inventaris),
+            'data' => $inventaris
+        ];
+        return response()->json($response, Response::HTTP_OK);
+    }
     /**
      * Show the form for creating a new resource.
      *

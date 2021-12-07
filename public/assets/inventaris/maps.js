@@ -511,47 +511,6 @@ var search = new L.Control.Search({
     markerLocation: true,
 }).addTo(map);
 
-// custom button admin
-
-// var customControl = L.Control.extend({
-
-//     options: {
-//         position: 'topright'
-//     },
-
-//     onAdd: function (map) {
-//         var container = L.DomUtil.create('input');
-//         container.type = "button";
-//         container.title = "Halaman Admin";
-//         // container.value = "42";
-
-//         //container.style.backgroundColor = 'white';
-//         container.style.backgroundImage = "url(assets/leaflet/plugin/css/images/setting.png)";
-//         container.style.backgroundSize = "25px";
-//         container.style.backgroundRepeat = "no-repeat";
-//         container.style.backgroundPosition = "center";
-//         container.style.borderRadius = "4px";
-//         container.style.borderWidth = "thin";
-//         container.style.width = '45px';
-//         container.style.height = '45px';
-
-//         container.onmouseover = function () {
-//             container.style.backgroundColor = '';
-//         }
-//         container.onmouseout = function () {
-//             container.style.backgroundColor = 'white';
-//         }
-
-//         container.onclick = function () {
-//             location.href = '/dashboard'
-//         }
-
-//         return container;
-//     }
-// });
-
-// map.addControl(new customControl());
-
 //control layer tree overlay
 
 var overlaysTree =
@@ -641,7 +600,158 @@ function setParentLayer(el, newParent) {
 }
 setParentLayer(htmlObject, a);
 
-// function setParentSearch(el, newParent) {
-//     newParent.appendChild(el);
-// }
-// setParentSearch(htmlSearch, b);
+// ambil data skpd untuk query pencarian
+
+$.ajax({
+    type: "GET",
+    url: 'http://127.0.0.1:8000/api/skpd',
+    dataType: "json",
+    success: function (skpdData) {
+        var skpd = skpdData.data,
+            listItems = ""
+        $.each(skpd, (i, property) => {
+
+            listItems += "<option value='" + property.id + "'>" + property.nama + "</option>"
+        })
+        // console.log(listItems);
+        $("#data_skpd").append(listItems);
+    }
+});
+
+// query pencarian
+$("#queryGeom").on('submit', function (e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+
+    var status = $('input[name="status"]:checked').val();
+    var skpd = $('#data_skpd').val();
+
+    console.log(skpd)
+
+    map.eachLayer(function (lay) {
+        if (lay.toGeoJSON) {
+            map.removeLayer(lay);
+        }
+
+    });
+
+    map.addLayer(batasKepanjenkidul);
+    map.addLayer(batasSukorejo);
+    map.addLayer(batasSananwetan);
+
+    $.ajax({
+        type: "POST",
+        url: 'http://127.0.0.1:8000/api/inventaris/' + status + '/' + skpd + '/query',
+        dataType: "json",
+        success: function (q) {
+            console.log(q)
+            var geom = q.data
+
+            // Swal.fire(
+            //     // q.count,
+            //     'Data geometry tidak ditemukan!',
+            //     'warning',
+            //     'warning'
+            // )
+            $.each(geom, (i, prop) => {
+
+                var id = prop.id
+                var geo = prop.geometry.polygon
+
+                x = JSON.parse(geo)
+                var layers = L.geoJSON(x, { style: sertifikatStyle });
+                layers.addTo(map);
+
+                layers.on('click', function () {
+
+                    const sertifikat = (prop
+                        .status == 1) ?
+                        "Bersertifikat" :
+                        "Belum Bersertifikat";
+                    const hb = prop
+                        .nilai_aset,
+                        na = prop
+                            .nilai_aset,
+                        lt = prop
+                            .luas,
+                        ns = prop
+                            .nilai_aset
+
+                    var content = `<table class="table table-striped">
+                                                    <tr>
+                                                        <th>Pemilik Inventaris</th>
+                                                        <td>` + prop.master_skpd.id + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nama Inventaris</th>
+                                                        <td>` + prop.nama + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Kode Inventaris</th>
+                                                        <td>` + prop.master_barang.kode_barang + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Tahun Perolehan</th>
+                                                        <td>` + prop.tahun_perolehan + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Harga Beli</th>
+                                                        <td>` + `Rp ` + rupiah(hb) + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nilai Aset</th>
+                                                        <td>` + `Rp ` + rupiah(na) + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Alamat</th>
+                                                        <td>` + prop.alamat + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Luas Tanah</th>
+                                                        <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>No Sertifikat</th>
+                                                        <td>` + prop.no_dokumen_sertifikat + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Status</th>
+                                                        <td>` + sertifikat + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nilai Saat Ini</th>
+                                                        <td>` + `Rp ` + rupiah(ns) + `</td>
+                                                    </tr>
+                                                </table>`
+
+
+                    var popups = L.responsivePopup()
+                        .setContent(
+                            content)
+
+                    layers.bindPopup(popups)
+                        .openPopup();
+                });
+            })
+
+        }
+    });
+
+    // menghapus layer yang ada di peta
+    $("#clear").on('click', function (e) {
+        map.eachLayer(function (lay) {
+            if (lay.toGeoJSON) {
+                map.removeLayer(lay);
+            }
+
+        });
+
+        map.addLayer(batasKepanjenkidul);
+        map.addLayer(batasSukorejo);
+        map.addLayer(batasSananwetan);
+    })
+
+});
+
+

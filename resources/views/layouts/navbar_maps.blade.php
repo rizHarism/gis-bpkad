@@ -1,120 +1,3 @@
-{{-- <nav class="navbar navbar-expand navbar-white navbar-light shadow-sm  mb-1 bg-body rounded">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav ">
-        <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/logo-image/blitar.png') }}" alt="" width="24" height="30"
-                    class="d-inline-block align-text-top me-2">
-            </a>
-            <h4 class="pt-2 fst-italic fw-bold fw-light">SIMANTAB Kota Blitar</h4>
-        </div>
-    </ul>
-
-    @include('adminlte::partials.navbar.menu-item-dropdown-user-menu')
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ms-auto">
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="/dashboard" class="nav-link">Dashboard</a>
-        </li>
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="/dashboard" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">3</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Brad Diesel
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">Call me whenever you can...</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                John Pierce
-                                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">I got your message bro</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Nora Silvester
-                                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">The subject goes here</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-            </div>
-        </li>
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
-                    class="fas fa-th-large"></i></a>
-        </li>
-    </ul>
-</nav> --}}
-
 <div id="sidebarV2" class="sidebarV2 collapsed " style=" margin-bottom: 100px; margin-right: 5px">
     <!-- Nav tabs -->
     <div class="sidebarV2-tabs">
@@ -146,34 +29,46 @@
             </h1>
 
             <div class="container-fluid">
+                <p class="mt-3">Query Pencarian adalah fitur pencarian geometry data aset berdasarkan SKPD
+                    terkait
+                    dan letak kelurahan
+                </p>
 
-                <div class="form-check form-control-sm mt-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                    <label class="form-check-label fw-bold" for="flexRadioDefault1">
-                        Bersertifikat
-                    </label>
-                </div>
-                <div class="form-check form-control-sm">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label fw-bold" for="flexRadioDefault2">
-                        Non Sertifikat
-                    </label>
-                </div>
+                <form id="queryGeom">
+                    <div class="form-check form-control-sm mt-3">
+                        <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="1"
+                            checked>
+                        <label class="form-check-label fw-bold" for="flexRadioDefault1">
+                            Bersertifikat
+                        </label>
+                    </div>
+                    <div class="form-check form-control-sm">
+                        <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="0">
+                        <label class="form-check-label fw-bold" for="flexRadioDefault2">
+                            Non Sertifikat
+                        </label>
+                    </div>
 
-                <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example">
-                    <option selected>Semua SKPD</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                    <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
+                        id="data_skpd">
+                        <option selected>Semua SKPD</option>
+                    </select>
 
-                <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example">
-                    <option selected>Semua Kelurahan</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-
+                    <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example">
+                        <option selected>Semua Kelurahan</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <div class="row">
+                        <div class="col-md-3 align-center">
+                            <button type="" class="btn btn-primary mt-4">Cari</button>
+                        </div>
+                        <div class="col-md-3 align-center">
+                            <button type="button" id="clear" class="btn btn-secondary mt-4">Clear</button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
         </div>
