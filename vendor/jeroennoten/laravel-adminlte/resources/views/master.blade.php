@@ -32,7 +32,8 @@
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet.contextmenu.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-search.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet.responsive.popup.css') }}" />
-    {{-- <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-sidebar.css') }}" /> --}}
+    <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/L.Control.Layers.Tree.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-sidebar.css') }}" />
 
     <style>
         html,
@@ -54,6 +55,12 @@
             margin-bottom: 0;
         }
 
+        .leaflet-touch .leaflet-control-layers,
+        .leaflet-touch .leaflet-bar {
+            border: 50px none rgba(102, 13, 13, 0.2);
+            background-clip: padding-box;
+        }
+
     </style>
 
     {{-- Base Stylesheets --}}
@@ -68,8 +75,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
-        {{-- sidebar v2 turbo css --}}
-        <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-sidebar.css') }}">
+
 
         {{-- Configured Stylesheets --}}
         @include('adminlte::plugins', ['type' => 'css'])
@@ -120,12 +126,12 @@
     @endif
 
     {{-- Leaflet - geoman - turf - css & js --}}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
+        crossorigin=""></script> --}}
     <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
     {{-- <link rel="stylesheet" href="{{ asset('assets/leaflet-geoman.css') }}" /> --}}
     {{-- <script src="{{ asset('assets/leaflet-geoman.min.js') }}"></script> --}}
