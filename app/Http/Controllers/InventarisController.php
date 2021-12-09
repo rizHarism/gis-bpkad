@@ -66,28 +66,29 @@ class InventarisController extends Controller
     {
         //Get data untuk yajra datatables pada halaman Inventaris
 
-        DB::statement(DB::raw('set @rownum=0'));
+        // DB::statement(DB::raw('set @rownum=0'));
 
-        $inventaris = Inventaris::select([
-            DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-            'id',
-            'jenis_inventaris',
-            'nama',
-            'tahun_perolehan',
-            'nilai_aset',
-            'luas',
-            'status',
-            'alamat',
-            'no_dokumen_sertifikat',
-            'skpd_id',
-            'master_barang_id',
-        ])->with('master_barang', 'master_skpd');
+        // $inventaris = Inventaris::select([
+        // DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+        //     'id',
+        //     'jenis_inventaris',
+        //     'nama',
+        //     'tahun_perolehan',
+        //     'nilai_aset',
+        //     'luas',
+        //     'status',
+        //     'alamat',
+        //     'no_dokumen_sertifikat',
+        //     'master_barang_id',
+        //     'skpd_id',
+        // ])->with('master_barang:id as id_barang, ', 'master_skpd');
 
-        $datatables = Datatables::of($inventaris);
+        // $datatables = Datatables::of($inventaris);
 
-        // $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd'))
-        //     ->make(true);
-        return $datatables->make(true);
+        $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd'))
+            ->make(true);
+        // return $datatables->make(true);
+        return $inventaris;
     }
 
     public function searchInventaris($keyword)
@@ -119,14 +120,14 @@ class InventarisController extends Controller
     {
 
         // query inventaris untuk pencarian data geometry/polygon (filterisasi)
-        if ($skpd_id === 'Semua SKPD') {
+        if ($skpd_id === 'Semua SKPD' /* && $kelurahan_id === 'Semua Kelurahan' */) {
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry')
                 ->has('geometry')
                 ->get();
         } else {
-
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry')
                 ->where('skpd_id',  $skpd_id)->has('geometry')
+                // ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
                 ->where('status',  $status)->has('geometry')
                 ->get();
         }

@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Inventaris | Simantab')
+@section('title', 'Edit Inventaris | Simantab')
 
 @section('content_header')
-    <div class="h1 ">KIB A - Data Aset Tanah Kota Blitar</div>
+    <div class="mt-2"></div>
 @stop
 
 @section('content')
-    @include('contents.inventaris_kib_a_content')
+    @include('contents.inventaris_kib_a_edit_content')
 @stop
 
 @section('css')
@@ -25,5 +25,13 @@
     <script src="{{ asset('assets/leaflet/plugin/js/styledLayerControl.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
-    <script src="{{ asset('assets/inventaris/kib_a.js') }}"></script>
+    <script>
+        var map = L.map('map', {
+            zoomControl: false,
+            contextmenu: false,
+        }).setView([-8.098244, 112.165077], 13);
+        var esri = L.tileLayer.provider('Esri.WorldImagery', {
+            maxZoom: 19
+        }).addTo(map)
+    </script>
 @stop

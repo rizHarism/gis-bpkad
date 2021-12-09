@@ -1,4 +1,4 @@
-var api = 'http://127.0.0.1:8000/api/inventaris'
+// var api = '/api/inventaris'
 
 function rupiah(x) {
     x = x.toString();
@@ -117,7 +117,7 @@ var p4 = new L.GeoJSON(null);
 // // alert(control)
 
 var sertifikatStyle = {
-    "color": "#84ff00",
+    "color": "#ff7700",
     "weight": 1,
     "opacity": 1
 };
@@ -129,13 +129,12 @@ var nonSertifikatStyle = {
 
 function getAsetSertifikat() {
     $.ajax({
-        url: api,
+        url: '/api/inventaris',
         dataType: "json",
         async: false,
         success: function (result) {
 
             let inv = result.data
-            // console.log(inv)
             $.each(inv, (i, property) => {
                 var id = property.id
                 var geo = property.geometry
@@ -143,17 +142,14 @@ function getAsetSertifikat() {
                 var status = property.status
                 if (geo !== null && status == 1) {
                     var x = JSON.parse(geo.polygon)
-                    // console.log(geo.polygon)
-                    // alert(geo)
-                    // x.properties["id"] = id
-                    console.log(x)
+
                     var layer = L.geoJSON(x, {
                         style: sertifikatStyle
                     })
                     layer.addTo(map)
                     layer.on('click', function () {
                         $.ajax({
-                            url: api + "/" + id,
+                            url: '/api/inventaris/' + id,
                             dataType: "json",
                             async: false,
                             success: function (result) {
@@ -173,65 +169,85 @@ function getAsetSertifikat() {
                                         ns = property
                                             .nilai_aset
 
+                                    $('#detailTitle').empty()
+                                    $('#detailData').empty()
+                                    $('#detailTitle').append(property.master_skpd.nama + "-" + property.nama)
+                                    $('#detailData').append(`
+                                                    <table class="table table-striped">
+                                                    <tr>
+                                                      <th>Pemilik Inventaris </th>
+                                                      <td>`+ property.master_skpd.nama + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Nama Inventaris </th>
+                                                      <td>`+ property.nama + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Kode Inventaris </th>
+                                                      <td>`+ property.master_barang.kode_barang + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Tahun Perolehan :</th>
+                                                      <td>` + property.tahun_perolehan + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Harga Beli </th>
+                                                      <td>`+ `Rp ` + rupiah(hb) + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Nilai Aset </th>
+                                                      <td>`+ `Rp ` + rupiah(na) + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Alamat </th>
+                                                      <td>`+ property.alamat + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Luas Tanah </th>
+                                                      <td>` + lt + ` Meter Persegi` + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>No Sertifikat </th>
+                                                      <td>`+ property.no_dokumen_sertifikat + `</td>
+                                                    </tr>
 
-                                    var content = `<table class="table table-striped">
-                                                        <tr>
-                                                            <th>Pemilik Inventaris</th>
-                                                            <td>` + property.master_skpd.nama + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Nama Inventaris</th>
-                                                            <td>` + property.nama + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Kode Inventaris</th>
-                                                            <td>` + property.master_barang.kode_barang + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Tahun Perolehan</th>
-                                                            <td>` + property.tahun_perolehan + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Harga Beli</th>
-                                                            <td>` + `Rp ` + rupiah(hb) + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Nilai Aset</th>
-                                                            <td>` + `Rp ` + rupiah(na) + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Alamat</th>
-                                                            <td>` + property.alamat + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Luas Tanah</th>
-                                                            <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>No Sertifikat</th>
-                                                            <td>` + property.no_dokumen_sertifikat + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Status</th>
-                                                            <td>` + sertifikat + `</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Nilai Saat Ini</th>
-                                                            <td>` + `Rp ` + rupiah(ns) + `</td>
-                                                        </tr>
-                                                    </table>`
+                                                    <tr>
+                                                      <th>Status </th>
+                                                      <td>`+ sertifikat + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Nilai Saat Ini </th>
+                                                      <td>`+ `Rp ` + rupiah(ns) + `</td>
+                                                    </tr>
+                                                </table>
+                                                    `);
+
+                                    var content = ` <img class="img-thumbnail rounded" src="https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg" alt="...">
+                                                    <p class="text-center fw-bold m-2 p-0 h7">`+ property.nama + `</p>
+                                                    <table class="table table-striped">
+                                                    <tr>
+                                                        <th>Pengelola</th>
+                                                        <td>` + property.master_skpd.nama + `</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th>Alamat</th>
+                                                        <td>` + property.alamat + `</td>
+                                                    </tr>
+                                                    </table>
+                                                    <div style="text-align:center">
+                                                    <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"`+ property.id + `">Detail</a>
+                                                    </div>`
+
                                     var popup = L.responsivePopup()
                                         .setContent(
                                             content)
 
                                     layer.bindPopup(popup)
                                         .openPopup();
-                                    // `);
                                 })
                             }
                         })
-                        // }
-                        // callDetail()
                     });
 
                     map.on('overlayremove', function (eventLayer) {
@@ -251,7 +267,7 @@ function getAsetSertifikat() {
 function getAsetNonSertifikat() {
     $.ajax({
 
-        url: api,
+        url: '/api/inventaris',
         dataType: "json",
         async: false,
         success: function (result) {
@@ -277,7 +293,7 @@ function getAsetNonSertifikat() {
                             $('#detailData').empty()
 
                             $.ajax({
-                                url: api + "/" + id,
+                                url: '/api/inventaris/' + id,
                                 dataType: "json",
                                 async: false,
                                 success: function (result) {
@@ -333,7 +349,7 @@ function getAsetNonSertifikat() {
                                         </tr>
                                         <tr>
                                           <th>Luas Tanah </th>
-                                          <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
+                                          <td>` + lt + ` Meter Persegi` + `</td>
                                         </tr>
                                         <tr>
                                           <th>No Sertifikat </th>
@@ -486,7 +502,7 @@ function searchByAjax(text, callResponse) //callback for 3rd party ajax requests
     var q = text
     console.log(q)
     return $.ajax({
-        url: api + '/' + q +
+        url: '/api/inventaris/' + q +
             '/search',
         type: 'GET',
         dataType: 'json',
@@ -604,7 +620,7 @@ setParentLayer(htmlObject, a);
 
 $.ajax({
     type: "GET",
-    url: 'http://127.0.0.1:8000/api/skpd',
+    url: '/api/skpd',
     dataType: "json",
     success: function (skpdData) {
         var skpd = skpdData.data,
@@ -642,7 +658,7 @@ $("#queryGeom").on('submit', function (e) {
 
     $.ajax({
         type: "POST",
-        url: 'http://127.0.0.1:8000/api/inventaris/' + status + '/' + skpd + '/query',
+        url: "api/inventaris/" + status + "/" + skpd + '/query',
         dataType: "json",
         success: function (q) {
             console.log(q)
@@ -654,84 +670,116 @@ $("#queryGeom").on('submit', function (e) {
             //     'warning',
             //     'warning'
             // )
-            $.each(geom, (i, prop) => {
+            $.each(geom, (i, property) => {
 
-                var id = prop.id
-                var geo = prop.geometry.polygon
+                var id = property.id
+                var geo = property.geometry.polygon
 
                 x = JSON.parse(geo)
-                var layers = L.geoJSON(x, { style: sertifikatStyle });
-                layers.addTo(map);
+                var layer = L.geoJSON(x, { style: sertifikatStyle });
+                layer.addTo(map);
 
-                layers.on('click', function () {
+                layer.on('click', function () {
+                    $.ajax({
+                        url: "/api/inventaris/" + id,
+                        dataType: "json",
+                        async: false,
+                        success: function (result) {
+                            let inv = result.data
+                            $.each(inv, (i, property) => {
 
-                    const sertifikat = (prop
-                        .status == 1) ?
-                        "Bersertifikat" :
-                        "Belum Bersertifikat";
-                    const hb = prop
-                        .nilai_aset,
-                        na = prop
-                            .nilai_aset,
-                        lt = prop
-                            .luas,
-                        ns = prop
-                            .nilai_aset
+                                const sertifikat = (property
+                                    .status == 1) ?
+                                    "Bersertifikat" :
+                                    "Belum Bersertifikat";
+                                const hb = property
+                                    .nilai_aset,
+                                    na = property
+                                        .nilai_aset,
+                                    lt = property
+                                        .luas,
+                                    ns = property
+                                        .nilai_aset
 
-                    var content = `<table class="table table-striped">
-                                                    <tr>
-                                                        <th>Pemilik Inventaris</th>
-                                                        <td>` + prop.master_skpd.id + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Nama Inventaris</th>
-                                                        <td>` + prop.nama + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Kode Inventaris</th>
-                                                        <td>` + prop.master_barang.kode_barang + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Tahun Perolehan</th>
-                                                        <td>` + prop.tahun_perolehan + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Harga Beli</th>
-                                                        <td>` + `Rp ` + rupiah(hb) + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Nilai Aset</th>
-                                                        <td>` + `Rp ` + rupiah(na) + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Alamat</th>
-                                                        <td>` + prop.alamat + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Luas Tanah</th>
-                                                        <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>No Sertifikat</th>
-                                                        <td>` + prop.no_dokumen_sertifikat + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Status</th>
-                                                        <td>` + sertifikat + `</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Nilai Saat Ini</th>
-                                                        <td>` + `Rp ` + rupiah(ns) + `</td>
-                                                    </tr>
-                                                </table>`
+                                $('#detailTitle').empty()
+                                $('#detailData').empty()
+                                $('#detailTitle').append(property.master_skpd.nama + "-" + property.nama)
+                                $('#detailData').append(`
+                                                <table class="table table-striped">
+                                                <tr>
+                                                  <th>Pemilik Inventaris </th>
+                                                  <td>`+ property.master_skpd.nama + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Nama Inventaris </th>
+                                                  <td>`+ property.nama + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Kode Inventaris </th>
+                                                  <td>`+ property.master_barang.kode_barang + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Tahun Perolehan :</th>
+                                                  <td>` + property.tahun_perolehan + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Harga Beli </th>
+                                                  <td>`+ `Rp ` + rupiah(hb) + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Nilai Aset </th>
+                                                  <td>`+ `Rp ` + na + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Alamat </th>
+                                                  <td>`+ property.alamat + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Luas Tanah </th>
+                                                  <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>No Sertifikat </th>
+                                                  <td>`+ property.no_dokumen_sertifikat + `</td>
+                                                </tr>
 
+                                                <tr>
+                                                  <th>Status </th>
+                                                  <td>`+ sertifikat + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Nilai Saat Ini </th>
+                                                  <td>`+ `Rp ` + rupiah(ns) + `</td>
+                                                </tr>
+                                            </table>
+                                                `);
 
-                    var popups = L.responsivePopup()
-                        .setContent(
-                            content)
+                                var content = ` <img class="img-thumbnail rounded" src="https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg" alt="...">
+                                                <p class="text-center fw-bold m-2 p-0 h7">`+ property.nama + `</p>
+                                                <table class="table table-striped">
+                                                <tr>
+                                                    <th>Pengelola</th>
+                                                    <td>` + property.master_skpd.nama + `</td>
+                                                </tr>
 
-                    layers.bindPopup(popups)
-                        .openPopup();
+                                                <tr>
+                                                    <th>Alamat</th>
+                                                    <td>` + property.alamat + `</td>
+                                                </tr>
+                                                </table>
+                                                <div style="text-align:center">
+                                                <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"`+ property.id + `">Detail</a>
+                                                </div>`
+
+                                var popup = L.responsivePopup()
+                                    .setContent(
+                                        content)
+
+                                layer.bindPopup(popup)
+                                    .openPopup();
+                            })
+                        }
+                    })
                 });
             })
 

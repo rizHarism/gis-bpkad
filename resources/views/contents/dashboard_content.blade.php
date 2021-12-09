@@ -8,13 +8,13 @@
                         <!-- small box -->
                         <div class="small-box bg-primary">
                             <div class="inner">
-                                <h3 id="all_aset"></h3>
-                                <p>Seluruh Aset Tanah</p>
+                                <h3 class="mt-3" id="all_aset"></h3>
+                                <p class="fs-3 mt-2">Seluruh Aset Tanah</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="fas fa-globe-americas"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
                     <!-- ./col -->
@@ -24,14 +24,14 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3 id="bersertifikat"></h3>
+                                <h3 class="mt-3" id="bersertifikat"></h3>
 
-                                <p>Aset Bersertifikat</p>
+                                <p class="fs-3 mt-2">Aset Bersertifikat</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="fas fa-globe-americas"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
                     <!-- ./col -->
@@ -39,14 +39,14 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3 id="non_sertifikat"></h3>
+                                <h3 class="mt-3" id="non_sertifikat"></h3>
 
-                                <p>Aset Belum Bersertifikat</p>
+                                <p class="fs-3 mt-2">Aset Belum Bersertifikat</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="fas fa-globe-americas"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
                     <!-- ./col -->

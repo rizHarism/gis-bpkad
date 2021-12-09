@@ -30,4 +30,5 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('maps');
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/inventaris_kib_a', [App\Http\Controllers\HomeController::class, 'inventaris_kib_a'])->name('inventaris_kib_a');
+Route::get('/inventaris/edit', [App\Http\Controllers\HomeController::class, 'inventaris_edit'])->name('inventaris_kib_a');
 Route::get('/datadasarbmd', [App\Http\Controllers\HomeController::class, 'datadasarbmd'])->name('inventaris_kib_a');

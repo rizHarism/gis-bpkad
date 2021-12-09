@@ -17,7 +17,7 @@ var api = "http://127.0.0.1:8000/api/inventaris"
 $(function () {
 
     var table = $('#inventaris_kib_a').DataTable({
-        processing: true,
+        // processing: true,
         serverSide: true,
         ajax: {
             url: 'http://127.0.0.1:8000/api/getinventaris',
@@ -25,14 +25,19 @@ $(function () {
         },
         columns: [
             // { data: 'rownum' },
-            { data: 'id' },
+            { data: 'id', name: 'id' },
             { data: 'master_skpd.nama' },
-            { data: 'master_barang.kode_barang' },
+            // { data: 'master_barang.kode_barang' },
             { data: 'master_barang.nama' },
             { data: 'nama' },
             { data: 'alamat' },
             { data: 'status', render: sertifikat },
         ],
+
+        columnDefs: [{
+            orderable: false,
+            targets: [0, 1, 2, 3, 4, 5]
+        }],
 
     });
 
@@ -46,11 +51,85 @@ $(function () {
             console.log(id)
             // Memanggil Modal Detail Data
 
-            function callDetail() {
-                $('#detailModal').modal('show');
-                $('#detailTitle').empty("")
-                $('#detailData').empty()
+            // function callDetail() {
+            //     // $('#detailModal').modal('show');
+            //     // $('#detailTitle').empty("")
+            //     $('#detailData').empty()
 
+            //     $.ajax(
+            //         {
+            //             url: api + "/" + id,
+            //             dataType: "json",
+            //             async: false,
+            //             success: function (result) {
+            //                 let inv = result.data
+            //                 $.each(inv, (i, property) => {
+
+            //                     const sertifikat = (property.status == 1) ? "Bersertifikat" : "Belum Bersertifikat";
+            //                     const hb = property.nilai_aset,
+            //                         na = property.nilai_aset,
+            //                         lt = property.luas,
+            //                         ns = property.nilai_aset
+            //                     console.log(property)
+            //                     // $('#detailTitle').append(property.master_skpd.nama)
+            //                     $('#detailData').append(`
+            //                             <table class="table table-striped">
+            //                             <tr>
+            //                               <th>Pemilik Inventaris </th>
+            //                               <td>`+ property.master_skpd.nama + `</td>
+            //                             </tr>
+            //                             <tr>
+            //                               <th>Nama Inventaris </th>
+            //                               <td>`+ property.nama + `</td>
+            //                             </tr>
+            //                             <tr>
+            //                               <th>Kode Inventaris </th>
+            //                               <td>`+ property.master_barang.kode_barang + `</td>
+            //                             </tr>
+            //                             <tr>
+            //                               <th>Tahun Perolehan :</th>
+            //                               <td>` + property.tahun_perolehan + `</td>
+            //                             </tr>
+            //                             <tr>
+            //                               <th>Harga Beli </th>
+            //                               <td>`+ `Rp ` + rupiah(hb) + `</td>
+            //                             </tr>
+            //                             <tr>
+            //                               <th>Nilai Aset </th>
+            //                               <td>`+ `Rp ` + na + `</td>
+            //                             </tr>
+            //                             <tr>
+            //                               <th>Alamat </th>
+            //                               <td>`+ property.alamat + `</td>
+            //                             </tr>
+            //                             <tr>
+            //                               <th>Luas Tanah </th>
+            //                               <td>` + lt + ` Meter Persegi` + `</td>
+            //                             </tr>
+            //                             <tr>
+            //                               <th>No Sertifikat </th>
+            //                               <td>`+ property.no_dokumen_sertifikat + `</td>
+            //                             </tr>
+
+            //                             <tr>
+            //                               <th>Status </th>
+            //                               <td>`+ sertifikat + `</td>
+            //                             </tr>
+            //                             <tr>
+            //                               <th>Nilai Saat Ini </th>
+            //                               <td>`+ `Rp ` + ns + `</td>
+            //                             </tr>
+            //                         </table>
+            //                             `);
+            //                 })
+            //             }
+            //         }
+            //     )
+            // }
+
+            // Memanggil Modal Detail Data
+
+            function callMap() {
                 $.ajax(
                     {
                         url: api + "/" + id,
@@ -66,7 +145,9 @@ $(function () {
                                     lt = property.luas,
                                     ns = property.nilai_aset
                                 console.log(property)
-                                $('#detailTitle').append(property.master_skpd.nama)
+                                $('#detailTitle').empty()
+                                $('#detailData').empty()
+                                $('#detailTitle').append(property.master_skpd.nama + "-" + property.nama)
                                 $('#detailData').append(`
                                         <table class="table table-striped">
                                         <tr>
@@ -116,35 +197,15 @@ $(function () {
                                         </tr>
                                     </table>
                                         `);
-                            })
-                        }
-                    }
-                )
-            }
 
-            // Memanggil Modal Detail Data
-
-            function callMap() {
-                $.ajax(
-                    {
-                        url: api + "/" + id,
-                        dataType: "json",
-                        async: false,
-                        success: function (result) {
-                            let inv = result.data
-                            $.each(inv, (i, property) => {
-
-                                // verifikasi sudah ada map atau belum
                                 var verifMap = property.geometry
                                 console.log(verifMap)
-                                // if (!verifMap) {
-                                //     alert('data spatial belum tersedia')
-                                // } else {
+
 
                                 $('#mapDetail').empty()
                                 $('#mapTittle').empty()
                                 $('#mapTittle').append('Peta Aset  ' + property.nama)
-                                $('#mapDetail').append(`<div id="map" class="" style="height: 500px; width:100%;"></div>`)
+                                $('#mapDetail').html(`<div id="map" class="" style="height: 500px; width:100%;"></div>`)
 
                                 var map = L.map('map').setView([-8.098611, 112.165278], 13);
 
@@ -246,9 +307,9 @@ $(function () {
 
                                 // console.log(JSON.stringify(geo));
 
-                                $('#mapModal').modal('show');
+                                $('#myModal').modal('show');
 
-                                $('#mapModal').on('shown.bs.modal', function () {
+                                $('#myModal').on('shown.bs.modal', function () {
                                     setTimeout(function () {
                                         map.invalidateSize();
                                         if (verifMap == null) {
@@ -264,7 +325,25 @@ $(function () {
 
                                             map.setView(point.getLatLng(), 18)
                                         }
-                                    }, 200);
+                                    }, 500);
+                                });
+                                $('#nav-home-tab').on('click', function () {
+                                    setTimeout(function () {
+                                        map.invalidateSize();
+                                        if (verifMap == null) {
+                                            // alert('data spatial belum tersedia')
+                                        } else {
+                                            var x = property.geometry.polygon
+                                            geo = JSON.parse(x)
+                                            var poly = new L.geoJson(geo)
+                                            point = L.marker(poly.getBounds().getCenter())
+                                            // console.log(point)
+                                            poly.addTo(map)
+                                            // point.addTo(map)
+
+                                            map.setView(point.getLatLng(), 18)
+                                        }
+                                    }, 500);
                                 });
                                 // }
                             })
@@ -276,34 +355,23 @@ $(function () {
 
             switch (key) {
                 case 'detail':
-                    callDetail()
-
-                    break
-
-                // context menu Map
-                case 'map':
-
                     callMap()
-
                     break
                 case 'edit':
-
-                    $('#updateModal').modal('show');
-
+                    // callMap()
                     break
                 case 'print':
                     row.data().nama_inventaris
                     alert(row.data().nama_inventaris)
-                    $('#editModal').modal('show');
+                    // $('#editModal').modal('show');
                     break
                 default:
                     break
             }
         },
         items: {
-            "map": { name: "Lihat Peta Aset", icon: "delete" },
             "detail": { name: "Lihat Detail Aset", icon: "delete" },
-            "edit": { name: "Edit Laporan Aset", icon: "delete" },
+            "edit": { name: "Edit Aset", icon: "delete" },
             "print": { name: "Print Laporan Aset", icon: "delete" },
         }
     })

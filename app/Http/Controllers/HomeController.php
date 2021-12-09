@@ -35,6 +35,10 @@ class HomeController extends Controller
     {
         return view('inventaris_kib_a');
     }
+    public function inventaris_edit()
+    {
+        return view('inventaris_kib_a_edit');
+    }
     public function datadasarbmd()
     {
         return view('data_dasar_bmd');
