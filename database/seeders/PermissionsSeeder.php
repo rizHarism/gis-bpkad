@@ -30,7 +30,7 @@ class PermissionsSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'pengelolaan aset.pengadaan']);
         Permission::firstOrCreate(['name' => 'pengelolaan aset.mutasi aset']);
         Permission::firstOrCreate(['name' => 'administrator.index']);
-        Permission::firstOrCreate(['name' => 'adminstrator.setting profil']);
+        Permission::firstOrCreate(['name' => 'administrator.setting profil']);
         Permission::firstOrCreate(['name' => 'administrator.konfigurasi simantab']);
         Permission::firstOrCreate(['name' => 'data opd.index']);
 
