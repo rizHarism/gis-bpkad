@@ -3,7 +3,8 @@
 @section('title', 'Inventaris | Simantab')
 
 @section('content_header')
-    <div class="h1 ">KIB A - Data Aset Tanah Kota Blitar</div>
+    {{-- <div class="h1 ">Data Aset Tanah Kota Blitar</div> --}}
+    <div class="mb-0"></div>
 @stop
 
 @section('content')

@@ -3,7 +3,7 @@
 @section('title', 'Dashboard | Simantab')
 
 @section('content_header')
-    <div class="mb-2"></div>
+    <div class="mb-0"></div>
 @stop
 
 @section('content')

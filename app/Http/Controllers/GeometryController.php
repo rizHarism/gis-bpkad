@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\geometry;
-use App\Http\Requests\StoregeometryRequest;
-use App\Http\Requests\UpdategeometryRequest;
+use App\Models\Geometry;
+use App\Http\Requests\StoreGeometryRequest;
+use App\Http\Requests\UpdateGeometryRequest;
 
 class GeometryController extends Controller
 {
@@ -31,10 +31,10 @@ class GeometryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoregeometryRequest  $request
+     * @param  \App\Http\Requests\StoreGeometryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoregeometryRequest $request)
+    public function store(StoreGeometryRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class GeometryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\geometry  $geometry
+     * @param  \App\Models\Geometry  $Geometry
      * @return \Illuminate\Http\Response
      */
-    public function show(geometry $geometry)
+    public function show(Geometry $geometry)
     {
         //
     }
@@ -53,10 +53,10 @@ class GeometryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\geometry  $geometry
+     * @param  \App\Models\Geometry  $geometry
      * @return \Illuminate\Http\Response
      */
-    public function edit(geometry $geometry)
+    public function edit(Geometry $geometry)
     {
         //
     }
@@ -64,11 +64,11 @@ class GeometryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdategeometryRequest  $request
-     * @param  \App\Models\geometry  $geometry
+     * @param  \App\Http\Requests\UpdateGeometryRequest  $request
+     * @param  \App\Models\Geometry  $geometry
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdategeometryRequest $request, geometry $geometry)
+    public function update(UpdateGeometryRequest $request, Geometry $geometry)
     {
         //
     }
@@ -76,10 +76,10 @@ class GeometryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\geometry  $geometry
+     * @param  \App\Models\Geometry  $geometry
      * @return \Illuminate\Http\Response
      */
-    public function destroy(geometry $geometry)
+    public function destroy(Geometry $geometry)
     {
         //
     }

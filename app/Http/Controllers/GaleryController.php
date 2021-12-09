@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\galery;
-use App\Http\Requests\StoregaleryRequest;
-use App\Http\Requests\UpdategaleryRequest;
+use App\Models\Galery;
+use App\Http\Requests\StoreGaleryRequest;
+use App\Http\Requests\UpdateGaleryRequest;
 
 class GaleryController extends Controller
 {
@@ -31,10 +31,10 @@ class GaleryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoregaleryRequest  $request
+     * @param  \App\Http\Requests\StoreGaleryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoregaleryRequest $request)
+    public function store(StoreGaleryRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class GaleryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\galery  $galery
+     * @param  \App\Models\Galery  $galery
      * @return \Illuminate\Http\Response
      */
-    public function show(galery $galery)
+    public function show(Galery $galery)
     {
         //
     }
@@ -53,10 +53,10 @@ class GaleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\galery  $galery
+     * @param  \App\Models\Galery  $galery
      * @return \Illuminate\Http\Response
      */
-    public function edit(galery $galery)
+    public function edit(Galery $galery)
     {
         //
     }
@@ -64,11 +64,11 @@ class GaleryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdategaleryRequest  $request
-     * @param  \App\Models\galery  $galery
+     * @param  \App\Http\Requests\UpdateGaleryRequest  $request
+     * @param  \App\Models\Galery  $galery
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdategaleryRequest $request, galery $galery)
+    public function update(UpdateGaleryRequest $request, Galery $Galery)
     {
         //
     }
@@ -76,10 +76,10 @@ class GaleryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\galery  $galery
+     * @param  \App\Models\Galery  $galery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(galery $galery)
+    public function destroy(Galery $galery)
     {
         //
     }

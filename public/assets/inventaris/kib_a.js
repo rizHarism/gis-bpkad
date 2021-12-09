@@ -12,20 +12,21 @@ function rupiah(x) {
     return x;
 }
 
-var api = "http://127.0.0.1:8000/api/inventaris"
+// var api = "api/inventaris"
 
 $(function () {
 
     var table = $('#inventaris_kib_a').DataTable({
         // processing: true,
         serverSide: true,
+        // searchable: false,
         ajax: {
-            url: 'http://127.0.0.1:8000/api/getinventaris',
+            url: '/api/getinventaris',
             method: "GET"
         },
         columns: [
-            // { data: 'rownum' },
-            { data: 'id', name: 'id' },
+            { data: 'DT_RowIndex', "searchable": false },
+            // { data: 'id', name: 'id' },
             { data: 'master_skpd.nama' },
             // { data: 'master_barang.kode_barang' },
             { data: 'master_barang.nama' },
@@ -36,7 +37,7 @@ $(function () {
 
         columnDefs: [{
             orderable: false,
-            targets: [0, 1, 2, 3, 4, 5]
+            targets: [0, 1, 2, 3, 4]
         }],
 
     });
@@ -132,7 +133,7 @@ $(function () {
             function callMap() {
                 $.ajax(
                     {
-                        url: api + "/" + id,
+                        url: "/api/inventaris/" + id,
                         dataType: "json",
                         async: false,
                         success: function (result) {

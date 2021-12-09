@@ -1,18 +1,23 @@
 <div class="container-fluid pb-5 ps-3 pe-3">
-    <table class="table table-striped table-hover table-bordered order-column" id="inventaris_kib_a">
-        <thead>
-            <tr>
-                <th>No</th>
-                {{-- <th id="aksi">Aksi</th> --}}
-                <th>Nama SKPD</th>
-                {{-- <th>Kode Inventaris</th> --}}
-                <th>Jenis Inventaris</th>
-                <th>Nama Inventaris</th>
-                <th>Alamat</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="card">
+        <h5 class="card-header">Data Aset Tanah Kota Blitar</h5>
+        <div class="card-body">
+            <table class="table table-striped table-hover table-bordered order-column" id="inventaris_kib_a">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        {{-- <th id="aksi">Aksi</th> --}}
+                        <th>Nama SKPD</th>
+                        {{-- <th>Kode Inventaris</th> --}}
+                        <th>Jenis Inventaris</th>
+                        <th>Nama Inventaris</th>
+                        <th>Alamat</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 </div>
 
 

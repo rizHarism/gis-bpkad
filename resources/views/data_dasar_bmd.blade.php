@@ -3,7 +3,7 @@
 @section('title', 'Dashboard | Simantab')
 
 @section('content_header')
-    <div class="h5 ">Data Dasar Barang Milik Daerah</div>
+    <div class="mb-0"></div>
 @stop
 
 @section('content')
@@ -31,7 +31,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: 'http://127.0.0.1:8000/api/masterbarang',
+                url: '/api/masterbarang',
                 method: "GET"
             },
             columns: [{

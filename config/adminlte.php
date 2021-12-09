@@ -263,15 +263,16 @@ return [
             'submenu'   => [
                 [
                     'text'  => 'Aset Tanah (KIB A)',
-                    'url'   => 'inventaris_kib_a'
+                    'url'   => 'inventaris_kib_a',
+                    'disabled' => 'true',
                 ],
                 [
                     'text'  => 'Aset Gedung (KIB C)',
-                    'url'   => 'inventaris_kib_c'
+                    'url'   => '#'
                 ],
                 [
                     'text'  => 'Aset jaringan (KIB D)',
-                    'url'   => 'inventaris_kib_d'
+                    'url'   => '#'
                 ],
                 // [
                 //     'text'  => 'KIB F - Kontruksi Dalam Pengerjaan',
@@ -302,6 +303,11 @@ return [
             'icon' => 'fas  fa-fw fa-cogs',
             'submenu'   => [
                 [
+                    'text' => 'Data OPD',
+                    'url'  => 'admin/opd',
+                    'icon' => 'fas fa-fw  fa-users',
+                ],
+                [
                     'text'  => 'Setting Profil',
                     'url'   => 'admin/konfigurasi'
                 ],
@@ -312,11 +318,11 @@ return [
 
             ],
         ],
-        [
-            'text' => 'Data OPD',
-            'url'  => 'admin/opd',
-            'icon' => 'fas fa-fw  fa-users',
-        ],
+        // [
+        //     'text' => 'Data OPD',
+        //     'url'  => 'admin/opd',
+        //     'icon' => 'fas fa-fw  fa-users',
+        // ],
 
 
     ],

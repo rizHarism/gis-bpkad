@@ -86,6 +86,7 @@ class InventarisController extends Controller
         // $datatables = Datatables::of($inventaris);
 
         $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd'))
+            ->addIndexColumn()
             ->make(true);
         // return $datatables->make(true);
         return $inventaris;
