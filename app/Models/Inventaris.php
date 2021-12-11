@@ -16,12 +16,12 @@ class Inventaris extends Model
 
     public function master_barang()
     {
-        return $this->belongsTo(MasterBarang::class);
+        return $this->belongsTo(MasterBarang::class, 'master_barang_id', 'id_barang');
     }
 
     public function master_skpd()
     {
-        return $this->belongsTo(Skpd::class, 'skpd_id');
+        return $this->belongsTo(Skpd::class, 'skpd_id', 'id_skpd');
     }
 
     public function geometry()

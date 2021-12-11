@@ -13,6 +13,6 @@ class Skpd extends Model
 
     public function inventaris()
     {
-        return $this->hasMany(Inventaris::class);
+        return $this->hasMany(Inventaris::class, 'id_skpd', 'skpd_id');
     }
 }

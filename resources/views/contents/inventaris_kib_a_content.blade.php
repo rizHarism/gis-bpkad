@@ -13,6 +13,8 @@
                         <th>Nama Inventaris</th>
                         <th>Alamat</th>
                         <th>Status</th>
+                        <th>Aksi</th>
+
                     </tr>
                 </thead>
             </table>

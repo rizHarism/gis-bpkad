@@ -94,6 +94,7 @@
                     processData: false,
                     success: (data) => {
                         alert(data);
+                        window.location = document.referrer;
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
                         alert(xhr.responseJSON.message);

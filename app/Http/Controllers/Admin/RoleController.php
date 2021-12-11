@@ -102,8 +102,8 @@ class RoleController extends \App\Http\Controllers\Controller
     {
         $role = Role::findOrFail($id);
         $permissions = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
-            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
+            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
             ->all();
 
         $permissionsFormatted = [];
@@ -120,7 +120,7 @@ class RoleController extends \App\Http\Controllers\Controller
             }
         }
 
-        return view('roles.form',[
+        return view('roles.form', [
             'role' => $role,
             'permissions' => $permissions,
             'permissionsFormatted' => $permissionsFormatted,
@@ -175,7 +175,7 @@ class RoleController extends \App\Http\Controllers\Controller
             $role->syncPermissions([]);
             $role->delete();
 
-            DB:: commit();
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             return response($e->getMessage(), 501);

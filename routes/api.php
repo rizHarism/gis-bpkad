@@ -26,13 +26,15 @@ Route::get('/inventaris/dashboard', [InventarisController::Class, 'dashboard']);
 Route::get('/inventaris', [InventarisController::Class, 'index']);
 Route::get('/inventaris/edit', [InventarisController::Class, 'index']);
 Route::get('/getinventaris', [InventarisController::Class, 'getInventaris']);
+Route::get('/getgeometry', [InventarisController::Class, 'get_geometry']);
 Route::get('/inventaris/{keyword}/search', [InventarisController::Class, 'searchInventaris']);
 Route::post('/inventaris/{status}/{skpd}/query', [InventarisController::Class, 'queryInventaris']);
 Route::get('/inventaris/{id}', [InventarisController::Class, 'show']);
 Route::put('/inventaris/{id}', [InventarisController::Class, 'update']);
 
-// menampilkan seluruh data master barang
+// menampilkan data master barang
 Route::get('/masterbarang', [MasterBarangController::Class, 'index']);
+Route::get('/masterbarang/{id}', [MasterBarangController::Class, 'show'])->name('masterbarang.show');
 
 // menampilkan data skpd
 Route::get('/skpd', [SkpdController::Class, 'index']);

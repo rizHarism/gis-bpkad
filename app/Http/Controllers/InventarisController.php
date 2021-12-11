@@ -24,7 +24,21 @@ class InventarisController extends Controller
     public function index()
     {
         // Menampilkan semua data Inventaris
-        $inventaris = Inventaris::with('master_barang:id,nama', 'master_skpd:id,nama', 'geometry:id,inventaris_id,polygon')
+        $inventaris = Inventaris::with('master_barang:id_barang,nama_barang', 'master_skpd:id_skpd,nama_skpd', 'geometry:id,inventaris_id,polygon,lat,lng')
+            ->get();
+        $response = [
+            'message' => 'Data Inventaris',
+            'count' => count($inventaris),
+            'data' => $inventaris
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
+
+    public function get_geometry()
+    {
+        // Menampilkan semua data Inventaris
+        $inventaris = Inventaris::with('master_barang:id_barang,nama_barang,kode_barang', 'master_skpd:id_skpd,nama_skpd', 'geometry:id,inventaris_id,polygon,lat,lng')->has('geometry')
             ->get();
         $response = [
             'message' => 'Data Inventaris',
@@ -85,7 +99,7 @@ class InventarisController extends Controller
 
         // $datatables = Datatables::of($inventaris);
 
-        $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd'))
+        $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd', 'geometry'))
             ->addIndexColumn()
             ->make(true);
         // return $datatables->make(true);

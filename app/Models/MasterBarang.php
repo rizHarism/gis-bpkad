@@ -13,6 +13,6 @@ class MasterBarang extends Model
 
     public function inventaris()
     {
-        return $this->hasMany(Inventaris::class);
+        return $this->hasMany(Inventaris::class, 'id_barang', 'master_barang_id');
     }
 }
