@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Admin\\RoleController' => $baseDir . '/app/Http/Controllers/Admin/RoleController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
@@ -172,6 +173,7 @@ return array(
     'Database\\Seeders\\GeometrySeeder' => $baseDir . '/database/seeders/GeometrySeeder.php',
     'Database\\Seeders\\InventarisSeeder' => $baseDir . '/database/seeders/InventarisSeeder.php',
     'Database\\Seeders\\MasterBarangSeeder' => $baseDir . '/database/seeders/MasterBarangSeeder.php',
+    'Database\\Seeders\\PermissionsSeeder' => $baseDir . '/database/seeders/PermissionsSeeder.php',
     'Database\\Seeders\\SkpdSeeder' => $baseDir . '/database/seeders/SkpdSeeder.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
@@ -1144,7 +1146,6 @@ return array(
     'Faker\\Provider\\nl_BE\\Payment' => $vendorDir . '/fakerphp/faker/src/Faker/Provider/nl_BE/Payment.php',
     'Faker\\Provider\\nl_BE\\Person' => $vendorDir . '/fakerphp/faker/src/Faker/Provider/nl_BE/Person.php',
     'Faker\\Provider\\nl_BE\\PhoneNumber' => $vendorDir . '/fakerphp/faker/src/Faker/Provider/nl_BE/PhoneNumber.php',
-    'Faker\\Provider\\nl_BE\\Text' => $vendorDir . '/fakerphp/faker/src/Faker/Provider/nl_BE/Text.php',
     'Faker\\Provider\\nl_NL\\Address' => $vendorDir . '/fakerphp/faker/src/Faker/Provider/nl_NL/Address.php',
     'Faker\\Provider\\nl_NL\\Color' => $vendorDir . '/fakerphp/faker/src/Faker/Provider/nl_NL/Color.php',
     'Faker\\Provider\\nl_NL\\Company' => $vendorDir . '/fakerphp/faker/src/Faker/Provider/nl_NL/Company.php',

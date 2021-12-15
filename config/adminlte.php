@@ -103,12 +103,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'card-outline card-success',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_btn' => 'btn btn-primary',
 
     /*
     |--------------------------------------------------------------------------
@@ -278,10 +278,6 @@ return [
                     'url'   => 'inventaris_kib_d',
                     'can'   => 'data aset.inventaris kib d',
                 ],
-                // [
-                //     'text'  => 'KIB F - Kontruksi Dalam Pengerjaan',
-                //     'url'   => 'inventaris_kib_f'
-                // ],
             ],
         ],
         [
@@ -311,10 +307,22 @@ return [
             'icon' => 'fas  fa-fw fa-cogs',
             'submenu'   => [
                 [
-                    'text'  => 'Setting Profil',
-                    'url'   => 'admin/konfigurasi',
-                    'can'   => 'adminstrator.setting profil'
+                    'text' => 'Data OPD',
+                    'url'  => 'admin/opd',
+                    'can'  => 'administrator.data opd',
+                    'icon' => 'fas fa-fw  fa-users',
                 ],
+                [
+                    'text' => 'Role Setting',
+                    'url'  => 'admin/roles',
+                    'can'  => 'administrator.data opd',
+                    'icon' => 'fas fa-fw  fa-users',
+                ],
+                // [
+                //     'text'  => 'Setting Profil',
+                //     'url'   => 'admin/konfigurasi',
+                //     'can'   => 'adminstrator.setting profil'
+                // ],
                 [
                     'text'  => 'Konfigurasi Simantab',
                     'url'   => 'admin/konfigurasi',
@@ -322,12 +330,6 @@ return [
                 ],
 
             ],
-        ],
-        [
-            'text' => 'Data OPD',
-            'url'  => 'admin/opd',
-            'can'  => 'data opd.index',
-            'icon' => 'fas fa-fw  fa-users',
         ],
 
 

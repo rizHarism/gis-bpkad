@@ -3,7 +3,7 @@
 @section('title', 'Dashboard | Simantab')
 
 @section('content_header')
-    <div class="mb-2"></div>
+    <div class="mb-0"></div>
 @stop
 
 @section('content')
@@ -17,12 +17,12 @@
 @section('js')
     <script>
         console.log('Hi!');
-        var api = 'http://127.0.0.1:8000/api'
+        // var api = 'http://127.0.0.1:8000/api'
 
         var allAset;
         let sertifikat;
         let nonSertifikat;
-        $.getJSON(api + '/inventaris/dashboard', (data) => {
+        $.getJSON('api/inventaris/dashboard', (data) => {
             // console.log(allAset, sertifikat, nonSertifikat);
             allAset = data.total_aset;
             sertifikat = data.bersertifikat;
@@ -44,7 +44,7 @@
     <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
 
     <script>
-        $.getJSON(api + '/inventaris/dashboard', (data) => {
+        $.getJSON('api/inventaris/dashboard', (data) => {
 
             const pieAll = $('#allsertifikat');
             const countMap = $('#mapped');

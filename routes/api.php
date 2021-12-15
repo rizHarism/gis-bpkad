@@ -3,8 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\MasterBarangController;
 use App\Http\Controllers\SkpdController;
+use App\Models\Kelurahan;
 use App\Models\MasterBarang;
 
 /*
@@ -24,14 +26,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/inventaris/dashboard', [InventarisController::Class, 'dashboard']);
 Route::get('/inventaris', [InventarisController::Class, 'index']);
+Route::get('/inventaris/edit', [InventarisController::Class, 'index']);
 Route::get('/getinventaris', [InventarisController::Class, 'getInventaris']);
+Route::get('/{kecamatan}/getgeometry', [InventarisController::Class, 'get_geometry']);
 Route::get('/inventaris/{keyword}/search', [InventarisController::Class, 'searchInventaris']);
-Route::post('/inventaris/{status}/{skpd}/query', [InventarisController::Class, 'queryInventaris']);
+Route::post('/inventaris/{status}/{skpd}/{kelurahan}/query', [InventarisController::Class, 'queryInventaris']);
 Route::get('/inventaris/{id}', [InventarisController::Class, 'show']);
 Route::put('/inventaris/{id}', [InventarisController::Class, 'update']);
 
-// menampilkan seluruh data master barang
+// menampilkan data master barang
 Route::get('/masterbarang', [MasterBarangController::Class, 'index']);
+Route::get('/masterbarang/{id}', [MasterBarangController::Class, 'show'])->name('masterbarang.show');
 
 // menampilkan data skpd
 Route::get('/skpd', [SkpdController::Class, 'index']);
+Route::get('/kelurahan', [KelurahanController::Class, 'index']);

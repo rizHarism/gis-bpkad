@@ -2,6 +2,7 @@
 
 @section('adminlte_css_pre')
     <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+
 @stop
 
 @php($login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login'))
@@ -21,11 +22,17 @@
 @section('auth_header', __('adminlte::adminlte.login_message'))
 
 @section('auth_body')
+    <style>
+        body {
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Whole_world_-_land_and_oceans_12000.jpg/2560px-Whole_world_-_land_and_oceans_12000.jpg');
+        }
+
+    </style>
     <form action="{{ $login_url }}" method="post">
         @csrf
 
         {{-- Email field --}}
-        <div class="input-group mb-3">
+        {{-- <div class="input-group mb-3">
             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                 value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
 
@@ -36,6 +43,23 @@
             </div>
 
             @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div> --}}
+
+        <div class="input-group mb-3">
+            <input type="username" name="username" class="form-control @error('username') is-invalid @enderror"
+                value="{{ old('username') }}" placeholder="{{ __('adminlte::adminlte.username') }}" autofocus>
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+
+            @error('username')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -102,4 +126,15 @@
             </a>
         </p>
     @endif --}}
+@stop
+
+@section('css')
+    <style>
+        body {
+            background-color: yellow;
+        }
+
+    </style>
+    {{-- <link rel="stylesheet" href="{{ asset('assets/datatables/table.css') }}"> --}}
+
 @stop
