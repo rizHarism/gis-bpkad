@@ -157,9 +157,9 @@
             "opacity": 1
         };
 
-        function getAsetSertifikat() {
+        function getAsetSertifikat(kecamatan) {
             $.ajax({
-                url: '/api/getgeometry',
+                url: '/api/' + kecamatan + '/getgeometry',
                 dataType: "json",
                 async: false,
                 success: function(result) {
@@ -284,7 +284,13 @@
                             });
 
                             map.on('overlayremove', function(eventLayer) {
-                                if (eventLayer.name === 5) {
+                                if (eventLayer.name === "5") {
+                                    map.removeLayer(layer)
+                                }
+                                if (eventLayer.name === "4") {
+                                    map.removeLayer(layer)
+                                }
+                                if (eventLayer.name === "3") {
                                     map.removeLayer(layer)
                                 }
                             });
@@ -417,7 +423,13 @@
 
         map.on('overlayadd', function(eventLayer) {
             if (eventLayer.name === "5") {
-                getAsetSertifikat();
+                getAsetSertifikat(3);
+            }
+            if (eventLayer.name === "4") {
+                getAsetSertifikat(2);
+            }
+            if (eventLayer.name === "3") {
+                getAsetSertifikat(1);
             }
             if (eventLayer.name === "Tanah Non Sertifikat") {
                 getAsetNonSertifikat();
@@ -642,9 +654,28 @@
                     listItems = ""
                 $.each(skpd, (i, property) => {
 
-                    listItems += "<option value='" + property.id + "'>" + property.nama + "</option>"
+                    listItems += "<option value='" + property.id_skpd + "'>" + property.nama_skpd +
+                        "</option>"
                 })
                 $("#data_skpd").append(listItems);
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: '/api/kelurahan',
+            dataType: "json",
+            success: function(kelData) {
+                var kelurahan = kelData.data,
+                    listItems = ""
+                $.each(kelurahan, (i, property) => {
+                    // console.log(property.id_kelurahan)
+                    // console.log(property.nama_kelurahan)
+                    listItems += "<option value='" + property.id_kelurahan + "'>" + property
+                        .nama_kelurahan +
+                        "</option>"
+                })
+                $("#data_kelurahan").append(listItems);
             }
         });
 
@@ -656,6 +687,7 @@
 
             var status = $('input[name="status"]:checked').val();
             var skpd = $('#data_skpd').val();
+            var kelurahan = $('#data_kelurahan').val();
 
 
             map.eachLayer(function(lay) {
@@ -671,7 +703,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "api/inventaris/" + status + "/" + skpd + '/query',
+                url: "api/inventaris/" + status + "/" + skpd + "/" + kelurahan + '/query',
                 dataType: "json",
                 success: function(q) {
                     var geom = q.data
@@ -684,6 +716,7 @@
                         var lng = property.geometry.lng
 
                         x = JSON.parse(geo)
+                        console.log(x)
                         var layer = L.geoJSON(x, {
                             style: sertifikatStyle
                         });

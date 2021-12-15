@@ -7,7 +7,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Id Master Barang</th>
+                        {{-- <th>Id Master Barang</th> --}}
                         <th>Kode Barang</th>
                         <th>Nama Master Barang</th>
                     </tr>

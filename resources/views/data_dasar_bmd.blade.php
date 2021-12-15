@@ -35,17 +35,16 @@
                 method: "GET"
             },
             columns: [{
-                    data: 'rownum'
+                    data: 'DT_RowIndex'
                 },
-                {
-                    data: 'id'
-                },
-                // { data: 'id' },
+                // {
+                //     data: 'id_barang'
+                // },
                 {
                     data: 'kode_barang'
                 },
                 {
-                    data: 'nama'
+                    data: 'nama_barang'
                 },
 
             ],

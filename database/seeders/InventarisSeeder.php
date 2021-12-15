@@ -17,7 +17,7 @@ class InventarisSeeder extends Seeder
         //run
         Inventaris::truncate();
 
-        $csvFile = fopen(base_path("database/data/inventaris.csv"), "r");
+        $csvFile = fopen(base_path("database/data/inventaris-new.csv"), "r");
 
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
@@ -31,9 +31,11 @@ class InventarisSeeder extends Seeder
                     "luas" => $data["5"],
                     "status" => $data["6"],
                     "alamat" => $data["7"],
-                    "no_dokumen_sertifikat" => $data["8"],
-                    "skpd_id" => $data["9"],
-                    "master_barang_id" => $data["10"],
+                    "kelurahan_id" => $data["8"],
+                    "kecamatan_id" => $data["9"],
+                    "no_dokumen_sertifikat" => $data["10"],
+                    "skpd_id" => $data["11"],
+                    "master_barang_id" => $data["12"],
                 ]);
             }
             $firstline = false;

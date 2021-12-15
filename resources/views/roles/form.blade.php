@@ -48,7 +48,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-info fload-right">{{ $editable ? 'Update' : 'Submit' }}</button>
+                    <button type="submit" class="btn btn-info float-right">{{ $editable ? 'Update' : 'Submit' }}</button>
                     <a href="{{ route('roles.index') }}" class="btn btn-default float-right">Cancel</a>
                 </div>
                 <!-- /.card-footer -->

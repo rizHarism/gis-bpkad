@@ -34,7 +34,7 @@
                     dan letak kelurahan
                 </p>
 
-                <form id="queryGeom">
+                <form method="POST" id="queryGeom">
                     <div class="form-check form-control-sm mt-3">
                         <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="1"
                             checked>
@@ -43,7 +43,8 @@
                         </label>
                     </div>
                     <div class="form-check form-control-sm">
-                        <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="0">
+                        <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="0"
+                            disabled>
                         <label class="form-check-label fw-bold" for="flexRadioDefault2">
                             Non Sertifikat
                         </label>
@@ -54,11 +55,10 @@
                         <option selected>Semua SKPD</option>
                     </select>
 
-                    <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example">
+                    <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
+                        id="data_kelurahan">
                         <option selected>Semua Kelurahan</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+
                     </select>
                     <div class="row">
                         <div class="col-md-3 align-center">

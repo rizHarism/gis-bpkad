@@ -17,7 +17,7 @@ class SkpdController extends Controller
     public function index()
     {
         //call all data Skpd from Skpd table
-        $skpd = Skpd::get()->all();
+        $skpd = Skpd::orderby('nama_skpd', 'asc')->get()->all();
         $response = [
             'message' => 'semua data skpd',
             'count' => count($skpd),

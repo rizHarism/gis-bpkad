@@ -19,15 +19,23 @@ class MasterBarangController extends Controller
     public function index()
     {
         //call master barang
-        DB::statement(DB::raw('set @rownum=0'));
-        $master_barang = MasterBarang::select([
-            DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-            'id',
-            'nama',
-            'kode_barang'
-        ]);
-        $datatables = DataTables::of($master_barang)->addIndexColumn();
+        // DB::statement(DB::raw('set @rownum=0'));
+        // $master_barang = MasterBarang::select([
+        //     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+        //     'id',
+        //     'nama',
+        //     'kode_barang'
+        // ]);
+        $datatables = DataTables::of(MasterBarang::get())->addIndexColumn();
         return $datatables->make(true);
+
+        dd($datatables);
+
+        // $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd', 'geometry'))
+        //     ->addIndexColumn()
+        //     ->make(true);
+        // // return $datatables->make(true);
+        // return $inventaris;
     }
 
     /**

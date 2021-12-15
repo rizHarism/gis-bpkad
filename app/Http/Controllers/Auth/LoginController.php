@@ -49,4 +49,9 @@ class LoginController extends Controller
     {
         // dd($user->hasRole('General'));
     }
+
+    public function username()
+    {
+        return 'username';
+    }
 }
