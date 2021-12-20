@@ -29,7 +29,7 @@ class MasterBarangController extends Controller
         $datatables = DataTables::of(MasterBarang::get())->addIndexColumn();
         return $datatables->make(true);
 
-        dd($datatables);
+        // dd($datatables);
 
         // $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd', 'geometry'))
         //     ->addIndexColumn()

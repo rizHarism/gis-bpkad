@@ -24,7 +24,11 @@
 @section('auth_body')
     <style>
         body {
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Whole_world_-_land_and_oceans_12000.jpg/2560px-Whole_world_-_land_and_oceans_12000.jpg');
+            background: url("{{ asset('assets/logo-image/background.jpg') }}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: 100%;
         }
 
     </style>

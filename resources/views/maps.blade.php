@@ -221,16 +221,20 @@
                                                       <td>` + property.tahun_perolehan + `</td>
                                                     </tr>
                                                     <tr>
-                                                      <th>Harga Beli </th>
-                                                      <td>` + `Rp ` + rupiah(hb) + `</td>
-                                                    </tr>
-                                                    <tr>
                                                       <th>Nilai Aset </th>
                                                       <td>` + `Rp ` + rupiah(na) + `</td>
                                                     </tr>
                                                     <tr>
                                                       <th>Alamat </th>
                                                       <td>` + property.alamat + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Kelurahan </th>
+                                                      <td>` + property.kelurahan.nama_kelurahan + `</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Kecamatan </th>
+                                                      <td>` + property.kecamatan.nama_kecamatan + `</td>
                                                     </tr>
                                                     <tr>
                                                       <th>Latitude / longitude </th>
@@ -249,14 +253,10 @@
                                                       <th>Status </th>
                                                       <td>` + sertifikat + `</td>
                                                     </tr>
-                                                    <tr>
-                                                      <th>Nilai Saat Ini </th>
-                                                      <td>` + `Rp ` + rupiah(ns) + `</td>
-                                                    </tr>
                                                 </table>
                                                     `);
 
-                                var content = ` <img class="img-thumbnail rounded" src="https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg" alt="...">
+                                var content = ` <img class="img-thumbnail rounded" src="{{ asset('assets/galery/stadion-soeprijadi.jpg') }}" alt="...">
                                                     <p class="text-center fw-bold m-2 p-0 h7">` + property.nama + `</p>
                                                     <table class="table table-striped">
                                                     <tr>
@@ -471,9 +471,8 @@
         L.Control.Watermark = L.Control.extend({
             onAdd: function(map) {
                 var img = L.DomUtil.create('img')
-                // img.src = '{{ asset('assets / logo - image / logo - center - bpkad - yellow.png') }}'
                 img.src = 'assets/logo-image/logo-center-bpkad-yellow.png'
-                img.style.width = '250px'
+                img.style.width = '400px'
                 // img.style.margin = '50px'
 
                 return img;
@@ -575,7 +574,7 @@
                         // selectAllCheckbox: true,
                         layer: batasKepanjenkidul
                     }, {
-                        label: 'Kepanjen Lor',
+                        label: 'Sukorejo',
                         // selectAllCheckbox: 'De/seleccionar todo',
                         layer: batasSukorejo
                     }]
@@ -702,6 +701,10 @@
             map.addLayer(batasSananwetan);
 
             $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                },
                 type: "POST",
                 url: "api/inventaris/" + status + "/" + skpd + "/" + kelurahan + '/query',
                 dataType: "json",
@@ -761,16 +764,20 @@
                                                   <td>` + property.tahun_perolehan + `</td>
                                                 </tr>
                                                 <tr>
-                                                  <th>Harga Beli </th>
-                                                  <td>` + `Rp ` + rupiah(hb) + `</td>
-                                                </tr>
-                                                <tr>
                                                   <th>Nilai Aset </th>
-                                                  <td>` + `Rp ` + na + `</td>
+                                                  <td>` + `Rp ` + rupiah(na) + `</td>
                                                 </tr>
                                                 <tr>
                                                   <th>Alamat </th>
                                                   <td>` + property.alamat + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Kelurahan </th>
+                                                  <td>` + property.kelurahan.nama_kelurahan + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Kecamatan </th>
+                                                  <td>` + property.kecamatan.nama_kecamatan + `</td>
                                                 </tr>
                                                 <tr>
                                                   <th>Latitude / longitude </th>
@@ -784,19 +791,14 @@
                                                   <th>No Sertifikat </th>
                                                   <td>` + property.no_dokumen_sertifikat + `</td>
                                                 </tr>
-
                                                 <tr>
                                                   <th>Status </th>
                                                   <td>` + sertifikat + `</td>
                                                 </tr>
-                                                <tr>
-                                                  <th>Nilai Saat Ini </th>
-                                                  <td>` + `Rp ` + rupiah(ns) + `</td>
-                                                </tr>
                                             </table>
                                                 `);
 
-                            var content = ` <img class="img-thumbnail rounded" src="https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg" alt="...">
+                            var content = ` <img class="img-thumbnail rounded" src="{{ asset('assets/galery/stadion-soeprijadi.jpg') }}" alt="...">
                                                 <p class="text-center fw-bold m-2 p-0 h7">` + property.nama + `</p>
                                                 <table class="table table-striped">
                                                 <tr>

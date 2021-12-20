@@ -201,11 +201,26 @@
                                         lt = property.luas,
                                         ns = property.nilai_aset
                                     console.log(property)
+
+                                    if (!property.kecamatan) {
+                                        kecamatan = ""
+                                    } else {
+                                        kecamatan = property.kecamatan
+                                            .nama_kecamatan
+                                    }
+
+                                    if (!property.kelurahan) {
+                                        kelurahan = ""
+                                    } else {
+                                        kelurahan = property.kelurahan
+                                            .nama_kelurahan
+                                    }
+
                                     $('#detailTitle').empty()
                                     $('#detailData').empty()
                                     $('#detailTitle').append(property
                                         .master_skpd
-                                        .nama + "-" + property.nama)
+                                        .nama_skpd + " - " + property.nama)
                                     $('#detailData').append(`
                                         <table class="table table-striped">
                                         <tr>
@@ -224,17 +239,24 @@
                                           <th>Tahun Perolehan :</th>
                                           <td>` + property.tahun_perolehan + `</td>
                                         </tr>
-                                        <tr>
-                                          <th>Harga Beli </th>
-                                          <td>` + `Rp ` + rupiah(hb) + `</td>
-                                        </tr>
+                                        
                                         <tr>
                                           <th>Nilai Aset </th>
-                                          <td>` + `Rp ` + na + `</td>
+                                          <td>` + `Rp ` + rupiah(na) + `</td>
                                         </tr>
                                         <tr>
                                           <th>Alamat </th>
                                           <td>` + property.alamat + `</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Kelurahan </th>
+                                          <td>` + kelurahan +
+                                        `</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Kecamatan </th>
+                                          <td>` + kecamatan +
+                                        `</td>
                                         </tr>
                                         <tr>
                                           <th>Luas Tanah </th>
@@ -249,10 +271,7 @@
                                           <th>Status </th>
                                           <td>` + sertifikat + `</td>
                                         </tr>
-                                        <tr>
-                                          <th>Nilai Saat Ini </th>
-                                          <td>` + `Rp ` + ns + `</td>
-                                        </tr>
+                                        
                                     </table>
                                         `);
 

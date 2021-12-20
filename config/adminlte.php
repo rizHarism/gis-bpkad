@@ -280,24 +280,24 @@ return [
                 ],
             ],
         ],
-        [
-            'text'      => 'Pengelolaan Aset',
-            'url'       => 'admin/tatausaha',
-            'can'       => 'pengelolaan aset.index',
-            'icon'      => 'fa fa-fw fa-recycle',
-            'submenu'   => [
-                [
-                    'text'  => 'Pengadaan',
-                    'url'   => '#',
-                    'can'   => 'pengelolaan aset.pengadaan',
-                ],
-                [
-                    'text'  => 'Mutasi Aset',
-                    'url'   => '#',
-                    'can'   => 'pengelolaan aset.mutasi aset'
-                ]
-            ]
-        ],
+        // [
+        //     'text'      => 'Pengelolaan Aset',
+        //     'url'       => 'admin/tatausaha',
+        //     'can'       => 'pengelolaan aset.index',
+        //     'icon'      => 'fa fa-fw fa-recycle',
+        //     'submenu'   => [
+        //         [
+        //             'text'  => 'Pengadaan',
+        //             'url'   => '#',
+        //             'can'   => 'pengelolaan aset.pengadaan',
+        //         ],
+        //         [
+        //             'text'  => 'Mutasi Aset',
+        //             'url'   => '#',
+        //             'can'   => 'pengelolaan aset.mutasi aset'
+        //         ]
+        //     ]
+        // ],
 
         ['header' => 'MANAJEMEN ADMIN'],
         [

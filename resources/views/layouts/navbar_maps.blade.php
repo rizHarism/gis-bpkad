@@ -5,7 +5,6 @@
             <li><a href="#layers" role="tab"><i class="fas fa-layer-group"></i></a></li>
             <li><a href="#query" role="tab"><i class="fas fa-database"></i></a></li>
             <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-            <li><a href="#information" role="tab"><i class="fas fa-info-circle"></i></a></li>
             <li><a href="/dashboard" role="tab"><i class="fa fa-cog"></i></a></li>
         </ul>
 
@@ -18,7 +17,7 @@
     <div class="sidebarV2-content">
         <div class="sidebarV2-pane" id="layers">
             <h1 class="sidebarV2-header">
-                Si-Mantab
+                Layer Wilayah dan Aset BMD
                 <span class="sidebarV2-close"><i class="fa fa-caret-right"></i></span>
             </h1>
         </div>
@@ -31,10 +30,11 @@
             <div class="container-fluid">
                 <p class="mt-3">Query Pencarian adalah fitur pencarian geometry data aset berdasarkan SKPD
                     terkait
-                    dan letak kelurahan
+                    dan kelurahan
                 </p>
 
                 <form method="POST" id="queryGeom">
+                    {{ csrf_field() }}
                     <div class="form-check form-control-sm mt-3">
                         <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="1"
                             checked>
@@ -73,6 +73,31 @@
 
         </div>
 
+        <div class="sidebarV2-pane" id="profile">
+            <h1 class="sidebarV2-header">Profile<span class="sidebarV2-close"><i class="fa fa-caret-right"></i></span>
+            </h1>
+            <div class="container-fluid mt-5">
+
+                <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Admin"
+                        class="rounded-circle" width="150">
+                    <div class="mt-3">
+                        <h4>Admin</h4>
+                        <p class="text-secondary mb-1">Dinas Pengelolaan Keuangan dan Aset Daerah</p>
+                        <hr>
+
+                        <form method="POST" action="/logout">
+                            {{ csrf_field() }}
+
+                            <a href="#" class="btn btn-primary"
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                {{ __('adminlte::adminlte.log_out') }}
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="sidebarV2-pane" id="information">
             <h1 class="sidebarV2-header">Informasi Aplikasi<span class="sidebarV2-close"><i
                         class="fa fa-caret-right"></i></span>
@@ -88,7 +113,7 @@
 
 <div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="detailTitle">Modal title</h5>
@@ -97,8 +122,14 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col ">
+                        <div class="col-md-6">
                             <div id="detailData"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="sertifikat">
+                                <iframe src="{{ asset('assets/document/03.KL.017 - STADION SUPRIYADI.pdf') }}"
+                                    style="width: 100%;height: 63vh; position: relative;" allowfullscreen></iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
