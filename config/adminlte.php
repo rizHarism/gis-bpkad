@@ -318,6 +318,12 @@ return [
                     'can'  => 'administrator.data opd',
                     'icon' => 'fas fa-fw  fa-users',
                 ],
+                [
+                    'text' => 'Users Management',
+                    'url'  => 'admin/users',
+                    'can'  => 'administrator.user management',
+                    'icon' => 'fas fa-fw  fa-users',
+                ],
                 // [
                 //     'text'  => 'Setting Profil',
                 //     'url'   => 'admin/konfigurasi',

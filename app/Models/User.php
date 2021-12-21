@@ -44,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function skpd()
+    {
+        return $this->belongsTo(\App\Models\Skpd::class, "users.skpd_id", "master_skpd.id_skpd");
+    }
 }

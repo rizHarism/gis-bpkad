@@ -42,4 +42,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/roles/{role}/edit', [App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('roles.edit')->can('roles.edit');
     Route::put('admin/roles/{role}', [App\Http\Controllers\Admin\RoleController::class, 'update'])->name('roles.update')->can('roles.edit');
     Route::delete('admin/roles/{role}', [App\Http\Controllers\Admin\RoleController::class, 'destroy'])->name('roles.destroy')->can('roles.destroy');
+
+    Route::get('admin/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index')->can('users.index');
+    Route::get('admin/users/datatables', [App\Http\Controllers\Admin\UserController::class, 'datatables'])->name('users.datatables')->can('users.index');
+    Route::get('admin/users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create')->can('users.create');
+    Route::post('admin/users', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store')->can('users.create');
+    Route::get('admin/users/{user}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit')->can('users.edit');
+    Route::put('admin/users/{user}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update')->can('users.edit');
+    Route::delete('admin/users/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy')->can('users.destroy');
 });
