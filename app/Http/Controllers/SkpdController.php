@@ -6,6 +6,7 @@ use App\Models\Skpd;
 use App\Http\Requests\StoreSkpdRequest;
 use App\Http\Requests\UpdateSkpdRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Yajra\DataTables\Facades\DataTables;
 
 class SkpdController extends Controller
 {
@@ -17,14 +18,11 @@ class SkpdController extends Controller
     public function index()
     {
         //call all data Skpd from Skpd table
-        $skpd = Skpd::orderby('nama_skpd', 'asc')->get()->all();
-        $response = [
-            'message' => 'semua data skpd',
-            'count' => count($skpd),
-            'data' => $skpd
-        ];
-        // dd($response);
-        return response()->json($response, Response::HTTP_OK);
+        // $datatables = DataTables::of(Skpd::get())->addIndexColumn();
+        $datatables = DataTables::of(Skpd::get())->addIndexColumn();
+        return $datatables->make(true);
+
+        // dd($datatables);
     }
 
     /**

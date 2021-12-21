@@ -39,7 +39,7 @@ class InventarisController extends Controller
     public function get_geometry($kecamatan_id)
     {
         // Menampilkan semua data Inventaris
-        $inventaris = Inventaris::with('master_barang:id_barang,nama_barang,kode_barang', 'kecamatan:id_kecamatan,nama_kecamatan', 'master_skpd:id_skpd,nama_skpd', 'geometry:id,inventaris_id,polygon,lat,lng')->has('geometry')
+        $inventaris = Inventaris::with('master_barang:id_barang,nama_barang,kode_barang', 'kecamatan:id_kecamatan,nama_kecamatan', 'master_skpd:id_skpd,nama_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry:id,inventaris_id,polygon,lat,lng')->has('geometry')
             ->where('kecamatan_id', $kecamatan_id)
             ->get();
         $response = [
@@ -139,23 +139,23 @@ class InventarisController extends Controller
         // dd($skpd_id, $kelurahan_id);
         // query inventaris untuk pencarian data geometry/polygon (filterisasi)
         if ($skpd_id === 'Semua SKPD'  && $kelurahan_id === 'Semua Kelurahan') {
-            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'geometry')
+            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 ->has('geometry')
                 ->get();
         } elseif ($skpd_id === 'Semua SKPD') {
-            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'geometry')
+            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 // ->where('skpd_id',  $skpd_id)->has('geometry')
                 ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
                 ->where('status',  $status)->has('geometry')
                 ->get();
         } elseif ($kelurahan_id === 'Semua Kelurahan') {
-            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'geometry')
+            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 ->where('skpd_id',  $skpd_id)->has('geometry')
                 // ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
                 ->where('status',  $status)->has('geometry')
                 ->get();
         } else {
-            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'geometry')
+            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 ->where('skpd_id',  $skpd_id)->has('geometry')
                 ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
                 ->where('status',  $status)->has('geometry')
@@ -199,7 +199,7 @@ class InventarisController extends Controller
     public function show($id)
     {
         //Menampilkan satuan data inventaris
-        $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'galery', 'document')->where('id', $id)->get();
+        $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->where('id', $id)->get();
 
         $response = [
             'message' => "Detail Inventaris",
@@ -214,9 +214,21 @@ class InventarisController extends Controller
      * @param  \App\Models\Inventaris  $Inventaris
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inventaris $Inventaris)
+    public function edit($id)
     {
         //
+        $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->where('id', $id)->get();
+        $response = [
+            'message' => "Edit Inventaris",
+            'data' => $inventaris
+        ];
+        // return response()->json($response, Response::HTTP_OK);
+        return view('contents.inventaris_kib_a_edit_content', [
+            // 'role' => $role,
+            // 'permissions' => $permissions,
+            // 'permissionsFormatted' => $permissionsFormatted,
+            // 'rolePermissions' => $rolePermissions,
+        ]);
     }
 
     /**

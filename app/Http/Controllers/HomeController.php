@@ -43,4 +43,9 @@ class HomeController extends Controller
     {
         return view('data_dasar_bmd');
     }
+
+    public function dataopd()
+    {
+        return view('data_opd');
+    }
 }

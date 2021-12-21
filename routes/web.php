@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/inventaris_kib_a', [App\Http\Controllers\HomeController::class, 'inventaris_kib_a'])->name('inventaris_kib_a')->can('data aset.inventaris kib a');
     Route::get('/inventaris/edit', [App\Http\Controllers\HomeController::class, 'inventaris_edit'])->name('inventaris_kib_a_edit')->can('data aset.inventaris kib a edit');
     Route::get('/datadasarbmd', [App\Http\Controllers\HomeController::class, 'datadasarbmd'])->name('datadasarbmd')->can('dasar bmd.index');
+    Route::get('/admin/opd', [App\Http\Controllers\HomeController::class, 'dataopd'])->name('dataopd')->can('data opd.index');
 
     Route::get('admin/roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index')->can('roles.index');
     Route::get('admin/roles/datatables', [App\Http\Controllers\Admin\RoleController::class, 'datatables'])->name('roles.datatables')->can('roles.index');
