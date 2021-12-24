@@ -49,6 +49,7 @@ class UserController extends \App\Http\Controllers\Controller
             ]);
 
             $role = Role::findById($request->role);
+            $user->assignRole($role);
 
             DB::commit();
         } catch (\Exception $e) {
