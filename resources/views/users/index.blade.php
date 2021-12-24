@@ -11,7 +11,7 @@
         <div class="card">
             <h5 class="card-header">Roles List</h5>
             <div class="card-body">
-                <a href="{{ route('roles.create') }}" class="btn btn-primary">Create</a>
+                <a href="{{ route('users.create') }}" class="btn btn-primary">Create</a>
                 <hr />
                 <table class="table table-striped table-hover table-bordered order-column" id="users-table">
                     <thead>
@@ -64,15 +64,15 @@
                         data: 'email'
                     },
                     {
-                        data: 'Kode SKPD'
+                        data: 'skpd_id'
                     },
                     {
                         data: 'id',
                         render: function(data) {
-                            var editUrl = "{{ route('roles.edit', ':id') }}";
+                            var editUrl = "{{ route('users.edit', ':id') }}";
                             editUrl = editUrl.replace(':id', data);
 
-                            var deleteUrl = "{{ route('roles.destroy', ':id') }}";
+                            var deleteUrl = "{{ route('users.destroy', ':id') }}";
                             deleteUrl = deleteUrl.replace(':id', data);
 
                             var editButton = "<a class='btn btn-success' href='" + editUrl +
