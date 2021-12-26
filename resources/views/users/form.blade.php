@@ -10,7 +10,7 @@
     <div class="container-fluid pb-5 ps-3 pe-3">
         <div class="card">
             <form id="edit-form" method="POST" class="form-horizontal"
-                action="{{ route('users.store') }}">
+                action="{{ isset($edit) ? route('users.update', ['user' => $edit]) : route('users.store') }}">
                 @method('PUT')
                 {{ csrf_field() }}
                 <h5 class="card-header">Users</h5>
@@ -19,14 +19,14 @@
                         <label for="username" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-10">
                             <input type="text" name="username" class="form-control" id="username" placeholder="username"
-                                value="">
+                                value="{{ $edit['username'] ?? '' }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
                             <input type="email" name="email" class="form-control" id="email" placeholder="Email"
-                            value="">
+                            value="{{ $edit['email'] ?? '' }}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -34,21 +34,23 @@
                         <div class="col-sm-10">
                             <input type="password" name="password" class="form-control" id="password" placeholder="Password"
                             value="">
+                            <span>{{ isset($edit) ? 'Fill blank if you don\'t want to change the password' : '' }}</span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="skpd" class="col-sm-2 col-form-label">SKPD</label>
                         <div class="col-sm-10">
                             <input type="text" name="skpd" class="form-control" id="skpd" placeholder="Skpd"
-                            value="">
+                            value="{{ $edit['skpd_id'] ?? '' }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="role" class="col-sm-2 col-form-label">Role</label>
                         <div class="col-sm-10">
                             <select name="role" id="">
-                                @foreach ($roles as $role)
-                                <option value="{{ $role['id'] }}">{{ $role['name'] }}</option>
+                                <option value="">-</option>
+                                @foreach ($roles as $_role)
+                                <option value="{{ $_role['id'] }}" {{ isset($edit) && !is_null($role) && $role['id'] == $_role['id'] ? 'selected="selected"' : '' }}>{{ $_role['name'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -89,7 +91,7 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         'Content-Type': 'application/json',
                     },
-                    type: 'POST',
+                    type: "{{ isset($edit) ? 'PUT' : 'PUT' }}",
                     url: $(this).attr('action'),
                     data: JSON.stringify({
                         username: $(this).find("input[name='username']").val(),

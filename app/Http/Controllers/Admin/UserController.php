@@ -59,4 +59,74 @@ class UserController extends \App\Http\Controllers\Controller
 
         return response("User has been created successfully");
     }
+
+    public function edit(Request $request, $id)
+    {
+        $user = User::with('roles')->findOrFail($id);
+        $role = $user->roles->first();
+        $roles = Role::get();
+
+        return view('users.form', [
+            'edit' => $user,
+            'role' => $role,
+            'roles' => $roles
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::with('roles')->findOrFail($id);
+
+        $validations = [];
+
+        if ($user->username != $request->username) {
+            $validations['username'] = 'required|unique:users,username';
+        }
+
+        if ($user->email != $request->email) {
+            $validations['email'] = 'required|email|unique:users,email';
+        }
+
+        if ($user->roles->first()->id != $request->role) {
+            $validations['role'] = 'required';
+        }
+
+        $this->validate($request, $validations);
+
+        try {
+            DB::beginTransaction();
+
+            $user->username = $request->username;
+            $user->email = $request->email;
+            if (!empty($request->password)) {
+                $user->password = $request->password;
+            }
+            $user->skpd_id = $request->skpd;
+            $user->save();
+
+            $role = Role::findById($request->role);
+            $user->assignRole($role);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
+        }
+
+        return response("User has been updated successfully");
+
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->delete();
+        } catch (\Exception $e) {
+            return response($e->getMessage(), 500);
+        }
+
+        return response("User has been deleted successfully");
+    }
 }
