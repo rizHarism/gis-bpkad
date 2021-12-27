@@ -141,3 +141,6 @@
         </div>
     </div>
 </div>
+<div class="container" style="position:relative; height:300px;width:300px;">
+    <div id="loading" style="display:none"><img src="{{ asset('assets/logo-image/Spinner-200px.gif') }}" alt=""></div>
+</div>

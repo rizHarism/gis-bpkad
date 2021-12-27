@@ -28,7 +28,7 @@ Route::get('/inventaris/dashboard', [InventarisController::Class, 'dashboard']);
 Route::get('/inventaris', [InventarisController::Class, 'index']);
 Route::get('/inventaris/{id}/edit', [InventarisController::Class, 'edit']);
 Route::get('/getinventaris', [InventarisController::Class, 'getInventaris']);
-Route::get('/{kecamatan}/getgeometry', [InventarisController::Class, 'get_geometry']);
+Route::get('/{kecamatan}/getgeometry', [InventarisController::Class, 'get_geometry'])->name('getgeometry');
 Route::get('/inventaris/{keyword}/search', [InventarisController::Class, 'searchInventaris']);
 Route::post('/inventaris/{status}/{skpd}/{kelurahan}/query', [InventarisController::Class, 'queryInventaris']);
 Route::get('/inventaris/{id}', [InventarisController::Class, 'show']);

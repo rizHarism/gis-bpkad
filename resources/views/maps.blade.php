@@ -7,6 +7,7 @@
 @stop
 
 @section('body')
+
     @include('layouts.navbar_maps')
 
     <div id="maps"></div>
@@ -158,8 +159,21 @@
         };
 
         function getAsetSertifikat(kecamatan) {
+            var loading = $("#loading");
+            // $('#loading').show();
+            $(document).ajaxStart(function() {
+                loading.show();
+            });
+            $(document).ajaxStop(function() {
+                loading.hide();
+            });
+
+            var url = "{{ route('getgeometry', 'kecamatan') }}";
+            url = url.replace('kecamatan', kecamatan);
+
             $.ajax({
-                url: '/api/' + kecamatan + '/getgeometry',
+                // url: '/api/' + kecamatan + '/getgeometry',
+                url: url,
                 dataType: "json",
                 async: false,
                 success: function(result) {
@@ -171,38 +185,34 @@
                         var lat = property.geometry.lat
                         var lng = property.geometry.lng
 
-                        var status = property.status
-                        if (status == 1) {
-                            var x = JSON.parse(geo)
-                            // var lat = JSON.parse(geo.lat)
-                            // var lng = JSON.parse(geo.lng)
-                            console.log(lat)
-                            var layer = L.geoJSON(x, {
-                                style: sertifikatStyle
-                            })
-                            layer.addTo(map)
-                            layer.on('click', function() {
+                        var x = JSON.parse(geo)
+                        var layer = L.geoJSON(x, {
+                            style: sertifikatStyle
+                        })
+                        // console.log(layer)
+                        layer.addTo(map)
+                        layer.on('click', function() {
 
-                                const sertifikat = (property
-                                        .status == 1) ?
-                                    "Bersertifikat" :
-                                    "Belum Bersertifikat";
-                                const hb = property
-                                    .nilai_aset,
-                                    na = property
-                                    .nilai_aset,
-                                    lt = property
-                                    .luas,
-                                    ns = property
-                                    .nilai_aset
+                            const sertifikat = (property
+                                    .status == 1) ?
+                                "Bersertifikat" :
+                                "Belum Bersertifikat";
+                            const hb = property
+                                .nilai_aset,
+                                na = property
+                                .nilai_aset,
+                                lt = property
+                                .luas,
+                                ns = property
+                                .nilai_aset
 
-                                $('#detailTitle').empty()
-                                $('#detailData').empty()
-                                $('#detailTitle').append(
-                                    property.master_skpd
-                                    .nama_skpd + " / " + property
-                                    .nama)
-                                $('#detailData').append(`
+                            $('#detailTitle').empty()
+                            $('#detailData').empty()
+                            $('#detailTitle').append(
+                                property.master_skpd
+                                .nama_skpd + " / " + property
+                                .nama)
+                            $('#detailData').append(`
                                                     <table class="table table-striped">
                                                     <tr>
                                                       <th>Pemilik Inventaris </th>
@@ -256,7 +266,7 @@
                                                 </table>
                                                     `);
 
-                                var content = ` <img class="img-thumbnail rounded" src="{{ asset('assets/galery/stadion-soeprijadi.jpg') }}" alt="...">
+                            var content = ` <img class="img-thumbnail rounded" src="{{ asset('assets/galery/stadion-soeprijadi.jpg') }}" alt="...">
                                                     <p class="text-center fw-bold m-2 p-0 h7">` + property.nama + `</p>
                                                     <table class="table table-striped">
                                                     <tr>
@@ -267,34 +277,33 @@
                                                     <tr>
                                                         <th>Alamat</th>
                                                         <td>` + property.alamat +
-                                    `</td>
+                                `</td>
                                                     </tr>
                                                     </table>
                                                     <div style="text-align:center">
                                                     <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                    property.id + `">Detail</a>
+                                property.id + `">Detail</a>
                                                     </div>`
 
-                                var popup = L.responsivePopup()
-                                    .setContent(
-                                        content)
+                            var popup = L.popup()
+                                .setContent(
+                                    content)
 
-                                layer.bindPopup(popup)
-                                    .openPopup();
-                            });
+                            layer.bindPopup(popup)
+                                .openPopup();
+                        });
 
-                            map.on('overlayremove', function(eventLayer) {
-                                if (eventLayer.name === "5") {
-                                    map.removeLayer(layer)
-                                }
-                                if (eventLayer.name === "4") {
-                                    map.removeLayer(layer)
-                                }
-                                if (eventLayer.name === "3") {
-                                    map.removeLayer(layer)
-                                }
-                            });
-                        }
+                        map.on('overlayremove', function(eventLayer) {
+                            if (eventLayer.name === "5") {
+                                map.removeLayer(layer)
+                            }
+                            if (eventLayer.name === "4") {
+                                map.removeLayer(layer)
+                            }
+                            if (eventLayer.name === "3") {
+                                map.removeLayer(layer)
+                            }
+                        });
                     })
                 }
             })
@@ -818,7 +827,7 @@
                                                 </div>`
 
                             var popup = L
-                                .responsivePopup()
+                                .popup()
                                 .setContent(
                                     content)
 
