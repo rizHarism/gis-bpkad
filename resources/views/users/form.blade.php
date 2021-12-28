@@ -26,14 +26,14 @@
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
                             <input type="email" name="email" class="form-control" id="email" placeholder="Email"
-                            value="{{ $edit['email'] ?? '' }}">
+                                value="{{ $edit['email'] ?? '' }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Password"
-                            value="">
+                            <input type="password" name="password" class="form-control" id="password"
+                                placeholder="Password" value="">
                             <span>{{ isset($edit) ? 'Fill blank if you don\'t want to change the password' : '' }}</span>
                         </div>
                     </div>
@@ -41,16 +41,18 @@
                         <label for="skpd" class="col-sm-2 col-form-label">SKPD</label>
                         <div class="col-sm-10">
                             <input type="text" name="skpd" class="form-control" id="skpd" placeholder="Skpd"
-                            value="{{ $edit['skpd_id'] ?? '' }}">
+                                value="{{ $edit['skpd_id'] ?? '' }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="role" class="col-sm-2 col-form-label">Role</label>
                         <div class="col-sm-10">
                             <select name="role" id="">
-                                <option value="">-</option>
+                                <option value="">Pilih Role</option>
                                 @foreach ($roles as $_role)
-                                <option value="{{ $_role['id'] }}" {{ isset($edit) && !is_null($role) && $role['id'] == $_role['id'] ? 'selected="selected"' : '' }}>{{ $_role['name'] }}</option>
+                                    <option value="{{ $_role['id'] }}"
+                                        {{ isset($edit) && !is_null($role) && $role['id'] == $_role['id'] ? 'selected="selected"' : '' }}>
+                                        {{ $_role['name'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -91,7 +93,7 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         'Content-Type': 'application/json',
                     },
-                    type: "{{ isset($edit) ? 'PUT' : 'PUT' }}",
+                    type: "{{ isset($edit) ? 'PUT' : 'POST' }}",
                     url: $(this).attr('action'),
                     data: JSON.stringify({
                         username: $(this).find("input[name='username']").val(),
