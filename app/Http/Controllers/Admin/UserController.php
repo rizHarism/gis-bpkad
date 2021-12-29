@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Skpd;
 
 class UserController extends \App\Http\Controllers\Controller
 {
@@ -25,8 +26,10 @@ class UserController extends \App\Http\Controllers\Controller
     public function create(Request $request)
     {
         $roles = Role::get();
+        $skpd = Skpd::get();
         return view('users.form', [
-            'roles' => $roles
+            'roles' => $roles,
+            'skpd' => $skpd
         ]);
     }
 
@@ -36,6 +39,7 @@ class UserController extends \App\Http\Controllers\Controller
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
+            'skpd' => 'exists:master_skpd,id_skpd',
             'role' => 'required',
         ]);
 
@@ -65,11 +69,13 @@ class UserController extends \App\Http\Controllers\Controller
         $user = User::with('roles')->findOrFail($id);
         $role = $user->roles->first();
         $roles = Role::get();
+        $skpd = Skpd::get();
 
         return view('users.form', [
             'edit' => $user,
             'role' => $role,
-            'roles' => $roles
+            'roles' => $roles,
+            'skpd' => $skpd
         ]);
     }
 
@@ -87,6 +93,10 @@ class UserController extends \App\Http\Controllers\Controller
             $validations['email'] = 'required|email|unique:users,email';
         }
 
+        if ($user->skpd_id != $request->skpd) {
+            $validations['skpd'] = 'exists:master_skpd,id_skpd';
+        }
+
         if ($user->roles->first()->id != $request->role) {
             $validations['role'] = 'required';
         }
@@ -99,7 +109,7 @@ class UserController extends \App\Http\Controllers\Controller
             $user->username = $request->username;
             $user->email = $request->email;
             if (!empty($request->password)) {
-                $user->password = $request->password;
+                $user->password = Hash::make($request->password);
             }
             $user->skpd_id = $request->skpd;
             $user->save();

@@ -40,8 +40,14 @@
                     <div class="form-group row">
                         <label for="skpd" class="col-sm-2 col-form-label">SKPD</label>
                         <div class="col-sm-10">
-                            <input type="text" name="skpd" class="form-control" id="skpd" placeholder="Skpd"
-                                value="{{ $edit['skpd_id'] ?? '' }}">
+                            <select name="skpd" id="skpd">
+                                <option value="">Pilih SKPD</option>
+                                @foreach ($skpd as $_skpd)
+                                    <option value="{{ $_skpd['id_skpd'] }}"
+                                        {{ isset($edit) && $edit['skpd_id'] == $_skpd['id_skpd'] ? 'selected="selected"' : '' }}>
+                                        {{ $_skpd['kode_skpd'] . ' - ' . $_skpd['nama_skpd'] }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -99,7 +105,7 @@
                         username: $(this).find("input[name='username']").val(),
                         email: $(this).find("input[name='email']").val(),
                         password: $(this).find("input[name='password']").val(),
-                        skpd: $(this).find("input[name='skpd']").val(),
+                        skpd: $(this).find("select[name='skpd']").val(),
                         role: $(this).find("select[name='role']").val()
                     }),
                     cache: false,
