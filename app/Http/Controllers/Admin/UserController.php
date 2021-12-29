@@ -99,7 +99,7 @@ class UserController extends \App\Http\Controllers\Controller
             $user->username = $request->username;
             $user->email = $request->email;
             if (!empty($request->password)) {
-                $user->password = $request->password;
+                $user->password = Hash::make($request->password);
             }
             $user->skpd_id = $request->skpd;
             $user->save();
