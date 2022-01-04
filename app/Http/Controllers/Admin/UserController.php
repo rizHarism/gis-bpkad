@@ -114,7 +114,6 @@ class UserController extends \App\Http\Controllers\Controller
         }
 
         return response("User has been updated successfully");
-
     }
 
     public function destroy(Request $request, $id)

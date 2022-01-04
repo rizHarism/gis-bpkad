@@ -47,7 +47,7 @@
                     <div class="form-group row">
                         <label for="role" class="col-sm-2 col-form-label">Role</label>
                         <div class="col-sm-10">
-                            <select name="role" id="">
+                            <select class="form-select " name="role" id="">
                                 <option value="">Pilih Role</option>
                                 @foreach ($roles as $_role)
                                     <option value="{{ $_role['id'] }}"
