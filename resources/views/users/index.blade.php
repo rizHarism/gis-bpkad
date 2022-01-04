@@ -9,9 +9,9 @@
 @section('content')
     <div class="container-fluid pb-5 ps-3 pe-3">
         <div class="card">
-            <h5 class="card-header">Roles List</h5>
+            <h5 class="card-header">List User</h5>
             <div class="card-body">
-                <a href="{{ route('users.create') }}" class="btn btn-primary">Create</a>
+                <a href="{{ route('users.create') }}" class="btn btn-primary">+ Tambah User</a>
                 <hr />
                 <table class="table table-striped table-hover table-bordered order-column" id="users-table">
                     <thead>

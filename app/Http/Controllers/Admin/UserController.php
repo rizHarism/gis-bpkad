@@ -57,7 +57,7 @@ class UserController extends \App\Http\Controllers\Controller
             return response($e->getMessage(), 500);
         }
 
-        return response("User has been created successfully");
+        return response("User Berhasil Ditambahkan");
     }
 
     public function edit(Request $request, $id)
@@ -99,7 +99,8 @@ class UserController extends \App\Http\Controllers\Controller
             $user->username = $request->username;
             $user->email = $request->email;
             if (!empty($request->password)) {
-                $user->password = $request->password;
+                // $user->password = $request->password;
+                $user->password = Hash::make($request->password);
             }
             $user->skpd_id = $request->skpd;
             $user->save();
@@ -113,7 +114,7 @@ class UserController extends \App\Http\Controllers\Controller
             return response($e->getMessage(), 500);
         }
 
-        return response("User has been updated successfully");
+        return response("Update User Berhasil");
     }
 
     public function destroy(Request $request, $id)
@@ -126,6 +127,6 @@ class UserController extends \App\Http\Controllers\Controller
             return response($e->getMessage(), 500);
         }
 
-        return response("User has been deleted successfully");
+        return response("User Berhasil Dihapus");
     }
 }
