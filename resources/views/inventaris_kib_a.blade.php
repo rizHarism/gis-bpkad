@@ -239,7 +239,7 @@
                                           <th>Tahun Perolehan :</th>
                                           <td>` + property.tahun_perolehan + `</td>
                                         </tr>
-                                        
+
                                         <tr>
                                           <th>Nilai Aset </th>
                                           <td>` + `Rp ` + rupiah(na) + `</td>
@@ -247,6 +247,10 @@
                                         <tr>
                                           <th>Alamat </th>
                                           <td>` + property.alamat + `</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Koordinat </th>
+                                          <td>` + property.geometry.lat + ` / ` + property.geometry.lng + `</td>
                                         </tr>
                                         <tr>
                                           <th>Kelurahan </th>
@@ -271,7 +275,7 @@
                                           <th>Status </th>
                                           <td>` + sertifikat + `</td>
                                         </tr>
-                                        
+
                                     </table>
                                         `);
 

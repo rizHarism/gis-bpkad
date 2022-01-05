@@ -17,14 +17,14 @@ class SkpdController extends Controller
      */
     public function index()
     {
-        //call all data Skpd from Skpd table
-        // $datatables = DataTables::of(Skpd::get())->addIndexColumn();
-        $datatables = DataTables::of(Skpd::get())->addIndexColumn();
-        return $datatables->make(true);
-
-        // dd($datatables);
+        return view('opd.index');
     }
 
+    public function datatables()
+    {
+        $datatables = DataTables::of(Skpd::get())->addIndexColumn();
+        return $datatables->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -33,6 +33,7 @@ class SkpdController extends Controller
     public function create()
     {
         //
+        return view('opd.form');
     }
 
     /**
@@ -66,6 +67,7 @@ class SkpdController extends Controller
     public function edit(Skpd $skpd)
     {
         //
+        return view('opd.form');
     }
 
     /**

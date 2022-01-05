@@ -780,7 +780,7 @@
                                                   <td>` + property.kecamatan.nama_kecamatan + `</td>
                                                 </tr>
                                                 <tr>
-                                                  <th>Latitude / longitude </th>
+                                                  <th>Koordinat </th>
                                                   <td>` + lat + ` / ` + lng + `</td>
                                                 </tr>
                                                 <tr>

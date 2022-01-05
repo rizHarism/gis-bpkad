@@ -23,7 +23,7 @@ use App\Models\MasterBarang;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+// Route::middleware(['auth'])->group(function () {
 Route::get('/inventaris/dashboard', [InventarisController::Class, 'dashboard']);
 Route::get('/inventaris', [InventarisController::Class, 'index']);
 Route::get('/inventaris/{id}/edit', [InventarisController::Class, 'edit']);
@@ -35,9 +35,10 @@ Route::get('/inventaris/{id}', [InventarisController::Class, 'show']);
 Route::put('/inventaris/{id}', [InventarisController::Class, 'update']);
 
 // menampilkan data master barang
-Route::get('/masterbarang', [MasterBarangController::Class, 'index']);
+Route::get('/masterbarang', [MasterBarangController::Class, 'datatables']);
 Route::get('/masterbarang/{id}', [MasterBarangController::Class, 'show'])->name('masterbarang.show');
 
 // menampilkan data skpd
-Route::get('/skpd', [SkpdController::Class, 'index']);
+Route::get('/skpd', [SkpdController::Class, 'datatables']);
 Route::get('/kelurahan', [KelurahanController::Class, 'index']);
+// });

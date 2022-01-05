@@ -245,17 +245,18 @@ return [
             'text' => 'Data Dasar BMD',
             'url'  => 'datadasarbmd',
             'icon' => 'fas fa-fw fa-file-alt',
-            'can'  => 'dasar bmd.index',
-            // 'submenu' => [
-            //     [
-            //         'text'  => 'Master Aset',
-            //         'url'   => '#',
-            //     ],
-            //     [
-            //         'text'  => 'Konfigurasi Penyusutan',
-            //         'url'   => '#',
-            //     ]
-            // ]
+            'submenu' => [
+                [
+                    'text'  => 'Barang Aset Daerah',
+                    'url'   => 'datadasarbmd',
+                    'can'  => 'dasar bmd.index',
+                ],
+                [
+                    'text'  => 'Data OPD',
+                    'url'  => 'admin/opd',
+                    'can'  => 'administrator.data opd',
+                ]
+            ]
         ],
         [
             'text'      => 'Data Aset',
@@ -306,12 +307,12 @@ return [
             'can'  => 'administrator.index',
             'icon' => 'fas  fa-fw fa-cogs',
             'submenu'   => [
-                [
-                    'text' => 'Data OPD',
-                    'url'  => 'admin/opd',
-                    'can'  => 'administrator.data opd',
-                    'icon' => 'fas fa-fw  fa-users',
-                ],
+                // [
+                //     'text' => 'Data OPD',
+                //     'url'  => 'admin/opd',
+                //     'can'  => 'administrator.data opd',
+                //     'icon' => 'fas fa-fw  fa-users',
+                // ],
                 [
                     'text' => 'Role Setting',
                     'url'  => 'admin/roles',
@@ -329,11 +330,11 @@ return [
                 //     'url'   => 'admin/konfigurasi',
                 //     'can'   => 'adminstrator.setting profil'
                 // ],
-                [
-                    'text'  => 'Konfigurasi Simantab',
-                    'url'   => 'admin/konfigurasi',
-                    'can'   => 'administrator.konfigurasi simantab'
-                ],
+                // [
+                //     'text'  => 'Konfigurasi Simantab',
+                //     'url'   => 'admin/konfigurasi',
+                //     'can'   => 'administrator.konfigurasi simantab'
+                // ],
 
             ],
         ],

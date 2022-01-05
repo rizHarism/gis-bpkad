@@ -26,9 +26,9 @@ class MasterBarangController extends Controller
         //     'nama',
         //     'kode_barang'
         // ]);
-        $datatables = DataTables::of(MasterBarang::get())->addIndexColumn();
-        return $datatables->make(true);
-
+        // $datatables = DataTables::of(MasterBarang::get())->addIndexColumn();
+        // return $datatables->make(true);
+        return view('bmd.index');
         // dd($datatables);
 
         // $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd', 'geometry'))
@@ -36,6 +36,12 @@ class MasterBarangController extends Controller
         //     ->make(true);
         // // return $datatables->make(true);
         // return $inventaris;
+    }
+
+    public function datatables()
+    {
+        $datatables = DataTables::of(MasterBarang::get())->addIndexColumn();
+        return $datatables->make(true);
     }
 
     /**
@@ -46,6 +52,7 @@ class MasterBarangController extends Controller
     public function create()
     {
         //
+        return view('bmd.form');
     }
 
     /**
@@ -85,6 +92,7 @@ class MasterBarangController extends Controller
     public function edit(MasterBarang $masterBarang)
     {
         //
+        return view('bmd.form');
     }
 
     /**
