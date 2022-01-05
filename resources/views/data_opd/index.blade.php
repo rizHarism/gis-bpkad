@@ -12,7 +12,8 @@
         <div class="card">
             <h5 class="card-header">Data SKPD</h5>
             <div class="card-body">
-
+                <a href="{{ route('users.create') }}" class="btn btn-primary">+ Data OPD</a>
+                <hr />
                 <table class="table table-striped table-hover table-bordered order-column" id="master_skpd">
                     <thead>
                         <tr>

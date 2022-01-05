@@ -9,10 +9,15 @@ class Skpd extends Model
 {
     use HasFactory;
     protected $table = 'master_skpd';
-    protected $fillable = ['id', 'nama', 'kode_skpd'];
+    protected $fillable = ['id_skpd', 'nama_skpd', 'kode_skpd'];
 
     public function inventaris()
     {
         return $this->hasMany(Inventaris::class, 'id_skpd', 'skpd_id');
+    }
+
+    public function users()
+    {
+        return $this->hasOne(User::class, 'id_skpd', 'skpd_id');
     }
 }

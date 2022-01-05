@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard | Roles')
+@section('title', 'User Management')
 
 @section('content_header')
     <div class="mb-0"></div>
@@ -19,7 +19,7 @@
                             <th>No</th>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Kode SKPD</th>
+                            <th>Nama SKPD</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -55,7 +55,9 @@
                     method: "GET"
                 },
                 columns: [{
-                        data: 'id'
+                        data: "DT_RowIndex",
+                        searchable: false,
+                        orderable: false
                     },
                     {
                         data: 'username'
@@ -64,7 +66,7 @@
                         data: 'email'
                     },
                     {
-                        data: 'skpd_id'
+                        data: 'skpd.nama_skpd'
                     },
                     {
                         data: 'id',

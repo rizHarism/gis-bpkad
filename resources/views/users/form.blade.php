@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard | Users')
+{{-- @section('title', 'Dashboard | Users') --}}
+@section('title', 'User Management')
 
 @section('content_header')
     <div class="mb-0"></div>
@@ -18,7 +19,7 @@
                     <div class="form-group row">
                         <label for="username" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-10">
-                            <input type="text" name="username" class="form-control" id="username" placeholder="username"
+                            <input type="text" name="username" class="form-control" id="username" placeholder="Username"
                                 value="{{ $edit['username'] ?? '' }}">
                         </div>
                     </div>
@@ -40,7 +41,7 @@
                     <div class="form-group row">
                         <label for="skpd" class="col-sm-2 col-form-label">SKPD</label>
                         <div class="col-sm-10">
-                            <select name="skpd" id="skpd">
+                            <select class="form-select" name="skpd" id="skpd">
                                 <option value="">Pilih SKPD</option>
                                 @foreach ($skpd as $_skpd)
                                     <option value="{{ $_skpd['id_skpd'] }}"

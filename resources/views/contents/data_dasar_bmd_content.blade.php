@@ -1,4 +1,4 @@
-<div class="container-fluid pb-5 ps-3 pe-3">
+{{-- <div class="container-fluid pb-5 ps-3 pe-3">
     <div class="card">
         <h5 class="card-header">Data Dasar Milik Daerah</h5>
         <div class="card-body">
@@ -8,14 +8,14 @@
                     <tr>
                         <th>No</th>
                         {{-- <th>Id Master Barang</th> --}}
-                        <th>Kode Barang</th>
-                        <th>Nama Master Barang</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
+<th>Kode Barang</th>
+<th>Nama Master Barang</th>
+</tr>
+</thead>
+</table>
 </div>
+</div>
+</div> --}}
 
 
 

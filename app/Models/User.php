@@ -48,6 +48,8 @@ class User extends Authenticatable
 
     public function skpd()
     {
-        return $this->belongsTo(\App\Models\Skpd::class, "users.skpd_id", "master_skpd.id_skpd");
+        // return $this->belongsTo(\App\Models\Skpd::class, "users.skpd_id", "master_skpd.id_skpd");
+        return $this->belongsTo(\App\Models\Skpd::class, "skpd_id", "id_skpd");
+        // return $this->belongsTo(Skpd::class, 'users.skpd_id', 'master_skpd.id_skpd');
     }
 }

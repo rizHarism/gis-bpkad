@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Skpd;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends \App\Http\Controllers\Controller
 {
@@ -19,8 +20,11 @@ class UserController extends \App\Http\Controllers\Controller
 
     public function datatables(Request $request)
     {
-        $users = User::query();
-        return datatables()->eloquent($users)->toJson();
+
+        $datatables = DataTables::of(User::with('skpd'))
+            ->addIndexColumn()
+            ->make(true);
+        return $datatables;
     }
 
     public function create(Request $request)
