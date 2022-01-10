@@ -9,6 +9,7 @@ class MasterBarang extends Model
 {
     use HasFactory;
     protected $table = 'master_barang';
+    protected $primaryKey = "id_barang";
     protected $fillable = ['id_barang', 'nama_barang', 'kode_barang'];
 
     public function inventaris()
