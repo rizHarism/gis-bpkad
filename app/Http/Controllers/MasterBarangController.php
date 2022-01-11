@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateMasterBarangRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class MasterBarangController extends Controller
 {
@@ -58,12 +59,26 @@ class MasterBarangController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMasterBarangRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMasterBarangRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'kode_barang' => 'required|unique:master_barang,kode_barang',
+            'nama_barang' => 'required',
+        ]);
+
+        $masterBarang = MasterBarang::create([
+            'nama_barang' => $request->nama_barang,
+            'kode_barang' => $request->kode_barang
+        ]);
+
+        if ($masterBarang) {
+            return response("Master Barang sudah berhasil ditambahkan!");
+        } else {
+            return response("Master Barang gagal ditambahkan!", Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -86,35 +101,56 @@ class MasterBarangController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MasterBarang  $masterBarang
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasterBarang $masterBarang)
+    public function edit(Request $request, $id)
     {
-        //
-        return view('bmd.form');
+        $masterBarang = MasterBarang::findOrFail($id);
+        return view('bmd.form', ['edit' => $masterBarang]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMasterBarangRequest  $request
-     * @param  \App\Models\MasterBarang  $masterBarang
+     * @param  \Illuminate\Http\Request  $request
+     * @param  String   $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMasterBarangRequest $request, MasterBarang $masterBarang)
+    public function update(Request $request, $id)
     {
-        //
+        $masterBarang = MasterBarang::findOrFail($id);
+
+        $validations['nama_barang'] = ['required'];
+
+        if ($masterBarang->kode_barang != $request->kode_barang) {
+            $validations['kode_barang'] = 'required|unique:master_barang,kode_barang';
+        }
+        $this->validate($request, $validations);
+
+        $masterBarang->kode_barang = $request->kode_barang;
+        $masterBarang->nama_barang = $request->nama_barang;
+
+        if ($masterBarang->save()) {
+            return response("Master Barang sudah berhasil diubah!");
+        } else {
+            return response("Master Barang gagal diubah!", Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MasterBarang  $masterBarang
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterBarang $masterBarang)
+    public function destroy(Request $masterBarang, $id)
     {
-        //
+        $masterBarang = MasterBarang::findOrFail($id);
+        if ($masterBarang->delete()) {
+            return response("Master Barang sudah berhasil dihapus");
+        } else {
+            return response("Master Barang gagal dihapus", Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }
