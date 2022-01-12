@@ -9,6 +9,7 @@ class Skpd extends Model
 {
     use HasFactory;
     protected $table = 'master_skpd';
+    protected $primaryKey = "id_skpd";
     protected $fillable = ['id_skpd', 'nama_skpd', 'kode_skpd'];
 
     public function inventaris()
