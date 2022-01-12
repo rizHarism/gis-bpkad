@@ -14,7 +14,7 @@
                 action="{{ isset($edit) ? route('users.update', ['user' => $edit]) : route('users.store') }}">
                 @method('PUT')
                 {{ csrf_field() }}
-                <h5 class="card-header">Users</h5>
+                <h5 class="card-header">{{ isset($edit) ? 'Edit User' : 'Tambah User' }}</h5>
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="username" class="col-sm-2 col-form-label">Username</label>

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
+use App\Models\Galery;
 use App\Models\Geometry;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Inventaris;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\MasterBarang;
 use App\Models\Skpd;
 use Illuminate\Http\Request;
@@ -24,16 +28,7 @@ class InventarisController extends Controller
 
     public function index()
     {
-        // Menampilkan semua data Inventaris
-        $inventaris = Inventaris::with('master_barang:id_barang,nama_barang', 'master_skpd:id_skpd,nama_skpd', 'geometry:id,inventaris_id,polygon,lat,lng')
-            ->get();
-        $response = [
-            'message' => 'Data Inventaris',
-            'count' => count($inventaris),
-            'data' => $inventaris
-        ];
-
-        return response()->json($response, Response::HTTP_OK);
+        return view('inventaris.index');
     }
 
     public function get_geometry($kecamatan_id)
@@ -82,29 +77,34 @@ class InventarisController extends Controller
     {
         //Get data untuk yajra datatables pada halaman Inventaris
 
-        // DB::statement(DB::raw('set @rownum=0'));
-
-        // $inventaris = Inventaris::select([
-        // DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-        //     'id',
-        //     'jenis_inventaris',
-        //     'nama',
-        //     'tahun_perolehan',
-        //     'nilai_aset',
-        //     'luas',
-        //     'status',
-        //     'alamat',
-        //     'no_dokumen_sertifikat',
-        //     'master_barang_id',
-        //     'skpd_id',
-        // ])->with('master_barang:id as id_barang, ', 'master_skpd');
-
-        // $datatables = Datatables::of($inventaris);
-
         $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd', 'geometry'))
             ->addIndexColumn()
             ->make(true);
         // return $datatables->make(true);
+        return $inventaris;
+    }
+
+    public function getInventarisSertifikat()
+    {
+        //Get data untuk yajra datatables pada halaman Inventaris
+
+        $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd', 'geometry')->where('status', 1))
+            ->addIndexColumn()
+            ->make(true);
+        // return $datatables->make(true);
+        // dd($inventaris);
+        return $inventaris;
+    }
+
+    public function getInventarisNonSertifikat()
+    {
+        //Get data untuk yajra datatables pada halaman Inventaris
+
+        $inventaris = DataTables::of(Inventaris::with('master_barang', 'master_skpd', 'geometry')->where('status', 0))
+            ->addIndexColumn()
+            ->make(true);
+        // return $datatables->make(true);
+        // dd($inventaris);
         return $inventaris;
     }
 
@@ -177,6 +177,20 @@ class InventarisController extends Controller
     public function create()
     {
         //
+        $kecamatan = Kecamatan::get();
+        $kelurahan = Kelurahan::get();
+        $skpd = Skpd::get();
+        $master_barang = MasterBarang::get();
+        // $geometry = Geometry::where('inventaris_id', $id)->get();
+        // $galery = Galery::get();
+        // $document = Document::get();
+        return view('inventaris.form', [
+            // 'edit' => $inventaris,
+            'kecamatan' => $kecamatan,
+            'kelurahan' => $kelurahan,
+            'skpd' => $skpd,
+            'barang' => $master_barang
+        ]);
     }
 
     /**
@@ -188,6 +202,72 @@ class InventarisController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'nama' => 'required|unique:inventaris,nama',
+            'tahun' => 'required',
+            'nilai' => 'required',
+            'luas' => 'required',
+            'status' => 'required',
+            'alamat' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'no_sertifikat' => 'required',
+            'skpd' => 'exists:master_skpd,id_skpd',
+            'barang' => 'exists:master_barang,id_barang',
+            // 'geometry' => 'nullable'
+        ]);
+
+        // $inventaris = [
+        //     'nama' => $request->nama,
+        //     'tahun_perolehan' => $request->tahun,
+        //     'nilai_aset' => $request->nilai,
+        //     'luas' => $request->luas,
+        //     'status' => $request->status,
+        //     'alamat' => $request->alamat,
+        //     'kelurahan_id' => $request->kelurahan,
+        //     'kecamatan_id' => $request->kecamatan,
+        //     'no_dokumen_sertifikat' => $request->no_sertifikat,
+        //     'skpd_id' => $request->skpd,
+        //     'master_barang_id' => $request->barang,
+        //     // 'geometry' => $request->geometry
+        // ];
+
+        // dd($inventaris);
+
+        try {
+            DB::beginTransaction();
+            $inventaris = Inventaris::create([
+                'nama' => $request->nama,
+                'jenis_inventaris' => 'A',
+                'tahun_perolehan' => $request->tahun,
+                'nilai_aset' => $request->nilai,
+                'luas' => $request->luas,
+                'status' => $request->status,
+                'alamat' => $request->alamat,
+                'kelurahan_id' => $request->kelurahan,
+                'kecamatan_id' => $request->kecamatan,
+                'no_dokumen_sertifikat' => $request->no_sertifikat,
+                'skpd_id' => $request->skpd,
+                'master_barang_id' => $request->barang,
+            ]);
+            $geometry = Geometry::create([
+                'inventaris_id' => $inventaris->id,
+                'polygon' => $request->polygon,
+                'lat' => $request->lat,
+                'lng' => $request->long,
+            ]);
+
+            $document = Document::create([]);
+            // $role = Role::findById($request->role);
+            // $user->assignRole($role);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
+        }
+
+        return response("User Berhasil Ditambahkan");
     }
 
     /**
@@ -217,17 +297,30 @@ class InventarisController extends Controller
     public function edit($id)
     {
         //
-        $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->where('id', $id)->get();
+        $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
         $response = [
             'message' => "Edit Inventaris",
             'data' => $inventaris
         ];
+
+        $kecamatan = Kecamatan::get();
+        $kelurahan = Kelurahan::get();
+        $skpd = Skpd::get();
+        $master_barang = MasterBarang::get();
+        $geometry = Geometry::where('inventaris_id', $id)->get();
+        $galery = Galery::get();
+        $document = Document::get();
+        // dd($geometry);
         // return response()->json($response, Response::HTTP_OK);
-        return view('contents.inventaris_kib_a_edit_content', [
-            // 'role' => $role,
-            // 'permissions' => $permissions,
-            // 'permissionsFormatted' => $permissionsFormatted,
-            // 'rolePermissions' => $rolePermissions,
+        return view('inventaris.form', [
+            'edit' => $inventaris,
+            'kecamatan' => $kecamatan,
+            'kelurahan' => $kelurahan,
+            'skpd' => $skpd,
+            'barang' => $master_barang,
+            'geometry' => $geometry,
+            'galery' => $galery,
+            'document' => $document
         ]);
     }
 
