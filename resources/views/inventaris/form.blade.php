@@ -13,8 +13,9 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card">
-                <form id="edit-form" method="POST" class="form-horizontal"
-                    action="{{ isset($edit) ? route('inventaris.update', ['id' => $edit]) : route('inventaris.store') }}">
+                <form id="edit-form" method="POST" class="form-horizontal" name="invent"
+                    action="{{ isset($edit) ? route('inventaris.update', ['id' => $edit]) : route('inventaris.store') }}"
+                    enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
                     <h5 class="card-header">{{ isset($edit) ? 'Edit - ' . $edit['nama'] : 'Tambah Inventaris' }}
@@ -28,9 +29,11 @@
                                             <div class="row">
                                                 <div class="col-10 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic m">Nama Aset :</label>
-                                                    <input type="text" class="form-control " name="nama_inventaris"
+                                                    <input type="text" class="form-control" name="nama_inventaris"
                                                         id="nama_inventaris" placeholder=""
                                                         value="{{ $edit['nama'] ?? '' }}">
+                                                    {{-- <input type="hidden" class="form-control " name="jenis_inventaris"
+                                                        id="jenis_inventaris" placeholder="" value="A"> --}}
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -38,7 +41,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic">Tahun Perolehan
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                        name="tahun">
+                                                        name="tahun" id="tahun">
                                                         {{ $last = date('Y') - 120 }}
                                                         {{ $now = date('Y') }}
 
@@ -66,7 +69,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic ">Status Sertifikat
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                        name="status">
+                                                        name="status" id="status">
                                                         <option value="1">Bersertifikat</option>
                                                         <option value="0">TIdak Bersertifikat</option>
                                                     </select>
@@ -82,16 +85,15 @@
                                             <div class="row">
                                                 <div class="col-10 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic ">Alamat :</label>
-                                                    <input type="text" class="form-control " name="alamat"
-                                                        id="exampleFormControlInput1" placeholder=""
-                                                        value="{{ $edit['alamat'] ?? '' }} ">
+                                                    <input type="text" class="form-control " name="alamat" id="alamat"
+                                                        placeholder="" value="{{ $edit['alamat'] ?? '' }} ">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-5 mb-2 ">
                                                     <label for="" class="form-label mb-0 fst-italic ">Kelurahan :</label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                        name="kelurahan">
+                                                        name="kelurahan" id="kelurahan">
                                                         @foreach ($kelurahan as $_kelurahan)
                                                             <option value="{{ $_kelurahan['id_kelurahan'] }}"
                                                                 {{ isset($edit) && $edit['kelurahan_id'] == $_kelurahan['id_kelurahan'] ? 'selected="selected"' : '' }}>
@@ -102,7 +104,7 @@
                                                 <div class="col-5 mb-2 ">
                                                     <label for="" class="form-label mb-0 fst-italic ">Kecamatan :</label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                        name="kecamatan">
+                                                        name="kecamatan" id="kecamatan">
                                                         @foreach ($kecamatan as $_kecamatan)
                                                             <option value="{{ $_kecamatan['id_kecamatan'] }}"
                                                                 {{ isset($edit) && $edit['kecamatan_id'] == $_kecamatan['id_kecamatan'] ? 'selected="selected"' : '' }}>
@@ -124,7 +126,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic">SKPD Pengelola
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                        name="skpd">
+                                                        name="skpd" id="skpd">
                                                         @foreach ($skpd as $_skpd)
                                                             <option value="{{ $_skpd['id_skpd'] }}"
                                                                 {{ isset($edit) && $edit['skpd_id'] == $_skpd['id_skpd'] ? 'selected="selected"' : '' }}>
@@ -137,7 +139,7 @@
                                                 <div class="col-10 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Kategori Aset :</label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                        name="barang">
+                                                        name="barang" id="barang">
                                                         @foreach ($barang as $_barang)
                                                             <option value="{{ $_barang['id_barang'] }}"
                                                                 {{ isset($edit) && $edit['master_barang_id'] == $_barang['id_barang'] ? 'selected="selected"' : '' }}>
@@ -146,7 +148,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row mb-2">
                                                 <div class="col-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
                                                     <label for="" class="form-label mb-0 fst-italic m">Lat :</label>
@@ -156,8 +158,8 @@
                                                 </div>
                                                 <div class="col-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
-                                                    <label for="" class="form-label mb-0 fst-italic m">Long :</label>
-                                                    <input type="text" class="form-control " name="long" id="long"
+                                                    <label for="" class="form-label mb-0 fst-italic">Long :</label>
+                                                    <input type="text" class="form-control " name="lng" id="lng"
                                                         placeholder="" value="@if (isset($edit))@foreach ($geometry as $_geometry){{ $_geometry['lng'] ?? '' }}@endforeach @endif">
                                                     {{-- </div> --}}
                                                 </div>
@@ -165,8 +167,50 @@
                                             <div class="row">
                                                 <div class="col-10 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Geometry :</label>
-                                                    <textarea class="form-control" id="geometry" rows="3"
+                                                    <textarea class="form-control" name="geometry" id="geometry" rows="3"
                                                         name="geometry">@if (isset($edit))@foreach ($geometry as $_geometry){{ $_geometry['polygon'] ?? '' }}@endforeach @endif</textarea>
+                                                </div>
+                                            </div>
+
+                                            {{-- <div class="row">
+                                                <div class="col-10 mb-2 me-5 ">
+                                                    <label for="" class="form-label mb-0 fst-italic">Photo :</label>
+                                                    <div class="input-group control-group img_div form-group">
+                                                        <input type="file" name="image[]" class="form-control">
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-success btn-add-more" type="button"><i
+                                                                    class="glyphicon glyphicon-plus"></i> +</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="clone hide " style="display: none;">
+                                                    <div class="control-group input-group form-group">
+                                                        <input type="file" name="image[]" class="form-control">
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-danger btn-remove" type="button"><i
+                                                                    class="glyphicon glyphicon-remove"></i> -</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+
+                                            <div class="row">
+                                                <div class="col-10 mb-2 me-5 ">
+                                                    <label for="" class="form-label mb-0 fst-italic">Photo :</label>
+                                                    {{-- <div class="input-group control-group form-group"> --}}
+                                                    <input type="file" name="image" id="image" class="form-control"
+                                                        accept="image/*">
+                                                    {{-- </div> --}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-10 mb-2 me-5 ">
+                                                    <label for="" class="form-label mb-0 fst-italic">Document :</label>
+                                                    {{-- <div class="input-group control-group form-group"> --}}
+                                                    <input type="file" name="document" id="document" class="form-control"
+                                                        accept="application/pdf">
+                                                    {{-- </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -186,7 +230,7 @@
                                 {{-- <a href="#" class="btn btn-secondary mt-5 ms-auto">Batal</a>
                                 &nbsp; --}}
                                 <button type="submit" class="btn btn-info float-right">Submit</button>
-                                <a href="{{ route('users.index') }}" class="btn btn-default float-right">Cancel</a>
+                                <a href="{{ route('inventaris_kib_a') }}" class="btn btn-default float-right">Cancel</a>
                             </div>
                         </div>
                     </div>
@@ -218,37 +262,55 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
     <script>
+        $(document).ready(function() {
+            $(".btn-add-more").click(function() {
+                var html = $(".clone").html();
+                $(".img_div").after(html);
+            });
+            $("body").on("click", ".btn-remove", function() {
+                $(this).parents(".control-group").remove();
+            });
+        });
+
         $(function() {
             $("#edit-form").submit(function() {
+
+                var formData = new FormData;
+
+                formData.append('nama_inventaris', $("#nama_inventaris").val());
+                formData.append('tahun', $("#tahun").val());
+                formData.append('nilai_aset', $("#value_nilai_aset").val());
+                formData.append('luas', $("#luas").val());
+                formData.append('status', $("#status").val());
+                formData.append('alamat', $("#alamat").val());
+                formData.append('kelurahan', $("#kelurahan").val());
+                formData.append('kecamatan', $("#kecamatan").val());
+                formData.append('no_sertifikat', $("#no_sertifikat").val());
+                formData.append('skpd', $("#skpd").val());
+                formData.append('barang', $("#barang").val());
+                formData.append('polygon', $("#geometry").val());
+                formData.append('lat', $("#lat").val());
+                formData.append('lng', $("#lng").val());
+                formData.append('image', $('input[type=file]')[0].files[0]);
+                formData.append('document', $('input[type=file]')[1].files[0]);
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'Content-Type': 'application/json',
+                        // 'Content-Type': 'application/json',
                     },
                     type: "{{ isset($edit) ? 'PUT' : 'POST' }}",
                     // url: $(this).attr('action'),
                     url: "{{ route('inventaris.store') }}",
-                    data: JSON.stringify({
-                        nama: $(this).find("input[name='nama_inventaris']").val(),
-                        tahun: $(this).find("select[name='tahun']").val(),
-                        nilai: $(this).find("input[name='value_nilai_aset']").val(),
-                        luas: $(this).find("input[name='luas']").val(),
-                        status: $(this).find("select[name='status']").val(),
-                        alamat: $(this).find("input[name='alamat']").val(),
-                        kelurahan: $(this).find("select[name='kelurahan']").val(),
-                        kecamatan: $(this).find("select[name='kecamatan']").val(),
-                        no_sertifikat: $(this).find("input[name='no_sertifikat']").val(),
-                        skpd: $(this).find("select[name='skpd']").val(),
-                        barang: $(this).find("select[name='barang']").val(),
-                        geometry: $(this).find("textarea[name='geomerty']").val(),
+                    data: formData,
 
-                    }),
                     cache: false,
                     contentType: false,
                     processData: false,
                     success: (data) => {
-                        alert(data);
-                        window.location = document.referrer;
+
+                        console.log(data);
+                        // window.location = document.referrer;
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
                         // alert(xhr.responseJSON.message);
@@ -337,7 +399,7 @@
                 );
                 $('#geometry').val(JSON.stringify(layer.toGeoJSON().geometry))
                 $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
-                $('#long').val(point.toGeoJSON().geometry.coordinates[0])
+                $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
                 // console.log(polyedit);
                 // console.log(point.toGeoJSON().geometry.coordinates[0])
                 // console.log(point.toGeoJSON().geometry.coordinates[1])
@@ -368,7 +430,7 @@
                 console.log(point)
                 $('#geometry').val(polygon)
                 $('#lat').val(point.toGeoJSON().geometry.coordinates[0])
-                $('#long').val(point.toGeoJSON().geometry.coordinates[1])
+                $('#lng').val(point.toGeoJSON().geometry.coordinates[1])
 
             }
 
@@ -394,7 +456,7 @@
                 console.log(point)
                 $('#geometry').val(polygon);
                 $('#lat').val(point.toGeoJSON().geometry.coordinates[0])
-                $('#long').val(point.toGeoJSON().geometry.coordinates[1])
+                $('#lng').val(point.toGeoJSON().geometry.coordinates[1])
 
             });
         });

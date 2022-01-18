@@ -9,7 +9,7 @@ class Geometry extends Model
 {
     use HasFactory;
     protected $table = 'geometry';
-    protected $fillable = ['id', 'inventaris_id', 'polygon', 'point'];
+    protected $fillable = ['id', 'inventaris_id', 'polygon', 'lat', 'lng'];
 
 
     public function inventaris()

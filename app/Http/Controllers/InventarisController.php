@@ -202,10 +202,11 @@ class InventarisController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->all());
         $this->validate($request, [
-            'nama' => 'required|unique:inventaris,nama',
+            'nama_inventaris' => 'required|unique:inventaris,nama',
             'tahun' => 'required',
-            'nilai' => 'required',
+            'nilai_aset' => 'required',
             'luas' => 'required',
             'status' => 'required',
             'alamat' => 'required',
@@ -217,30 +218,22 @@ class InventarisController extends Controller
             // 'geometry' => 'nullable'
         ]);
 
-        // $inventaris = [
-        //     'nama' => $request->nama,
-        //     'tahun_perolehan' => $request->tahun,
-        //     'nilai_aset' => $request->nilai,
-        //     'luas' => $request->luas,
-        //     'status' => $request->status,
-        //     'alamat' => $request->alamat,
-        //     'kelurahan_id' => $request->kelurahan,
-        //     'kecamatan_id' => $request->kecamatan,
-        //     'no_dokumen_sertifikat' => $request->no_sertifikat,
-        //     'skpd_id' => $request->skpd,
-        //     'master_barang_id' => $request->barang,
-        //     // 'geometry' => $request->geometry
-        // ];
-
-        // dd($inventaris);
+        // $geometry = Geometry::create([
+        //     // 'inventaris_id' => $inventaris->id,
+        //     'polygon' => 'sasa',
+        //     'lat' => 'sasa',
+        //     'lng' => 'sasa',
+        // ]);
+        // dd($geometry);
 
         try {
             DB::beginTransaction();
             $inventaris = Inventaris::create([
-                'nama' => $request->nama,
+                'nama' => $request->nama_inventaris,
+                // 'nama' => $request->nama,
                 'jenis_inventaris' => 'A',
                 'tahun_perolehan' => $request->tahun,
-                'nilai_aset' => $request->nilai,
+                'nilai_aset' => $request->nilai_aset,
                 'luas' => $request->luas,
                 'status' => $request->status,
                 'alamat' => $request->alamat,
@@ -250,24 +243,40 @@ class InventarisController extends Controller
                 'skpd_id' => $request->skpd,
                 'master_barang_id' => $request->barang,
             ]);
-            $geometry = Geometry::create([
-                'inventaris_id' => $inventaris->id,
-                'polygon' => $request->polygon,
-                'lat' => $request->lat,
-                'lng' => $request->long,
-            ]);
 
-            $document = Document::create([]);
-            // $role = Role::findById($request->role);
-            // $user->assignRole($role);
+            if (!empty($request->polygon)) {
 
+                $geometry = Geometry::create([
+                    'inventaris_id' => $inventaris->id,
+                    'polygon' => $request->polygon,
+                    'lat' => $request->lat,
+                    'lng' => $request->lng,
+                ]);
+            }
+
+            if ($request->hasfile('image')) {
+                // foreach ($request->file('image') as $file) {
+                $file = $request->file('image');
+                $galery = Galery::create([
+                    'inventaris_id' => $inventaris->id,
+                    'image_path' => $file->getClientOriginalName()
+                ]);
+                // }
+
+                // $file = $request->file('image');
+
+                // $name = $file->getClientOriginalName();
+                // $file->move(public_path('galery', $name));
+            }
+
+            dd($inventaris, $geometry, $galery);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             return response($e->getMessage(), 500);
         }
 
-        return response("User Berhasil Ditambahkan");
+        return response("Data Inventaris Berhasil Ditambahkan");
     }
 
     /**
