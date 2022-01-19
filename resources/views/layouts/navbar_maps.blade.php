@@ -127,8 +127,8 @@
                         </div>
                         <div class="col-md-6">
                             <div id="sertifikat">
-                                <iframe src="{{ asset('assets/document/03.KL.017 - STADION SUPRIYADI.pdf') }}"
-                                    style="width: 100%;height: 63vh; position: relative;" allowfullscreen></iframe>
+                                {{-- <iframe src="{{ asset('assets/document/03.KL.017 - STADION SUPRIYADI.pdf') }}"
+                                    style="width: 100%;height: 63vh; position: relative;" allowfullscreen></iframe> --}}
                             </div>
                         </div>
                     </div>

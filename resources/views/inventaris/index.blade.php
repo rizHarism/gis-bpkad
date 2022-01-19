@@ -27,10 +27,10 @@
                             <th>No</th>
                             {{-- <th id="aksi">Aksi</th> --}}
                             <th>Aksi</th>
-                            <th>Nama SKPD</th>
+                            <th>SKPD Pengelola</th>
                             {{-- <th>Kode Inventaris</th> --}}
-                            <th>Jenis Inventaris</th>
                             <th>Nama Inventaris</th>
+                            <th>Jenis Inventaris</th>
                             <th>Alamat</th>
                             <th>Status</th>
 
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="Document" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    {{-- <div class="modal fade" id="Document" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -108,6 +108,10 @@
                                     <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                                         aria-labelledby="nav-contact-tab">
                                         <div class="mt-2" id="dokumen">
+                                            <div class="row">
+                                                <div class="col-6" id="document"></div>
+                                                <div class="col-6" id="image"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -232,11 +236,11 @@
                         data: 'master_skpd.nama_skpd',
                     },
                     {
-                        data: 'master_barang.nama_barang',
-
+                        data: 'nama'
                     },
                     {
-                        data: 'nama'
+                        data: 'master_barang.nama_barang',
+
                     },
                     {
                         data: 'alamat'
@@ -380,8 +384,30 @@
                                             .nama_kelurahan
                                     }
 
+                                    if (!property.galery) {
+                                        image = "Photo Lokasi Belum Tersedia"
+                                    } else {
+                                        image =
+                                            `</div><img class="img-fluid" src=` +
+                                            "assets/galery/" +
+                                            property.galery.image_path +
+                                            `></img></div>`
+                                    }
+                                    if (!property.document) {
+                                        doc = "File Sertifikat Belum Tersedia"
+                                    } else {
+                                        doc = `<div class="ratio ratio-16x9">
+                                            <iframe src=` + "assets/document/" +
+                                            property.document.doc_path + `></iframe>
+                                        </div>`
+                                    }
+
                                     $('#detailTitle').empty()
                                     $('#detailData').empty()
+                                    $('#image').empty()
+                                    $('#image').append(image);
+                                    $('#document').empty()
+                                    $('#document').append(doc);
                                     $('#detailTitle').append(property
                                         .master_skpd
                                         .nama_skpd + " - " + property.nama)
@@ -448,10 +474,6 @@
 
 
                                     $('#mapDetail').empty()
-                                    // $('#mapTittle').empty()
-                                    // $('#mapTittle').append('Peta Aset  ' +
-                                    //     property
-                                    //     .nama)
                                     $('#mapDetail').html(
                                         `<div id="map" class="" style="height: 500px; width:100%;"></div>`
                                     )

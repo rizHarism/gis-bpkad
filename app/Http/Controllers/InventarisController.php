@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class InventarisController extends Controller
 {
@@ -212,7 +213,7 @@ class InventarisController extends Controller
             'alamat' => 'required',
             'kelurahan' => 'required',
             'kecamatan' => 'required',
-            'no_sertifikat' => 'required',
+            // 'no_sertifikat' => 'required',
             'skpd' => 'exists:master_skpd,id_skpd',
             'barang' => 'exists:master_barang,id_barang',
             // 'geometry' => 'nullable'
@@ -253,23 +254,26 @@ class InventarisController extends Controller
                     'lng' => $request->lng,
                 ]);
             }
-
+            // dd($request->file('image')->getOriginalFilename());
             if ($request->hasfile('image')) {
-                // foreach ($request->file('image') as $file) {
-                $file = $request->file('image');
+                $name = $request->file('image')->getClientOriginalName();
                 $galery = Galery::create([
                     'inventaris_id' => $inventaris->id,
-                    'image_path' => $file->getClientOriginalName()
+                    'image_path' => $name
                 ]);
-                // }
-
-                // $file = $request->file('image');
-
-                // $name = $file->getClientOriginalName();
-                // $file->move(public_path('galery', $name));
+                $request->file('image')->move(public_path('assets/galery'), $name);
             }
 
-            dd($inventaris, $geometry, $galery);
+            if ($request->hasfile('document')) {
+                $name = $request->file('document')->getClientOriginalName();
+                $document = Document::create([
+                    'inventaris_id' => $inventaris->id,
+                    'doc_path' => $name
+                ]);
+                $request->file('document')->move(public_path('assets/document'), $name);
+            }
+
+            // dd($inventaris, $geometry, $galery, $document);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -311,7 +315,7 @@ class InventarisController extends Controller
             'message' => "Edit Inventaris",
             'data' => $inventaris
         ];
-
+        // dd($inventaris);
         $kecamatan = Kecamatan::get();
         $kelurahan = Kelurahan::get();
         $skpd = Skpd::get();
@@ -343,29 +347,120 @@ class InventarisController extends Controller
     public function update(Request $request, $id)
     {
 
-        $inventaris = Inventaris::findOrFail($id);
-        $validator = Validator::make($request->all(), [
-            'polygon' => ['required'],
-            'jenis_inventaris' => ['required']
+        $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
+        $validations = [];
 
-        ]);
+        // dd($inventaris);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), response::HTTP_UNPROCESSABLE_ENTITY);
+        if ($inventaris->nama != $request->nama_inventaris) {
+            $validations['nama_inventaris'] = 'required|unique:inventaris,nama';
+        }
+        if ($inventaris->tahun_perolehan != $request->tahun) {
+            $validations['tahun'] = 'required';
+        }
+        if ($inventaris->nilai_aset != $request->nilai_aset) {
+            $validations['tahun'] = 'required';
+        }
+        if ($inventaris->luas != $request->luas) {
+            $validations['luas'] = 'required';
+        }
+        if ($inventaris->alamat != $request->alamat) {
+            $validations['alamat'] = 'required';
+        }
+        if ($inventaris->kelurahan_id != $request->kelurahan) {
+            $validations['kelurahan'] = 'required';
+        }
+        if ($inventaris->kecamatan_id != $request->kecamatan) {
+            $validations['kecamatan'] = 'required';
+        }
+        if ($inventaris->skpd_id != $request->skpd) {
+            $validations['skpd'] = 'exists:master_skpd,id_skpd';
+        }
+        if ($inventaris->master_barang_id != $request->barang) {
+            $validations['barang'] = 'exists:master_barang,id_barang';
         }
 
+        $this->validate($request, $validations);
+
+        // dd($request->all());
         try {
-            $inventaris->update($request->all());
-            $response = [
-                'message' => 'Inventaris Geometry Update',
-                'data' => $inventaris
-            ];
-            return response()->json($response, Response::HTTP_OK);
-        } catch (QueryException $e) {
-            return response()->json([
-                'message' => "Failed" . $e->errorInfo
-            ]);
+            DB::beginTransaction();
+
+            $inventaris->nama = $request->nama_inventaris;
+            $inventaris->tahun_perolehan = $request->tahun;
+            $inventaris->nilai_aset = $request->nilai_aset;
+            $inventaris->luas = $request->luas;
+            $inventaris->status = $request->status;
+            $inventaris->alamat = $request->alamat;
+            $inventaris->kelurahan_id = $request->kelurahan;
+            $inventaris->kecamatan_id = $request->kecamatan;
+            $inventaris->no_dokumen_sertifikat = $request->no_sertifikat;
+            $inventaris->skpd_id = $request->skpd;
+            $inventaris->master_barang_id = $request->barang;
+            // if (!empty($request->password)) {
+            //     $user->password = Hash::make($request->password);
+            // }
+            $inventaris->save();
+
+            if (!empty($request->polygon)) {
+                $geometry = Geometry::where('inventaris_id', $id)
+                    // $geometry->polygon = $request->polygon;
+                    // $geometry->lat = $request->lat;
+                    // $geometry->lng = $request->lng;
+                    // dd($geometry->polygon);
+                    // $geometry->save();
+                    ->update([
+                        'polygon' => $request->polygon,
+                        'lat' => $request->lat,
+                        'lng' => $request->lng,
+                    ]);
+            }
+
+            if ($request->hasfile('image')) {
+                $oldfile = Galery::where('inventaris_id', $id)->pluck('image_path');
+                $newfile = $request->file('image')->getClientOriginalName();
+                foreach ($oldfile as $old) {
+                    if (File::exists(public_path('assets/galery/' . $old))) {
+                        File::delete(public_path('assets/galery/' . $old));
+                    }
+                };
+
+                Galery::where('inventaris_id', $id)
+                    ->update([
+                        'image_path' => $newfile
+                    ]);
+                $request->file('image')->move(public_path('assets/galery'), $newfile);
+            };
+
+            if ($request->hasfile('document')) {
+                $oldfile = Document::where('inventaris_id', $id)->pluck('doc_path');
+                $newfile = $request->file('document')->getClientOriginalName();
+                foreach ($oldfile as $old) {
+                    if (File::exists(public_path('assets/document/' . $old))) {
+                        File::delete(public_path('assets/document/' . $old));
+                    }
+                };
+
+                Document::where('inventaris_id', $id)
+                    ->update([
+                        'doc_path' => $newfile
+                    ]);
+                $request->file('document')->move(public_path('assets/document'), $newfile);
+            };
+
+
+            //     $file_name = $document->pluck('doc_path');
+            //     if (File::exists(public_path('assets/files/' . $file_name))) {
+            //         File::delete(public_path('assets/files/' . $file_name));
+            //     }
+            // }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
         }
+        return response("Data Inventaris Berhasil Diubah");
     }
 
     /**

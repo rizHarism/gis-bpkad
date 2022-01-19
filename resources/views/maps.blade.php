@@ -196,6 +196,13 @@
                                     ns = property
                                     .nilai_aset
 
+                                $('#sertifikat').empty()
+                                $('#sertifikat').append(
+                                    `<div class="ratio ratio-16x9">
+                                            <iframe src=` + "assets/document/" +
+                                    property.document.doc_path + `></iframe>
+                                        </div>`
+                                )
                                 $('#detailTitle').empty()
                                 $('#detailData').empty()
                                 $('#detailTitle').append(
@@ -738,7 +745,15 @@
                                 .luas,
                                 ns = property
                                 .nilai_aset
-
+                            if (!property.document) {
+                                Sertifikat = "Sertifikat Belum Tersedia"
+                            } else {
+                                Sertifikat = `<iframe src=` + "assets/document/" +
+                                    property.document.doc_path +
+                                    ` style="width: 100%;height: 63vh; position: relative;"></iframe>`
+                            }
+                            $('#sertifikat').empty()
+                            $('#sertifikat').append(Sertifikat)
                             $('#detailTitle').empty()
                             $('#detailData').empty()
                             $('#detailTitle').append(
@@ -797,9 +812,16 @@
                                                 </tr>
                                             </table>
                                                 `);
-
-                            var content = ` <img class="img-thumbnail rounded" src="{{ asset('assets/galery/stadion-soeprijadi.jpg') }}" alt="...">
-                                                <p class="text-center fw-bold m-2 p-0 h7">` + property.nama + `</p>
+                            if (!property.galery) {
+                                image = "<h1 aligment='center'>Image Not Found</h1>"
+                            } else {
+                                image = `<img class="img-fluid" src=` +
+                                    "assets/galery/" + property.galery.image_path +
+                                    `></img>`
+                            }
+                            var content = image +
+                                `<p class="text-center fw-bold m-2 p-0 h7">` + property
+                                .nama + `</p>
                                                 <table class="table table-striped">
                                                 <tr>
                                                     <th>Pengelola</th>

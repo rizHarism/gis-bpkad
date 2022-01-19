@@ -276,6 +276,7 @@
             $("#edit-form").submit(function() {
 
                 var formData = new FormData;
+                var putMethod = '{{ isset($edit) }}'
 
                 formData.append('nama_inventaris', $("#nama_inventaris").val());
                 formData.append('tahun', $("#tahun").val());
@@ -294,14 +295,19 @@
                 formData.append('image', $('input[type=file]')[0].files[0]);
                 formData.append('document', $('input[type=file]')[1].files[0]);
 
+                if (putMethod) {
+                    formData.append('_method', 'PUT')
+                }
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         // 'Content-Type': 'application/json',
                     },
-                    type: "{{ isset($edit) ? 'PUT' : 'POST' }}",
-                    // url: $(this).attr('action'),
-                    url: "{{ route('inventaris.store') }}",
+                    // type: "{{ isset($edit) ? 'PUT' : 'POST' }}",
+                    type: "POST",
+                    // url: "{{ route('inventaris.store') }}",
+                    url: $(this).attr('action'),
                     data: formData,
 
                     cache: false,
@@ -309,8 +315,9 @@
                     processData: false,
                     success: (data) => {
 
+                        alert(data);
                         console.log(data);
-                        // window.location = document.referrer;
+                        window.location = document.referrer;
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
                         // alert(xhr.responseJSON.message);
@@ -429,8 +436,8 @@
                 var polygon = JSON.stringify(extract);
                 console.log(point)
                 $('#geometry').val(polygon)
-                $('#lat').val(point.toGeoJSON().geometry.coordinates[0])
-                $('#lng').val(point.toGeoJSON().geometry.coordinates[1])
+                $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
+                $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
 
             }
 
@@ -455,8 +462,8 @@
                 var polygon = JSON.stringify(extract);
                 console.log(point)
                 $('#geometry').val(polygon);
-                $('#lat').val(point.toGeoJSON().geometry.coordinates[0])
-                $('#lng').val(point.toGeoJSON().geometry.coordinates[1])
+                $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
+                $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
 
             });
         });
