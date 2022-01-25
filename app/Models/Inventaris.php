@@ -11,7 +11,7 @@ class Inventaris extends Model
 
     protected $table = 'inventaris';
 
-    protected $fillable = ['id', 'jenis_inventaris', 'nama', 'tahun_perolehan', 'nilai_aset', 'luas', 'status', 'alamat', 'kelurahan_id', 'kecamatan_id', 'no_dokumen_sertifikat', 'skpd_id', 'master_barang_id'];
+    protected $fillable = ['id', 'jenis_inventaris', 'nama', 'no_register', 'tahun_perolehan', 'nilai_aset', 'luas', 'status', 'alamat', 'kelurahan_id', 'kecamatan_id', 'no_dokumen_sertifikat', 'skpd_id', 'master_barang_id'];
 
 
     public function master_barang()

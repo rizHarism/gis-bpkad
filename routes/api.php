@@ -32,7 +32,8 @@ Route::get('/getinventaris/sertifikat', [InventarisController::Class, 'getInvent
 Route::get('/getinventaris/nonsertifikat', [InventarisController::Class, 'getInventarisNonSertifikat']);
 Route::get('/{kecamatan}/getgeometry', [InventarisController::Class, 'get_geometry']);
 Route::get('/inventaris/{keyword}/search', [InventarisController::Class, 'searchInventaris']);
-Route::post('/inventaris/{status}/{skpd}/{kelurahan}/query', [InventarisController::Class, 'queryInventaris']);
+Route::post('/inventaris/{status}/{kelurahan}/{skpd}/queryskpd', [InventarisController::Class, 'queryKelSkpd']);
+Route::post('/inventaris/{status}/{kelurahan}/{sertifikat}/querysertifikat', [InventarisController::Class, 'queryKelSertifikat']);
 Route::get('/inventaris/{id}', [InventarisController::Class, 'show']);
 Route::put('/inventaris/{id}', [InventarisController::Class, 'update']);
 

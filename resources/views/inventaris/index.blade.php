@@ -31,6 +31,7 @@
                             {{-- <th>Kode Inventaris</th> --}}
                             <th>Nama Inventaris</th>
                             <th>Jenis Inventaris</th>
+                            <th>No. Sertifikat</th>
                             <th>Alamat</th>
                             <th>Status</th>
 
@@ -240,6 +241,10 @@
                     },
                     {
                         data: 'master_barang.nama_barang',
+
+                    },
+                    {
+                        data: 'no_dokumen_sertifikat',
 
                     },
                     {

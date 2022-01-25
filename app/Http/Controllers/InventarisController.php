@@ -134,11 +134,11 @@ class InventarisController extends Controller
 
 
 
-    public function queryInventaris($status, $skpd_id, $kelurahan_id)
+    public function queryKelSkpd($status, $kelurahan_id, $skpd_id)
     {
 
         // dd($skpd_id, $kelurahan_id);
-        // query inventaris untuk pencarian data geometry/polygon (filterisasi)
+        // query inventaris untuk pencarian data geometry/polygon (filterisasi)git
         if ($skpd_id === 'Semua SKPD'  && $kelurahan_id === 'Semua Kelurahan') {
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 ->has('geometry')
@@ -166,6 +166,42 @@ class InventarisController extends Controller
         $response = [
             'message' => 'List Query Pencarian Data',
             'count' => count($inventaris),
+            'data' => $inventaris
+        ];
+        return response()->json($response, Response::HTTP_OK);
+    }
+    public function queryKelSertifikat($status, $kelurahan_id, $noSertifikat)
+    {
+
+        // $kelurahan = Kelurahan::findOrFail($kelurahan_id);
+        if ($kelurahan_id === 'Semua Kelurahan') {
+            $validasi = Inventaris::with('kelurahan', 'geometry')
+                ->where('no_dokumen_sertifikat', $noSertifikat)->has('geometry')
+                ->first();
+        } else {
+            $validasi = Inventaris::with('kelurahan', 'geometry')
+                ->where('no_dokumen_sertifikat', $noSertifikat)->has('geometry')
+                ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
+                ->first();
+        }
+        if (!$validasi) {
+            $inventaris = null;
+        } else {
+            if ($kelurahan_id === 'Semua Kelurahan') {
+                $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
+                    ->where('no_dokumen_sertifikat',  $noSertifikat)->has('geometry')
+                    ->where('status',  $status)->has('geometry')
+                    ->get();
+            } else {
+                $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
+                    ->where('no_dokumen_sertifikat',  $noSertifikat)->has('geometry')
+                    ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
+                    ->where('status',  $status)->has('geometry')
+                    ->get();
+            }
+        }
+        $response = [
+            'message' => 'List Query Pencarian Data',
             'data' => $inventaris
         ];
         return response()->json($response, Response::HTTP_OK);

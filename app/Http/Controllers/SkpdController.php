@@ -23,7 +23,7 @@ class SkpdController extends Controller
 
     public function datatables()
     {
-        $datatables = DataTables::of(Skpd::get())->addIndexColumn();
+        $datatables = DataTables::of(Skpd::orderBy('nama_skpd', 'ASC')->get())->addIndexColumn();
         return $datatables->make(true);
     }
     /**
