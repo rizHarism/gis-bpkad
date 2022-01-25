@@ -9,6 +9,7 @@ class Kelurahan extends Model
 {
     use HasFactory;
     protected $table = 'kelurahan';
+    protected $primaryKey  = 'id_kelurahan';
     protected $fillable = ['id_kelurahan', 'nama_kelurahan'];
 
     public function inventaris()

@@ -28,38 +28,55 @@
             </h1>
 
             <div class="container-fluid">
-                <p class="mt-3">Query Pencarian adalah fitur pencarian geometry data aset berdasarkan SKPD
-                    terkait
-                    dan kelurahan
+                <p class="mt-3">Pencarian geometry bidang tanah aset berdasarkan SKPD terkait dan kelurahan
                 </p>
+
+                <div class="form-check form-control-sm mt-3">
+                    <input class="form-check-input" type="radio" name="varQuery" id="queryOpd1" value="opd" checked>
+                    <label class="form-check-label fw-bold" for="queryOpd1">
+                        PENCARIAN BERDASARKAN OPD PENGELOLA
+                    </label>
+                </div>
+                <div class="form-check form-control-sm">
+                    <input class="form-check-input" type="radio" name="varQuery" id="queryOpd2" value="sertifikat">
+                    <label class="form-check-label fw-bold" for="queryOpd2">
+                        PENCARIAN BERDASARKAN NOMOR SERTIFIKAT
+                    </label>
+                </div>
 
                 <form method="POST" id="queryGeom">
                     {{ csrf_field() }}
-                    <div class="form-check form-control-sm mt-3">
+                    {{-- <div class="form-check form-control-sm mt-3">
                         <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="1"
-                            checked>
+                            checked style="display:none;">
                         <label class="form-check-label fw-bold" for="flexRadioDefault1">
                             Bersertifikat
                         </label>
                     </div>
                     <div class="form-check form-control-sm">
                         <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="0"
-                            disabled>
+                            disabled style="display:none;">
                         <label class="form-check-label fw-bold" for="flexRadioDefault2">
                             Non Sertifikat
                         </label>
+                    </div> --}}
+
+                    <div id="varChange">
+                        <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
+                            id="dataSkpd">
+                            <option selected>Semua SKPD</option>
+                        </select>
+
+                        {{-- <input class="mt-3 form-control form-control-sm fw-bold" type="number" name="noSertifikat"
+                            id="noSertifikat"> --}}
                     </div>
+                    <div id="kelChange">
+                        <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
+                            id="data_kelurahan">
+                            <option selected>Semua Kelurahan</option>
 
-                    <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
-                        id="data_skpd">
-                        <option selected>Semua SKPD</option>
-                    </select>
-
-                    <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
-                        id="data_kelurahan">
-                        <option selected>Semua Kelurahan</option>
-
-                    </select>
+                        </select>
+                    </div>
                     <div class="row">
                         <div class="col-md-3 align-center">
                             <button type="" class="btn btn-primary mt-4">Cari</button>
@@ -70,7 +87,7 @@
                     </div>
                 </form>
             </div>
-
+            <hr>
         </div>
 
         <div class="sidebarV2-pane" id="profile">
@@ -127,8 +144,8 @@
                         </div>
                         <div class="col-md-6">
                             <div id="sertifikat">
-                                <iframe src="{{ asset('assets/document/03.KL.017 - STADION SUPRIYADI.pdf') }}"
-                                    style="width: 100%;height: 63vh; position: relative;" allowfullscreen></iframe>
+                                {{-- <iframe src="{{ asset('assets/document/03.KL.017 - STADION SUPRIYADI.pdf') }}"
+                                    style="width: 100%;height: 63vh; position: relative;" allowfullscreen></iframe> --}}
                             </div>
                         </div>
                     </div>

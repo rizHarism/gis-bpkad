@@ -61,6 +61,16 @@
             background-clip: padding-box;
         }
 
+        @keyframes fade {
+            from {
+                opacity: 0.5;
+            }
+        }
+
+        .blinking {
+            animation: fade 1s infinite alternate;
+        }
+
     </style>
 
     {{-- Base Stylesheets --}}

@@ -266,7 +266,7 @@ return [
             'submenu'   => [
                 [
                     'text'  => 'Aset Tanah (KIB A)',
-                    'url'   => 'inventaris_kib_a',
+                    'url'   => 'inventaris',
                     'can'   => 'data aset.inventaris kib a',
                 ],
                 [

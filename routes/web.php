@@ -31,9 +31,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('maps');
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
-    Route::get('/inventaris_kib_a', [App\Http\Controllers\HomeController::class, 'inventaris_kib_a'])->name('inventaris_kib_a')->can('data aset.inventaris kib a');
-    Route::get('/inventaris/edit', [App\Http\Controllers\HomeController::class, 'inventaris_edit'])->name('inventaris_kib_a_edit')->can('data aset.inventaris kib a edit');
-    Route::get('/admin/opd', [App\Http\Controllers\SkpdController::class, 'index'])->name('dataopd')->can('data opd.index');
+    // Route::get('/admin/opd', [App\Http\Controllers\SkpdController::class, 'index'])->name('dataopd')->can('data opd.index');
 
     Route::get('admin/roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index')->can('roles.index');
     Route::get('admin/roles/datatables', [App\Http\Controllers\Admin\RoleController::class, 'datatables'])->name('roles.datatables')->can('roles.index');
@@ -64,4 +62,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/opd/{opd}/edit', [App\Http\Controllers\SkpdController::class, 'edit'])->name('dataopd.edit')->can('data opd.edit');
     Route::put('/admin/opd/{opd}', [App\Http\Controllers\SkpdController::class, 'update'])->name('dataopd.update')->can('data opd.edit');
     Route::delete('/admin/opd/{opd}', [App\Http\Controllers\SkpdController::class, 'destroy'])->name('dataopd.destroy')->can('data opd.destroy');
+
+    Route::get('/inventaris', [App\Http\Controllers\InventarisController::class, 'index'])->name('inventaris_kib_a')->can('data aset.inventaris');
+    Route::get('/inventaris/create', [App\Http\Controllers\InventarisController::class, 'create'])->name('inventaris.create')->can('data aset.inventaris.create');
+    Route::post('/inventaris/store', [App\Http\Controllers\InventarisController::class, 'store'])->name('inventaris.store')->can('data aset.inventaris.create');
+    Route::get('/inventaris/{id}/edit', [App\Http\Controllers\InventarisController::class, 'edit'])->name('inventaris.edit')->can('data aset.inventaris');
+    Route::put('/inventaris/{id}', [App\Http\Controllers\InventarisController::class, 'update'])->name('inventaris.update')->can('data aset.inventaris');
+    Route::delete('/inventaris/{id}', [App\Http\Controllers\InventarisController::class, 'destroy'])->name('inventaris.destroy')->can('data aset.inventaris.destroy');
 });

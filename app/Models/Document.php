@@ -10,6 +10,8 @@ class Document extends Model
     use HasFactory;
     protected $table = 'documents';
 
+    protected $fillable = ['inventaris_id', 'doc_path'];
+
     public function inventaris()
     {
         return $this->belongsTo(Inventaris::class);

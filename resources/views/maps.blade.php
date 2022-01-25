@@ -196,6 +196,13 @@
                                     ns = property
                                     .nilai_aset
 
+                                $('#sertifikat').empty()
+                                $('#sertifikat').append(
+                                    `<div class="ratio ratio-16x9">
+                                            <iframe src=` + "assets/document/" +
+                                    property.document.doc_path + `></iframe>
+                                        </div>`
+                                )
                                 $('#detailTitle').empty()
                                 $('#detailData').empty()
                                 $('#detailTitle').append(
@@ -643,51 +650,90 @@
         setParentLayer(htmlObject, a);
 
         // ambil data skpd untuk query pencarian
+        function skpd() {
 
-        $.ajax({
-            type: "GET",
-            url: '/api/skpd',
-            dataType: "json",
-            success: function(skpdData) {
-                var skpd = skpdData.data,
-                    listItems = ""
-                $.each(skpd, (i, property) => {
+            $.ajax({
+                type: "GET",
+                url: '/api/skpd',
+                dataType: "json",
+                success: function(skpdData) {
+                    var skpd = skpdData.data,
+                        listItems = ""
+                    $.each(skpd, (i, property) => {
 
-                    listItems += "<option value='" + property.id_skpd + "'>" + property.nama_skpd +
-                        "</option>"
-                })
-                $("#data_skpd").append(listItems);
-            }
-        });
+                        listItems += "<option value='" + property.id_skpd + "'>" + property.nama_skpd +
+                            "</option>"
+                    })
+                    $("#dataSkpd").append(listItems);
+                }
+            });
+        }
+        skpd();
 
-        $.ajax({
-            type: "GET",
-            url: '/api/kelurahan',
-            dataType: "json",
-            success: function(kelData) {
-                var kelurahan = kelData.data,
-                    listItems = ""
-                $.each(kelurahan, (i, property) => {
-                    // console.log(property.id_kelurahan)
-                    // console.log(property.nama_kelurahan)
-                    listItems += "<option value='" + property.id_kelurahan + "'>" + property
-                        .nama_kelurahan +
-                        "</option>"
-                })
-                $("#data_kelurahan").append(listItems);
-            }
+        function kelurahan() {
+            $.ajax({
+                type: "GET",
+                url: '/api/kelurahan',
+                dataType: "json",
+                success: function(kelData) {
+                    var kelurahan = kelData.data,
+                        listItems = ""
+                    $.each(kelurahan, (i, property) => {
+                        // console.log(property.id_kelurahan)
+                        // console.log(property.nama_kelurahan)
+                        listItems += "<option value='" + property.id_kelurahan + "'>" + property
+                            .nama_kelurahan +
+                            "</option>"
+                    })
+                    $("#data_kelurahan").append(listItems);
+                }
+            });
+        }
+        kelurahan();
+
+        $("input[name='varQuery']").change(function() {
+            // Do something interesting here
+            $('#varChange').empty();
+
+            if ($(this).val() === 'opd') {
+                skpd();
+                $('#varChange').append(`<select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
+                            id="dataSkpd">
+                            <option selected>Semua SKPD</option>
+                        </select>`);
+            } else {
+                $('#varChange').append(
+                    `<input class="mt-3 form-control form-control-sm fw-bold noSertifikat" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="noSertifikat"
+                            id="noSertifikat" maxlength="5" placeholder="masukkan 5 digit terakhir sertifikat" required>`
+                );
+            };
+
         });
 
         // query pencarian
         $("#queryGeom").on('submit', function(e) {
 
+            // console.log(e)
+
             e.preventDefault(); // avoid to execute the actual submit of the form.
 
-
-            var status = $('input[name="status"]:checked').val();
-            var skpd = $('#data_skpd').val();
+            var search = $('input[name="varQuery"]:checked').val();
+            // var status = $('input[name="status"]:checked').val();
+            var status = 1;
             var kelurahan = $('#data_kelurahan').val();
+            var skpd = $('#dataSkpd').val();
+            var sertifikat = $('#noSertifikat').val();
+            var urlSkpd = "api/inventaris/" + status + "/" + kelurahan + "/" + skpd + "/queryskpd"
+            if (!sertifikat) {
+                var urlSertifikat = "api/inventaris/" + status + "/" + kelurahan + "/0/querysertifikat"
+            } else {
+                var urlSertifikat = "api/inventaris/" + status + "/" + kelurahan + "/" + sertifikat +
+                    "/querysertifikat"
+            }
+            // console.log(urlSertifikat)
 
+            // console.log(search, status, skpd, kelurahan)
+            // console.log(urlSkpd)
 
             map.eachLayer(function(lay) {
                 if (lay.toGeoJSON) {
@@ -706,58 +752,92 @@
                     'Content-Type': 'application/json',
                 },
                 type: "POST",
-                url: "api/inventaris/" + status + "/" + skpd + "/" + kelurahan + '/query',
+                url: (search == 'opd') ? urlSkpd : urlSertifikat,
                 dataType: "json",
                 success: function(q) {
+                    // if q =
+                    console.log(q.data)
                     var geom = q.data
+                    var layerAll = L.featureGroup();
+                    var pointAll = L.featureGroup();
+                    console.log(geom.data)
+                    if (geom == null) {
+                        alert('Data Sertifikat Tidak Ditemukan / Nomor Sertifikat Tidak Valid')
+                    } else {
 
-                    $.each(geom, (i, property) => {
+                        $.each(geom, (i, property) => {
 
-                        var id = property.id
-                        var geo = property.geometry.polygon
-                        var lat = property.geometry.lat
-                        var lng = property.geometry.lng
+                            var id = property.id
+                            var geo = property.geometry.polygon
+                            var lat = property.geometry.lat
+                            var lng = property.geometry.lng
 
-                        x = JSON.parse(geo)
-                        console.log(x)
-                        var layer = L.geoJSON(x, {
-                            style: sertifikatStyle
-                        });
-                        layer.addTo(map);
+                            x = JSON.parse(geo)
+                            console.log(x)
+                            var layer = L.geoJSON(x, {
+                                style: sertifikatStyle,
+                                className: 'blinking'
+                            });
+                            // var center = layer.getBounds().getCenter();
+                            var point = L.marker([lat, lng], {
+                                icon: L.icon({
+                                    iconUrl: "{{ asset('assets/leaflet/core/images/marker.gif') }}",
+                                    iconSize: [36, 36],
+                                    // iconAnchor: [12, 36],
+                                    className: 'blinking'
+                                })
+                            })
+                            layer.addTo(layerAll);
+                            point.addTo(pointAll);
+                            // layer.addTo(map);
+                            // map.fitBounds(layer.getBounds());
 
-                        layer.on('click', function() {
-                            const sertifikat = (property
-                                    .status == 1) ?
-                                "Bersertifikat" :
-                                "Belum Bersertifikat";
-                            const hb = property
-                                .nilai_aset,
-                                na = property
-                                .nilai_aset,
-                                lt = property
-                                .luas,
-                                ns = property
-                                .nilai_aset
-
-                            $('#detailTitle').empty()
-                            $('#detailData').empty()
-                            $('#detailTitle').append(
-                                property.master_skpd
-                                .nama_skpd + " / " +
-                                property.nama)
-                            $('#detailData').append(`
+                            layer.on('click', function() {
+                                const sertifikat = (property
+                                        .status == 1) ?
+                                    "Bersertifikat" :
+                                    "Belum Bersertifikat";
+                                const hb = property
+                                    .nilai_aset,
+                                    na = property
+                                    .nilai_aset,
+                                    lt = property
+                                    .luas,
+                                    ns = property
+                                    .nilai_aset
+                                if (!property.document) {
+                                    Sertifikat = "Sertifikat Belum Tersedia"
+                                } else {
+                                    Sertifikat = `<iframe src="assets/document/` +
+                                        property
+                                        .document.doc_path +
+                                        `" style="width: 100%;height: 63vh; position: relative;"></iframe>`
+                                }
+                                $('#sertifikat').empty()
+                                $('#sertifikat').append(Sertifikat)
+                                $('#detailTitle').empty()
+                                $('#detailData').empty()
+                                $('#detailTitle').append(
+                                    property.master_skpd
+                                    .nama_skpd + " / " +
+                                    property.nama)
+                                $('#detailData').append(`
                                                 <table class="table table-striped">
                                                 <tr>
                                                   <th>Pemilik Inventaris </th>
                                                   <td>` + property.master_skpd.nama_skpd + `</td>
                                                 </tr>
                                                 <tr>
+                                                  <th>Kategori Inventaris </th>
+                                                  <td>` + property.master_barang.nama_barang + `</td>
+                                                </tr>
                                                   <th>Nama Inventaris </th>
                                                   <td>` + property.nama + `</td>
                                                 </tr>
                                                 <tr>
                                                   <th>Kode Inventaris </th>
-                                                  <td>` + property.master_barang.kode_barang + `</td>
+                                                  <td>` + property.master_barang.kode_barang + "/" + property
+                                    .no_register + `</td>
                                                 </tr>
                                                 <tr>
                                                   <th>Tahun Perolehan :</th>
@@ -797,9 +877,17 @@
                                                 </tr>
                                             </table>
                                                 `);
-
-                            var content = ` <img class="img-thumbnail rounded" src="{{ asset('assets/galery/stadion-soeprijadi.jpg') }}" alt="...">
-                                                <p class="text-center fw-bold m-2 p-0 h7">` + property.nama + `</p>
+                                if (!property.galery) {
+                                    image = "<h1 aligment='center'>Image Not Found</h1>"
+                                } else {
+                                    image =
+                                        `<img class="img-fluid" src="assets/galery/` +
+                                        property.galery.image_path + `"></img>`
+                                }
+                                var content = image +
+                                    `<p class="text-center fw-bold m-2 p-0 h7">` +
+                                    property
+                                    .nama + `</p>
                                                 <table class="table table-striped">
                                                 <tr>
                                                     <th>Pengelola</th>
@@ -809,27 +897,31 @@
                                                 <tr>
                                                     <th>Alamat</th>
                                                     <td>` + property.alamat +
-                                `</td>
+                                    `</td>
                                                 </tr>
                                                 </table>
                                                 <div style="text-align:center">
                                                 <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                property.id + `">Detail</a>
+                                    property.id + `">Detail</a>
                                                 </div>`
 
-                            var popup = L
-                                .responsivePopup()
-                                .setContent(
-                                    content)
+                                var popup = L
+                                    .responsivePopup()
+                                    .setContent(
+                                        content)
 
-                            layer.bindPopup(popup)
-                                .openPopup();
+                                layer.bindPopup(popup)
+                                    .openPopup();
 
-
-
-                        });
-                    })
-
+                            });
+                        })
+                        layerAll.addTo(map);
+                        pointAll.addTo(map);
+                        map.fitBounds(layerAll.getBounds());
+                        setInterval(function() {
+                            map.removeLayer(pointAll);
+                        }, 10520);
+                    }
                 }
             });
 

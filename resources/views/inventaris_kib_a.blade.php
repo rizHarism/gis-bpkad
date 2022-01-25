@@ -60,6 +60,16 @@
                         searchable: false
                     },
                     {
+                        data: 'id',
+                        render: function(data) {
+                            var contextButton =
+                                "<i class='fas fa-bars' id='contextButton' data-value='" +
+                                data +
+                                "'></i>";
+                            return contextButton;
+                        }
+                    },
+                    {
                         data: 'master_skpd.nama_skpd',
                     },
                     {
@@ -76,16 +86,6 @@
                         data: 'status',
                         render: sertifikat
                     },
-                    {
-                        data: 'id',
-                        render: function(data) {
-                            var contextButton =
-                                "<i class='fas fa-eye' id='contextButton' data-value='" +
-                                data +
-                                "'></i>";
-                            return contextButton;
-                        }
-                    }
                 ],
 
                 columnDefs: [{
@@ -202,6 +202,9 @@
                                         ns = property.nilai_aset
                                     console.log(property)
 
+                                    var verifMap = property.geometry
+                                    console.log(verifMap)
+
                                     if (!property.kecamatan) {
                                         kecamatan = ""
                                     } else {
@@ -247,12 +250,13 @@
                                         <tr>
                                           <th>Alamat </th>
                                           <td>` + property.alamat + `</td>
-                                        </tr>
+                                        </tr>` + (verifMap ? `
                                         <tr>
                                           <th>Koordinat </th>
                                           <td>` + property.geometry.lat + ` / ` + property.geometry.lng + `</td>
-                                        </tr>
-                                        <tr>
+                                        </tr>` :
+                                            ``) +
+                                        `<tr>
                                           <th>Kelurahan </th>
                                           <td>` + kelurahan +
                                         `</td>
@@ -279,15 +283,14 @@
                                     </table>
                                         `);
 
-                                    var verifMap = property.geometry
-                                    console.log(verifMap)
+
 
 
                                     $('#mapDetail').empty()
-                                    $('#mapTittle').empty()
-                                    $('#mapTittle').append('Peta Aset  ' +
-                                        property
-                                        .nama)
+                                    // $('#mapTittle').empty()
+                                    // $('#mapTittle').append('Peta Aset  ' +
+                                    //     property
+                                    //     .nama)
                                     $('#mapDetail').html(
                                         `<div id="map" class="" style="height: 500px; width:100%;"></div>`
                                     )
@@ -447,7 +450,9 @@
                                                     .invalidateSize();
                                                 if (verifMap ==
                                                     null) {
-                                                    // alert('data spatial belum tersedia')
+                                                    alert(
+                                                        'data spatial belum tersedia'
+                                                    )
                                                 } else {
                                                     var x =
                                                         property
@@ -501,15 +506,10 @@
                                                             .getBounds()
                                                             .getCenter()
                                                         )
-                                                    // console.log(point)
-                                                    poly.addTo(
-                                                        map)
-                                                    // point.addTo(map)
-
                                                     map.setView(
                                                         point
                                                         .getLatLng(),
-                                                        18)
+                                                        19)
                                                 }
                                             }, 500);
                                         });
@@ -526,7 +526,7 @@
                             break
                         case 'edit':
                             // callMap()
-                            window.location.href = '/inventaris/edit'
+                            window.location.href = '/inventaris/' + id + '/edit'
                             break
                         case 'print':
                             row.data().nama_inventaris

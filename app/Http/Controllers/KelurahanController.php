@@ -11,7 +11,7 @@ class KelurahanController extends Controller
     //
     public function index()
     {
-        $kelurahan = Kelurahan::orderBy('nama_kelurahan', 'DESC')->get()->all();
+        $kelurahan = Kelurahan::orderBy('nama_kelurahan', 'ASC')->get()->all();
         $response = [
             'message' => 'semua data kelurahan',
             'count' => count($kelurahan),
