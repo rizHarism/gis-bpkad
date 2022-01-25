@@ -185,7 +185,7 @@ class InventarisController extends Controller
                 ->first();
         }
         if (!$validasi) {
-            $inventaris = null;
+            $inventaris = 0;
         } else {
             if ($kelurahan_id === 'Semua Kelurahan') {
                 $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')

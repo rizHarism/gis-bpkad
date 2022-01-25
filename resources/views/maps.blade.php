@@ -756,12 +756,12 @@
                 dataType: "json",
                 success: function(q) {
                     // if q =
-                    console.log(q.data)
                     var geom = q.data
+                    console.log(geom)
                     var layerAll = L.featureGroup();
                     var pointAll = L.featureGroup();
-                    console.log(geom.data)
-                    if (geom == null) {
+                    // console.log(geom.data)
+                    if (geom === 0) {
                         alert('Data Sertifikat Tidak Ditemukan / Nomor Sertifikat Tidak Valid')
                     } else {
 
