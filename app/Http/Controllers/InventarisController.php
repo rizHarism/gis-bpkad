@@ -32,6 +32,40 @@ class InventarisController extends Controller
         return view('inventaris.index');
     }
 
+    function fetch(Request $request)
+    {
+        if ($request->get('query')) {
+            $query = $request->get('query');
+            $data = Inventaris::with('master_barang:id_barang,nama_barang')
+                ->with('master_skpd:id_skpd,nama_skpd')
+                ->with('geometry:id,inventaris_id,polygon,lat,lng')
+                ->where('nama', 'like', "%" . $query . "%")->has('geometry')
+                ->orWhereHas('master_barang', function ($q) use ($query) {
+                    $q->where('nama_barang', 'like', "%" . $query . "%");
+                })->has('geometry')
+                ->orWhereHas('master_skpd', function ($q) use ($query) {
+                    $q->where('nama_skpd', 'like', "%" . $query . "%");
+                })->has('geometry')
+                ->get();
+            // dd($data);
+            if ($data === '') {
+                $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+                $output .= '<li class="dropdown-item"><div>Data tidak ada</div></li>';
+                $output .= '</ul>';
+            } else {
+
+                $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+                foreach ($data as $row) {
+                    $output .= '<li class="dropdown-item" value="' . $row->id . '"><div>' . $row->nama . '</div> </li>';
+                    // $output .= '<input id="idInventaris" type="text" value="' . $row->id . '"></input>';
+                }
+                $output .= '</ul>';
+            }
+
+            echo $output;
+        }
+    }
+
     public function get_geometry($kecamatan_id)
     {
         // Menampilkan semua data Inventaris

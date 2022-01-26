@@ -5,7 +5,9 @@
             <li><a href="#layers" role="tab"><i class="fas fa-layer-group"></i></a></li>
             <li><a href="#query" role="tab"><i class="fas fa-database"></i></a></li>
             <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-            <li><a href="/dashboard" role="tab"><i class="fa fa-cog"></i></a></li>
+            @if (auth()->user()->hasRole('Super-Admin'))
+                <li><a href="/dashboard" role="tab"><i class="fa fa-cog"></i></a></li>
+            @endif
         </ul>
 
         <ul role="tablist">
@@ -28,7 +30,17 @@
             </h1>
 
             <div class="container-fluid">
-                <p class="mt-3">Pencarian geometry bidang tanah aset berdasarkan SKPD terkait dan kelurahan
+                <p class="mt-3">Masukkan nama inventaris / dinas terkait
+                </p>
+                <div class="form-group mt-3">
+                    <input type="text" name="inventarisSearch" id="inventarisSearch" class="form-control input-lg"
+                        placeholder="Masukkan nama inventaris" />
+                    <div id="inventarisList">
+                    </div>
+                </div>
+                <hr>
+                <p class="mt-3">Pencarian geometry bidang tanah aset berdasarkan SKPD terkait, kelurahan dan
+                    sertifikat
                 </p>
 
                 <div class="form-check form-control-sm mt-3">
@@ -99,8 +111,9 @@
                     <img src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Admin"
                         class="rounded-circle" width="150">
                     <div class="mt-3">
-                        <h4>Admin</h4>
-                        <p class="text-secondary mb-1">Dinas Pengelolaan Keuangan dan Aset Daerah</p>
+
+                        <h4>{{ Auth::user()->username }}</h4>
+                        <p class="text-secondary mb-1">{{ Auth::user()->skpd->nama_skpd }}</p>
                         <hr>
 
                         <form method="POST" action="/logout">
@@ -142,8 +155,8 @@
                         <div class="col-md-6">
                             <div id="detailData"></div>
                         </div>
-                        <div class="col-md-6">
-                            <div id="sertifikat">
+                        <div class="col-md-6" style="display: flex; justify-content: center;">
+                            <div id="sertifikat" class="h4">
                                 {{-- <iframe src="{{ asset('assets/document/03.KL.017 - STADION SUPRIYADI.pdf') }}"
                                     style="width: 100%;height: 63vh; position: relative;" allowfullscreen></iframe> --}}
                             </div>

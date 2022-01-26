@@ -69,4 +69,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/inventaris/{id}/edit', [App\Http\Controllers\InventarisController::class, 'edit'])->name('inventaris.edit')->can('data aset.inventaris');
     Route::put('/inventaris/{id}', [App\Http\Controllers\InventarisController::class, 'update'])->name('inventaris.update')->can('data aset.inventaris');
     Route::delete('/inventaris/{id}', [App\Http\Controllers\InventarisController::class, 'destroy'])->name('inventaris.destroy')->can('data aset.inventaris.destroy');
+
+    Route::post('/inventaris/fetch', [App\Http\Controllers\InventarisController::class, 'fetch'])->name('autocomplete.fetch');
 });

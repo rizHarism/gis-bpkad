@@ -25,10 +25,205 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-search.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.responsive.popup.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/L.Control.Layers.Tree.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     {{-- <script src="{{ asset('assets/inventaris/maps.js') }}"></script> --}}
 
     <script>
         // var api = '/api/inventaris'
+
+        $(document).ready(function() {
+
+            $('#inventarisSearch').keyup(function() {
+                var query = $(this).val();
+                if (query != '') {
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "{{ route('autocomplete.fetch') }}",
+                        method: "POST",
+                        data: {
+                            query: query,
+                            _token: _token
+                        },
+                        success: function(data) {
+                            $('#inventarisList').fadeIn();
+                            $('#inventarisList').html(data);
+                            // alert(data)
+                        }
+                    });
+                } else if (query === '') {
+                    $('#inventarisList').empty();
+                }
+            });
+
+            $(document).on('click', 'li', function() {
+                $('#inventarisSearch').val($(this).text());
+                var q = $(this).val()
+                console.log(q)
+                if (q !== 0) {
+                    map.eachLayer(function(lay) {
+                        if (lay.toGeoJSON) {
+                            map.removeLayer(lay);
+                        }
+                    });
+                    map.addLayer(batasKepanjenkidul);
+                    map.addLayer(batasSukorejo);
+                    map.addLayer(batasSananwetan);
+
+                    $.ajax({
+                        // async: false,
+                        url: '/api/inventaris/' + q,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(json) {
+                            console.log(json)
+                            const x = json.data
+                            $.each(x, (i, property) => {
+                                console.log(property.geometry.polygon)
+                                var polygon = JSON.parse(property.geometry.polygon)
+                                var layer = L.geoJSON(polygon, {
+                                        style: sertifikatStyle
+                                    })
+                                    .addTo(map)
+                                map.fitBounds(layer.getBounds())
+
+                                var lat = property.geometry.lat
+                                var lng = property.geometry.lng
+
+                                layer.on('click', function() {
+                                    const sertifikat = (property
+                                            .status == 1) ?
+                                        "Bersertifikat" :
+                                        "Belum Bersertifikat";
+                                    const hb = property
+                                        .nilai_aset,
+                                        na = property
+                                        .nilai_aset,
+                                        lt = property
+                                        .luas,
+                                        ns = property
+                                        .nilai_aset
+                                    if (!property.document) {
+                                        Sertifikat = "Sertifikat Belum Tersedia"
+                                    } else {
+                                        Sertifikat =
+                                            `<iframe src="assets/document/` +
+                                            property
+                                            .document.doc_path +
+                                            `" style="width: 100%;height: 63vh; position: relative;"></iframe>`
+                                    }
+                                    $('#sertifikat').empty()
+                                    $('#sertifikat').append(Sertifikat)
+                                    $('#detailTitle').empty()
+                                    $('#detailData').empty()
+                                    $('#detailTitle').append(
+                                        property.master_skpd
+                                        .nama_skpd + " / " +
+                                        property.nama)
+                                    $('#detailData').append(`
+                                                <table class="table table-striped">
+                                                <tr>
+                                                  <th>Pemilik Inventaris </th>
+                                                  <td>` + property.master_skpd.nama_skpd + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Kategori Inventaris </th>
+                                                  <td>` + property.master_barang.nama_barang + `</td>
+                                                </tr>
+                                                  <th>Nama Inventaris </th>
+                                                  <td>` + property.nama + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Kode Inventaris </th>
+                                                  <td>` + property.master_barang.kode_barang + "/" + property
+                                        .no_register + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Tahun Perolehan :</th>
+                                                  <td>` + property.tahun_perolehan + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Nilai Aset </th>
+                                                  <td>` + `Rp ` + rupiah(na) + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Alamat </th>
+                                                  <td>` + property.alamat + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Kelurahan </th>
+                                                  <td>` + property.kelurahan.nama_kelurahan + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Kecamatan </th>
+                                                  <td>` + property.kecamatan.nama_kecamatan + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Koordinat </th>
+                                                  <td>` + lat + ` / ` + lng + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Luas Tanah </th>
+                                                  <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>No Sertifikat </th>
+                                                  <td>` + property.no_dokumen_sertifikat + `</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Status </th>
+                                                  <td>` + sertifikat + `</td>
+                                                </tr>
+                                            </table>
+                                                `);
+                                    if (!property.galery) {
+                                        image =
+                                            "<div class='col mb-5' style='display: flex; justify-content: center;'><div><h4 aligment='center'>Image Not Found</h4></div></div>"
+                                    } else {
+                                        image =
+                                            `<img class="img-fluid" src="assets/galery/` +
+                                            property.galery.image_path +
+                                            `"></img>`
+                                    }
+                                    var content = image +
+                                        `<p class="text-center fw-bold m-2 p-0 h7">` +
+                                        property
+                                        .nama + `</p>
+                                                <table class="table table-striped">
+                                                <tr>
+                                                    <th>Pengelola</th>
+                                                    <td>` + property.master_skpd.nama_skpd + `</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Alamat</th>
+                                                    <td>` + property.alamat +
+                                        `</td>
+                                                </tr>
+                                                </table>
+                                                <div style="text-align:center">
+                                                <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                        property.id + `">Detail</a>
+                                                </div>`
+
+                                    var popup = L
+                                        .responsivePopup()
+                                        .setContent(
+                                            content)
+
+                                    layer.bindPopup(popup)
+                                        .openPopup();
+
+                                });
+
+                            })
+                            // callResponse(x);
+                        }
+                    });
+                    $('#inventarisList').fadeOut();
+                }
+            });
+
+        });
 
         function rupiah(x) {
             x = x.toString();
@@ -148,7 +343,7 @@
 
         var sertifikatStyle = {
             "color": "#ff7700",
-            "weight": 1,
+            "weight": 5,
             "opacity": 1
         };
         var nonSertifikatStyle = {
@@ -536,10 +731,13 @@
         }).addTo(map);
 
         //leaflet search
+
         function searchByAjax(text, callResponse) //callback for 3rd party ajax requests
         {
+            var polygonSearch = null;
             var q = text
             return $.ajax({
+                async: false,
                 url: '/api/inventaris/' + q +
                     '/search',
                 type: 'GET',
@@ -547,15 +745,23 @@
                 success: function(json) {
                     const x = json.data
                     $.each(x, (i, property) => {
+                        // polygonSearch = property.geometry.polygon;
+                        // polygonSearch.addTo(map)
+                        // console.log(polygonSearch)
                         property.point = [property.geometry.lat, property.geometry.lng]
                         property['name'] = property.master_skpd.nama_skpd + " - " + property.nama
                     })
                     callResponse(x);
                 }
             });
-        }
-        var search = new L.Control.Search({
+            return polygonSearch;
+            console.log(polygonSearch);
+            // alert(polygonSearch);
+        };
+
+        var searchControl = new L.Control.Search({
             sourceData: searchByAjax,
+            // layer: polygonSearch,
             propertyLoc: 'point',
             propertyName: 'name',
             filterData: function(text, records) {
@@ -563,7 +769,9 @@
             },
             text: 'Lokasi',
             markerLocation: true,
-        }).addTo(map);
+        })
+
+        map.addControl(searchControl); //inizialize search control
 
         //control layer tree overlay
 
@@ -776,19 +984,19 @@
                             console.log(x)
                             var layer = L.geoJSON(x, {
                                 style: sertifikatStyle,
-                                className: 'blinking'
+                                // className: 'blinking'
                             });
                             // var center = layer.getBounds().getCenter();
-                            var point = L.marker([lat, lng], {
-                                icon: L.icon({
-                                    iconUrl: "{{ asset('assets/leaflet/core/images/marker.gif') }}",
-                                    iconSize: [36, 36],
-                                    // iconAnchor: [12, 36],
-                                    className: 'blinking'
-                                })
-                            })
+                            // var point = L.marker([lat, lng], {
+                            //     icon: L.icon({
+                            //         iconUrl: "{{ asset('assets/leaflet/core/images/marker.gif') }}",
+                            //         iconSize: [36, 36],
+                            //         // iconAnchor: [12, 36],
+                            //         // className: 'blinking'
+                            //     })
+                            // })
                             layer.addTo(layerAll);
-                            point.addTo(pointAll);
+                            // point.addTo(pointAll);
                             // layer.addTo(map);
                             // map.fitBounds(layer.getBounds());
 
@@ -878,7 +1086,8 @@
                                             </table>
                                                 `);
                                 if (!property.galery) {
-                                    image = "<h1 aligment='center'>Image Not Found</h1>"
+                                    image =
+                                        "<div class='col mb-5' style='display: flex; justify-content: center;'><div><h4 aligment='center'>Image Not Found</h4></div></div>"
                                 } else {
                                     image =
                                         `<img class="img-fluid" src="assets/galery/` +
@@ -916,11 +1125,11 @@
                             });
                         })
                         layerAll.addTo(map);
-                        pointAll.addTo(map);
+                        // pointAll.addTo(map);
                         map.fitBounds(layerAll.getBounds());
-                        setInterval(function() {
-                            map.removeLayer(pointAll);
-                        }, 10520);
+                        // setInterval(function() {
+                        //     map.removeLayer(pointAll);
+                        // }, 10520);
                     }
                 }
             });

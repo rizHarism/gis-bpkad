@@ -72,12 +72,13 @@
 
         {{-- Password field --}}
         <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+            <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror"
                 placeholder="{{ __('adminlte::adminlte.password') }}">
 
             <div class="input-group-append">
                 <div class="input-group-text">
-                    <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                    <span id="eye" class="fas fa-eye-slash {{ config('adminlte.classes_auth_icon', '') }}"
+                        onmousedown="showPass()" onmouseup="hidePass()"></span>
                 </div>
             </div>
 
@@ -110,6 +111,33 @@
         </div>
 
     </form>
+    <script>
+        function showPass() {
+            var x = document.getElementById("password");
+            var y = document.getElementById("eye");
+            // if (x.type === "password") {
+            // x.type = "text";
+            // y.className = "fas fa-eye {{ config('adminlte.classes_auth_icon', '') }}"
+            // } else {
+            x.type = "text";
+            y.className = "fas fa-eye {{ config('adminlte.classes_auth_icon', '') }}"
+
+            // }
+        }
+
+        function hidePass() {
+            var x = document.getElementById("password");
+            var y = document.getElementById("eye");
+            // if (x.type === "password") {
+            // x.type = "text";
+            // y.className = "fas fa-eye {{ config('adminlte.classes_auth_icon', '') }}"
+            // } else {
+            x.type = "password";
+            y.className = "fas fa-eye-slash {{ config('adminlte.classes_auth_icon', '') }}"
+
+            // }
+        }
+    </script>
 @stop
 
 @section('auth_footer')
