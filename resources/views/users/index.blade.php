@@ -66,7 +66,7 @@
                         data: 'email'
                     },
                     {
-                        data: 'skpd.nama_skpd'
+                        data: 'master_skpd.nama_skpd'
                     },
                     {
                         data: 'id',

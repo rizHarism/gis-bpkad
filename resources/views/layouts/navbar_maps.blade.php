@@ -113,7 +113,7 @@
                     <div class="mt-3">
 
                         <h4>{{ Auth::user()->username }}</h4>
-                        <p class="text-secondary mb-1">{{ Auth::user()->skpd->nama_skpd }}</p>
+                        <p class="text-secondary mb-1">{{ Auth::user()->master_skpd->nama_skpd }}</p>
                         <hr>
 
                         <form method="POST" action="/logout">

@@ -21,7 +21,7 @@ class UserController extends \App\Http\Controllers\Controller
     public function datatables(Request $request)
     {
 
-        $datatables = DataTables::of(User::with('skpd'))
+        $datatables = DataTables::of(User::with('master_skpd'))
             ->addIndexColumn()
             ->make(true);
         return $datatables;
