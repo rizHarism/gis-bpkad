@@ -485,7 +485,7 @@ class InventarisController extends Controller
                         'lng' => $request->lng,
                     ]);
             }
-
+            // dd($request->hasfile('image'), $request->hasfile('document'));
             if ($request->hasfile('image')) {
                 $oldfile = Galery::where('inventaris_id', $id)->pluck('image_path');
                 $newfile = $request->file('image')->getClientOriginalName();
@@ -495,11 +495,18 @@ class InventarisController extends Controller
                     }
                 };
 
-                Galery::where('inventaris_id', $id)
-                    ->update([
+                if (count($oldfile) == 0) {
+                    Galery::create([
+                        'inventaris_id' => $inventaris->id,
                         'image_path' => $newfile
                     ]);
-                $request->file('image')->move(public_path('assets/galery'), $newfile);
+                } else {
+                    Galery::where('inventaris_id', $id)
+                        ->update([
+                            'image_path' => $newfile
+                        ]);
+                    $request->file('image')->move(public_path('assets/galery'), $newfile);
+                }
             };
 
             if ($request->hasfile('document')) {
@@ -508,14 +515,21 @@ class InventarisController extends Controller
                 foreach ($oldfile as $old) {
                     if (File::exists(public_path('assets/document/' . $old))) {
                         File::delete(public_path('assets/document/' . $old));
-                    }
+                    };
                 };
-
-                Document::where('inventaris_id', $id)
-                    ->update([
+                if (count($oldfile) == 0) {
+                    Document::create([
+                        'inventaris_id' => $inventaris->id,
                         'doc_path' => $newfile
                     ]);
-                $request->file('document')->move(public_path('assets/document'), $newfile);
+                } else {
+
+                    Document::where('inventaris_id', $id)
+                        ->update([
+                            'doc_path' => $newfile
+                        ]);
+                    $request->file('document')->move(public_path('assets/document'), $newfile);
+                }
             };
 
 

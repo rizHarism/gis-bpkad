@@ -393,17 +393,16 @@
                                         image = "Photo Lokasi Belum Tersedia"
                                     } else {
                                         image =
-                                            `</div><img class="img-fluid" src=` +
-                                            "assets/galery/" +
+                                            `</div><img class="img-fluid" src="assets/galery/` +
                                             property.galery.image_path +
-                                            `></img></div>`
+                                            `"></img></div>`
                                     }
                                     if (!property.document) {
                                         doc = "File Sertifikat Belum Tersedia"
                                     } else {
                                         doc = `<div class="ratio ratio-16x9">
-                                            <iframe src=` + "assets/document/" +
-                                            property.document.doc_path + `></iframe>
+                                            <iframe src= "assets/document/` +
+                                            property.document.doc_path + `"></iframe>
                                         </div>`
                                     }
 
