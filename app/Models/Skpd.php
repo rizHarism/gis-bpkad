@@ -17,7 +17,7 @@ class Skpd extends Model
         return $this->hasMany(Inventaris::class, 'id_skpd', 'skpd_id');
     }
 
-    public function users()
+    public function user()
     {
         return $this->hasOne(User::class, 'id_skpd', 'skpd_id');
     }
