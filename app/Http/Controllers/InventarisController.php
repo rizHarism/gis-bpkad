@@ -505,8 +505,8 @@ class InventarisController extends Controller
                         ->update([
                             'image_path' => $newfile
                         ]);
-                    $request->file('image')->move(public_path('assets/galery'), $newfile);
                 }
+                $request->file('image')->move(public_path('assets/galery'), $newfile);
             };
 
             if ($request->hasfile('document')) {
@@ -528,8 +528,8 @@ class InventarisController extends Controller
                         ->update([
                             'doc_path' => $newfile
                         ]);
-                    $request->file('document')->move(public_path('assets/document'), $newfile);
                 }
+                $request->file('document')->move(public_path('assets/document'), $newfile);
             };
 
 
