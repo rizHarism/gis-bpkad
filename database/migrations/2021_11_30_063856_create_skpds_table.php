@@ -14,7 +14,7 @@ class CreateSkpdsTable extends Migration
     public function up()
     {
         Schema::create('master_skpd', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama');
             $table->string('kode_skpd');
             $table->timestamps();

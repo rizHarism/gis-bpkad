@@ -14,7 +14,7 @@ class CreateGeometriesTable extends Migration
     public function up()
     {
         Schema::create('geometry', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->integer('inventaris_id');
             $table->longText('polygon');
             $table->char('lat');

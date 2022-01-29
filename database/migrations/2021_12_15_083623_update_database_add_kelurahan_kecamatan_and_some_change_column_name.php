@@ -15,14 +15,14 @@ class UpdateDatabaseAddKelurahanKecamatanAndSomeChangeColumnName extends Migrati
     {
         //
         Schema::create('kelurahan', function (Blueprint $table) {
-            $table->increments('id_kelurahan');
+            $table->bigIncrements('id_kelurahan');
             $table->string('nama_kelurahan');
             // $table->string('doc_path');
             $table->timestamps();
         });
 
         Schema::create('kecamatan', function (Blueprint $table) {
-            $table->increments('id_kecamatan');
+            $table->bigIncrements('id_kecamatan');
             $table->string('nama_kecamatan');
             // $table->string('doc_path');
             $table->timestamps();

@@ -14,7 +14,7 @@ class CreateMasterBarangsTable extends Migration
     public function up()
     {
         Schema::create('master_barang', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama');
             $table->string('kode_barang');
             $table->timestamps();

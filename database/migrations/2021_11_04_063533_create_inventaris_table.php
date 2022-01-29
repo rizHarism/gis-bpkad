@@ -15,7 +15,7 @@ class CreateInventarisTable extends Migration
     {
         Schema::create('inventaris', function (Blueprint $table) {
             // $table->integer('id_inventaris');
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('jenis_inventaris')->default('A');
             $table->string('nama');
             $table->integer('tahun_perolehan');
