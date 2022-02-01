@@ -191,6 +191,8 @@
     <script src="{{ asset('assets/leaflet/plugin/js/styledLayerControl.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
+    {{-- swall --}}
+    <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     {{-- <script src="{{ asset('assets/inventaris/kib_a.js') }}"></script> --}}
 
     <script>
@@ -270,88 +272,8 @@
                 selector: '#contextButton',
                 trigger: 'left',
                 callback: function(key, options) {
-                    var value = options.$trigger.data("value")
+                    var value = options.$trigger.data("value");
                     const id = value;
-                    console.log(id)
-                    // Memanggil Modal Detail Data
-
-                    // function callDetail() {
-                    //     // $('#detailModal').modal('show');
-                    //     // $('#detailTitle').empty("")
-                    //     $('#detailData').empty()
-
-                    //     $.ajax(
-                    //         {
-                    //             url: api + "/" + id,
-                    //             dataType: "json",
-                    //             async: false,
-                    //             success: function (result) {
-                    //                 let inv = result.data
-                    //                 $.each(inv, (i, property) => {
-
-                    //                     const sertifikat = (property.status == 1) ? "Bersertifikat" : "Belum Bersertifikat";
-                    //                     const hb = property.nilai_aset,
-                    //                         na = property.nilai_aset,
-                    //                         lt = property.luas,
-                    //                         ns = property.nilai_aset
-                    //                     console.log(property)
-                    //                     // $('#detailTitle').append(property.master_skpd.nama)
-                    //                     $('#detailData').append(`
-                //                             <table class="table table-striped">
-                //                             <tr>
-                //                               <th>Pemilik Inventaris </th>
-                //                               <td>`+ property.master_skpd.nama + `</td>
-                //                             </tr>
-                //                             <tr>
-                //                               <th>Nama Inventaris </th>
-                //                               <td>`+ property.nama + `</td>
-                //                             </tr>
-                //                             <tr>
-                //                               <th>Kode Inventaris </th>
-                //                               <td>`+ property.master_barang.kode_barang + `</td>
-                //                             </tr>
-                //                             <tr>
-                //                               <th>Tahun Perolehan :</th>
-                //                               <td>` + property.tahun_perolehan + `</td>
-                //                             </tr>
-                //                             <tr>
-                //                               <th>Harga Beli </th>
-                //                               <td>`+ `Rp ` + rupiah(hb) + `</td>
-                //                             </tr>
-                //                             <tr>
-                //                               <th>Nilai Aset </th>
-                //                               <td>`+ `Rp ` + na + `</td>
-                //                             </tr>
-                //                             <tr>
-                //                               <th>Alamat </th>
-                //                               <td>`+ property.alamat + `</td>
-                //                             </tr>
-                //                             <tr>
-                //                               <th>Luas Tanah </th>
-                //                               <td>` + lt + ` Meter Persegi` + `</td>
-                //                             </tr>
-                //                             <tr>
-                //                               <th>No Sertifikat </th>
-                //                               <td>`+ property.no_dokumen_sertifikat + `</td>
-                //                             </tr>
-
-                //                             <tr>
-                //                               <th>Status </th>
-                //                               <td>`+ sertifikat + `</td>
-                //                             </tr>
-                //                             <tr>
-                //                               <th>Nilai Saat Ini </th>
-                //                               <td>`+ `Rp ` + ns + `</td>
-                //                             </tr>
-                //                         </table>
-                //                             `);
-                    //                 })
-                    //             }
-                    //         }
-                    //     )
-                    // }
-
-                    // Memanggil Modal Detail Data
 
                     function callMap() {
                         $.ajax({
@@ -716,9 +638,100 @@
                             window.location.href = '/inventaris/' + id + '/edit'
                             break
                         case 'print':
-                            row.data().nama_inventaris
-                            alert(row.data().nama_inventaris)
-                            // $('#editModal').modal('show');
+                            // $.getJSON('api/inventaris/' + id, (result) => {
+                            //     let property = result.data[0];
+                            //     console.log(property.nama)
+                            // });
+                            myWindow = window.open('/inventaris/' + id + '/print', '',
+                                'width=1200,height=600');
+
+                            myWindow.print()
+                            // myWindow.close();
+                            // myWindow.write('/inventaris/' + id +'/print') //= '/inventaris/' + id + '/print'
+                            break
+                        case 'delete':
+                            $.getJSON('api/inventaris/' + id, (result) => {
+                                let property = result.data[0];
+                                var confirmNama = property.nama
+                                Swal.fire({
+                                    title: 'Hapus Inventaris ' +
+                                        confirmNama,
+                                    text: ' Apakah Anda yakin ?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Ya, Hapus',
+                                    cancelButtonText: 'Batal'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        $.ajax({
+                                            headers: {
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                            },
+                                            type: "DELETE",
+                                            url: "inventaris/" + id,
+                                            cache: false,
+                                            contentType: false,
+                                            processData: false,
+                                            success: (data) => {
+                                                // alert(data);
+                                                Swal.fire(
+                                                    'Terhapus!',
+                                                    confirmNama +
+                                                    'Berhasil dihapus',
+                                                    'success',
+                                                );
+                                                table.draw();
+                                            },
+                                            error: (xhr, ajaxOptions,
+                                                thrownError) => {
+                                                alert(xhr.responseJSON
+                                                    .message);
+                                                if (xhr.responseJSON
+                                                    .hasOwnProperty(
+                                                        'errors')) {
+                                                    for (item in xhr
+                                                        .responseJSON.errors
+                                                    ) {
+                                                        if (xhr.responseJSON
+                                                            .errors[item]
+                                                            .length) {
+                                                            for (var i =
+                                                                    0; i <
+                                                                xhr
+                                                                .responseJSON
+                                                                .errors[
+                                                                    item]
+                                                                .length; i++
+                                                            ) {
+                                                                alert(xhr
+                                                                    .responseJSON
+                                                                    .errors[
+                                                                        item
+                                                                    ]
+                                                                    [i]);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        });
+                                        // Swal.fire(
+                                        //     title: 'Terhapus!',
+                                        //     text: 'Berhasil dihapus',
+                                        //     icon: 'success'
+                                        // );
+                                    };
+                                })
+                            });
+
+                            // console.log(confirmNama);
+
+
+
+
+                            // Swal.fire('Any fool can use a computer')
                             break
                         default:
                             break
@@ -727,15 +740,19 @@
                 items: {
                     "detail": {
                         name: "Lihat Detail Aset",
-                        icon: "delete"
+                        icon: "fas fa-eye"
                     },
                     "edit": {
                         name: "Edit Aset",
-                        icon: "delete"
+                        icon: "fas fa-edit"
                     },
                     "print": {
                         name: "Print Laporan Aset",
-                        icon: "delete"
+                        icon: "fas fa-print"
+                    },
+                    "delete": {
+                        name: "Hapus Data Aset",
+                        icon: "fas fa-trash-alt"
                     },
                 }
             })

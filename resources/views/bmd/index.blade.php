@@ -46,6 +46,7 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
     <script src="{{ asset('assets/inventaris/kib_a.js') }}"></script> --}}
+    <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
         $(function() {
             var table = $('#master_barang').DataTable({
@@ -70,6 +71,7 @@
                     {
                         data: 'id_barang',
                         render: function(data) {
+                            var id = data;
                             var editUrl =
                                 "{{ route('bmd.edit', ':id') }}"; //create and change route
                             editUrl = editUrl.replace(':id', data);
@@ -82,7 +84,8 @@
                                 "'><i class='fas fa-edit'></i> Edit</a>";
                             var deleteButton =
                                 "<button class='btn btn-danger btn-delete' data-url='" +
-                                deleteUrl + "'><i class='fas fa-trash-alt'></i> Delete</button>";
+                                deleteUrl + "' data-id='" +
+                                id + "'><i class='fas fa-trash-alt'></i> Delete</button>";
                             var button = editButton + " " + deleteButton;
 
                             return button;
@@ -94,32 +97,72 @@
             });
 
             $(document).on("click", "button.btn-delete", function() {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    type: "DELETE",
-                    url: $(this).data('url'),
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: (data) => {
-                        alert(data);
-                        table.draw();
-                    },
-                    error: (xhr, ajaxOptions, thrownError) => {
-                        alert(xhr.responseJSON.message);
-                        if (xhr.responseJSON.hasOwnProperty('errors')) {
-                            for (item in xhr.responseJSON.errors) {
-                                if (xhr.responseJSON.errors[item].length) {
-                                    for (var i = 0; i < xhr.responseJSON.errors[item]
-                                        .length; i++) {
-                                        alert(xhr.responseJSON.errors[item][i]);
+                var id = $(this).data('id');
+                console.log(id);
+                console.log($(this).data('url'));
+                $.getJSON('/datadasarbmd/' + id, (result) => {
+                    // let property = result;
+                    console.log(result);
+                    var confirmNama = result;
+                    Swal.fire({
+                        text: 'Hapus Data \"' +
+                            confirmNama + '\"',
+                        title: ' Apakah Anda yakin ?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Hapus',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                type: "DELETE",
+                                url: $(this).data('url'),
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                success: (data) => {
+                                    // alert(data);
+                                    if (data.value == 0) {
+                                        Swal.fire(
+                                            'Error',
+                                            data.message,
+                                            'warning',
+                                        )
+                                    } else if (data.value == 1) {
+                                        Swal.fire(
+                                            'Berhasil',
+                                            data.message,
+                                            'success',
+                                        )
+                                    }
+                                    table.draw();
+                                },
+                                error: (xhr, ajaxOptions, thrownError) => {
+                                    alert(xhr.responseJSON.message);
+                                    if (xhr.responseJSON.hasOwnProperty(
+                                            'errors')) {
+                                        for (item in xhr.responseJSON.errors) {
+                                            if (xhr.responseJSON.errors[item]
+                                                .length) {
+                                                for (var i = 0; i < xhr
+                                                    .responseJSON.errors[
+                                                        item]
+                                                    .length; i++) {
+                                                    alert(xhr.responseJSON
+                                                        .errors[item][i]);
+                                                }
+                                            }
+                                        }
                                     }
                                 }
-                            }
+                            });
                         }
-                    }
+                    });
                 });
             });
         });

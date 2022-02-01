@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             SkpdSeeder::class,
-            PermissionSeeder::class,
+            PermissionsSeeder::class,
             MasterBarangSeeder::class,
             InventarisSeeder::class,
             GeometrySeeder::class

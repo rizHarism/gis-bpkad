@@ -103,7 +103,10 @@
                                         ns = property
                                         .nilai_aset
                                     if (!property.document) {
-                                        Sertifikat = "Sertifikat Belum Tersedia"
+                                        Sertifikat =
+                                            `<div>
+                                            <iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 63vh; position: relative;"></iframe>
+                                            </div>`
                                     } else {
                                         Sertifikat =
                                             `<iframe src="assets/document/` +
@@ -177,7 +180,7 @@
                                                 `);
                                     if (!property.galery) {
                                         image =
-                                            "<div class='col mb-5' style='display: flex; justify-content: center;'><div><h4 aligment='center'>Image Not Found</h4></div></div>"
+                                            `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
                                     } else {
                                         image =
                                             `<img class="img-fluid" src="assets/galery/` +
@@ -206,7 +209,7 @@
                                                 </div>`
 
                                     var popup = L
-                                        .responsivePopup()
+                                        .popup()
                                         .setContent(
                                             content)
 
@@ -390,14 +393,17 @@
                                     .luas,
                                     ns = property
                                     .nilai_aset
-
+                                if (!property.document) {
+                                    Sertifikat =
+                                        `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 63vh; position: relative;"></iframe>`
+                                } else {
+                                    Sertifikat = `<iframe src="assets/document/` +
+                                        property
+                                        .document.doc_path +
+                                        `" style="width: 100%;height: 63vh; position: relative;"></iframe>`
+                                }
                                 $('#sertifikat').empty()
-                                $('#sertifikat').append(
-                                    `<div class="ratio ratio-16x9">
-                                            <iframe src=` + "assets/document/" +
-                                    property.document.doc_path + `></iframe>
-                                        </div>`
-                                )
+                                $('#sertifikat').append(Sertifikat)
                                 $('#detailTitle').empty()
                                 $('#detailData').empty()
                                 $('#detailTitle').append(
@@ -457,10 +463,20 @@
                                                     </tr>
                                                 </table>
                                                     `);
+                                if (!property.galery) {
+                                    image =
+                                        `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
+                                } else {
+                                    image =
+                                        `<img class="img-fluid" src="assets/galery/` +
+                                        property.galery.image_path +
+                                        `"></img>`
+                                }
 
-                                var content = ` <img class="img-thumbnail rounded" src="{{ asset('assets/galery/stadion-soeprijadi.jpg') }}" alt="...">
-                                                    <p class="text-center fw-bold m-2 p-0 h7">` + property.nama + `</p>
-                                                    <table class="table table-striped">
+                                var content = image +
+                                    `<p class="text-center fw-bold m-2 p-0 h7">` +
+                                    property
+                                    .nama + `</p><table class="table table-striped">
                                                     <tr>
                                                         <th>Pengelola</th>
                                                         <td>` + property.master_skpd.nama_skpd + `</td>
@@ -477,7 +493,7 @@
                                     property.id + `">Detail</a>
                                                     </div>`
 
-                                var popup = L.responsivePopup()
+                                var popup = L.popup()
                                     .setContent(
                                         content)
 
@@ -540,7 +556,8 @@
                                             let inv = result.data
                                             $.each(inv, (i, property) => {
 
-                                                const sertifikat = (property
+                                                const sertifikat = (
+                                                        property
                                                         .status == 1) ?
                                                     "Bersertifikat" :
                                                     "Belum Bersertifikat";
@@ -553,10 +570,13 @@
                                                     ns = property
                                                     .nilai_aset
 
-                                                $('#detailTitle').append(
-                                                    'Aset Milik' + ' ' +
-                                                    property.master_skpd
-                                                    .nama_skpd)
+                                                $('#detailTitle')
+                                                    .append(
+                                                        'Aset Milik' +
+                                                        ' ' +
+                                                        property
+                                                        .master_skpd
+                                                        .nama_skpd)
                                                 $('#detailData').append(`
                                         <table class="table table-striped">
                                         <tr>
@@ -869,7 +889,8 @@
                         listItems = ""
                     $.each(skpd, (i, property) => {
 
-                        listItems += "<option value='" + property.id_skpd + "'>" + property.nama_skpd +
+                        listItems += "<option value='" + property.id_skpd + "'>" + property
+                            .nama_skpd +
                             "</option>"
                     })
                     $("#dataSkpd").append(listItems);
@@ -1014,7 +1035,8 @@
                                     ns = property
                                     .nilai_aset
                                 if (!property.document) {
-                                    Sertifikat = "Sertifikat Belum Tersedia"
+                                    Sertifikat =
+                                        `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 63vh; position: relative;"></iframe>`
                                 } else {
                                     Sertifikat = `<iframe src="assets/document/` +
                                         property
@@ -1087,7 +1109,7 @@
                                                 `);
                                 if (!property.galery) {
                                     image =
-                                        "<div class='col mb-5' style='display: flex; justify-content: center;'><div><h4 aligment='center'>Image Not Found</h4></div></div>"
+                                        `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
                                 } else {
                                     image =
                                         `<img class="img-fluid" src="assets/galery/` +
@@ -1115,7 +1137,7 @@
                                                 </div>`
 
                                 var popup = L
-                                    .responsivePopup()
+                                    .popup()
                                     .setContent(
                                         content)
 

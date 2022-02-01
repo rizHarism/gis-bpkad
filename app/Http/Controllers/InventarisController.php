@@ -18,6 +18,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+// use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App;
 
 class InventarisController extends Controller
 {
@@ -274,12 +277,14 @@ class InventarisController extends Controller
     {
         //
         // dd($request->all());
+        // dd($request->status);
         $this->validate($request, [
             'nama_inventaris' => 'required|unique:inventaris,nama',
             'tahun' => 'required',
             'nilai_aset' => 'required',
             'luas' => 'required',
             'status' => 'required',
+            'no_register' => 'required',
             'alamat' => 'required',
             'kelurahan' => 'required',
             'kecamatan' => 'required',
@@ -288,15 +293,6 @@ class InventarisController extends Controller
             'barang' => 'exists:master_barang,id_barang',
             // 'geometry' => 'nullable'
         ]);
-
-        // $geometry = Geometry::create([
-        //     // 'inventaris_id' => $inventaris->id,
-        //     'polygon' => 'sasa',
-        //     'lat' => 'sasa',
-        //     'lng' => 'sasa',
-        // ]);
-        // dd($geometry);
-
         try {
             DB::beginTransaction();
             $inventaris = Inventaris::create([
@@ -307,6 +303,7 @@ class InventarisController extends Controller
                 'nilai_aset' => $request->nilai_aset,
                 'luas' => $request->luas,
                 'status' => $request->status,
+                'no_register' => $request->no_register,
                 'alamat' => $request->alamat,
                 'kelurahan_id' => $request->kelurahan,
                 'kecamatan_id' => $request->kecamatan,
@@ -324,7 +321,7 @@ class InventarisController extends Controller
                     'lng' => $request->lng,
                 ]);
             }
-            // dd($request->file('image')->getOriginalFilename());
+
             if ($request->hasfile('image')) {
                 $name = $request->file('image')->getClientOriginalName();
                 $galery = Galery::create([
@@ -369,6 +366,47 @@ class InventarisController extends Controller
             'data' => $inventaris
         ];
         return response()->json($response, Response::HTTP_OK);
+    }
+
+
+    public function print($id)
+    {
+        //
+        $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
+        // PDF::loadview()
+        // $pdf = PDF::loadview('inventaris.print', ['inventaris' => $inventaris]);
+        // $pdf->save(public_path('assets/files/uniquename.pdf'));
+        // $pdf->stream();
+        // return $pdf->download('laporan.pdf');
+
+        // $pdf = App::make('dompdf.wrapper');
+        // $pdf->loadHTML('<h1>Test</h1>');
+        // return $pdf->stream();
+        // $response = [
+        //     'message' => "Edit Inventaris",
+        //     'data' => $inventaris
+        // ];
+        // dd($inventaris->document->doc_path);
+        // $kecamatan = Kecamatan::get();
+        // $kelurahan = Kelurahan::get();
+        // $skpd = Skpd::get();
+        // $master_barang = MasterBarang::get();
+        // $geometry = Geometry::where('inventaris_id', $id)->get();
+        // $galery = Galery::get();
+        // $document = Document::get();
+        // dd($geometry);
+        // return response()->json($response, Response::HTTP_OK);
+        return view('inventaris.print', [
+            'inventaris' => $inventaris,
+        ]);
+        // 'kecamatan' => $kecamatan,
+        // 'kelurahan' => $kelurahan,
+        // 'skpd' => $skpd,
+        // 'barang' => $master_barang,
+        // 'geometry' => $geometry,
+        // 'galery' => $galery,
+        // 'document' => $document
+        // ]);
     }
 
     /**
@@ -434,6 +472,9 @@ class InventarisController extends Controller
         if ($inventaris->luas != $request->luas) {
             $validations['luas'] = 'required';
         }
+        if ($inventaris->no_registrasi != $request->no_registrasi) {
+            $validations['no_registrasi'] = 'required';
+        }
         if ($inventaris->alamat != $request->alamat) {
             $validations['alamat'] = 'required';
         }
@@ -461,6 +502,7 @@ class InventarisController extends Controller
             $inventaris->nilai_aset = $request->nilai_aset;
             $inventaris->luas = $request->luas;
             $inventaris->status = $request->status;
+            $inventaris->no_register = $request->no_register;
             $inventaris->alamat = $request->alamat;
             $inventaris->kelurahan_id = $request->kelurahan;
             $inventaris->kecamatan_id = $request->kecamatan;
@@ -471,20 +513,24 @@ class InventarisController extends Controller
             //     $user->password = Hash::make($request->password);
             // }
             $inventaris->save();
-
+            // dd($inventaris->geometry()->exists());
             if (!empty($request->polygon)) {
-                $geometry = Geometry::where('inventaris_id', $id)
-                    // $geometry->polygon = $request->polygon;
-                    // $geometry->lat = $request->lat;
-                    // $geometry->lng = $request->lng;
-                    // dd($geometry->polygon);
-                    // $geometry->save();
-                    ->update([
+                if ($inventaris->geometry()->exists() == true) {
+                    $geometry = Geometry::where('inventaris_id', $id)
+                        ->update([
+                            'polygon' => $request->polygon,
+                            'lat' => $request->lat,
+                            'lng' => $request->lng,
+                        ]);
+                } else {
+                    $geometry = Geometry::create([
+                        'inventaris_id' => $inventaris->id,
                         'polygon' => $request->polygon,
                         'lat' => $request->lat,
                         'lng' => $request->lng,
                     ]);
-            }
+                }
+            };
             // dd($request->hasfile('image'), $request->hasfile('document'));
             if ($request->hasfile('image')) {
                 $oldfile = Galery::where('inventaris_id', $id)->pluck('image_path');
@@ -553,8 +599,24 @@ class InventarisController extends Controller
      * @param  \App\Models\Inventaris  $Inventaris
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inventaris $Inventaris)
+    public function destroy(Request $request, $id)
     {
         //
+        $user = Inventaris::findOrFail($id);
+        $geometry = Geometry::where('inventaris_id', $id);
+        $galery = Galery::where('inventaris_id', $id);
+        $document = Document::where('inventaris_id', $id);
+        // $geometry = Geometry::find
+
+        try {
+            $user->delete();
+            $geometry->delete();
+            $galery->delete();
+            $document->delete();
+        } catch (\Exception $e) {
+            return response($e->getMessage(), 500);
+        }
+
+        return response("User Berhasil Dihapus");
     }
 }

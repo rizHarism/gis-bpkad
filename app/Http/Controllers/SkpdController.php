@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Skpd;
+use App\Models\Inventaris;
+use App\Models\User;
 use App\Http\Requests\StoreSkpdRequest;
 use App\Http\Requests\UpdateSkpdRequest;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,6 +57,8 @@ class SkpdController extends Controller
             'kode_skpd' => $request->kode_opd
         ]);
 
+
+
         if ($skpd) {
             return response("OPD sudah berhasil ditambahkan!");
         } else {
@@ -68,9 +72,14 @@ class SkpdController extends Controller
      * @param  \App\Models\Skpd  $skpd
      * @return \Illuminate\Http\Response
      */
-    public function show(Skpd $skpd)
+    public function show(Skpd $skpd, $id)
     {
         //
+        $skpd = Skpd::findOrFail($id);
+        // $response = [
+        //     'data' => $skpd
+        // ];
+        return response()->json($skpd->nama_skpd, Response::HTTP_OK);
     }
 
     /**
@@ -124,10 +133,22 @@ class SkpdController extends Controller
     public function destroy(Request $request, $id)
     {
         $skpd = Skpd::findOrFail($id);
-        if ($skpd->delete()) {
-            return response("OPD sudah berhasil dihapus");
+        $cekExistInvetaris = Inventaris::where('skpd_id', $id)->doesntExist();
+        $cekExistUser = User::where('skpd_id', $id)->doesntExist();
+        if (($cekExistInvetaris) && ($cekExistUser)) {
+            if ($skpd->delete()) {
+                return response([
+                    'value' => 1,
+                    'message' => "Data \"" . $skpd->nama_skpd . "\" berhasil dihapus"
+                ]);
+            } else {
+                return response("OPD gagal dihapus", Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
         } else {
-            return response("OPD gagal dihapus", Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response([
+                'value' => 0,
+                'message' => "OPD \"" . $skpd->nama_skpd . "\" tidak dapat dihapus karena data sedang digunakan"
+            ]);
         }
     }
 }

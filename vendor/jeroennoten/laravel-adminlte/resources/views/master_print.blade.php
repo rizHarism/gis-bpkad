@@ -22,8 +22,6 @@
     {{-- Custom stylesheets (pre AdminLTE) --}}
     @yield('adminlte_css_pre')
 
-    {{-- leaflet plugin css --}}
-
     <link rel="stylesheet" href="{{ asset('assets/leaflet/core/leaflet.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/control.layers.minimap.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/Control.MiniMap.css') }}" />
@@ -32,7 +30,11 @@
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/styledLayerControl.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-geoman.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet.contextmenu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-search.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet.responsive.popup.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/L.Control.Layers.Tree.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/plugin/css/leaflet-sidebar.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <style>
         html,
@@ -50,11 +52,28 @@
             top: 0;
             left: 0;
             right: 0;
-            margin-top: 60px;
-            margin-bottom: 4px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .leaflet-touch .leaflet-control-layers,
+        .leaflet-touch .leaflet-bar {
+            border: 50px none rgba(102, 13, 13, 0.2);
+            background-clip: padding-box;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0.5;
+            }
+        }
+
+        .blinking {
+            animation: fade 1s infinite alternate;
         }
 
     </style>
+
     {{-- Base Stylesheets --}}
     @if (!config('adminlte.enabled_laravel_mix'))
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
@@ -67,8 +86,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
-        {{-- sidebar v2 turbo css --}}
-        {{-- <link rel="stylesheet" href="{{ asset('assets/sidebar/leaflet-sidebar.css') }}"> --}}
+
 
         {{-- Configured Stylesheets --}}
         @include('adminlte::plugins', ['type' => 'css'])
@@ -119,15 +137,15 @@
     @endif
 
     {{-- Leaflet - geoman - turf - css & js --}}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
+        crossorigin=""></script> --}}
     <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
-    {{-- <link rel="stylesheet" href="{{ asset('assets/leaflet-geoman.css') }}" />
-    <script src="{{ asset('assets/leaflet-geoman.min.js') }}"></script> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('assets/leaflet-geoman.css') }}" /> --}}
+    {{-- <script src="{{ asset('assets/leaflet-geoman.min.js') }}"></script> --}}
     {{-- jquery contextmenu --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
 
@@ -145,6 +163,10 @@
     </style>
 
     <style type="text/css">
+        .table-condensed {
+            font-size: 8px !important;
+        }
+
         .preloader {
             position: fixed;
             top: 0;
@@ -165,48 +187,33 @@
 
     </style>
 
+    <style type="text/css" media="print">
+        @page {
+            size: landscape;
+        }
+
+        /* body {
+            writing-mode: tb-rl;
+        } */
+
+    </style>
+
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
 
     {{-- Body Content --}}
+
     @yield('body')
-
-    {{-- preloader --}}
-    <div class="preloader">
-        <div class="loading">
-            <img src={{ asset('vendor/loader/loading.gif') }} width="200">
-            <br>
-            <br>
-            <br>
-            <br>
-            {{-- <p>Harap Tunggu ...</p> --}}
-        </div>
-    </div>
-
     {{-- Base Scripts --}}
     @if (!config('adminlte.enabled_laravel_mix'))
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-        {{-- <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
+        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
-
-        {{-- js for map and others --}}
-        {{-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script> --}}
-        {{-- <script src="{{ asset('assets/leaflet/core/leaflet-src.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
-        <script src="{{ asset('assets/leaflet/plugin/js/leaflet-providers.js') }}"></script>
-        <script src="{{ asset('assets/leaflet/plugin//js/L.Control.Layers.Minimap.js') }}"></script>
-        <script src="{{ asset('assets/leaflet/plugin/js/Control.MiniMap.js') }}"></script>
-        <script src="{{ asset('assets/leaflet/plugin/js/L.Control.Basemaps.js') }}"></script>
-        <script src="{{ asset('assets/leaflet/plugin/js/L.Control.BetterScale.js') }}"></script>
-        <script src="{{ asset('assets/leaflet/plugin/js/styledLayerControl.js') }}"></script>
-        <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
-        <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script> --}}
 
         {{-- jquery datatables --}}
         {{-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> --}}

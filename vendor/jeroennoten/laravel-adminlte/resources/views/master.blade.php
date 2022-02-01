@@ -188,16 +188,15 @@
 <body class="@yield('classes_body')" @yield('body_data')>
 
     {{-- Body Content --}}
-    @yield('body')
 
     {{-- preloader --}}
     <div class="preloader">
         <div class="loading">
             <img src={{ asset('vendor/loader/loading.gif') }} width="150">
-            {{-- <p>Harap Tunggu ...</p> --}}
         </div>
     </div>
 
+    @yield('body')
     {{-- Base Scripts --}}
     @if (!config('adminlte.enabled_laravel_mix'))
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

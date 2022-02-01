@@ -253,7 +253,7 @@ return [
                 ],
                 [
                     'text'  => 'Data OPD',
-                    'url'  => 'admin/opd',
+                    'url'  => '/opd',
                     'can'  => 'administrator.data opd',
                 ]
             ]
