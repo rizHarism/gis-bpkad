@@ -373,40 +373,9 @@ class InventarisController extends Controller
     {
         //
         $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
-        // PDF::loadview()
-        // $pdf = PDF::loadview('inventaris.print', ['inventaris' => $inventaris]);
-        // $pdf->save(public_path('assets/files/uniquename.pdf'));
-        // $pdf->stream();
-        // return $pdf->download('laporan.pdf');
-
-        // $pdf = App::make('dompdf.wrapper');
-        // $pdf->loadHTML('<h1>Test</h1>');
-        // return $pdf->stream();
-        // $response = [
-        //     'message' => "Edit Inventaris",
-        //     'data' => $inventaris
-        // ];
-        // dd($inventaris->document->doc_path);
-        // $kecamatan = Kecamatan::get();
-        // $kelurahan = Kelurahan::get();
-        // $skpd = Skpd::get();
-        // $master_barang = MasterBarang::get();
-        // $geometry = Geometry::where('inventaris_id', $id)->get();
-        // $galery = Galery::get();
-        // $document = Document::get();
-        // dd($geometry);
-        // return response()->json($response, Response::HTTP_OK);
         return view('inventaris.print', [
             'inventaris' => $inventaris,
         ]);
-        // 'kecamatan' => $kecamatan,
-        // 'kelurahan' => $kelurahan,
-        // 'skpd' => $skpd,
-        // 'barang' => $master_barang,
-        // 'geometry' => $geometry,
-        // 'galery' => $galery,
-        // 'document' => $document
-        // ]);
     }
 
     /**

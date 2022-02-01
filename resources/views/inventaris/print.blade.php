@@ -1,3 +1,4 @@
+<?php use SimpleSoftwareIO\QrCode\Facades\QrCode; ?>
 @extends('adminlte::master_print')
 
 @section('title')
