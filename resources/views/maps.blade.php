@@ -206,7 +206,7 @@
                                                 <table class="table table-striped">
                                                 <tr>
                                                     <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
-                                        id +
+                                        property.id +
                                         `)">Print</a></td>
                                                     <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
                                         property.id + `">Detail</a></td>
@@ -497,7 +497,7 @@
                                                     <table class="table table-striped">
                                                 <tr>
                                                     <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
-                                    id +
+                                    property.id +
                                     `)">Print</a></td>
                                                     <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
                                     property.id + `">Detail</a></td>
@@ -1158,7 +1158,7 @@
                                                 <table class="table table-striped">
                                                 <tr>
                                                     <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
-                                    id +
+                                    property.id +
                                     `)">Print</a></td>
                                                     <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
                                     property.id + `">Detail</a></td>
