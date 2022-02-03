@@ -203,10 +203,16 @@
                                         `</td>
                                                 </tr>
                                                 </table>
-                                                <div style="text-align:center">
-                                                <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                        property.id + `">Detail</a>
-                                                </div>`
+                                                <table class="table table-striped">
+                                                <tr>
+                                                    <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                        id +
+                                        `)">Print</a></td>
+                                                    <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                        property.id + `">Detail</a></td>
+                                                </tr>
+                                                </table>
+                                                <div style="text-align:center">`
 
                                     var popup = L
                                         .popup()
@@ -488,10 +494,16 @@
                                     `</td>
                                                     </tr>
                                                     </table>
-                                                    <div style="text-align:center">
-                                                    <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                    property.id + `">Detail</a>
-                                                    </div>`
+                                                    <table class="table table-striped">
+                                                <tr>
+                                                    <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                    id +
+                                    `)">Print</a></td>
+                                                    <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                    property.id + `">Detail</a></td>
+                                                </tr>
+                                                </table>
+                                                <div style="text-align:center">`
 
                                 var popup = L.popup()
                                     .setContent(
@@ -899,6 +911,12 @@
         }
         skpd();
 
+        function myPrint(id) {
+            window.open('/inventaris/' + id + '/print',
+                '',
+                'width=1200,height=600');
+        }
+
         function kelurahan() {
             $.ajax({
                 type: "GET",
@@ -1000,6 +1018,12 @@
                             var geo = property.geometry.polygon
                             var lat = property.geometry.lat
                             var lng = property.geometry.lng
+
+                            function myPrint() {
+                                window.open('/inventaris/' + id + '/print',
+                                    '',
+                                    'width=1200,height=600');
+                            }
 
                             x = JSON.parse(geo)
                             console.log(x)
@@ -1131,10 +1155,18 @@
                                     `</td>
                                                 </tr>
                                                 </table>
+                                                <table class="table table-striped">
+                                                <tr>
+                                                    <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                    id +
+                                    `)">Print</a></td>
+                                                    <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                    property.id + `">Detail</a></td>
+                                                </tr>
+                                                </table>
                                                 <div style="text-align:center">
-                                                <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                    property.id + `">Detail</a>
-                                                </div>`
+                                                `
+
 
                                 var popup = L
                                     .popup()

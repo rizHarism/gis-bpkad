@@ -14,7 +14,7 @@
     {{-- @import url("another_file.css"); --}}
     {{-- content --}}
     <section class="content mt-5">
-        <div class="container">
+        <div class="container-fluid">
             <h6 class="d-flex justify-content-center" style="font-size: 24px !important">
                 {{ $inventaris->nama . ' - ' . $inventaris->master_barang->nama_barang }}
             </h6>
@@ -23,29 +23,6 @@
                     <div class="mt-2 mb-2" id="map" style="min-height: 500px; height:78vh ;max-height: 1000px"></div>
                 </div>
                 <div class="col-4 border">
-                    {{-- <table class="table table-border mt-1">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <img src="{{ asset('assets/logo-image/blitar.png') }}" alt="" width="60"
-                                            height="70">
-                                    </div>
-                                </td>
-                                <td>
-                                    <h6 class="d-flex justify-content-center" style="font-size: 12px !important">DINAS
-                                        PENDAPATAN KEUANGAN
-                                        DAN ASET
-                                        DAERAH</h6>
-                                    <h6 class="d-flex justify-content-center" style="font-size: 10px !important">Kota Blitar
-                                    </h6>
-                                    <h6 class="d-flex justify-content-center" style="font-size: 10px !important">Alamat :
-                                        Jl. Merdeka Kota
-                                        Blitar</h6>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table> --}}
 
                     <div class="row mt-2 ">
                         <div class="col-3 mt-2 mb-2">
@@ -64,7 +41,7 @@
                                 Blitar</h6>
                         </div>
                     </div>
-                    <hr>
+                    {{-- <hr class="mt-0"> --}}
 
                     <table class="table table-sm mt-2" style="font-size: 10px !important">
                         <tr>
@@ -164,9 +141,10 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="row mt-5">
-                        <div class="col-6">
+                    <div class="row mt-3">
+                        <div class="col-6 border">
                             <div class="visible-print text-center" style="font-size: 10px !important">
+                                <p class="mt-2">QR Sertifikat</p>
                                 @if (isset($inventaris->document))
                                     {!! QrCode::size(75)->generate(asset('assets/document/' . $inventaris->document->doc_path)) !!}
                                 @else
@@ -175,8 +153,9 @@
                                 <p class="mt-2">Scan barcode untuk melihat Sertifikat</p>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 border">
                             <div class="visible-print text-center" style="font-size: 10px !important">
+                                <p class="mt-2">QR Foto</p>
                                 @if (isset($inventaris->galery))
                                     {!! QrCode::size(75)->generate(asset('assets/galery/' . $inventaris->galery->image_path)) !!}
                                 @else
@@ -206,47 +185,40 @@
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $(".btn-add-more").click(function() {
-                var html = $(".clone").html();
-                $(".img_div").after(html);
-            });
-            $("body").on("click", ".btn-remove", function() {
-                $(this).parents(".control-group").remove();
-            });
+            var map = L.map('map', {
+                zoomControl: false,
+                contextmenu: false,
+            }).setView([-8.098244, 112.165077], 13);
+            var esri = L.tileLayer.provider('Esri.WorldImagery', {
+                maxZoom: 18
+            }).addTo(map)
+
+
+            var geometry = $('#polygon').val();
+            // var layer;
+            console.log(geometry)
+            if (geometry) {
+
+                var geo = JSON.parse(geometry);
+                var poly = new L
+                    .geoJson(geo);
+                console.log(geo);
+
+
+                poly.addTo(
+                    map);
+                var bound = poly
+                    .getBounds();
+                map.fitBounds(
+                    bound);
+            }
+            setTimeout(function() {
+                window.print();
+            }, 1500);
+
+            window.onafterprint = function() {
+                window.close()
+            };
         });
-
-
-
-
-
-        var map = L.map('map', {
-            zoomControl: false,
-            contextmenu: false,
-        }).setView([-8.098244, 112.165077], 13);
-        var esri = L.tileLayer.provider('Esri.WorldImagery', {
-            maxZoom: 19
-        }).addTo(map)
-
-
-        var geometry = $('#polygon').val();
-        // var layer;
-        console.log(geometry)
-        if (geometry) {
-
-            var geo = JSON.parse(geometry);
-            var poly = new L
-                .geoJson(geo);
-            console.log(geo);
-
-
-            poly.addTo(
-                map);
-            var bound = poly
-                .getBounds();
-            map.fitBounds(
-                bound);
-
-
-        }
     </script>
 @stop

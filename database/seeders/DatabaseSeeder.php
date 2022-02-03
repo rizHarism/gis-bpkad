@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             MasterBarangSeeder::class,
             InventarisSeeder::class,
-            GeometrySeeder::class
+            GeometrySeeder::class,
+            KelurahanSeeder::class,
+            KecamatanSeeder::class
         ]);
     }
 }
