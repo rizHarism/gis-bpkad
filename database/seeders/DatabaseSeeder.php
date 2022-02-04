@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Galery;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +22,8 @@ class DatabaseSeeder extends Seeder
             InventarisSeeder::class,
             GeometrySeeder::class,
             KelurahanSeeder::class,
-            KecamatanSeeder::class
+            KecamatanSeeder::class,
+            GalerySeeder::class
         ]);
     }
 }

@@ -15,6 +15,8 @@ class KecamatanSeeder extends Seeder
     public function run()
     {
         //
+        Kecamatan::truncate();
+
         Kecamatan::firstOrCreate(['nama_kecamatan' => 'Sananwetan']);
         Kecamatan::firstOrCreate(['nama_kecamatan' => 'Kepanjenkidul']);
         Kecamatan::firstOrCreate(['nama_kecamatan' => 'Sukorejo']);
