@@ -533,9 +533,9 @@
                                                     .invalidateSize();
                                                 if (verifMap ==
                                                     null) {
-                                                    alert(
-                                                        'data spatial belum tersedia'
-                                                    )
+                                                    // alert(
+                                                    //     'data spatial belum tersedia'
+                                                    // )
                                                 } else {
                                                     var x =
                                                         property
