@@ -26,12 +26,22 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.responsive.popup.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/L.Control.Layers.Tree.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     {{-- <script src="{{ asset('assets/inventaris/maps.js') }}"></script> --}}
 
     <script>
-        // var api = '/api/inventaris'
-
         $(document).ready(function() {
+
+            $(document).on({
+                ajaxStart: function() {
+                    $("body").addClass("loading");
+                },
+                ajaxStop: function() {
+                    $("body").removeClass("loading");
+                }
+            });
+
+            var api = '/api/inventaris'
 
             $('#inventarisSearch').keyup(function() {
                 var query = $(this).val();
@@ -960,6 +970,15 @@
         // query pencarian
         $("#queryGeom").on('submit', function(e) {
 
+            $(document).on({
+                ajaxStart: function() {
+                    $("body").addClass("loading");
+                },
+                ajaxStop: function() {
+                    $("body").removeClass("loading");
+                }
+            });
+
             // console.log(e)
 
             e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -1004,12 +1023,16 @@
                 success: function(q) {
                     // if q =
                     var geom = q.data
-                    console.log(geom)
+                    console.log(geom.length)
                     var layerAll = L.featureGroup();
                     var pointAll = L.featureGroup();
                     // console.log(geom.data)
-                    if (geom === 0) {
-                        alert('Data Sertifikat Tidak Ditemukan / Nomor Sertifikat Tidak Valid')
+                    if (geom === 0 || geom.length === 0) {
+                        swal.fire(
+                            'Data tidak ditemukan',
+                            'Data yang anda kirimkan tidak valid',
+                            'warning'
+                        );
                     } else {
 
                         $.each(geom, (i, property) => {

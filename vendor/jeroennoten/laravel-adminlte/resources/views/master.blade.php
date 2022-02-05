@@ -163,6 +163,32 @@
     </style>
 
     <style type="text/css">
+        .overlayLoader {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.8) url("https://c.tenor.com/hQz0Kl373E8AAAAj/loading-waiting.gif") center no-repeat;
+            /* background: rgba(255, 255, 255, 0.8) url("{{ asset('assets/logo-image/loader.gif') }}") center no-repeat; */
+        }
+
+        /* body {
+            text-align: center;
+        } */
+
+        /* Turn off scrollbar when body element has the loading class */
+        body.loading {
+            overflow: hidden;
+        }
+
+        /* Make spinner image visible when body element has the loading class */
+        body.loading .overlayLoader {
+            display: block;
+        }
+
         .preloader {
             position: fixed;
             top: 0;
@@ -195,6 +221,8 @@
             <img src={{ asset('vendor/loader/loading.gif') }} width="150">
         </div>
     </div>
+
+    <div class="overlayLoader" width="150"></div>
 
     @yield('body')
     {{-- Base Scripts --}}
