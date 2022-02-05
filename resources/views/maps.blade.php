@@ -1027,7 +1027,13 @@
                     var layerAll = L.featureGroup();
                     var pointAll = L.featureGroup();
                     // console.log(geom.data)
-                    if (geom === 0 || geom.length === 0) {
+                    if (geom === 0) {
+                        swal.fire(
+                            'Data tidak ditemukan',
+                            'Data yang anda kirimkan tidak valid',
+                            'warning'
+                        );
+                    } else if (geom.length === 0) {
                         swal.fire(
                             'Data tidak ditemukan',
                             'Data yang anda kirimkan tidak valid',
