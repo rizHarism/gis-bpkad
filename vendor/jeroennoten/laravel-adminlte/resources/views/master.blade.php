@@ -171,7 +171,7 @@
             top: 0;
             left: 0;
             z-index: 999;
-            background: rgba(255, 255, 255, 0.8) url("https://c.tenor.com/hQz0Kl373E8AAAAj/loading-waiting.gif") center no-repeat;
+            background: rgba(255, 255, 255, 0.8) url("https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif") center no-repeat;
             /* background: rgba(255, 255, 255, 0.8) url("{{ asset('assets/logo-image/loader.gif') }}") center no-repeat; */
         }
 
