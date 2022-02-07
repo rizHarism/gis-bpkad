@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             GeometrySeeder::class,
             KelurahanSeeder::class,
             KecamatanSeeder::class,
-            GalerySeeder::class
+            GalerySeeder::class,
+            DocumentSeeder::class
         ]);
     }
 }

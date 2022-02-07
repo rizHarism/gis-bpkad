@@ -30,18 +30,23 @@
             </h1>
 
             <div class="container-fluid">
-                <p class="mt-3">Masukkan nama inventaris / dinas terkait
-                </p>
-                <div class="form-group mt-3">
+                {{-- <div class=" form-control-sm mt-3"> --}}
+                <div class="form-group form-group-sm mt-3">
+                    <label class="fw-bold" style="font-size: 14px">
+                        PENCARIAN ASET SATUAN
+                    </label>
                     <input type="text" name="inventarisSearch" id="inventarisSearch" class="form-control input-lg"
                         placeholder="Masukkan nama inventaris" />
                     <div id="inventarisList">
                     </div>
                 </div>
-                <hr>
-                <p class="mt-3">Pencarian geometry bidang tanah aset berdasarkan SKPD terkait, kelurahan dan
+                {{-- </div> --}}
+            </div>
+            <hr>
+            {{-- <p class="mt-3">Pencarian geometry bidang tanah aset berdasarkan SKPD terkait, kelurahan dan
                     sertifikat
-                </p>
+                </p> --}}
+            <div class="container-fluid">
 
                 <div class="form-check form-control-sm mt-3">
                     <input class="form-check-input" type="radio" name="varQuery" id="queryOpd1" value="opd" checked>
@@ -55,35 +60,27 @@
                         PENCARIAN BERDASARKAN NOMOR SERTIFIKAT
                     </label>
                 </div>
+            </div>
+            <div class="container-fluid">
+
+                {{-- <hr> --}}
+
 
                 <form method="POST" id="queryGeom">
                     {{ csrf_field() }}
-                    {{-- <div class="form-check form-control-sm mt-3">
-                        <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="1"
-                            checked style="display:none;">
-                        <label class="form-check-label fw-bold" for="flexRadioDefault1">
-                            Bersertifikat
-                        </label>
-                    </div>
-                    <div class="form-check form-control-sm">
-                        <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="0"
-                            disabled style="display:none;">
-                        <label class="form-check-label fw-bold" for="flexRadioDefault2">
-                            Non Sertifikat
-                        </label>
-                    </div> --}}
-
-                    <div id="varChange">
-                        <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
+                    <div id="varChange" class="mt-3">
+                        <label for="">Pilih OPD</label>
+                        <select class="form-select form-control-sm fw-bold" aria-label="Default select example"
                             id="dataSkpd">
-                            <option selected>Semua SKPD</option>
+                            <option selected>Semua OPD</option>
                         </select>
 
                         {{-- <input class="mt-3 form-control form-control-sm fw-bold" type="number" name="noSertifikat"
                             id="noSertifikat"> --}}
                     </div>
-                    <div id="kelChange">
-                        <select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
+                    <div id="kelChange" class="mt-2">
+                        <label for="">Pilih Kelurahan</label>
+                        <select class="form-select form-control-sm fw-bold" aria-label="Default select example"
                             id="data_kelurahan">
                             <option selected>Semua Kelurahan</option>
 
@@ -99,7 +96,7 @@
                     </div>
                 </form>
             </div>
-            <hr>
+            {{-- <hr> --}}
         </div>
 
         <div class="sidebarV2-pane" id="profile">

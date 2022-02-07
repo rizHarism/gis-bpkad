@@ -954,13 +954,16 @@
 
             if ($(this).val() === 'opd') {
                 skpd();
-                $('#varChange').append(`<select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
+                $('#varChange').append(`
+                <label for="">Pilih OPD</label>
+                <select class="form-select form-control-sm fw-bold" aria-label="Default select example"
                             id="dataSkpd">
-                            <option selected>Semua SKPD</option>
+                            <option selected>Semua OPD</option>
                         </select>`);
             } else {
                 $('#varChange').append(
-                    `<input class="mt-3 form-control form-control-sm fw-bold noSertifikat" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="noSertifikat"
+                    `<label for="">Nomor Sertifikat</label>
+                    <input class=" form-control form-control-sm fw-bold noSertifikat" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="noSertifikat"
                             id="noSertifikat" maxlength="5" placeholder="masukkan 5 digit terakhir sertifikat" required>`
                 );
             };
@@ -970,14 +973,14 @@
         // query pencarian
         $("#queryGeom").on('submit', function(e) {
 
-            $(document).on({
-                ajaxStart: function() {
-                    $("body").addClass("loading");
-                },
-                ajaxStop: function() {
-                    $("body").removeClass("loading");
-                }
-            });
+            // $(document).on({
+            //     ajaxStart: function() {
+            //         $("body").addClass("loading");
+            //     },
+            //     ajaxStop: function() {
+            //         $("body").removeClass("loading");
+            //     }
+
 
             // console.log(e)
 

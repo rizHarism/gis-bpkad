@@ -59,7 +59,7 @@ class InventarisController extends Controller
 
                 $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
                 foreach ($data as $row) {
-                    $output .= '<li class="dropdown-item" value="' . $row->id . '"><div>' . $row->nama . '</div> </li>';
+                    $output .= '<li class="dropdown-item" value="' . $row->id . '"><div>' . $row->nama . " - " . $row->master_skpd->nama_skpd . '</div> </li>';
                     // $output .= '<input id="idInventaris" type="text" value="' . $row->id . '"></input>';
                 }
                 $output .= '</ul>';
@@ -176,11 +176,11 @@ class InventarisController extends Controller
 
         // dd($skpd_id, $kelurahan_id);
         // query inventaris untuk pencarian data geometry/polygon (filterisasi)git
-        if ($skpd_id === 'Semua SKPD'  && $kelurahan_id === 'Semua Kelurahan') {
+        if ($skpd_id === 'Semua OPD'  && $kelurahan_id === 'Semua Kelurahan') {
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 ->has('geometry')
                 ->get();
-        } elseif ($skpd_id === 'Semua SKPD') {
+        } elseif ($skpd_id === 'Semua OPD') {
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 // ->where('skpd_id',  $skpd_id)->has('geometry')
                 ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
