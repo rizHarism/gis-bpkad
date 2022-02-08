@@ -70,8 +70,13 @@
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="status" id="status">
-                                                        <option value="1">Bersertifikat</option>
-                                                        <option value="0">TIdak Bersertifikat</option>
+                                                        <option value="">-- Pilih Status Sertifikat --</option>
+                                                        <option value="1"
+                                                            {{ isset($edit) && $edit['status'] == 1 ? 'selected="selected"' : '' }}>
+                                                            Bersertifikat</option>
+                                                        <option value="0"
+                                                            {{ isset($edit) && $edit['status'] == 0 ? 'selected="selected"' : '' }}>
+                                                            Belum Bersertifikat</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-5 mb-2 ">
@@ -81,6 +86,14 @@
                                                         placeholder="" value="{{ $edit['luas'] ?? '' }} ">
                                                 </div>
 
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-10 mb-2 me-5 ">
+                                                    <label for="" class="form-label mb-0 fst-italic ">No Register :</label>
+                                                    <input type="text" class="form-control " name="noRegister"
+                                                        id="noRegister" placeholder=""
+                                                        value="{{ $edit['no_register'] ?? '' }} ">
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-10 mb-2 me-5 ">
@@ -94,6 +107,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic ">Kelurahan :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="kelurahan" id="kelurahan">
+                                                        <option>-- Pilih Kelurahan --</option>
                                                         @foreach ($kelurahan as $_kelurahan)
                                                             <option value="{{ $_kelurahan['id_kelurahan'] }}"
                                                                 {{ isset($edit) && $edit['kelurahan_id'] == $_kelurahan['id_kelurahan'] ? 'selected="selected"' : '' }}>
@@ -105,6 +119,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic ">Kecamatan :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="kecamatan" id="kecamatan">
+                                                        <option>-- Pilih Kecamatan --</option>
                                                         @foreach ($kecamatan as $_kecamatan)
                                                             <option value="{{ $_kecamatan['id_kecamatan'] }}"
                                                                 {{ isset($edit) && $edit['kecamatan_id'] == $_kecamatan['id_kecamatan'] ? 'selected="selected"' : '' }}>
@@ -127,6 +142,7 @@
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="skpd" id="skpd">
+                                                        <option>-- Pilih OPD Pengelola --</option>
                                                         @foreach ($skpd as $_skpd)
                                                             <option value="{{ $_skpd['id_skpd'] }}"
                                                                 {{ isset($edit) && $edit['skpd_id'] == $_skpd['id_skpd'] ? 'selected="selected"' : '' }}>
@@ -140,6 +156,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic">Kategori Aset :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="barang" id="barang">
+                                                        <option>-- Pilih Kategori Aset --</option>
                                                         @foreach ($barang as $_barang)
                                                             <option value="{{ $_barang['id_barang'] }}"
                                                                 {{ isset($edit) && $edit['master_barang_id'] == $_barang['id_barang'] ? 'selected="selected"' : '' }}>
@@ -261,6 +278,7 @@
     <script src="{{ asset('assets/leaflet/plugin/js/styledLayerControl.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
+    <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
         $(document).ready(function() {
             $(".btn-add-more").click(function() {
@@ -283,6 +301,7 @@
                 formData.append('nilai_aset', $("#value_nilai_aset").val());
                 formData.append('luas', $("#luas").val());
                 formData.append('status', $("#status").val());
+                formData.append('no_register', $("#noRegister").val());
                 formData.append('alamat', $("#alamat").val());
                 formData.append('kelurahan', $("#kelurahan").val());
                 formData.append('kecamatan', $("#kecamatan").val());
@@ -314,22 +333,40 @@
                     contentType: false,
                     processData: false,
                     success: (data) => {
-
-                        alert(data);
                         console.log(data);
-                        window.location = document.referrer;
+                        swal.fire({
+                            title: 'Berhasil',
+                            text: data,
+                            icon: 'success',
+                        }).then(function() {
+                            window.location = document.referrer;
+                        });
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
                         // alert(xhr.responseJSON.message);
                         if (xhr.responseJSON.hasOwnProperty('errors')) {
+                            var html =
+                                "<ul style='justify-content: space-between;'>";
                             for (item in xhr.responseJSON.errors) {
                                 if (xhr.responseJSON.errors[item].length) {
                                     for (var i = 0; i < xhr.responseJSON.errors[item]
                                         .length; i++) {
-                                        alert(xhr.responseJSON.errors[item][i]);
+                                        // alert(xhr.responseJSON.errors[item][i]);
+                                        html += "<li class='dropdown-item'>" +
+                                            "<i class='fas fa-times' style='color: red;'></i> &nbsp&nbsp&nbsp&nbsp" +
+                                            xhr
+                                            .responseJSON
+                                            .errors[item][i] +
+                                            "</li>"
                                     }
                                 }
                             }
+                            html += '</ul>';
+                            swal.fire({
+                                title: 'Error',
+                                html: html,
+                                icon: 'warning',
+                            });
                         }
                     }
                 });
@@ -366,7 +403,7 @@
         var geometry = $('#geometry').val();
         // var layer;
         console.log(geometry)
-        if (geometry) {
+        if (geometry !== " " && geometry !== "") {
 
             var geo = JSON.parse(geometry);
             var poly = new L

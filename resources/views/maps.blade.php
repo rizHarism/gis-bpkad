@@ -26,12 +26,22 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.responsive.popup.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/L.Control.Layers.Tree.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     {{-- <script src="{{ asset('assets/inventaris/maps.js') }}"></script> --}}
 
     <script>
-        // var api = '/api/inventaris'
-
         $(document).ready(function() {
+
+            $(document).on({
+                ajaxStart: function() {
+                    $("body").addClass("loading");
+                },
+                ajaxStop: function() {
+                    $("body").removeClass("loading");
+                }
+            });
+
+            var api = '/api/inventaris'
 
             $('#inventarisSearch').keyup(function() {
                 var query = $(this).val();
@@ -103,7 +113,10 @@
                                         ns = property
                                         .nilai_aset
                                     if (!property.document) {
-                                        Sertifikat = "Sertifikat Belum Tersedia"
+                                        Sertifikat =
+                                            `<div>
+                                            <iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 63vh; position: relative;"></iframe>
+                                            </div>`
                                     } else {
                                         Sertifikat =
                                             `<iframe src="assets/document/` +
@@ -177,7 +190,7 @@
                                                 `);
                                     if (!property.galery) {
                                         image =
-                                            "<div class='col mb-5' style='display: flex; justify-content: center;'><div><h4 aligment='center'>Image Not Found</h4></div></div>"
+                                            `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
                                     } else {
                                         image =
                                             `<img class="img-fluid" src="assets/galery/` +
@@ -200,13 +213,19 @@
                                         `</td>
                                                 </tr>
                                                 </table>
-                                                <div style="text-align:center">
-                                                <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                        property.id + `">Detail</a>
-                                                </div>`
+                                                <table class="table table-striped">
+                                                <tr>
+                                                    <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                        property.id +
+                                        `)">Print</a></td>
+                                                    <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                        property.id + `">Detail</a></td>
+                                                </tr>
+                                                </table>
+                                                <div style="text-align:center">`
 
                                     var popup = L
-                                        .responsivePopup()
+                                        .popup()
                                         .setContent(
                                             content)
 
@@ -390,14 +409,17 @@
                                     .luas,
                                     ns = property
                                     .nilai_aset
-
+                                if (!property.document) {
+                                    Sertifikat =
+                                        `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 63vh; position: relative;"></iframe>`
+                                } else {
+                                    Sertifikat = `<iframe src="assets/document/` +
+                                        property
+                                        .document.doc_path +
+                                        `" style="width: 100%;height: 63vh; position: relative;"></iframe>`
+                                }
                                 $('#sertifikat').empty()
-                                $('#sertifikat').append(
-                                    `<div class="ratio ratio-16x9">
-                                            <iframe src=` + "assets/document/" +
-                                    property.document.doc_path + `></iframe>
-                                        </div>`
-                                )
+                                $('#sertifikat').append(Sertifikat)
                                 $('#detailTitle').empty()
                                 $('#detailData').empty()
                                 $('#detailTitle').append(
@@ -457,10 +479,20 @@
                                                     </tr>
                                                 </table>
                                                     `);
+                                if (!property.galery) {
+                                    image =
+                                        `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
+                                } else {
+                                    image =
+                                        `<img class="img-fluid" src="assets/galery/` +
+                                        property.galery.image_path +
+                                        `"></img>`
+                                }
 
-                                var content = ` <img class="img-thumbnail rounded" src="{{ asset('assets/galery/stadion-soeprijadi.jpg') }}" alt="...">
-                                                    <p class="text-center fw-bold m-2 p-0 h7">` + property.nama + `</p>
-                                                    <table class="table table-striped">
+                                var content = image +
+                                    `<p class="text-center fw-bold m-2 p-0 h7">` +
+                                    property
+                                    .nama + `</p><table class="table table-striped">
                                                     <tr>
                                                         <th>Pengelola</th>
                                                         <td>` + property.master_skpd.nama_skpd + `</td>
@@ -472,12 +504,18 @@
                                     `</td>
                                                     </tr>
                                                     </table>
-                                                    <div style="text-align:center">
-                                                    <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                    property.id + `">Detail</a>
-                                                    </div>`
+                                                    <table class="table table-striped">
+                                                <tr>
+                                                    <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                    property.id +
+                                    `)">Print</a></td>
+                                                    <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                    property.id + `">Detail</a></td>
+                                                </tr>
+                                                </table>
+                                                <div style="text-align:center">`
 
-                                var popup = L.responsivePopup()
+                                var popup = L.popup()
                                     .setContent(
                                         content)
 
@@ -540,7 +578,8 @@
                                             let inv = result.data
                                             $.each(inv, (i, property) => {
 
-                                                const sertifikat = (property
+                                                const sertifikat = (
+                                                        property
                                                         .status == 1) ?
                                                     "Bersertifikat" :
                                                     "Belum Bersertifikat";
@@ -553,10 +592,13 @@
                                                     ns = property
                                                     .nilai_aset
 
-                                                $('#detailTitle').append(
-                                                    'Aset Milik' + ' ' +
-                                                    property.master_skpd
-                                                    .nama_skpd)
+                                                $('#detailTitle')
+                                                    .append(
+                                                        'Aset Milik' +
+                                                        ' ' +
+                                                        property
+                                                        .master_skpd
+                                                        .nama_skpd)
                                                 $('#detailData').append(`
                                         <table class="table table-striped">
                                         <tr>
@@ -869,7 +911,8 @@
                         listItems = ""
                     $.each(skpd, (i, property) => {
 
-                        listItems += "<option value='" + property.id_skpd + "'>" + property.nama_skpd +
+                        listItems += "<option value='" + property.id_skpd + "'>" + property
+                            .nama_skpd +
                             "</option>"
                     })
                     $("#dataSkpd").append(listItems);
@@ -877,6 +920,12 @@
             });
         }
         skpd();
+
+        function myPrint(id) {
+            window.open('/inventaris/' + id + '/print',
+                '',
+                'width=1200,height=600');
+        }
 
         function kelurahan() {
             $.ajax({
@@ -905,13 +954,16 @@
 
             if ($(this).val() === 'opd') {
                 skpd();
-                $('#varChange').append(`<select class="form-select mt-3 form-control-sm fw-bold" aria-label="Default select example"
+                $('#varChange').append(`
+                <label for="">Pilih OPD</label>
+                <select class="form-select form-control-sm fw-bold" aria-label="Default select example"
                             id="dataSkpd">
-                            <option selected>Semua SKPD</option>
+                            <option selected>Semua OPD</option>
                         </select>`);
             } else {
                 $('#varChange').append(
-                    `<input class="mt-3 form-control form-control-sm fw-bold noSertifikat" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="noSertifikat"
+                    `<label for="">Nomor Sertifikat</label>
+                    <input class=" form-control form-control-sm fw-bold noSertifikat" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="noSertifikat"
                             id="noSertifikat" maxlength="5" placeholder="masukkan 5 digit terakhir sertifikat" required>`
                 );
             };
@@ -920,6 +972,15 @@
 
         // query pencarian
         $("#queryGeom").on('submit', function(e) {
+
+            // $(document).on({
+            //     ajaxStart: function() {
+            //         $("body").addClass("loading");
+            //     },
+            //     ajaxStop: function() {
+            //         $("body").removeClass("loading");
+            //     }
+
 
             // console.log(e)
 
@@ -965,12 +1026,22 @@
                 success: function(q) {
                     // if q =
                     var geom = q.data
-                    console.log(geom)
+                    console.log(geom.length)
                     var layerAll = L.featureGroup();
                     var pointAll = L.featureGroup();
                     // console.log(geom.data)
                     if (geom === 0) {
-                        alert('Data Sertifikat Tidak Ditemukan / Nomor Sertifikat Tidak Valid')
+                        swal.fire(
+                            'Data tidak ditemukan',
+                            'Data yang anda kirimkan tidak valid',
+                            'warning'
+                        );
+                    } else if (geom.length === 0) {
+                        swal.fire(
+                            'Data tidak ditemukan',
+                            'Data yang anda kirimkan tidak valid',
+                            'warning'
+                        );
                     } else {
 
                         $.each(geom, (i, property) => {
@@ -979,6 +1050,12 @@
                             var geo = property.geometry.polygon
                             var lat = property.geometry.lat
                             var lng = property.geometry.lng
+
+                            function myPrint() {
+                                window.open('/inventaris/' + id + '/print',
+                                    '',
+                                    'width=1200,height=600');
+                            }
 
                             x = JSON.parse(geo)
                             console.log(x)
@@ -1014,7 +1091,8 @@
                                     ns = property
                                     .nilai_aset
                                 if (!property.document) {
-                                    Sertifikat = "Sertifikat Belum Tersedia"
+                                    Sertifikat =
+                                        `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 63vh; position: relative;"></iframe>`
                                 } else {
                                     Sertifikat = `<iframe src="assets/document/` +
                                         property
@@ -1087,7 +1165,7 @@
                                                 `);
                                 if (!property.galery) {
                                     image =
-                                        "<div class='col mb-5' style='display: flex; justify-content: center;'><div><h4 aligment='center'>Image Not Found</h4></div></div>"
+                                        `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
                                 } else {
                                     image =
                                         `<img class="img-fluid" src="assets/galery/` +
@@ -1109,13 +1187,21 @@
                                     `</td>
                                                 </tr>
                                                 </table>
+                                                <table class="table table-striped">
+                                                <tr>
+                                                    <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                    property.id +
+                                    `)">Print</a></td>
+                                                    <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                    property.id + `">Detail</a></td>
+                                                </tr>
+                                                </table>
                                                 <div style="text-align:center">
-                                                <a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                    property.id + `">Detail</a>
-                                                </div>`
+                                                `
+
 
                                 var popup = L
-                                    .responsivePopup()
+                                    .popup()
                                     .setContent(
                                         content)
 

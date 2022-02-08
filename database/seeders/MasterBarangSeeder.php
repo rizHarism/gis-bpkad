@@ -23,8 +23,8 @@ class MasterBarangSeeder extends Seeder
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 MasterBarang::create([
-                    "id" => $data["0"],
-                    "nama" => $data["1"],
+                    "id_barang" => $data["0"],
+                    "nama_barang" => $data["1"],
                     "kode_barang" => $data["2"],
                 ]);
             }

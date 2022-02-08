@@ -163,6 +163,32 @@
     </style>
 
     <style type="text/css">
+        .overlayLoader {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.8) url("https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif") center no-repeat;
+            /* background: rgba(255, 255, 255, 0.8) url("{{ asset('assets/logo-image/loader.gif') }}") center no-repeat; */
+        }
+
+        /* body {
+            text-align: center;
+        } */
+
+        /* Turn off scrollbar when body element has the loading class */
+        body.loading {
+            overflow: hidden;
+        }
+
+        /* Make spinner image visible when body element has the loading class */
+        body.loading .overlayLoader {
+            display: block;
+        }
+
         .preloader {
             position: fixed;
             top: 0;
@@ -188,16 +214,17 @@
 <body class="@yield('classes_body')" @yield('body_data')>
 
     {{-- Body Content --}}
-    @yield('body')
 
     {{-- preloader --}}
     <div class="preloader">
         <div class="loading">
             <img src={{ asset('vendor/loader/loading.gif') }} width="150">
-            {{-- <p>Harap Tunggu ...</p> --}}
         </div>
     </div>
 
+    <div class="overlayLoader" width="150"></div>
+
+    @yield('body')
     {{-- Base Scripts --}}
     @if (!config('adminlte.enabled_laravel_mix'))
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

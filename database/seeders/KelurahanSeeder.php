@@ -17,26 +17,26 @@ class KelurahanSeeder extends Seeder
         //
         Kelurahan::truncate();
 
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Blitar']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Karangsari']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Pakunden']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Sukorejo']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Tanjungsari']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Tlumpu']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Turi']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Bendo']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Kauman']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Kepanjenkidul']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Kepanjenlor']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Ngadirejo']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Sentul']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Tanggung']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Bendogerit']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Gedog']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Karangtengah']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Klampok']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Plosokerep']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Rembang']);
-        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kelurahan Sananwetan']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Blitar']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Karangsari']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Pakunden']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Sukorejo']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Tanjungsari']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Tlumpu']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Turi']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Bendo']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kauman']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kepanjenkidul']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Kepanjenlor']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Ngadirejo']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Sentul']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Tanggung']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Bendogerit']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Gedog']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Karangtengah']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Klampok']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Plosokerep']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Rembang']);
+        Kelurahan::firstOrCreate(['nama_kelurahan' => 'Sananwetan']);
     }
 }

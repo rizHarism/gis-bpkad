@@ -19,15 +19,15 @@
                     <div class="form-group row">
                         <label for="kode-barang" class="col-sm-2 col-form-label">Kode Barang</label>
                         <div class="col-sm-10">
-                            <input type="text" name="kode_barang" class="form-control" id="kode-barang" placeholder="Kode Barang"
-                                value="{{ isset($edit) ? $edit['kode_barang'] : '' }}">
+                            <input type="text" name="kode_barang" class="form-control" id="kode-barang"
+                                placeholder="Kode Barang" value="{{ isset($edit) ? $edit['kode_barang'] : '' }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="nama-barang" class="col-sm-2 col-form-label">Nama Barang</label>
                         <div class="col-sm-10">
-                            <input type="text" name="nama_barang" class="form-control" id="nama-barang" placeholder="Nama Barang"
-                                value="{{ isset($edit) ? $edit['nama_barang'] : '' }}">
+                            <input type="text" name="nama_barang" class="form-control" id="nama-barang"
+                                placeholder="Nama Barang" value="{{ isset($edit) ? $edit['nama_barang'] : '' }}">
                         </div>
                     </div>
                 </div>
@@ -58,6 +58,7 @@
     <script src="{{ asset('assets/leaflet/plugin/js/styledLayerControl.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
+    <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
         $(function() {
             $("#form").submit(function() {
@@ -76,20 +77,39 @@
                     contentType: false,
                     processData: false,
                     success: (data) => {
-                        alert(data);
-                        window.location = document.referrer;
+                        // alert(data);
+                        swal.fire({
+                            title: 'Berhasil',
+                            text: data,
+                            icon: 'success',
+                        }).then(function() {
+                            window.location = document.referrer;
+                        });
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
-                        alert(xhr.responseJSON.message);
+                        // alert(xhr.responseJSON.message);
                         if (xhr.responseJSON.hasOwnProperty('errors')) {
+                            var html = "<ul>";
                             for (item in xhr.responseJSON.errors) {
                                 if (xhr.responseJSON.errors[item].length) {
                                     for (var i = 0; i < xhr.responseJSON.errors[item]
                                         .length; i++) {
-                                        alert(xhr.responseJSON.errors[item][i]);
+                                        // alert(xhr.responseJSON.errors[item][i]);
+                                        html += "<li class='dropdown-item'>" +
+                                            "<i class='fas fa-times' style='color: red;'></i> &nbsp&nbsp&nbsp&nbsp" +
+                                            xhr
+                                            .responseJSON
+                                            .errors[item][i] +
+                                            "</li>"
                                     }
                                 }
                             }
+                            html += '</ul>';
+                            swal.fire({
+                                title: 'Error',
+                                html: html,
+                                icon: 'warning',
+                            });
                         }
                     }
                 });

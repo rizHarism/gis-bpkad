@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MasterBarang;
 use App\Http\Requests\StoreMasterBarangRequest;
 use App\Http\Requests\UpdateMasterBarangRequest;
+use App\Models\Inventaris;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -87,15 +88,16 @@ class MasterBarangController extends Controller
      * @param  \App\Models\MasterBarang  $masterBarang
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //
-        $master_barang = MasterBarang::where('id', $id)->get();
+        // $master_barang = MasterBarang::where('id', $id)->get();
+        $master_barang = MasterBarang::findOrFail($id);
         $response = [
             'messagge' => 'Data Master Barang',
             'data' => $master_barang
         ];
-        return response()->json($response, Response::HTTP_OK);
+        return response()->json($master_barang->nama_barang, Response::HTTP_OK);
     }
 
     /**
@@ -144,13 +146,24 @@ class MasterBarangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $masterBarang, $id)
+    public function destroy(Request $request, $id)
     {
         $masterBarang = MasterBarang::findOrFail($id);
-        if ($masterBarang->delete()) {
-            return response("Master Barang sudah berhasil dihapus");
+        $cekExist = Inventaris::where('master_barang_id', $id);
+        if ($cekExist->doesntExist()) {
+            if ($masterBarang->delete()) {
+                return response([
+                    'value' => 1,
+                    'message' => "Master Barang \"" . $masterBarang->nama_barang . "\" berhasil dihapus"
+                ]);
+            } else {
+                return response("Master Barang gagal dihapus", Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
         } else {
-            return response("Master Barang gagal dihapus", Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response([
+                'value' => 0,
+                'message' => "Data Barang \"" . $masterBarang->nama_barang . "\" tidak dapat dihapus karena data sedang digunakan"
+            ]);
         }
     }
 }

@@ -24,8 +24,8 @@ class SkpdSeeder extends Seeder
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 Skpd::create([
-                    "id" => $data["0"],
-                    "nama" => $data["1"],
+                    "id_skpd" => $data["0"],
+                    "nama_skpd" => $data["1"],
                     "kode_skpd" => $data["2"],
                 ]);
             }

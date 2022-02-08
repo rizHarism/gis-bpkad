@@ -51,22 +51,25 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/datadasarbmd', [App\Http\Controllers\MasterBarangController::class, 'index'])->name('datadasarbmd')->can('dasar bmd.index');
     Route::get('/datadasarbmd/create', [App\Http\Controllers\MasterBarangController::class, 'create'])->name('bmd.create')->can('dasar bmd.create');
+    Route::get('/datadasarbmd/{bmd}', [App\Http\Controllers\MasterBarangController::class, 'show'])->name('bmd.show')->can('dasar bmd.show');
     Route::post('/datadasarbmd', [App\Http\Controllers\MasterBarangController::class, 'store'])->name('bmd.store')->can('dasar bmd.create');
     Route::get('/datadasarbmd/{bmd}/edit', [App\Http\Controllers\MasterBarangController::class, 'edit'])->name('bmd.edit')->can('dasar bmd.edit');
     Route::put('/datadasarbmd/{bmd}', [App\Http\Controllers\MasterBarangController::class, 'update'])->name('bmd.update')->can('dasar bmd.edit');
     Route::delete('/datadasarbmd/{bmd}', [App\Http\Controllers\MasterBarangController::class, 'destroy'])->name('bmd.destroy')->can('dasar bmd.destroy');
 
-    Route::get('/admin/opd', [App\Http\Controllers\SkpdController::class, 'index'])->name('dataopd')->can('data opd.index');
-    Route::get('/admin/opd/create', [App\Http\Controllers\SkpdController::class, 'create'])->name('dataopd.create')->can('data opd.create');
-    Route::post('/admin/opd', [App\Http\Controllers\SkpdController::class, 'store'])->name('dataopd.store')->can('data opd.create');
-    Route::get('/admin/opd/{opd}/edit', [App\Http\Controllers\SkpdController::class, 'edit'])->name('dataopd.edit')->can('data opd.edit');
-    Route::put('/admin/opd/{opd}', [App\Http\Controllers\SkpdController::class, 'update'])->name('dataopd.update')->can('data opd.edit');
-    Route::delete('/admin/opd/{opd}', [App\Http\Controllers\SkpdController::class, 'destroy'])->name('dataopd.destroy')->can('data opd.destroy');
+    Route::get('/opd', [App\Http\Controllers\SkpdController::class, 'index'])->name('dataopd')->can('data opd.index');
+    Route::get('/opd/create', [App\Http\Controllers\SkpdController::class, 'create'])->name('dataopd.create')->can('data opd.index');
+    Route::get('/opd/{opd}', [App\Http\Controllers\SkpdController::class, 'show'])->name('dataopd.show')->can('data opd.index');
+    Route::post('/opd', [App\Http\Controllers\SkpdController::class, 'store'])->name('dataopd.store')->can('data opd.create');
+    Route::get('/opd/{opd}/edit', [App\Http\Controllers\SkpdController::class, 'edit'])->name('dataopd.edit')->can('data opd.edit');
+    Route::put('/opd/{opd}', [App\Http\Controllers\SkpdController::class, 'update'])->name('dataopd.update')->can('data opd.edit');
+    Route::delete('/opd/{opd}', [App\Http\Controllers\SkpdController::class, 'destroy'])->name('dataopd.destroy')->can('data opd.destroy');
 
     Route::get('/inventaris', [App\Http\Controllers\InventarisController::class, 'index'])->name('inventaris_kib_a')->can('data aset.inventaris');
     Route::get('/inventaris/create', [App\Http\Controllers\InventarisController::class, 'create'])->name('inventaris.create')->can('data aset.inventaris.create');
     Route::post('/inventaris/store', [App\Http\Controllers\InventarisController::class, 'store'])->name('inventaris.store')->can('data aset.inventaris.create');
     Route::get('/inventaris/{id}/edit', [App\Http\Controllers\InventarisController::class, 'edit'])->name('inventaris.edit')->can('data aset.inventaris');
+    Route::get('/inventaris/{id}/print', [App\Http\Controllers\InventarisController::class, 'print'])->name('inventaris.print')->can('data aset.inventaris');
     Route::put('/inventaris/{id}', [App\Http\Controllers\InventarisController::class, 'update'])->name('inventaris.update')->can('data aset.inventaris');
     Route::delete('/inventaris/{id}', [App\Http\Controllers\InventarisController::class, 'destroy'])->name('inventaris.destroy')->can('data aset.inventaris.destroy');
 
