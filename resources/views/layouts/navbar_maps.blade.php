@@ -3,7 +3,7 @@
     <div class="sidebarV2-tabs">
         <ul role="tablist">
             <li><a href="#layers" role="tab"><i class="fas fa-layer-group"></i></a></li>
-            <li><a href="#query" role="tab"><i class="fas fa-database"></i></a></li>
+            <li><a href="#query" role="tab"><i class="fas fa-search"></i></a></li>
             <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
             @if (auth()->user()->hasRole('Super-Admin'))
                 <li><a href="/dashboard" role="tab"><i class="fa fa-cog"></i></a></li>
@@ -105,8 +105,8 @@
             <div class="container-fluid mt-5">
 
                 <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Admin"
-                        class="rounded-circle" width="150">
+                    <img src="{{ asset('assets/logo-image/avatar.png') }}" alt="Admin" class="rounded-circle"
+                        width="150">
                     <div class="mt-3">
 
                         <h4>{{ Auth::user()->username }}</h4>
@@ -151,12 +151,16 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div id="detailData"></div>
+                            <div class="modalMap">
+                                <div id="minimap" class="h4" style="height: 20vh"></div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div id="sertifikat" class="h4">
+                        <div class="col-md-6" style="">
+                            <div id="sertifikat" class="h4" style="20">
                                 {{-- <iframe src="{{ asset('assets/document/03.KL.017 - STADION SUPRIYADI.pdf') }}"
                                     style="width: 100%;height: 63vh; position: relative;" allowfullscreen></iframe> --}}
                             </div>
+
                         </div>
                     </div>
                 </div>
