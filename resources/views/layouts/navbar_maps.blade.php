@@ -105,26 +105,92 @@
             <div class="container-fluid mt-5">
 
                 <div class="d-flex flex-column align-items-center text-center">
-                    <img src="{{ asset('assets/logo-image/avatar.png') }}" alt="Admin" class="rounded-circle"
-                        width="150">
+                    <label for="file-input">
+                        <img id="avatar-image2" src="{{ asset('assets/logo-image/avatar.png') }}" alt="Admin"
+                            class="rounded-circle" width="150" height="150" style="cursor:pointer">
+                    </label>
+                    <input id="file-input" type="file" style="display: none;" />
                     <div class="mt-3">
 
                         <h4>{{ Auth::user()->username }}</h4>
                         <p class="text-secondary mb-1">{{ Auth::user()->master_skpd->nama_skpd }}</p>
                         <hr>
 
-                        <form method="POST" action="/logout">
-                            {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col">
+                                <a data-target="#editProfile" data-toggle="modal" href="#editModal"
+                                    class="btn btn-success"> &nbsp;&nbsp; Edit &nbsp;&nbsp;</a>
+                            </div>
+                            <div class="col">
+                                <form method="POST" action="/logout">
+                                    {{ csrf_field() }}
 
-                            <a href="#" class="btn btn-primary"
-                                onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('adminlte::adminlte.log_out') }}
-                            </a>
-                        </form>
+                                    <a href="#" class="btn btn-danger"
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                        {{ __('adminlte::adminlte.log_out') }}
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
+        {{-- modal edit profile --}}
+        <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="editProfile" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfileTitle">Edit Profile</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="file-input">
+                                    <a title="Edit Foto">
+                                        <img id="avatar-image" src="{{ asset('assets/logo-image/avatar.png') }}"
+                                            alt="Admin" class="rounded-circle" width="150" height="150"
+                                            style="cursor:pointer">
+                                    </a>
+                                </label>
+                                <input id="file-input" type="file" style="display: none;" />
+                                {{-- <p>klik foto untuk mengubah</p> --}}
+                            </div>
+                            <div class="col-md-8 d-flex align-items-center">
+                                <div class="form-group mt-4">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-default">Username</span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-default"
+                                            value="{{ Auth::user()->username }}"
+                                            placeholder="Masukkan nama pengguna baru">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-default">&nbsp;Password
+                                        </span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-default"
+                                            placeholder="Masukkan kata sandi baru">
+                                        <p class="ms-4" style="font-style: italic; font-size: 12px">
+                                            *kosongkan isian jika tidak ingin
+                                            merubah password</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="sidebarV2-pane" id="information">
             <h1 class="sidebarV2-header">Informasi Aplikasi<span class="sidebarV2-close"><i
                         class="fa fa-caret-right"></i></span>
@@ -144,7 +210,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="detailTitle">Modal title</h5>
-                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container">
@@ -166,8 +232,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button> --}}
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
             </div>
         </div>
     </div>

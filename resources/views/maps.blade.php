@@ -30,6 +30,26 @@
     {{-- <script src="{{ asset('assets/inventaris/maps.js') }}"></script> --}}
 
     <script>
+        // change avatar image
+        function chageAvatar(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#avatar-image').attr('src', e.target.result);
+                    $('#avatar-image2').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#file-input").change(function() {
+            chageAvatar(this);
+        });
+    </script>
+
+    <script>
         $(document).ready(function() {
 
             $(document).on({
