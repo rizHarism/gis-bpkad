@@ -27,9 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/inventaris/dashboard', [InventarisController::Class, 'dashboard']);
 Route::get('/inventaris', [InventarisController::Class, 'index']);
 Route::get('/inventaris/{id}/edit', [InventarisController::Class, 'edit']);
-Route::get('/getinventaris', [InventarisController::Class, 'getInventaris']);
-Route::get('/getinventaris/sertifikat', [InventarisController::Class, 'getInventarisSertifikat']);
-Route::get('/getinventaris/nonsertifikat', [InventarisController::Class, 'getInventarisNonSertifikat']);
+Route::post('/getinventaris', [InventarisController::Class, 'getInventaris']);
+Route::post('/getinventaris/sertifikat', [InventarisController::Class, 'getInventarisSertifikat']);
+Route::post('/getinventaris/nonsertifikat', [InventarisController::Class, 'getInventarisNonSertifikat']);
 Route::get('/{kecamatan}/getgeometry', [InventarisController::Class, 'get_geometry']);
 Route::get('/inventaris/{keyword}/search', [InventarisController::Class, 'searchInventaris']);
 Route::post('/inventaris/{status}/{kelurahan}/{skpd}/queryskpd', [InventarisController::Class, 'queryKelSkpd']);

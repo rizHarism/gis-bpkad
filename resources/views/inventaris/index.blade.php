@@ -15,10 +15,16 @@
             <div class="card-body">
                 <a href="{{ route('inventaris.create') }}" class="btn btn-primary">+ Inventaris</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type=radio name="radio1" value="1" id="im" checked="checked"><label>&nbsp; Seluruh Aset &nbsp;
+                <input type=radio class="filter" name="status" value="all" id="im" checked="checked"><label
+                    for="im">&nbsp; Seluruh Aset
+                    &nbsp;
                     &nbsp;</label>
-                <input type=radio name="radio1" value="2" id="gm"><label>&nbsp; Aset Bersertifikat &nbsp;&nbsp;</label>
-                <input type=radio name="radio1" value="3" id="am"><label>&nbsp; Aset Non Sertifikat &nbsp;&nbsp;</label>
+                <input type=radio class="filter" name="status" value="1" id="gm"><label for="gm">&nbsp; Aset
+                    Bersertifikat
+                    &nbsp;&nbsp;</label>
+                <input type=radio class="filter" name="status" value="0" id="am"><label for="am">&nbsp; Aset Non
+                    Sertifikat
+                    &nbsp;&nbsp;</label>
 
                 <hr />
                 <table class="table table-striped table-hover table-bordered order-column" id="inventaris_kib_a">
@@ -185,15 +191,16 @@
         }
 
         // var api = "api/inventaris"
-
         $(function() {
+
             var table = $('#inventaris_kib_a').DataTable({
                 // processing: true,
                 serverSide: true,
-                // searchable: false,
+                responsive: true,
+                "scrollX": true,
                 ajax: {
                     url: '/api/getinventaris',
-                    method: "GET"
+                    method: "POST"
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -239,8 +246,24 @@
 
             });
 
+            // $('input:radio').on('change', function() {
+            //     //build a regex filter string with an or(|) condition
+            //     console.log($(this).val())
 
 
+            // });
+
+            $('input:radio').on('change', function() {
+                // var i = $(this).attr('data-column');
+                var v = $(this).val();
+                console.log(v)
+                // console.log(table.columns(8).search(v).draw())
+                if ((v == 0) || (v == 1)) {
+                    table.columns(7).search(v).draw();
+                } else if (v === 'all') {
+                    table.columns(7).search('').draw();
+                }
+            });
 
             $.contextMenu({
                 selector: '#contextButton',
@@ -404,7 +427,7 @@
                                             drawCircle: false,
                                             cutPolygon: false,
                                             rotateMode: false,
-                                            editControls: true,
+                                            editControls: false,
                                         });
                                     } else {
                                         map.pm.addControls({

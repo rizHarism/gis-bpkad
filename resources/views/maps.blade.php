@@ -1243,13 +1243,6 @@
 
                                         }, 500);
                                     });
-                                $('#detailModal').on('hidden.bs.modal',
-                                    function() {
-                                        console.log('hidden');
-                                        console.log(minilayer)
-                                        // minimap.removeLayer(lay);
-                                    });
-
                             });
                         })
                         layerAll.addTo(map);
