@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('admin/users', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store')->can('users.create');
     Route::get('admin/users/{user}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit')->can('users.edit');
     Route::put('admin/users/{user}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update')->can('users.edit');
+    Route::put('user/selfupdate/{user}', [App\Http\Controllers\Admin\UserController::class, 'selfUpdate'])->name('users.selfupdate');
     Route::delete('admin/users/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy')->can('users.destroy');
 
     Route::get('/datadasarbmd', [App\Http\Controllers\MasterBarangController::class, 'index'])->name('datadasarbmd')->can('dasar bmd.index');

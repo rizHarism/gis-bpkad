@@ -18,8 +18,9 @@
                         <tr>
                             <th>No</th>
                             <th>Username</th>
-                            <th>Email</th>
+                            {{-- <th>Email</th> --}}
                             <th>Nama SKPD</th>
+                            <th>Role</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -62,11 +63,14 @@
                     {
                         data: 'username'
                     },
-                    {
-                        data: 'email'
-                    },
+                    // {
+                    //     data: 'email'
+                    // },
                     {
                         data: 'master_skpd.nama_skpd'
+                    },
+                    {
+                        data: 'roles[0].name'
                     },
                     {
                         data: 'id',

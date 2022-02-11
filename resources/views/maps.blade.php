@@ -47,6 +47,80 @@
         $("#file-input").change(function() {
             chageAvatar(this);
         });
+
+        function defaultAvatar() {
+            $('#avatar-image').attr('src', '{{ asset('assets/avatar/' . Auth::user()->avatar) }}');
+            $('#avatar-image2').attr('src', '{{ asset('assets/avatar/' . Auth::user()->avatar) }}');
+        }
+
+        $(function() {
+            $("#editProfile-form").submit(function() {
+
+                // $("#editProfile").toggle()
+                $("#editProfile").hide();
+                // $("#editProfile").modal('toggle')
+                var formData = new FormData;
+                // var putMethod = '{{ isset($edit) }}'
+
+                formData.append('username', $("#username").val());
+                formData.append('password', $("#password").val());
+                formData.append('avatar', $('input[type=file]')[0].files[0]);
+                formData.append('_method', 'PUT')
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        // 'Content-Type': 'application/json',
+                    },
+                    // type: "{{ isset($edit) ? 'PUT' : 'POST' }}",
+                    type: "POST",
+                    // url: "{{ route('inventaris.store') }}",
+                    url: $(this).attr('action'),
+                    data: formData,
+
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: (data) => {
+                        console.log(data);
+                        swal.fire({
+                            title: 'Berhasil',
+                            text: data,
+                            icon: 'success',
+                        }).then(function() {
+                            window.location = document.referrer;
+                        });
+                    },
+                    error: (xhr, ajaxOptions, thrownError) => {
+                        // alert(xhr.responseJSON.message);
+                        if (xhr.responseJSON.hasOwnProperty('errors')) {
+                            var html =
+                                "<ul style='justify-content: space-between;'>";
+                            for (item in xhr.responseJSON.errors) {
+                                if (xhr.responseJSON.errors[item].length) {
+                                    for (var i = 0; i < xhr.responseJSON.errors[item]
+                                        .length; i++) {
+                                        // alert(xhr.responseJSON.errors[item][i]);
+                                        html += "<li class='dropdown-item'>" +
+                                            "<i class='fas fa-times' style='color: red;'></i> &nbsp&nbsp&nbsp&nbsp" +
+                                            xhr
+                                            .responseJSON
+                                            .errors[item][i] +
+                                            "</li>"
+                                    }
+                                }
+                            }
+                            html += '</ul>';
+                            swal.fire({
+                                title: 'Error',
+                                html: html,
+                                icon: 'warning',
+                            });
+                        }
+                    }
+                });
+                return false;
+            });
+        });
     </script>
 
     <script>
@@ -364,15 +438,15 @@
             "opacity": 1
         };
 
-        var batasSananwetan = new L.GeoJSON.AJAX('assets/leaflet/geojson/batas_sananwetan.json', {
+        var batasSananwetan = new L.GeoJSON.AJAX('assets/leaflet/geojson/sananwetan.geojson', {
             style: batasKota,
             pmIgnore: true
         });
-        var batasKepanjenkidul = new L.GeoJSON.AJAX('assets/leaflet/geojson/batas_kepanjenkidul.json', {
+        var batasKepanjenkidul = new L.GeoJSON.AJAX('assets/leaflet/geojson/kepanjenkidul.geojson', {
             style: batasKota,
             pmIgnore: true
         });
-        var batasSukorejo = new L.GeoJSON.AJAX('assets/leaflet/geojson/batas_sukorejo.json', {
+        var batasSukorejo = new L.GeoJSON.AJAX('assets/leaflet/geojson/sukorejo.geojson', {
             style: batasKota,
             pmIgnore: true
         });
