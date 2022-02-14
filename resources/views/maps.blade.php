@@ -185,12 +185,14 @@
                                 console.log(property.geometry.polygon)
                                 var polygon = JSON.parse(property.geometry.polygon)
                                 var layer = L.geoJSON(polygon, {
-                                        style: sertifikatStyle
+                                        style: sertifikatStyle,
+                                        pmIgnore: true
                                     })
                                     .addTo(map)
 
                                 var minilayer = L.geoJSON(polygon, {
-                                    style: sertifikatStyle
+                                    style: sertifikatStyle,
+                                    pmIgnore: true
                                 })
 
                                 map.fitBounds(layer.getBounds())
@@ -494,7 +496,8 @@
                             // var lng = JSON.parse(geo.lng)
                             console.log(lat)
                             var layer = L.geoJSON(x, {
-                                style: sertifikatStyle
+                                style: sertifikatStyle,
+                                pmIgnore: true
                             })
                             layer.addTo(map)
                             layer.on('click', function() {
@@ -663,7 +666,8 @@
                             var x = JSON.parse(geo)
                             x.properties["id"] = id
                             var layer = L.geoJSON(x, {
-                                style: nonSertifikatStyle
+                                style: nonSertifikatStyle,
+                                pmIgnore: true
                             })
                             layer.addTo(map)
                             layer.on('click', function() {
@@ -793,6 +797,24 @@
 
 
             // console.log(shape);
+            if (shape === 'Polygon') {
+
+                var seeArea = turf.area(layer.toGeoJSON());
+                console.log(seeArea)
+                console.log(layer)
+                var ha = seeArea / 10000;
+                var mPersegi = seeArea;
+                console.log(ha)
+                console.log(mPersegi)
+                if (mPersegi > 10000) {
+                    layer.bindPopup("Luas " + nf.format(ha.toFixed(2)) + " Ha");
+                } else {
+                    layer.bindPopup("Luas " + nf.format(mPersegi.toFixed(2)) + " Meter²");
+                }
+                var g = JSON.stringify(layer.toGeoJSON())
+
+            }
+
             if (shape === 'Line') {
 
                 var seeArea = turf.length(layer.toGeoJSON());
@@ -855,11 +877,14 @@
             drawCircleMarker: false,
             drawPolyline: true,
             drawRectangle: false,
-            drawPolygon: false,
+            drawPolygon: true,
             drawCircle: true,
             cutPolygon: false,
             rotateMode: false,
-            editControls: false,
+            editControls: true,
+            dragMode: false,
+            editMode: false,
+            removalMode: true
         });
 
 
@@ -1003,14 +1028,7 @@
             collapsed: false
         }).addTo(map);
 
-        // var layerControlBasemap = L.control.layers.minimap(basemaps = {
-        //     esri,
-        //     osm
-        // }, null, options = {
-        //     collapsed: false,
-        //     // position: topright
-        //     topPadding: 100
-        // }).addTo(map);
+
 
         var htmlObjectOverlay = layerControlOverlay.getContainer();
         // var htmlObjectBasemap = layerControlBasemap.getContainer();
@@ -1186,11 +1204,11 @@
                             console.log(x)
                             var layer = L.geoJSON(x, {
                                 style: sertifikatStyle,
-                                // className: 'blinking'
+                                pmIgnore: true
                             });
                             var minilayer = L.geoJSON(x, {
                                 style: sertifikatStyle,
-                                // className: 'blinking'
+                                pmIgnore: true
                             });
 
                             layer.addTo(layerAll);
