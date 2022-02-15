@@ -539,7 +539,6 @@ class InventarisController extends Controller
                         'doc_path' => $newfile
                     ]);
                 } else {
-
                     Document::where('inventaris_id', $id)
                         ->update([
                             'doc_path' => $newfile
