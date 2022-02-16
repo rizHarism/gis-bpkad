@@ -1,4 +1,5 @@
-<?php use SimpleSoftwareIO\QrCode\Facades\QrCode; ?>
+<?php use SimpleSoftwareIO\QrCode\Facades\QrCode;
+?>
 @extends('adminlte::master_print')
 
 @section('title')
@@ -24,26 +25,29 @@
                 </div>
                 <div class="col-4 border">
 
-                    <div class="row mt-2 ">
+                    <div class="row mt-2 mb-0">
                         <div class="col-3 mt-2 mb-2">
                             <div class="d-flex justify-content-center ms-1">
                                 <img src="{{ asset('assets/logo-image/blitar.png') }}" alt="" width="55" height="70">
                             </div>
                         </div>
                         <div class="col-9 mt-2 mb-2">
-                            <h6 class="d-flex justify-content-center fw-bold" style="font-size: 10px !important">DINAS
-                                PENDAPATAN KEUANGAN DAN ASET DAERAH
+                            <h6 class="d-flex justify-content-center fw-bold" style="font-size: 10px !important">PEMERINTAH
+                                KOTA BLITAR
+                                <h6 class="d-flex justify-content-center fw-bold" style="font-size: 10px !important">BADAN
+                                    PENDAPATAN KEUANGAN DAN ASET DAERAH
+                                </h6>
                             </h6>
-                            <h6 class="d-flex justify-content-center" style="font-size: 10px !important">Kota Blitar
-                            </h6>
-                            <h6 class="d-flex justify-content-center" style="font-size: 10px !important">Alamat :
-                                Jl. Merdeka Kota
-                                Blitar</h6>
+                            <hr class="mt-0 mb-0">
+                            <h6 class="d-flex justify-content-center mb-0 mt-1" style="font-size: 10px !important">
+                                Jl. Merdeka No.105 Kota Blitar</h6>
+                            <h6 class="d-flex justify-content-center mt-0" style="font-size: 10px !important">
+                                0342-801919</h6>
                         </div>
                     </div>
                     {{-- <hr class="mt-0"> --}}
 
-                    <table class="table table-sm mt-2" style="font-size: 10px !important">
+                    <table class="table table-sm mt-0" style="font-size: 10px !important">
                         <tr>
                             <td>
                                 OPD Pengelola
@@ -54,7 +58,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Kategori
+                                Kategori Inventaris
                             </td>
                             <td>
                                 {{ isset($inventaris->master_barang->nama_barang) ? $inventaris->master_barang->nama_barang : '' }}
@@ -91,7 +95,7 @@
                                 Nilai Aset
                             </td>
                             <td>
-                                {{ isset($inventaris->nilai_aset) ? $inventaris->nilai_aset : '' }}
+                                {{ isset($inventaris->nilai_aset) ? 'Rp. ' . number_format($inventaris->nilai_aset, 2, ',', '.') : '' }}
 
                             </td>
                         </tr>
@@ -127,7 +131,7 @@
                                 Luas Tanah
                             </td>
                             <td>
-                                {{ isset($inventaris->luas) ? $inventaris->luas : '' }}
+                                {{ isset($inventaris->luas) ? number_format($inventaris->luas, 0, ',', '.') . ' Meter Persegi' : '' }}
                             </td>
                         </tr>
                         <tr>
