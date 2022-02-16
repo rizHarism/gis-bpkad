@@ -27,7 +27,7 @@
                     &nbsp;&nbsp;</label>
 
                 <hr />
-                <table class="table table-striped table-hover table-bordered order-column" id="inventaris_kib_a">
+                <table class="table table-striped table-hover table-bordered order-column table-sm" id="inventaris_kib_a">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -197,7 +197,8 @@
                 // processing: true,
                 serverSide: true,
                 responsive: true,
-                "scrollX": true,
+                // "scrollX": true,
+                "autoWidth": true,
                 ajax: {
                     // headers: {
                     //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

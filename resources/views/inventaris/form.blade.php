@@ -170,14 +170,16 @@
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
                                                     <label for="" class="form-label mb-0 fst-italic m">Lat :</label>
                                                     <input type="text" class="form-control " name="lat" id="lat"
-                                                        placeholder="" value="@if (isset($edit))@foreach ($geometry as $_geometry){{ $_geometry['lat'] ?? '' }}@endforeach @endif">
+                                                        placeholder=""
+                                                        value="@if (isset($edit)) @foreach ($geometry as $_geometry){{ $_geometry['lat'] ?? '' }} @endforeach @endif">
                                                     {{-- </div> --}}
                                                 </div>
                                                 <div class="col-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
                                                     <label for="" class="form-label mb-0 fst-italic">Long :</label>
                                                     <input type="text" class="form-control " name="lng" id="lng"
-                                                        placeholder="" value="@if (isset($edit))@foreach ($geometry as $_geometry){{ $_geometry['lng'] ?? '' }}@endforeach @endif">
+                                                        placeholder=""
+                                                        value="@if (isset($edit)) @foreach ($geometry as $_geometry){{ $_geometry['lng'] ?? '' }} @endforeach @endif">
                                                     {{-- </div> --}}
                                                 </div>
                                             </div>
@@ -185,7 +187,9 @@
                                                 <div class="col-10 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Geometry :</label>
                                                     <textarea class="form-control" name="geometry" id="geometry" rows="3"
-                                                        name="geometry">@if (isset($edit))@foreach ($geometry as $_geometry){{ $_geometry['polygon'] ?? '' }}@endforeach @endif</textarea>
+                                                        name="geometry">@if (isset($edit))@foreach ($geometry as $_geometry)
+    {{ $_geometry['polygon'] ?? '' }}
+    @endforeach @endif</textarea>
                                                 </div>
                                             </div>
 
@@ -246,8 +250,8 @@
                             <div class="me-5" style="text-align: right">
                                 {{-- <a href="#" class="btn btn-secondary mt-5 ms-auto">Batal</a>
                                 &nbsp; --}}
-                                <button type="submit" class="btn btn-info float-right">Submit</button>
-                                <a href="{{ route('inventaris_kib_a') }}" class="btn btn-default float-right">Cancel</a>
+                                <button type="submit" class="btn btn-info float-right">Simpan</button>
+                                <a href="{{ route('inventaris_kib_a') }}" class="btn btn-default float-right">Batal</a>
                             </div>
                         </div>
                     </div>

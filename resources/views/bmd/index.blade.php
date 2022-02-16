@@ -14,7 +14,7 @@
             <div class="card-body">
                 <a href="{{ route('bmd.create') }}" class="btn btn-primary">+ Data BMD</a>
                 <hr />
-                <table class="table table-striped table-hover table-bordered order-column" id="master_barang">
+                <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_barang">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -80,12 +80,12 @@
                                 "{{ route('bmd.destroy', ':id') }}"; //create and change route
                             deleteUrl = deleteUrl.replace(':id', data);
 
-                            var editButton = "<a class='btn btn-success' href='" + editUrl +
-                                "'><i class='fas fa-edit'></i> Edit</a>";
+                            var editButton = "<a class='btn btn-success btn-sm' href='" + editUrl +
+                                "'><i class='fas fa-edit fa-xs'></i> Edit</a>";
                             var deleteButton =
-                                "<button class='btn btn-danger btn-delete' data-url='" +
+                                "<button class='btn btn-danger btn-delete btn-sm' data-url='" +
                                 deleteUrl + "' data-id='" +
-                                id + "'><i class='fas fa-trash-alt'></i> Delete</button>";
+                                id + "'><i class='fas fa-trash-alt fa-xs'></i> Hapus</button>";
                             var button = editButton + " " + deleteButton;
 
                             return button;

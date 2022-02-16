@@ -27,6 +27,7 @@
     <script src="{{ asset('assets/leaflet/plugin/js/L.Control.Layers.Tree.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
+    <script src="{{ asset('assets/leaflet/plugin/js/leaflet.zoomhome.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/inventaris/maps.js') }}"></script> --}}
 
     <script>
@@ -88,7 +89,7 @@
                             text: data,
                             icon: 'success',
                         }).then(function() {
-                            window.location = document.referrer;
+                            window.location.reload() // = document.referrer;
                         });
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
@@ -401,8 +402,6 @@
             maxZoom: 19
         }).addTo(minimap);
 
-
-
         var osm = L.tileLayer.provider('OpenStreetMap.Mapnik', {
             maxZoom: 19
         });
@@ -550,7 +549,14 @@
             position: 'topleft'
         }).addTo(map);
 
-        L.control.zoom().addTo(map)
+        // L.control.zoom().addTo(map)
+        // zoom home
+        var zoomHome = L.Control.zoomHome({
+            zoomHomeIcon: 'stop-circle',
+
+        });
+        zoomHome.addTo(map);
+
         map.pm.addControls({
             drawMarker: false,
             drawCircleMarker: false,
