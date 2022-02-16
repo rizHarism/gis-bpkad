@@ -23,13 +23,13 @@
                                 value="{{ $edit['username'] ?? '' }}">
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
                             <input type="email" name="email" class="form-control" id="email" placeholder="Email"
                                 value="{{ $edit['email'] ?? '' }}">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
@@ -92,6 +92,7 @@
     <script src="{{ asset('assets/leaflet/plugin/js/styledLayerControl.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
+    <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
         $(function() {
             $("#edit-form").submit(function() {
@@ -104,7 +105,7 @@
                     url: $(this).attr('action'),
                     data: JSON.stringify({
                         username: $(this).find("input[name='username']").val(),
-                        email: $(this).find("input[name='email']").val(),
+                        // email: $(this).find("input[name='email']").val(),
                         password: $(this).find("input[name='password']").val(),
                         skpd: $(this).find("select[name='skpd']").val(),
                         role: $(this).find("select[name='role']").val()
@@ -114,19 +115,40 @@
                     processData: false,
                     success: (data) => {
                         alert(data);
+                        swal.fire({
+                            title: 'Berhasil',
+                            text: data,
+                            icon: 'success',
+                        }).then(function() {
+                            window.location = document.referrer;
+                        });
                         window.location = document.referrer;
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
                         alert(xhr.responseJSON.message);
                         if (xhr.responseJSON.hasOwnProperty('errors')) {
+                            var html =
+                                "<ul style='justify-content: space-between;'>";
                             for (item in xhr.responseJSON.errors) {
                                 if (xhr.responseJSON.errors[item].length) {
                                     for (var i = 0; i < xhr.responseJSON.errors[item]
                                         .length; i++) {
                                         alert(xhr.responseJSON.errors[item][i]);
+                                        html += "<li class='dropdown-item'>" +
+                                            "<i class='fas fa-times' style='color: red;'></i> &nbsp&nbsp&nbsp&nbsp" +
+                                            xhr
+                                            .responseJSON
+                                            .errors[item][i] +
+                                            "</li>"
                                     }
                                 }
                             }
+                            html += '</ul>';
+                            swal.fire({
+                                title: 'Error',
+                                html: html,
+                                icon: 'warning',
+                            });
                         }
                     }
                 });

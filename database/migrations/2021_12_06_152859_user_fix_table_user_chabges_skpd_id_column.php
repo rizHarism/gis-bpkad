@@ -15,8 +15,8 @@ class UserFixTableUserChabgesSkpdIdColumn extends Migration
     public function up()
     {
 
-        DB::statement('ALTER TABLE users
-        modify skpd_id integer NULL');
+        // DB::statement('ALTER TABLE users
+        // modify skpd_id integer NULL');
     }
 
     /**
@@ -27,7 +27,7 @@ class UserFixTableUserChabgesSkpdIdColumn extends Migration
     public function down()
     {
         //
-        DB::statement('ALTER TABLE users
-        modify skpd_id integer NOT NULL');
+        // DB::statement('ALTER TABLE users
+        // modify skpd_id integer NOT NULL');
     }
 }

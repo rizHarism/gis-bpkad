@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -19,6 +20,7 @@ class PermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
+
         // create permissions
         // user
         Permission::firstOrCreate(['name' => 'dasar bmd.index']);
@@ -34,17 +36,21 @@ class PermissionsSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'administrator.konfigurasi simantab']);
         Permission::firstOrCreate(['name' => 'data opd.index']);
 
+
         // Assigning super admin
+        User::truncate();
         $superAdminRole = Role::firstOrCreate(['name' => 'Super-Admin']);
 
-        $user = \App\Models\User::where('email', 'admin@test')->first();
+        $user = \App\Models\User::where('username', 'Admin')->first();
         if (!$user) {
             $user = \App\Models\User::firstOrCreate([
                 'username' => 'Admin',
-                'email' => 'admin@test',
+                // 'email' => 'admin@test',
                 'password' => bcrypt('1234567809'),
+                'skpd_id' => '848',
+                'avatar' => 'default-avatar.png',
             ]);
-            echo "email: admin@test\n";
+            echo "username: Admin\n";
             echo "password: 1234567809\n";
         }
 

@@ -199,8 +199,11 @@
                 responsive: true,
                 "scrollX": true,
                 ajax: {
+                    // headers: {
+                    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    // },
                     url: '/api/getinventaris',
-                    method: "POST"
+                    method: "GET"
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -274,6 +277,9 @@
 
                     function callMap() {
                         $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
                             url: "/api/inventaris/" + id,
                             dataType: "json",
                             async: false,
