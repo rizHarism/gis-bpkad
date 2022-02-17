@@ -552,7 +552,7 @@
         // L.control.zoom().addTo(map)
         // zoom home
         var zoomHome = L.Control.zoomHome({
-            zoomHomeIcon: 'stop-circle',
+            zoomHomeIcon: 'dot-circle',
 
         });
         zoomHome.addTo(map);
