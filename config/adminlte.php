@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Simantab Kota Blitar',
+    'title' => 'GIS Aset Kota Blitar',
     'title_prefix' => '',
     'title_postfix' => '',
 
