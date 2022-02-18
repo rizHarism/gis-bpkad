@@ -2,11 +2,11 @@
     <!-- Nav tabs -->
     <div class="sidebarV2-tabs">
         <ul role="tablist">
-            <li><a href="#layers" role="tab"><i class="fas fa-layer-group"></i></a></li>
-            <li><a href="#query" role="tab"><i class="fas fa-search"></i></a></li>
-            <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+            <li><a href="#layers" title="Layer Wilayah" role="tab"><i class="fas fa-layer-group"></i></a></li>
+            <li><a href="#query" title="Pencarian Aset" role="tab"><i class="fas fa-search"></i></a></li>
+            <li><a href="#profile" title="Profil Pengguna" role="tab"><i class="fas fa-user-cog"></i></a></li>
             @if (auth()->user()->hasRole('Super-Admin'))
-                <li><a href="/dashboard" role="tab"><i class="fa fa-cog"></i></a></li>
+                <li><a href="/dashboard" title="Admin Dashboard" role="tab"><i class="fas fa-sign-in-alt"></i></a></li>
             @endif
         </ul>
 
@@ -36,7 +36,7 @@
                         PENCARIAN ASET SATUAN
                     </label>
                     <input type="text" name="inventarisSearch" id="inventarisSearch" class="form-control input-lg"
-                        placeholder="Masukkan nama inventaris" />
+                        placeholder="Masukkan nama inventaris / Dinas" autocomplete="off" />
                     <div id="inventarisList">
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                             <button type="" class="btn btn-primary mt-4">Cari</button>
                         </div>
                         <div class="col-md-3 align-center">
-                            <button type="button" id="clear" class="btn btn-secondary mt-4">Clear</button>
+                            <button type="button" id="clear" class="btn btn-secondary mt-4">Hapus</button>
                         </div>
                     </div>
                 </form>
@@ -142,7 +142,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="editProfileTitle">Edit Profile</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" onclick="defaultAvatar()"
-                            aria-label="Close"></button>
+                            aria-label="Tutup"></button>
                     </div>
 
                     <form id="editProfile-form" method="POST" class="form-horizontal" name="invent"

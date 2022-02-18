@@ -284,15 +284,23 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $(".btn-add-more").click(function() {
-                var html = $(".clone").html();
-                $(".img_div").after(html);
-            });
-            $("body").on("click", ".btn-remove", function() {
-                $(this).parents(".control-group").remove();
-            });
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
         });
+        // $(document).ready(function() {
+        //     $(".btn-add-more").click(function() {
+        //         var html = $(".clone").html();
+        //         $(".img_div").after(html);
+        //     });
+        //     $("body").on("click", ".btn-remove", function() {
+        //         $(this).parents(".control-group").remove();
+        //     });
+        // });
 
         $(function() {
             $("#edit-form").submit(function() {

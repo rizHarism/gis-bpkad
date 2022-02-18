@@ -31,7 +31,7 @@
     {{-- <script src="{{ asset('assets/inventaris/maps.js') }}"></script> --}}
 
     <script>
-        var layerAll = L.featureGroup();
+        // var layerAll = L.featureGroup();
         // change avatar image
         function chageAvatar(input) {
             if (input.files && input.files[0]) {
@@ -455,7 +455,7 @@
 
         var sertifikatStyle = {
             "color": "#ff7700",
-            "weight": 5,
+            "weight": 3,
             "opacity": 1
         };
         var nonSertifikatStyle = {
@@ -754,9 +754,9 @@
 
         // query pencarian
         $("#queryGeom").on('submit', function(e) {
-
+            layerAll = L.featureGroup();
             e.preventDefault(); // avoid to execute the actual submit of the form.
-
+            // map.removeLayer();
             var search = $('input[name="varQuery"]:checked').val();
             // var status = $('input[name="status"]:checked').val();
             var status = 1;
@@ -770,6 +770,8 @@
                 var urlSertifikat = "api/inventaris/" + status + "/" + kelurahan + "/" + sertifikat +
                     "/querysertifikat"
             }
+
+            console.log(urlSkpd)
             map.eachLayer(function(lay) {
                 if (lay.toGeoJSON) {
                     map.removeLayer(lay);
@@ -792,7 +794,7 @@
                 success: function(q) {
                     // if q =
                     var geom = q.data
-
+                    console.log(geom);
                     if (geom === 0) {
                         swal.fire(
                             'Data tidak ditemukan',
@@ -824,7 +826,7 @@
                             var layer = L.geoJSON(x, {
                                 style: sertifikatStyle,
                                 pmIgnore: true
-                            });
+                            }).addTo(map);
                             var minilayer = L.geoJSON(x, {
                                 style: sertifikatStyle,
                                 pmIgnore: true
@@ -975,7 +977,7 @@
                                     });
                             });
                         })
-                        layerAll.addTo(map);
+                        // layer.addTo(map);
                         // pointAll.addTo(map);
                         map.fitBounds(layerAll.getBounds());
                         // setInterval(function() {

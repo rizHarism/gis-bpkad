@@ -60,6 +60,14 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
         $(function() {
             $("#edit-form").submit(function() {
                 $.ajax({

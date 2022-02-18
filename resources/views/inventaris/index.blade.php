@@ -176,6 +176,16 @@
     {{-- <script src="{{ asset('assets/inventaris/kib_a.js') }}"></script> --}}
 
     <script>
+        //call loader
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
+
         var sertifikat = function(data, type, full, meta) {
             var status = data == 1 ? "Bersertifikat" : "Belum Bersertifikat";
             // console.log(status);

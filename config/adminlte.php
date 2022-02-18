@@ -271,12 +271,12 @@ return [
                 ],
                 [
                     'text'  => 'Aset Gedung (KIB C)',
-                    'url'   => 'inventaris_kib_c',
+                    'url'   => '#',
                     'can'   => 'data aset.inventaris kib c',
                 ],
                 [
                     'text'  => 'Aset jaringan (KIB D)',
-                    'url'   => 'inventaris_kib_d',
+                    'url'   => '#',
                     'can'   => 'data aset.inventaris kib d',
                 ],
             ],
@@ -496,3 +496,10 @@ return [
 
     'livewire' => false,
 ];
+?>
+<script>
+    function comingSoon() {
+
+        alert('data belum tersedia')
+    }
+</script>

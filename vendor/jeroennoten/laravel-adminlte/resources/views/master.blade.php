@@ -172,7 +172,8 @@
             top: 0;
             left: 0;
             z-index: 999;
-            background: rgba(255, 255, 255, 0.8) url("https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif") center no-repeat;
+            /* background: rgba(61, 37, 37, 0.8) url("https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif") center no-repeat; */
+            background: rgba(90, 94, 91, 0.35) url("assets/logo-image/preloader.gif") center no-repeat;
             /* background: rgba(255, 255, 255, 0.8) url("{{ asset('assets/logo-image/loader.gif') }}") center no-repeat; */
         }
 
@@ -181,9 +182,9 @@
         } */
 
         /* Turn off scrollbar when body element has the loading class */
-        body.loading {
+        /* body.loading {
             overflow: hidden;
-        }
+        } */
 
         /* Make spinner image visible when body element has the loading class */
         body.loading .overlayLoader {
@@ -197,7 +198,7 @@
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background-color: rgb(255, 255, 255);
+            background-color: rgba(90, 94, 91, 0.809);
         }
 
         .preloader .loading {
@@ -217,13 +218,13 @@
     {{-- Body Content --}}
 
     {{-- preloader --}}
+    <div class="overlayLoader" width="500"></div>
     <div class="preloader">
         <div class="loading">
-            <img src={{ asset('vendor/loader/loading.gif') }} width="150">
+            <img src={{ asset('assets/logo-image/preloader.gif') }}>
         </div>
     </div>
 
-    <div class="overlayLoader" width="150"></div>
 
     @yield('body')
     {{-- Base Scripts --}}

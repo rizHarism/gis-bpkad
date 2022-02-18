@@ -38,9 +38,17 @@
     {{-- swall --}}
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
         $(function() {
             var table = $('#master_skpd').DataTable({
-                processing: true,
+                // processing: true,
                 serverSide: true,
                 ajax: {
                     url: '/api/skpd',

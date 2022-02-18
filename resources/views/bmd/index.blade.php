@@ -48,9 +48,17 @@
     <script src="{{ asset('assets/inventaris/kib_a.js') }}"></script> --}}
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
         $(function() {
             var table = $('#master_barang').DataTable({
-                processing: true,
+                // processing: true,
                 serverSide: true,
                 ajax: {
                     url: '/api/masterbarang',
