@@ -44,7 +44,7 @@ class UserController extends \App\Http\Controllers\Controller
             'username' => 'required|unique:users,username',
             // 'email' => 'required|email|unique:users,email',
             'password' => 'required',
-            'skpd' => 'exists:master_skpd,id_skpd',
+            'skpd' => 'required',
             'role' => 'required',
         ]);
 
@@ -55,6 +55,7 @@ class UserController extends \App\Http\Controllers\Controller
                 // 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'skpd_id' => $request->skpd,
+                'avatar' => 'default-avatar.png',
             ]);
 
             $role = Role::findById($request->role);

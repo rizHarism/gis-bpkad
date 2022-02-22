@@ -73,6 +73,7 @@
     <script src="{{ asset('assets/leaflet/plugin/js/styledLayerControl.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
+    <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
         $(function() {
             $("#edit-form").submit(function() {
@@ -93,20 +94,40 @@
                     contentType: false,
                     processData: false,
                     success: (data) => {
-                        alert(data);
-                        window.location = document.referrer;
+                        // alert(data);
+                        swal.fire({
+                            title: 'Berhasil',
+                            text: data,
+                            icon: 'success',
+                        }).then(function() {
+                            window.location = document.referrer;
+                        });
+                        // window.location = document.referrer;
+                        // window.location = document.referrer;
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
-                        alert(xhr.responseJSON.message);
+                        // alert(xhr.responseJSON.message);
                         if (xhr.responseJSON.hasOwnProperty('errors')) {
                             for (item in xhr.responseJSON.errors) {
                                 if (xhr.responseJSON.errors[item].length) {
                                     for (var i = 0; i < xhr.responseJSON.errors[item]
                                         .length; i++) {
-                                        alert(xhr.responseJSON.errors[item][i]);
+                                        // alert(xhr.responseJSON.errors[item][i]);
+                                        html += "<li class='dropdown-item'>" +
+                                            "<i class='fas fa-times' style='color: red;'></i> &nbsp&nbsp&nbsp&nbsp" +
+                                            xhr
+                                            .responseJSON
+                                            .errors[item][i] +
+                                            "</li>"
                                     }
                                 }
                             }
+                            html += '</ul>';
+                            swal.fire({
+                                title: 'Error',
+                                html: html,
+                                icon: 'warning',
+                            });
                         }
                     }
                 });

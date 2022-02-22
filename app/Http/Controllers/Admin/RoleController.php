@@ -78,7 +78,7 @@ class RoleController extends \App\Http\Controllers\Controller
             return response($e->getMessage(), 501);
         }
 
-        return response('Role has been created successfully');
+        return response('Role ' . $role->name . ' berhasil dibuat');
     }
 
     /**
@@ -156,7 +156,7 @@ class RoleController extends \App\Http\Controllers\Controller
             return response('Failed to update the role.', 500);
         }
 
-        return response('The role has been updated successfully');
+        return response('Role ' . $role->name . ' berhasil di update');
     }
 
     /**
@@ -181,6 +181,6 @@ class RoleController extends \App\Http\Controllers\Controller
             return response($e->getMessage(), 501);
         }
 
-        return response("Role has been deleted successfully");
+        return response("Role berhasil dihapus");
     }
 }

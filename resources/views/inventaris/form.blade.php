@@ -33,7 +33,7 @@
                                                         id="nama_inventaris" placeholder=""
                                                         value="{{ $edit['nama'] ?? '' }}">
                                                     {{-- <input type="hidden" class="form-control " name="jenis_inventaris"
-                                                        id="jenis_inventaris" placeholder="" value="A"> --}}
+                                                    id="jenis_inventaris" placeholder="" value="A"> --}}
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -56,12 +56,13 @@
                                                 <div class="col-5 mb-2 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Nilai Aset :</label>
                                                     {{-- <input type="text" class="form-control " id="nilai_aset"
-                                            placeholder=""
-                                            value="{{ isset($edit) ? number_format($edit['nilai_aset'], 2, ',', '.') : '' }}"> --}}
+                                                    placeholder=""
+                                                    value="{{ isset($edit) ? number_format($edit['nilai_aset'], 2, ',', '.') : '' }}"> --}}
                                                     <input type="text" class="form-control " id="value_nilai_aset"
                                                         name="value_nilai_aset" placeholder=""
                                                         value="{{ $edit['nilai_aset'] ?? '' }}">
-                                                    {{-- value="{{ number_format($edit['nilai_aset'], 2, ',', '.') ?? '' }}"> --}}
+                                                    {{-- value="{{ number_format($edit['nilai_aset'], 2, ',', '.') ?? ''
+                                                }}"> --}}
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -171,7 +172,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic m">Lat :</label>
                                                     <input type="text" class="form-control " name="lat" id="lat"
                                                         placeholder=""
-                                                        value="@if (isset($edit)) @foreach ($geometry as $_geometry){{ $_geometry['lat'] ?? '' }} @endforeach @endif">
+                                                        value="{{ isset($edit->geometry) ? $edit->geometry->lat : '' }}">
                                                     {{-- </div> --}}
                                                 </div>
                                                 <div class="col-5">
@@ -179,59 +180,36 @@
                                                     <label for="" class="form-label mb-0 fst-italic">Long :</label>
                                                     <input type="text" class="form-control " name="lng" id="lng"
                                                         placeholder=""
-                                                        value="@if (isset($edit)) @foreach ($geometry as $_geometry){{ $_geometry['lng'] ?? '' }} @endforeach @endif">
+                                                        value="{{ isset($edit->geometry) ? $edit->geometry->lng : '' }}">
                                                     {{-- </div> --}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Geometry :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic">Geometri :</label>
                                                     <textarea class="form-control" name="geometry" id="geometry" rows="3"
-                                                        name="geometry">@if (isset($edit))@foreach ($geometry as $_geometry)
-    {{ $_geometry['polygon'] ?? '' }}
-    @endforeach @endif</textarea>
+                                                        name="geometry"
+                                                        disabled>{{ isset($edit->geometry) ? $edit->geometry->polygon : '' }}</textarea>
                                                 </div>
                                             </div>
 
-                                            {{-- <div class="row">
-                                                <div class="col-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Photo :</label>
-                                                    <div class="input-group control-group img_div form-group">
-                                                        <input type="file" name="image[]" class="form-control">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-success btn-add-more" type="button"><i
-                                                                    class="glyphicon glyphicon-plus"></i> +</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="clone hide " style="display: none;">
-                                                    <div class="control-group input-group form-group">
-                                                        <input type="file" name="image[]" class="form-control">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-danger btn-remove" type="button"><i
-                                                                    class="glyphicon glyphicon-remove"></i> -</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
 
                                             <div class="row">
                                                 <div class="col-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Photo :</label>
-                                                    {{-- <div class="input-group control-group form-group"> --}}
+                                                    <label for="" class="form-label mb-0 fst-italic">Foto :</label>
                                                     <input type="file" name="image" id="image" class="form-control"
                                                         accept="image/*">
-                                                    {{-- </div> --}}
+                                                    <span
+                                                        style="font-size: 10px">{{ isset($edit->galery) ? 'Kosongkan form jika tidak ingin merubah foto' : '' }}</span>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Document :</label>
-                                                    {{-- <div class="input-group control-group form-group"> --}}
+                                                    <label for="" class="form-label mb-0 fst-italic">Dokumen :</label>
                                                     <input type="file" name="document" id="document" class="form-control"
                                                         accept="application/pdf">
-                                                    {{-- </div> --}}
+                                                    <span
+                                                        style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah dokumen' : '' }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -242,19 +220,41 @@
                             <div class="col-md-7 justify-items-end">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div id="map" style="min-height: 500px; height:78vh ;max-height: 1000px"></div>
+                                        <span class="mb-0" style="font-style: italic">Preview Peta :</span>
+                                        <div id="map" style="min-height: 500px; height:65vh ;max-height: 1000px"></div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <span>Preview Foto :</span>
+                                                <div class="ratio ratio-16x9">
+                                                    <img id="foto-preview" class=""
+                                                        src="{{ isset($edit->galery)? asset('assets/galery/' . $edit->galery->image_path): asset('assets/galery/default-image.png') }}"
+                                                        alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span>Preview Sertifikat :</span>
+                                                <div class="ratio ratio-16x9">
+                                                    <iframe id="doc-preview"
+                                                        src="{{ isset($edit->document)? asset('assets/document/' . $edit->document->doc_path): asset('assets/galery/default-image.pdf') }}"></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <div class="me-5" style="text-align: right">
-                                {{-- <a href="#" class="btn btn-secondary mt-5 ms-auto">Batal</a>
-                                &nbsp; --}}
-                                <button type="submit" class="btn btn-info float-right">Simpan</button>
-                                <a href="{{ route('inventaris_kib_a') }}" class="btn btn-default float-right">Batal</a>
+                                <div class="me-5" style="text-align: right">
+                                    {{-- <a href="#" class="btn btn-secondary mt-5 ms-auto">Batal</a>
+                            &nbsp; --}}
+                                    <button type="submit" class="btn btn-info float-right">Simpan</button>
+                                    <a href="{{ route('inventaris_kib_a') }}"
+                                        class="btn btn-default float-right">Batal</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </form>
             </div>
 
@@ -291,6 +291,41 @@
             ajaxStop: function() {
                 $("body").removeClass("loading");
             }
+        });
+
+        //change Foto preview
+        function changeFoto(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // $('#foto-preview').attr('class', 'img-thumbnail');
+                    $('#foto-preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function changeDocument(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // $('#foto-preview').attr('class', 'img-thumbnail');
+                    $('#doc-preview').attr('src', e.target.result);
+                    // $('#avatar-image2').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#image").change(function() {
+            changeFoto(this);
+        });
+        $("#document").change(function() {
+            changeDocument(this);
         });
         // $(document).ready(function() {
         //     $(".btn-add-more").click(function() {
@@ -432,7 +467,7 @@
 
             poly.addTo(
                 map);
-            point.addTo(map)
+            // point.addTo(map)
             var bound = poly
                 .getBounds();
             map.fitBounds(
@@ -519,6 +554,8 @@
 
         map.on('pm:remove', (e) => {
             $('#geometry').val('')
+            $('#lat').val('')
+            $('#lng').val('')
         })
     </script>
 @stop

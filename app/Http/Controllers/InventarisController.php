@@ -399,8 +399,8 @@ class InventarisController extends Controller
         $skpd = Skpd::get();
         $master_barang = MasterBarang::get();
         $geometry = Geometry::where('inventaris_id', $id)->get();
-        $galery = Galery::get();
-        $document = Document::get();
+        $galery = Galery::where('inventaris_id', $id)->get();
+        $document = Document::where('inventaris_id', $id)->get();
         // dd($geometry);
         // return response()->json($response, Response::HTTP_OK);
         return view('inventaris.form', [
@@ -571,21 +571,27 @@ class InventarisController extends Controller
     public function destroy(Request $request, $id)
     {
         //
-        $user = Inventaris::findOrFail($id);
+        $inventaris = Inventaris::findOrFail($id);
         $geometry = Geometry::where('inventaris_id', $id);
-        $galery = Galery::where('inventaris_id', $id);
-        $document = Document::where('inventaris_id', $id);
+        $galery = Galery::where('inventaris_id', $id)->firstOrFail();
+        $document = Document::where('inventaris_id', $id)->firstOrFail();
         // $geometry = Geometry::find
-
+        // dd($galery->image_path, $document->doc_path);
         try {
-            $user->delete();
+            $inventaris->delete();
             $geometry->delete();
             $galery->delete();
             $document->delete();
+            if (File::exists(public_path('assets/galery/' . $galery->image_path))) {
+                File::delete(public_path('assets/galery/' . $galery->image_path));
+            }
+            if (File::exists(public_path('assets/document/' . $document->doc_path))) {
+                File::delete(public_path('assets/document/' . $document->doc_path));
+            }
         } catch (\Exception $e) {
             return response($e->getMessage(), 500);
         }
 
-        return response("User Berhasil Dihapus");
+        return response("Inventaris Berhasil Dihapus");
     }
 }

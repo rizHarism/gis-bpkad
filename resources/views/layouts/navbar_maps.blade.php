@@ -1,11 +1,12 @@
-<div id="sidebarV2" class="sidebarV2 collapsed " style=" margin-bottom: 100px; margin-right: 5px">
+<div id="sidebarV2" class="sidebarV2 collapsed "
+    style=" margin-bottom: 100px; margin-right: 5px; margin-top: min(70px, 10px);">
     <!-- Nav tabs -->
     <div class="sidebarV2-tabs">
-        <ul role="tablist">
+        <ul role=" tablist">
             <li><a href="#layers" title="Layer Wilayah" role="tab"><i class="fas fa-layer-group"></i></a></li>
             <li><a href="#query" title="Pencarian Aset" role="tab"><i class="fas fa-search"></i></a></li>
             <li><a href="#profile" title="Profil Pengguna" role="tab"><i class="fas fa-user-cog"></i></a></li>
-            @if (auth()->user()->hasRole('Super-Admin'))
+            @if (auth()->user()->hasPermissionTo('dashboard.index'))
                 <li><a href="/dashboard" title="Admin Dashboard" role="tab"><i class="fas fa-sign-in-alt"></i></a></li>
             @endif
         </ul>
@@ -227,7 +228,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div id="detailData"></div>
-                            <div class="modalMap">
+                            <div id="modalMap">
                                 <div id="minimap" class="h4" style="height: 20vh"></div>
                             </div>
                         </div>
@@ -242,7 +243,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
             </div>
         </div>

@@ -111,7 +111,7 @@
 
 
 
-    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    {{-- <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -124,13 +124,13 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                {{-- <img src="..." class="d-block w-100" alt="..."> --}}
+                                <img src="..." class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                {{-- <img src="..." class="d-block w-100" alt="..."> --}}
+                                <img src="..." class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                {{-- <img src="..." class="d-block w-100" alt="..."> --}}
+                                <img src="..." class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -152,7 +152,7 @@
                 <button type="button" class="btn btn-primary">Understood</button>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @stop
 
@@ -696,13 +696,14 @@
                                             contentType: false,
                                             processData: false,
                                             success: (data) => {
-                                                // alert(data);
-                                                Swal.fire(
-                                                    'Terhapus!',
-                                                    confirmNama +
-                                                    'Berhasil dihapus',
-                                                    'success',
-                                                );
+                                                alert(data);
+                                                console.log(data);
+                                                // Swal.fire(
+                                                //     'Terhapus!',
+                                                //     confirmNama +
+                                                //     'Berhasil dihapus',
+                                                //     'success',
+                                                // );
                                                 table.draw();
                                             },
                                             error: (xhr, ajaxOptions,

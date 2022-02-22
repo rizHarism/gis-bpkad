@@ -33,7 +33,7 @@
     <script>
         // var layerAll = L.featureGroup();
         // change avatar image
-        function chageAvatar(input) {
+        function changeAvatar(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
@@ -47,7 +47,7 @@
         }
 
         $("#file-input").change(function() {
-            chageAvatar(this);
+            changeAvatar(this);
         });
 
         function defaultAvatar() {
@@ -83,7 +83,6 @@
                     contentType: false,
                     processData: false,
                     success: (data) => {
-                        console.log(data);
                         swal.fire({
                             title: 'Berhasil',
                             text: data,
@@ -164,7 +163,7 @@
             $(document).on('click', 'li', function() {
                 $('#inventarisSearch').val($(this).text());
                 var q = $(this).val()
-                console.log(q)
+                // console.log(q)
                 if (q !== 0) {
                     map.eachLayer(function(lay) {
                         if (lay.toGeoJSON) {
@@ -181,10 +180,10 @@
                         type: 'GET',
                         dataType: 'json',
                         success: function(json) {
-                            console.log(json)
+                            // console.log(json)
                             const x = json.data
                             $.each(x, (i, property) => {
-                                console.log(property.geometry.polygon)
+                                // console.log(property.geometry.polygon)
                                 var polygon = JSON.parse(property.geometry.polygon)
                                 var layer = L.geoJSON(polygon, {
                                         style: sertifikatStyle,
@@ -203,6 +202,21 @@
                                 var lng = property.geometry.lng
 
                                 layer.on('click', function() {
+                                    minimap.eachLayer(function(lay) {
+                                        if (lay.toGeoJSON) {
+                                            minimap.removeLayer(lay);
+                                        }
+
+                                    });
+                                    var mini = (JSON.parse(property.geometry
+                                        .polygon));
+                                    minilayer = L.geoJSON(mini, {
+                                        style: sertifikatStyle,
+                                        pmIgnore: true
+                                    });
+                                    minilayer.addTo(minimap);
+
+                                    // console.log(minilayer)
                                     const sertifikat = (property
                                             .status == 1) ?
                                         "Bersertifikat" :
@@ -337,19 +351,17 @@
 
                                     $('#detailModal').on('shown.bs.modal',
                                         function() {
-                                            console.log('sasa')
+                                            // console.log('sasa')
                                             setTimeout(function() {
                                                 minimap
                                                     .invalidateSize();
-
-                                                minilayer.addTo(
-                                                    minimap);
                                                 minimap.fitBounds(
                                                     minilayer
                                                     .getBounds()
                                                 );
 
                                             }, 500);
+                                            // console.log(minilayer);
                                         });
                                 });
 
@@ -478,12 +490,12 @@
             if (shape === 'Polygon') {
 
                 var seeArea = turf.area(layer.toGeoJSON());
-                console.log(seeArea)
-                console.log(layer)
+                // console.log(seeArea)
+                // console.log(layer)
                 var ha = seeArea / 10000;
                 var mPersegi = seeArea;
-                console.log(ha)
-                console.log(mPersegi)
+                // console.log(ha)
+                // console.log(mPersegi)
                 if (mPersegi > 10000) {
                     layer.bindPopup("Luas " + nf.format(ha.toFixed(2)) + " Ha");
                 } else {
@@ -496,12 +508,12 @@
             if (shape === 'Line') {
 
                 var seeArea = turf.length(layer.toGeoJSON());
-                console.log(seeArea)
-                console.log(layer)
+                // console.log(seeArea)
+                // console.log(layer)
                 var meter = seeArea * 1000;
                 var kilometer = seeArea;
-                console.log(meter)
-                console.log(kilometer)
+                // console.log(meter)
+                // console.log(kilometer)
                 if (meter < 1000) {
                     layer.bindPopup("Jarak " + nf.format(meter.toFixed(2)) + " Meter");
                 } else {
@@ -522,7 +534,7 @@
 
             }
 
-            console.log(JSON.stringify(layer.toGeoJSON()))
+            // console.log(JSON.stringify(layer.toGeoJSON()))
         })
         // membuat control sendiri
 
@@ -531,6 +543,7 @@
                 var img = L.DomUtil.create('img')
                 img.src = 'assets/logo-image/logo-center-bpkad-yellow.png'
                 img.style.width = '400px'
+                img.class = 'img-fluid'
                 // img.style.margin = '50px'
 
                 return img;
@@ -618,7 +631,7 @@
                 }
             });
             return polygonSearch;
-            console.log(polygonSearch);
+            // console.log(polygonSearch);
             // alert(polygonSearch);
         };
 
@@ -771,7 +784,7 @@
                     "/querysertifikat"
             }
 
-            console.log(urlSkpd)
+            // console.log(urlSkpd)
             map.eachLayer(function(lay) {
                 if (lay.toGeoJSON) {
                     map.removeLayer(lay);
@@ -827,14 +840,29 @@
                                 style: sertifikatStyle,
                                 pmIgnore: true
                             }).addTo(map);
-                            var minilayer = L.geoJSON(x, {
-                                style: sertifikatStyle,
-                                pmIgnore: true
-                            });
+                            // var minilayer = L.geoJSON(x, {
+                            //     style: sertifikatStyle,
+                            //     pmIgnore: true
+                            // });
 
                             layer.addTo(layerAll);
 
                             layer.on('click', function() {
+                                var minilayer = '';
+                                minimap.eachLayer(function(lay) {
+                                    if (lay.toGeoJSON) {
+                                        minimap.removeLayer(lay);
+                                    }
+
+                                });
+                                var mini = (JSON.parse(property.geometry.polygon));
+                                minilayer = L.geoJSON(mini, {
+                                    style: sertifikatStyle,
+                                    pmIgnore: true
+                                });
+                                minilayer.addTo(minimap);
+
+                                // console.log(minilayer)
                                 const sertifikat = (property
                                         .status == 1) ?
                                     "Bersertifikat" :
@@ -967,13 +995,13 @@
 
                                 $('#detailModal').on('shown.bs.modal',
                                     function() {
+
                                         setTimeout(function() {
                                             minimap.invalidateSize();
-                                            minilayer.addTo(minimap);
                                             minimap.fitBounds(minilayer
                                                 .getBounds());
+                                        }, 1000);
 
-                                        }, 500);
                                     });
                             });
                         })

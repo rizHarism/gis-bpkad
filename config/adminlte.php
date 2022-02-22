@@ -229,8 +229,9 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'dashboard',
-            'icon'        => 'fas fa-tachometer-alt',
-            'label_color' => 'success',
+            'icon'        => 'fas fa-chart-pie',
+            // 'label_color' => 'success',
+            'can'  => 'dashboard.index',
         ],
         // ['header' => '-----------------------------------------------'],
         [
@@ -239,22 +240,26 @@ return [
             'icon' => 'fas  fa-globe-asia',
             'topnav' => true,
         ],
-        ['header' => 'MANAJEMEN PENDATAAN'],
+        [
+            'header' => 'MANAJEMEN PENDATAAN',
+            'can'  => 'data dasar.index',
+        ],
 
         [
-            'text' => 'Data Dasar BMD',
+            'text' => 'Data Dasar',
             'url'  => 'datadasarbmd',
+            'can'  => 'data dasar.index',
             'icon' => 'fas fa-fw fa-file-alt',
             'submenu' => [
                 [
-                    'text'  => 'Barang Aset Daerah',
+                    'text'  => 'Data BMD',
                     'url'   => 'datadasarbmd',
-                    'can'  => 'dasar bmd.index',
+                    'can'  => 'data dasar.bmd',
                 ],
                 [
                     'text'  => 'Data OPD',
-                    'url'  => '/opd',
-                    'can'  => 'administrator.data opd',
+                    'url'  => 'opd',
+                    'can'  => 'data dasar.opd',
                 ]
             ]
         ],
@@ -267,17 +272,17 @@ return [
                 [
                     'text'  => 'Aset Tanah (KIB A)',
                     'url'   => 'inventaris',
-                    'can'   => 'data aset.inventaris kib a',
+                    'can'   => 'data aset.aset tanah',
                 ],
                 [
                     'text'  => 'Aset Gedung (KIB C)',
                     'url'   => '#',
-                    'can'   => 'data aset.inventaris kib c',
+                    'can'   => 'data aset.aset gedung',
                 ],
                 [
                     'text'  => 'Aset jaringan (KIB D)',
                     'url'   => '#',
-                    'can'   => 'data aset.inventaris kib d',
+                    'can'   => 'data aset.aset jaringan',
                 ],
             ],
         ],
@@ -300,7 +305,10 @@ return [
         //     ]
         // ],
 
-        ['header' => 'MANAJEMEN ADMIN'],
+        [
+            'header' => 'MANAJEMEN ADMIN',
+            'can'  => 'administrator.index',
+        ],
         [
             'text' => 'Administrator',
             'url'  => 'admin/opd',
@@ -314,17 +322,18 @@ return [
                 //     'icon' => 'fas fa-fw  fa-users',
                 // ],
                 [
-                    'text' => 'Role Setting',
-                    'url'  => 'admin/roles',
-                    'can'  => 'administrator.data opd',
-                    'icon' => 'fas fa-fw  fa-users',
-                ],
-                [
-                    'text' => 'Users Management',
+                    'text' => 'Manajemen User',
                     'url'  => 'admin/users',
                     'can'  => 'administrator.user management',
                     'icon' => 'fas fa-fw  fa-users',
                 ],
+                [
+                    'text' => 'Pengaturan Role',
+                    'url'  => 'admin/roles',
+                    'can'  => 'administrator.role setting',
+                    'icon' => 'fas fa-fw  fa-users',
+                ],
+
                 // [
                 //     'text'  => 'Setting Profil',
                 //     'url'   => 'admin/konfigurasi',

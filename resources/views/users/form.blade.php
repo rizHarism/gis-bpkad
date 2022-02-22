@@ -35,7 +35,8 @@
                         <div class="col-sm-10">
                             <input type="password" name="password" class="form-control" id="password"
                                 placeholder="Password" value="">
-                            <span>{{ isset($edit) ? 'Fill blank if you don\'t want to change the password' : '' }}</span>
+                            <span
+                                style="font-size: 12px">{{ isset($edit) ? 'kosongkan isian jika tidak ingin merubah password' : '' }}</span>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -114,7 +115,7 @@
                     contentType: false,
                     processData: false,
                     success: (data) => {
-                        alert(data);
+                        // alert(data);
                         swal.fire({
                             title: 'Berhasil',
                             text: data,
@@ -122,10 +123,10 @@
                         }).then(function() {
                             window.location = document.referrer;
                         });
-                        window.location = document.referrer;
+                        // window.location = document.referrer;
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
-                        alert(xhr.responseJSON.message);
+                        // alert(xhr.responseJSON.message);
                         if (xhr.responseJSON.hasOwnProperty('errors')) {
                             var html =
                                 "<ul style='justify-content: space-between;'>";
@@ -133,7 +134,7 @@
                                 if (xhr.responseJSON.errors[item].length) {
                                     for (var i = 0; i < xhr.responseJSON.errors[item]
                                         .length; i++) {
-                                        alert(xhr.responseJSON.errors[item][i]);
+                                        // alert(xhr.responseJSON.errors[item][i]);
                                         html += "<li class='dropdown-item'>" +
                                             "<i class='fas fa-times' style='color: red;'></i> &nbsp&nbsp&nbsp&nbsp" +
                                             xhr

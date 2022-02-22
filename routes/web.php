@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,8 @@ Auth::routes();
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('maps');
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('maps')->can('home.peta sebaran');
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard')->can('dashboard.index');
     // Route::get('/admin/opd', [App\Http\Controllers\SkpdController::class, 'index'])->name('dataopd')->can('data opd.index');
 
     Route::get('admin/roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index')->can('roles.index');

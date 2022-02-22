@@ -131,7 +131,7 @@
         <div class="logo">
             <div class="row">
                 <div class="col-md-4">
-                    <img class="img-responsive" src="{{ asset('assets/logo-image/blitar.png') }}" alt=""> <label><span> GIS
+                    <img class="img-fluid" src="{{ asset('assets/logo-image/blitar.png') }}" alt=""> <label><span> GIS
                             Aset Kota
                             Blitar
                         </span></label>

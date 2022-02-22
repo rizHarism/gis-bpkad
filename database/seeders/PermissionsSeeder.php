@@ -23,23 +23,39 @@ class PermissionsSeeder extends Seeder
 
         // create permissions
         // user
-        Permission::firstOrCreate(['name' => 'dasar bmd.index']);
+
+        Permission::firstOrCreate(['name' => 'home.peta sebaran']);
+        Permission::firstOrCreate(['name' => 'dashboard.index']);
+        Permission::firstOrCreate(['name' => 'data dasar.index']);
+        Permission::firstOrCreate(['name' => 'data dasar.bmd']);
+        Permission::firstOrCreate(['name' => 'data dasar.opd']);
         Permission::firstOrCreate(['name' => 'data aset.index']);
-        Permission::firstOrCreate(['name' => 'data aset.inventaris kib a']);
-        Permission::firstOrCreate(['name' => 'data aset.inventaris kib c']);
-        Permission::firstOrCreate(['name' => 'data aset.inventaris kib d']);
-        Permission::firstOrCreate(['name' => 'pengelolaan aset.index']);
-        Permission::firstOrCreate(['name' => 'pengelolaan aset.pengadaan']);
-        Permission::firstOrCreate(['name' => 'pengelolaan aset.mutasi aset']);
+        Permission::firstOrCreate(['name' => 'data aset.aset tanah']);
+        Permission::firstOrCreate(['name' => 'data aset.aset gedung']);
+        Permission::firstOrCreate(['name' => 'data aset.aset jaringan']);
         Permission::firstOrCreate(['name' => 'administrator.index']);
-        Permission::firstOrCreate(['name' => 'administrator.setting profil']);
-        Permission::firstOrCreate(['name' => 'administrator.konfigurasi simantab']);
-        Permission::firstOrCreate(['name' => 'data opd.index']);
+        Permission::firstOrCreate(['name' => 'administrator.pengaturan role']);
+        Permission::firstOrCreate(['name' => 'administrator.manajemen user']);
 
 
         // Assigning super admin
         User::truncate();
         $superAdminRole = Role::firstOrCreate(['name' => 'Super-Admin']);
+        $superAdminPermissions = [
+            'home.peta sebaran',
+            'dashboard.index',
+            'data dasar.index',
+            'data dasar.bmd',
+            'data dasar.opd',
+            'data aset.index',
+            'data aset.aset tanah',
+            'data aset.aset gedung',
+            'data aset.aset jaringan',
+            'administrator.index',
+            'administrator.pengaturan role',
+            'administrator.manajemen user',
+        ];
+        $superAdminRole->syncPermissions($superAdminPermissions);
 
         $user = \App\Models\User::where('username', 'Admin')->first();
         if (!$user) {
@@ -60,15 +76,7 @@ class PermissionsSeeder extends Seeder
         // default role
         $generalRole = Role::firstOrCreate(['name' => 'General']);
         $generalPermissions = [
-            'dasar bmd.index',
-            'data aset.index',
-            'data aset.inventaris kib a',
-            'data aset.inventaris kib c',
-            'data aset.inventaris kib d',
-            'pengelolaan aset.index',
-            'pengelolaan aset.pengadaan',
-            'pengelolaan aset.mutasi aset',
-            'data opd.index',
+            'home.peta sebaran',
         ];
         $generalRole->syncPermissions($generalPermissions);
     }
