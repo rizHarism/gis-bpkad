@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard | Simantab')
+@section('title', 'Data Dasar | BMD')
 
 @section('content_header')
     <div class="mb-0"></div>

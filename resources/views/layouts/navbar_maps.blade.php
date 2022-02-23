@@ -163,7 +163,7 @@
                                     </label>
                                     <p class="" style="font-style: italic; font-size: 12px">
                                         *klik untuk merubah foto</p>
-                                    <input id="file-input" type="file" style="display: none;" />
+                                    <input id="file-input" type="file" style="display: none;" accept="image/*" />
                                     {{-- <p>klik foto untuk mengubah</p> --}}
                                 </div>
                                 <div class="col-md-8 d-flex align-items-center">

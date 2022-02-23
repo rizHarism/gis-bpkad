@@ -1,8 +1,6 @@
 @extends('adminlte::page')
 
-@section('title')
-    {{ isset($edit) ? 'Edit Inventaris | Simantab' : 'Tambah Inventaris' }}
-@stop
+@section('title', 'Data Aset | Aset Tanah')
 
 @section('content_header')
     <div class="mt-2"></div>

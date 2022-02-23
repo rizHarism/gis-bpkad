@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Inventaris | Simantab')
+@section('title', 'Data Aset | Aset Tanah')
 
 @section('content_header')
     {{-- <div class="h1 ">Data Aset Tanah Kota Blitar</div> --}}

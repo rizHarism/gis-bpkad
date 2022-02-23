@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 {{-- @section('title', 'Dashboard | Users') --}}
-@section('title', 'User Management')
+@section('title', 'Administrator | User Manajemen')
 
 @section('content_header')
     <div class="mb-0"></div>

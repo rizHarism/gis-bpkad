@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard | Simantab')
+@section('title', 'Data Dasar | OPD')
 
 @section('content_header')
     <div class="mb-0"></div>
@@ -9,7 +9,7 @@
 @section('content')
     <div class="container-fluid pb-5 ps-3 pe-3">
         <div class="card">
-            <h5 class="card-header">Data SKPD</h5>
+            <h5 class="card-header">Data Organisasi Perangkat Daerah</h5>
             <div class="card-body">
                 <a href="{{ route('dataopd.create') }}" class="btn btn-primary">+ Data OPD</a>
                 <hr />

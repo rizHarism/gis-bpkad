@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'User Management')
+@section('title', 'Administrator | Users Manajemen')
 
 @section('content_header')
     <div class="mb-0"></div>

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard | Roles')
+@section('title', 'Administrator | Manajemen Roles')
 
 @section('content_header')
     <div class="mb-0"></div>

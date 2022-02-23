@@ -14,7 +14,7 @@
                 action="{{ isset($edit) ? route('dataopd.update', ['opd' => $edit]) : route('dataopd.store') }}">
                 @method('PUT')
                 {{ csrf_field() }}
-                <h5 class="card-header">Data OPD</h5>
+                <h5 class="card-header">{{ isset($edit) ? 'Edit Data Opd' : 'Tambah Data OPD' }}</h5>
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="kode-opd" class="col-sm-2 col-form-label">Kode OPD</label>
