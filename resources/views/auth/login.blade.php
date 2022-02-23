@@ -103,7 +103,7 @@
         }
 
         .logo {
-            font-size: 1.5vh;
+            font-size: 2vh;
             font-style: italic;
             margin-left: 40px;
             margin-top: 30px;
