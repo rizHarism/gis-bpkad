@@ -96,7 +96,6 @@
             href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         {{-- datatables css --}}
         {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
-
     @else
         <link rel="stylesheet" href="{{ mix(config('adminlte.laravel_mix_css_path', 'css/app.css')) }}">
     @endif
@@ -172,7 +171,7 @@
             left: 0;
             z-index: 999;
             /* background: rgba(61, 37, 37, 0.8) url("https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif") center no-repeat; */
-            background: rgba(90, 94, 91, 0.35) url("assets/logo-image/preloader.gif") center no-repeat;
+            background: rgba(90, 94, 91, 0.35) url("{{ 'asset(assets/logo-image/preloader.gif)' }}") center no-repeat;
             /* background: rgba(255, 255, 255, 0.8) url("{{ asset('assets/logo-image/loader.gif') }}") center no-repeat; */
         }
 
