@@ -16,13 +16,13 @@
     {{-- Small brand logo --}}
     <img src="{{ asset(config('adminlte.logo_img', 'vendor/adminlte/dist/img/AdminLTELogo.png')) }}"
         alt="{{ config('adminlte.logo_img_alt', 'AdminLTE') }}"
-        class="{{ config('adminlte.logo_img_class', 'brand-image img-circle elevation-3') }}" style="opacity:.8">
+        class="mt-0 {{ config('adminlte.logo_img_class', 'brand-image img-circle elevation-3') }}" style="opacity:.8">
 
     {{-- Brand text --}}
     <span class="brand-text font-weight-light {{ config('adminlte.classes_brand_text') }}">
         {{-- {!! config('adminlte.logo', '<b>Admin</b>LTE') !!} --}}
-        <p class="h6 mb-0" style="font-size: 12px">Sistem Infomasi Manajemen Aset</p>
-        <p class="h6 mt-0 mb-0" style="font-size: 12px;">BPKAD Kota Blitar</p>
+        <p class="h6 mb-0" style="font-size: 13px; font-weight: 900;">Sistem Infomasi Geografis Aset</p>
+        <p class="h6 mt-0 mb-0" style="font-size: 13px; font-weight: 900;">BPKAD Kota Blitar</p>
     </span>
 
 </a>
