@@ -93,6 +93,7 @@ class InventarisController extends Controller
 
         //count aset bersertifikat terpetakan
         $mapped_sertifikat = count(Inventaris::with('geometry')
+            ->where('status', 1)
             ->has('geometry')
             ->get());
         $not_mapped_inventaris = $sertifikat - $mapped_sertifikat;
