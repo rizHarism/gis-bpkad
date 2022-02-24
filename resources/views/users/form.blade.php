@@ -68,8 +68,8 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-info float-right">Submit</button>
-                    <a href="{{ route('users.index') }}" class="btn btn-default float-right">Cancel</a>
+                    <button type="submit" class="btn btn-info float-right">Simpan</button>
+                    <a href="{{ route('users.index') }}" class="btn btn-default float-right">Batal</a>
                 </div>
                 <!-- /.card-footer -->
             </form>

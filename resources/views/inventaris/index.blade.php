@@ -27,7 +27,8 @@
                     &nbsp;&nbsp;</label>
 
                 <hr />
-                <table class="table table-striped table-hover table-bordered order-column table-sm" id="inventaris_kib_a">
+                <table class="table table-striped table-hover table-bordered order-column table-sm" id="inventaris_kib_a"
+                    style="width: 100%">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -429,140 +430,32 @@
                                             maxZoom: 19
                                         }).addTo(map);
 
-                                    L.PM.initialize({
-                                        optIn: true
+                                    var batasKota = {
+                                        "color": "#ffe312",
+                                        "weight": 2,
+                                        "opacity": 1
+                                    };
 
-                                    });
-
-                                    if (verifMap) {
-                                        map.pm.addControls({
-                                            drawMarker: false,
-                                            drawCircleMarker: false,
-                                            drawPolyline: false,
-                                            drawRectangle: false,
-                                            drawPolygon: false,
-                                            drawCircle: false,
-                                            cutPolygon: false,
-                                            rotateMode: false,
-                                            editControls: false,
+                                    var batasSananwetan = new L.GeoJSON.AJAX(
+                                        "{{ asset('assets/leaflet/geojson/sananwetan.geojson') }}", {
+                                            style: batasKota,
+                                            pmIgnore: true
                                         });
-                                    } else {
-                                        map.pm.addControls({
-                                            drawMarker: false,
-                                            drawCircleMarker: false,
-                                            drawPolyline: false,
-                                            drawRectangle: false,
-                                            drawPolygon: true,
-                                            drawCircle: false,
-                                            cutPolygon: false,
-                                            rotateMode: false,
-                                            editControls: false,
+                                    var batasKepanjenkidul = new L.GeoJSON.AJAX(
+                                        "{{ asset('assets/leaflet/geojson/kepanjenkidul.geojson') }}", {
+                                            style: batasKota,
+                                            pmIgnore: true
                                         });
-                                    }
-
-
-                                    map.on('pm:create', ({
-                                        layer
-                                    }) => {
-                                        layer.on('pm:edit', e => {
-                                            console.log(e);
-                                            var nf = Intl
-                                                .NumberFormat();
-                                            var seeArea =
-                                                turf.area(
-                                                    layer
-                                                    .toGeoJSON()
-                                                );
-                                            var ha =
-                                                seeArea /
-                                                10000;
-                                            var content =
-                                                "<table class='table table-striped table-bordered table-sm'>" +
-                                                "<tr><th colspan='2'>Luas</th></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(ha
-                                                    .toFixed(
-                                                        2)
-                                                ) +
-                                                " Hektare" +
-                                                "</td></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(
-                                                    seeArea
-                                                    .toFixed(
-                                                        2)
-                                                ) +
-                                                " Meter²" +
-                                                "</td></tr>" +
-                                                "</table>"
-                                            layer.bindPopup(
-                                                content);
-                                            console.log(
-                                                seeArea);
-                                            var g = JSON
-                                                .stringify(
-                                                    layer
-                                                    .toGeoJSON()
-                                                )
-                                            var g = JSON
-                                                .parse(g)
-                                            let gdb = JSON
-                                                .stringify(g
-                                                    .geometry
-                                                )
-
+                                    var batasSukorejo = new L.GeoJSON.AJAX(
+                                        "{{ asset('assets/leaflet/geojson/sukorejo.geojson') }}", {
+                                            style: batasKota,
+                                            pmIgnore: true
                                         });
-                                    });
-
-                                    map.on('pm:create', function(e) {
-                                        console.log(e);
-                                        var shape = e.shape,
-                                            layer = e.layer
-                                        var nf = Intl
-                                            .NumberFormat();
-                                        // alert(turf.area(layer.toGeoJSON()))
-
-                                        console.log(JSON.stringify(
-                                            layer
-                                            .toGeoJSON()))
-                                        if (shape === 'Polygon') {
-
-                                            var seeArea = turf.area(
-                                                layer
-                                                .toGeoJSON());
-                                            var ha = seeArea /
-                                                10000;
-                                            var content =
-                                                "<table class='table table-striped table-bordered table-sm'>" +
-                                                "<tr><th colspan='2'>Luas</th></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(ha
-                                                    .toFixed(2)) +
-                                                " Hektare" +
-                                                "</td></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(seeArea
-                                                    .toFixed(
-                                                        2)) +
-                                                " Meter²" +
-                                                "</td></tr>" +
-                                                "</table>"
-
-                                            layer.bindPopup(
-                                                content);
-                                            var g = JSON.stringify(
-                                                layer
-                                                .toGeoJSON())
-                                            // var g = JSON.parse(g)
-                                            // let gdb = JSON.stringify(g.geometry)
-
-                                            // console.log(g)
-                                        }
-
-                                    });
+                                    batasSananwetan.addTo(map);
+                                    batasKepanjenkidul.addTo(map);
+                                    batasSukorejo.addTo(map);
 
 
-                                    // console.log(JSON.stringify(geo));
 
                                     $('#myModal').modal('show');
 

@@ -14,7 +14,7 @@
                 action="{{ $editable ? route('roles.update', ['role' => $role['id']]) : route('roles.store') }}">
                 @method('PUT')
                 {{ csrf_field() }}
-                <h5 class="card-header">Roles Permission</h5>
+                <h5 class="card-header">{{ $editable ? 'Edit Role' : 'Tambah Role' }}</h5>
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -48,8 +48,8 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-info float-right">{{ $editable ? 'Update' : 'Submit' }}</button>
-                    <a href="{{ route('roles.index') }}" class="btn btn-default float-right">Cancel</a>
+                    <button type="submit" class="btn btn-info float-right">{{ $editable ? 'Simpan' : 'Simpan' }}</button>
+                    <a href="{{ route('roles.index') }}" class="btn btn-default float-right">Batal</a>
                 </div>
                 <!-- /.card-footer -->
             </form>

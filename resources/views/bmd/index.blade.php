@@ -14,10 +14,11 @@
             <div class="card-body">
                 <a href="{{ route('bmd.create') }}" class="btn btn-primary">+ Data BMD</a>
                 <hr />
-                <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_barang">
+                <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_barang"
+                    style="width: 100%">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th width="5%">No</th>
                             {{-- <th>Id Master Barang</th> --}}
                             <th>Kode Barang</th>
                             <th>Nama Master Barang</th>

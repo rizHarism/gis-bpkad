@@ -5,9 +5,10 @@
         <ul role=" tablist">
             <li><a href="#layers" title="Layer Wilayah" role="tab"><i class="fas fa-layer-group"></i></a></li>
             <li><a href="#query" title="Pencarian Aset" role="tab"><i class="fas fa-search"></i></a></li>
-            <li><a href="#profile" title="Profil Pengguna" role="tab"><i class="fas fa-user-cog"></i></a></li>
+            <li><a href="#profile" title="Profil Pengguna" role="tab"><i class="fas fa-user-edit"></i></a></li>
             @if (auth()->user()->hasPermissionTo('dashboard.index'))
-                <li><a href="/dashboard" title="Admin Dashboard" role="tab"><i class="fas fa-sign-in-alt"></i></a></li>
+                <li><a href="/dashboard" title="Dashboard" role="tab"><i class="fas fa-desktop"></i></a>
+                </li>
             @endif
         </ul>
 
@@ -20,13 +21,13 @@
     <div class="sidebarV2-content">
         <div class="sidebarV2-pane" id="layers">
             <h1 class="sidebarV2-header">
-                Layer Wilayah dan Aset BMD
+                Layer Wilayah Kota Blitar
                 <span class="sidebarV2-close"><i class="fa fa-caret-right"></i></span>
             </h1>
         </div>
 
         <div class="sidebarV2-pane" id="query">
-            <h1 class="sidebarV2-header">Query Pencarian<span class="sidebarV2-close"><i
+            <h1 class="sidebarV2-header">Pencarian Aset<span class="sidebarV2-close"><i
                         class="fa fa-caret-right"></i></span>
             </h1>
 
@@ -88,11 +89,13 @@
                         </select>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 align-center">
-                            <button type="" class="btn btn-primary mt-4">Cari</button>
+                        <div class="col-md ">
+                            <button type="" class="btn btn-primary mt-4"><i class="fas fa-search"></i>
+                                Cari &nbsp;&nbsp;</button>
+                            <button type="button" id="clear" class="btn btn-secondary mt-4"><i
+                                    class="fas fa-eraser"></i> Hapus</button>
                         </div>
-                        <div class="col-md-3 align-center">
-                            <button type="button" id="clear" class="btn btn-secondary mt-4">Hapus</button>
+                        <div class="col-md ">
                         </div>
                     </div>
                 </form>
@@ -101,7 +104,8 @@
         </div>
 
         <div class="sidebarV2-pane" id="profile">
-            <h1 class="sidebarV2-header">Profile<span class="sidebarV2-close"><i class="fa fa-caret-right"></i></span>
+            <h1 class="sidebarV2-header">Profil Pengguna<span class="sidebarV2-close"><i
+                        class="fa fa-caret-right"></i></span>
             </h1>
             <div class="container-fluid mt-5">
 
@@ -117,7 +121,7 @@
                         <div class="row">
                             <div class="col">
                                 <a data-target="#editProfile" data-toggle="modal" href="#editModal"
-                                    class="btn btn-success"> &nbsp; Edit &nbsp;</a>
+                                    class="btn btn-success"> &nbsp;<i class="fas fa-edit fa-xs"></i> Edit &nbsp;</a>
                             </div>
                             <div class="col">
                                 <form method="POST" action="/logout">
@@ -125,6 +129,7 @@
 
                                     <a href="#" class="btn btn-danger"
                                         onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <i class="fas fa-sign-out-alt fa-xs"></i>
                                         {{ __('adminlte::adminlte.log_out') }}
                                     </a>
                                 </form>

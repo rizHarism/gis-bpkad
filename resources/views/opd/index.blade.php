@@ -13,10 +13,11 @@
             <div class="card-body">
                 <a href="{{ route('dataopd.create') }}" class="btn btn-primary">+ Data OPD</a>
                 <hr />
-                <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_skpd">
+                <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_skpd"
+                    style="width: 100%">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th width="5%">No</th>
                             {{-- <th>Id Master Barang</th> --}}
                             <th>Kode SKPD</th>
                             <th>Nama SKPD</th>
