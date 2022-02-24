@@ -425,7 +425,7 @@
 
         // var basemaps = [esri, osm]
         var basemaps = {
-            label: 'Peta Base',
+            label: 'Peta Dasar',
             children: [{
                     label: 'Satelit',
                     layer: esri
