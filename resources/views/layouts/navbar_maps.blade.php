@@ -154,7 +154,7 @@
                     <form id="editProfile-form" method="POST" class="form-horizontal" name="invent"
                         action="{{ route('users.selfupdate', ['user' => Auth::user()->id]) }}"
                         enctype="multipart/form-data">
-                        {{-- @method('PUT') --}}
+                        @method('PUT')
                         {{ csrf_field() }}
                         <div class="modal-body">
                             <div class="row">
