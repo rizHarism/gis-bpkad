@@ -589,14 +589,14 @@
                                             contentType: false,
                                             processData: false,
                                             success: (data) => {
-                                                alert(data);
-                                                console.log(data);
-                                                // Swal.fire(
-                                                //     'Terhapus!',
-                                                //     confirmNama +
-                                                //     'Berhasil dihapus',
-                                                //     'success',
-                                                // );
+                                                // alert(data);
+                                                // console.log(data);
+                                                Swal.fire(
+                                                    'Terhapus!',
+                                                    confirmNama +
+                                                    'Berhasil dihapus',
+                                                    'success',
+                                                );
                                                 table.draw();
                                             },
                                             error: (xhr, ajaxOptions,
