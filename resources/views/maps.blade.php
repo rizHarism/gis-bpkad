@@ -585,6 +585,8 @@
             removalMode: true
         });
 
+        map.pm.setLang('id')
+
 
         // context menu
 

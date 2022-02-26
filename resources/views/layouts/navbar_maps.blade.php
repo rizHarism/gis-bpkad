@@ -113,31 +113,31 @@
                     <img id="avatar-image2" src="{{ asset('assets/avatar/' . Auth::user()->avatar) }}" alt="Admin"
                         class="rounded-circle" width="150" height="150" style="cursor:pointer">
                     <div class="mt-3">
-
                         <h4>{{ Auth::user()->username }}</h4>
                         <p class="text-secondary mb-1">{{ Auth::user()->master_skpd->nama_skpd }}</p>
                         <hr>
 
-                        <div class="row">
-                            <div class="col">
-                                <a data-target="#editProfile" data-toggle="modal" href="#editModal"
-                                    class="btn btn-success"> &nbsp;<i class="fas fa-edit fa-xs"></i> Edit &nbsp;</a>
-                            </div>
-                            <div class="col">
-                                <form method="POST" action="/logout">
-                                    {{ csrf_field() }}
-
-                                    <a href="#" class="btn btn-danger"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                        <i class="fas fa-sign-out-alt fa-xs"></i>
-                                        {{ __('adminlte::adminlte.log_out') }}
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
 
 
                     </div>
+                </div>
+                <div class="flex-column align-items-center">
+                    <div class="row">
+                        <div class="col-sm-6 float-end">
+                            <a data-target="#editProfile" data-toggle="modal" href="#editModal"
+                                class="btn btn-success btn-sm float-end"> &nbsp;<i class=" fas fa-edit fa-xs"></i> Edit
+                                &nbsp;</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <form method="POST" action="/logout">
+                                {{ csrf_field() }}
+                                <a class="btn btn-danger btn-sm"
+                                    onclick="event.preventDefault(); this.closest('form').submit();"><i
+                                        class="fas fa-sign-out-alt fa-xs"></i> keluar</a>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

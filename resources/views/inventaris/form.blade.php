@@ -478,6 +478,7 @@
             rotateMode: false,
             editControls: true,
         });
+        map.pm.setLang('id')
 
         var geometry = $('#geometry').val();
         // var layer;
