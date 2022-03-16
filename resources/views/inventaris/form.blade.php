@@ -185,8 +185,7 @@
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Geometri :</label>
-                                                    <textarea class="form-control" name="geometry" id="geometry" rows="3"
-                                                        name="geometry"
+                                                    <textarea class="form-control" name="geometry" id="geometry" rows="3" name="geometry"
                                                         disabled>{{ isset($edit->geometry) ? $edit->geometry->polygon : '' }}</textarea>
                                                 </div>
                                             </div>
@@ -196,7 +195,7 @@
                                                 <div class="col-md-5 mb-2  ">
                                                     <label for="" class="form-label mb-0 fst-italic">Foto :</label>
                                                     <input type="file" name="image" id="image" class="form-control"
-                                                        accept="image/*">
+                                                        accept="image/png, image/jpg, image/jpeg">
                                                     <span
                                                         style="font-size: 10px">{{ isset($edit->galery) ? 'Kosongkan form jika tidak ingin merubah foto' : '' }}</span>
                                                 </div>
@@ -328,11 +327,34 @@
             }
         }
 
+
+
         $("#image").change(function() {
-            changeFoto(this);
+            var ext = $('#image').val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
+                // alert('invalid extension!');
+                swal.fire({
+                    title: 'Error',
+                    html: 'File Foto harus berupa Gambar',
+                    icon: 'warning',
+                });
+                $("#image").val("")
+            } else {
+                changeFoto(this);
+            }
         });
         $("#document").change(function() {
-            changeDocument(this);
+            var ext = $('#document').val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['pdf']) == -1) {
+                swal.fire({
+                    title: 'Error',
+                    html: 'File Sertifikat harus berupa PDF',
+                    icon: 'warning',
+                });
+                $("#document").val("")
+            } else {
+                changeDocument(this);
+            }
         });
         // $(document).ready(function() {
         //     $(".btn-add-more").click(function() {

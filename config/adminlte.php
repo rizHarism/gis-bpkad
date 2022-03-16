@@ -276,12 +276,12 @@ return [
                 ],
                 [
                     'text'  => 'Aset Gedung (KIB C)',
-                    'url'   => '#',
+                    'url'   => 'inventaris/gedung',
                     'can'   => 'data aset.aset gedung',
                 ],
                 [
-                    'text'  => 'Aset jaringan (KIB D)',
-                    'url'   => '#',
+                    'text'  => 'Aset Jaringan (KIB D)',
+                    'url'   => 'inventaris/jaringan',
                     'can'   => 'data aset.aset jaringan',
                 ],
             ],
@@ -324,13 +324,13 @@ return [
                 [
                     'text' => 'Manajemen User',
                     'url'  => 'admin/users',
-                    'can'  => 'administrator.user management',
+                    'can'  => 'administrator.manajemen user',
                     'icon' => 'fas fa-fw  fa-users',
                 ],
                 [
                     'text' => 'Pengaturan Role',
                     'url'  => 'admin/roles',
-                    'can'  => 'administrator.role setting',
+                    'can'  => 'administrator.pengaturan role',
                     'icon' => 'fas fa-fw  fa-users',
                 ],
 

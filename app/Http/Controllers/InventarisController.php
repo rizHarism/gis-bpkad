@@ -34,6 +34,15 @@ class InventarisController extends Controller
     {
         return view('inventaris.index');
     }
+    public function indexGedung()
+    {
+        return view('inventaris.gedung.index');
+    }
+
+    public function indexJaringan()
+    {
+        return view('inventaris.jaringan.index');
+    }
 
     function fetch(Request $request)
     {
@@ -293,7 +302,6 @@ class InventarisController extends Controller
             // 'no_sertifikat' => 'required',
             'skpd' => 'exists:master_skpd,id_skpd',
             'barang' => 'exists:master_barang,id_barang',
-            // 'geometry' => 'nullable'
         ]);
         try {
             DB::beginTransaction();
@@ -461,6 +469,7 @@ class InventarisController extends Controller
         if ($inventaris->master_barang_id != $request->barang) {
             $validations['barang'] = 'exists:master_barang,id_barang';
         }
+
 
         $this->validate($request, $validations);
 

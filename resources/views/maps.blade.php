@@ -47,7 +47,24 @@
         }
 
         $("#file-input").change(function() {
-            changeAvatar(this);
+            var ext = $('#file-input').val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
+                // alert('invalid extension!');
+                $('#editProfile').hide();
+                swal.fire({
+                    title: 'Error',
+                    html: 'Foto Profile harus berupa Gambar',
+                    icon: 'warning',
+                }).then(function() {
+                    $('#editProfile').show();
+                })
+
+
+                $("#file-input").val("")
+            } else {
+                changeAvatar(this);
+            }
+
         });
 
         function defaultAvatar() {
