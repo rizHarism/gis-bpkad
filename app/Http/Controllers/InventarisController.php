@@ -182,7 +182,7 @@ class InventarisController extends Controller
 
 
 
-    public function queryKelSkpd($status, $kelurahan_id, $skpd_id)
+    public function queryKelSkpd($kelurahan_id, $skpd_id)
     {
 
         // dd($skpd_id, $kelurahan_id);
@@ -195,19 +195,19 @@ class InventarisController extends Controller
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 // ->where('skpd_id',  $skpd_id)->has('geometry')
                 ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
-                ->where('status',  $status)->has('geometry')
+                // ->where('status',  $status)->has('geometry')
                 ->get();
         } elseif ($kelurahan_id === 'Semua Kelurahan') {
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 ->where('skpd_id',  $skpd_id)->has('geometry')
                 // ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
-                ->where('status',  $status)->has('geometry')
+                // ->where('status',  $status)->has('geometry')
                 ->get();
         } else {
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 ->where('skpd_id',  $skpd_id)->has('geometry')
                 ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
-                ->where('status',  $status)->has('geometry')
+                // ->where('status',  $status)->has('geometry')
                 ->get();
         }
 
@@ -218,7 +218,7 @@ class InventarisController extends Controller
         ];
         return response()->json($response, Response::HTTP_OK);
     }
-    public function queryKelSertifikat($status, $kelurahan_id, $noSertifikat)
+    public function queryKelSertifikat($kelurahan_id, $noSertifikat)
     {
 
         // $kelurahan = Kelurahan::findOrFail($kelurahan_id);
@@ -238,13 +238,13 @@ class InventarisController extends Controller
             if ($kelurahan_id === 'Semua Kelurahan') {
                 $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                     ->where('no_dokumen_sertifikat',  $noSertifikat)->has('geometry')
-                    ->where('status',  $status)->has('geometry')
+                    // ->where('status',  $status)->has('geometry')
                     ->get();
             } else {
                 $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                     ->where('no_dokumen_sertifikat',  $noSertifikat)->has('geometry')
                     ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
-                    ->where('status',  $status)->has('geometry')
+                    // ->where('status',  $status)->has('geometry')
                     ->get();
             }
         }
@@ -252,6 +252,7 @@ class InventarisController extends Controller
             'message' => 'List Query Pencarian Data',
             'data' => $inventaris
         ];
+        // dd($response);
         return response()->json($response, Response::HTTP_OK);
     }
     /**

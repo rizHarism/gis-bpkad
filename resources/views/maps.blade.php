@@ -269,7 +269,7 @@
                                     $('#detailData').append(`
                                                 <table class="table table-sm table-striped">
                                                 <tr>
-                                                  <th>Pemilik Inventaris </th>
+                                                  <th>Pengelola Inventaris </th>
                                                   <td>` + property.master_skpd.nama_skpd + `</td>
                                                 </tr>
                                                 <tr>
@@ -336,6 +336,7 @@
                                         property
                                         .nama + `</p>
                                                 <table class="table table-striped">
+
                                                 <tr>
                                                     <th>Pengelola</th>
                                                     <td>` + property.master_skpd.nama_skpd + `</td>
@@ -508,7 +509,7 @@
 
                 var seeArea = turf.area(layer.toGeoJSON());
                 // console.log(seeArea)
-                // console.log(layer)
+                console.log(JSON.stringify(layer.toGeoJSON()))
                 var ha = seeArea / 10000;
                 var mPersegi = seeArea;
                 // console.log(ha)
@@ -778,7 +779,7 @@
                 $('#varChange').append(
                     `<label for="">Nomor Sertifikat</label>
                     <input class=" form-control form-control-sm fw-bold noSertifikat" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="noSertifikat"
-                            id="noSertifikat" maxlength="5" placeholder="masukkan 5 digit terakhir sertifikat" required>`
+                            id="noSertifikat" maxlength="5" placeholder="Masukkan 5 digit terakhir sertifikat" required>`
                 );
             };
 
@@ -791,15 +792,15 @@
             // map.removeLayer();
             var search = $('input[name="varQuery"]:checked').val();
             // var status = $('input[name="status"]:checked').val();
-            var status = 1;
+            // var status = 1;
             var kelurahan = $('#data_kelurahan').val();
             var skpd = $('#dataSkpd').val();
             var sertifikat = $('#noSertifikat').val();
-            var urlSkpd = "api/inventaris/" + status + "/" + kelurahan + "/" + skpd + "/queryskpd"
+            var urlSkpd = "api/inventaris/" + kelurahan + "/" + skpd + "/queryskpd"
             if (!sertifikat) {
-                var urlSertifikat = "api/inventaris/" + status + "/" + kelurahan + "/0/querysertifikat"
+                var urlSertifikat = "api/inventaris/" + kelurahan + "/0/querysertifikat"
             } else {
-                var urlSertifikat = "api/inventaris/" + status + "/" + kelurahan + "/" + sertifikat +
+                var urlSertifikat = "api/inventaris/" + kelurahan + "/" + sertifikat +
                     "/querysertifikat"
             }
 
@@ -914,7 +915,7 @@
                                 $('#detailData').append(`
                                                 <table class="table table-sm table-striped">
                                                 <tr>
-                                                  <th>Pemilik Inventaris </th>
+                                                  <th>Pengelola Inventaris </th>
                                                   <td>` + property.master_skpd.nama_skpd + `</td>
                                                 </tr>
                                                 <tr>
@@ -980,6 +981,7 @@
                                     property
                                     .nama + `</p>
                                                 <table class="table table-striped">
+
                                                 <tr>
                                                     <th>Pengelola</th>
                                                     <td>` + property.master_skpd.nama_skpd + `</td>
