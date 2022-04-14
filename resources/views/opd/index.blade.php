@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard | Simantab')
+@section('title', 'Data Dasar | OPD')
 
 @section('content_header')
     <div class="mb-0"></div>
@@ -9,14 +9,15 @@
 @section('content')
     <div class="container-fluid pb-5 ps-3 pe-3">
         <div class="card">
-            <h5 class="card-header">Data SKPD</h5>
+            <h5 class="card-header">Data Organisasi Perangkat Daerah</h5>
             <div class="card-body">
                 <a href="{{ route('dataopd.create') }}" class="btn btn-primary">+ Data OPD</a>
                 <hr />
-                <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_skpd">
+                <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_skpd"
+                    style="width: 100%">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th width="5%">No</th>
                             {{-- <th>Id Master Barang</th> --}}
                             <th>Kode SKPD</th>
                             <th>Nama SKPD</th>
@@ -38,9 +39,17 @@
     {{-- swall --}}
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
         $(function() {
             var table = $('#master_skpd').DataTable({
-                processing: true,
+                // processing: true,
                 serverSide: true,
                 ajax: {
                     url: '/api/skpd',

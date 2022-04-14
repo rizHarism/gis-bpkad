@@ -34,6 +34,15 @@ class InventarisController extends Controller
     {
         return view('inventaris.index');
     }
+    public function indexGedung()
+    {
+        return view('inventaris.gedung.index');
+    }
+
+    public function indexJaringan()
+    {
+        return view('inventaris.jaringan.index');
+    }
 
     function fetch(Request $request)
     {
@@ -93,6 +102,7 @@ class InventarisController extends Controller
 
         //count aset bersertifikat terpetakan
         $mapped_sertifikat = count(Inventaris::with('geometry')
+            ->where('status', 1)
             ->has('geometry')
             ->get());
         $not_mapped_inventaris = $sertifikat - $mapped_sertifikat;
@@ -172,7 +182,7 @@ class InventarisController extends Controller
 
 
 
-    public function queryKelSkpd($status, $kelurahan_id, $skpd_id)
+    public function queryKelSkpd($kelurahan_id, $skpd_id)
     {
 
         // dd($skpd_id, $kelurahan_id);
@@ -185,19 +195,19 @@ class InventarisController extends Controller
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 // ->where('skpd_id',  $skpd_id)->has('geometry')
                 ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
-                ->where('status',  $status)->has('geometry')
+                // ->where('status',  $status)->has('geometry')
                 ->get();
         } elseif ($kelurahan_id === 'Semua Kelurahan') {
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 ->where('skpd_id',  $skpd_id)->has('geometry')
                 // ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
-                ->where('status',  $status)->has('geometry')
+                // ->where('status',  $status)->has('geometry')
                 ->get();
         } else {
             $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                 ->where('skpd_id',  $skpd_id)->has('geometry')
                 ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
-                ->where('status',  $status)->has('geometry')
+                // ->where('status',  $status)->has('geometry')
                 ->get();
         }
 
@@ -208,7 +218,7 @@ class InventarisController extends Controller
         ];
         return response()->json($response, Response::HTTP_OK);
     }
-    public function queryKelSertifikat($status, $kelurahan_id, $noSertifikat)
+    public function queryKelSertifikat($kelurahan_id, $noSertifikat)
     {
 
         // $kelurahan = Kelurahan::findOrFail($kelurahan_id);
@@ -228,13 +238,13 @@ class InventarisController extends Controller
             if ($kelurahan_id === 'Semua Kelurahan') {
                 $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                     ->where('no_dokumen_sertifikat',  $noSertifikat)->has('geometry')
-                    ->where('status',  $status)->has('geometry')
+                    // ->where('status',  $status)->has('geometry')
                     ->get();
             } else {
                 $inventaris = Inventaris::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry')
                     ->where('no_dokumen_sertifikat',  $noSertifikat)->has('geometry')
                     ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
-                    ->where('status',  $status)->has('geometry')
+                    // ->where('status',  $status)->has('geometry')
                     ->get();
             }
         }
@@ -242,6 +252,7 @@ class InventarisController extends Controller
             'message' => 'List Query Pencarian Data',
             'data' => $inventaris
         ];
+        // dd($response);
         return response()->json($response, Response::HTTP_OK);
     }
     /**
@@ -292,7 +303,6 @@ class InventarisController extends Controller
             // 'no_sertifikat' => 'required',
             'skpd' => 'exists:master_skpd,id_skpd',
             'barang' => 'exists:master_barang,id_barang',
-            // 'geometry' => 'nullable'
         ]);
         try {
             DB::beginTransaction();
@@ -399,8 +409,8 @@ class InventarisController extends Controller
         $skpd = Skpd::get();
         $master_barang = MasterBarang::get();
         $geometry = Geometry::where('inventaris_id', $id)->get();
-        $galery = Galery::get();
-        $document = Document::get();
+        $galery = Galery::where('inventaris_id', $id)->get();
+        $document = Document::where('inventaris_id', $id)->get();
         // dd($geometry);
         // return response()->json($response, Response::HTTP_OK);
         return view('inventaris.form', [
@@ -460,6 +470,7 @@ class InventarisController extends Controller
         if ($inventaris->master_barang_id != $request->barang) {
             $validations['barang'] = 'exists:master_barang,id_barang';
         }
+
 
         $this->validate($request, $validations);
 
@@ -571,21 +582,27 @@ class InventarisController extends Controller
     public function destroy(Request $request, $id)
     {
         //
-        $user = Inventaris::findOrFail($id);
+        $inventaris = Inventaris::findOrFail($id);
         $geometry = Geometry::where('inventaris_id', $id);
-        $galery = Galery::where('inventaris_id', $id);
-        $document = Document::where('inventaris_id', $id);
+        $galery = Galery::where('inventaris_id', $id)->firstOrFail();
+        $document = Document::where('inventaris_id', $id)->firstOrFail();
         // $geometry = Geometry::find
-
+        // dd($galery->image_path, $document->doc_path);
         try {
-            $user->delete();
+            $inventaris->delete();
             $geometry->delete();
             $galery->delete();
             $document->delete();
+            if (File::exists(public_path('assets/galery/' . $galery->image_path))) {
+                File::delete(public_path('assets/galery/' . $galery->image_path));
+            }
+            if (File::exists(public_path('assets/document/' . $document->doc_path))) {
+                File::delete(public_path('assets/document/' . $document->doc_path));
+            }
         } catch (\Exception $e) {
             return response($e->getMessage(), 500);
         }
 
-        return response("User Berhasil Dihapus");
+        return response("Inventaris Berhasil Dihapus");
     }
 }

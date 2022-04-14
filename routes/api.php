@@ -25,15 +25,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 // Route::middleware(['auth'])->group(function () {
 Route::get('/inventaris/dashboard', [InventarisController::Class, 'dashboard']);
-Route::get('/inventaris', [InventarisController::Class, 'index']);
-Route::get('/inventaris/{id}/edit', [InventarisController::Class, 'edit']);
+// Route::get('/inventaris', [InventarisController::Class, 'index']);
+// Route::get('/inventaris/{id}/edit', [InventarisController::Class, 'edit']);
 Route::get('/getinventaris', [InventarisController::Class, 'getInventaris']);
 Route::post('/getinventaris/sertifikat', [InventarisController::Class, 'getInventarisSertifikat']);
 Route::post('/getinventaris/nonsertifikat', [InventarisController::Class, 'getInventarisNonSertifikat']);
 Route::get('/{kecamatan}/getgeometry', [InventarisController::Class, 'get_geometry']);
 Route::get('/inventaris/{keyword}/search', [InventarisController::Class, 'searchInventaris']);
-Route::post('/inventaris/{status}/{kelurahan}/{skpd}/queryskpd', [InventarisController::Class, 'queryKelSkpd']);
-Route::post('/inventaris/{status}/{kelurahan}/{sertifikat}/querysertifikat', [InventarisController::Class, 'queryKelSertifikat']);
+Route::post('/inventaris/{kelurahan}/{skpd}/queryskpd', [InventarisController::Class, 'queryKelSkpd']);
+Route::post('/inventaris/{kelurahan}/{sertifikat}/querysertifikat', [InventarisController::Class, 'queryKelSertifikat']);
 Route::get('/inventaris/{id}', [InventarisController::Class, 'show']);
 Route::put('/inventaris/{id}', [InventarisController::Class, 'update']);
 

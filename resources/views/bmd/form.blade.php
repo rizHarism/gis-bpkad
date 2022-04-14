@@ -14,7 +14,7 @@
                 action="{{ isset($edit) ? route('bmd.update', ['bmd' => $edit]) : route('bmd.store') }}">
                 @method('PUT')
                 {{ csrf_field() }}
-                <h5 class="card-header">Data Dasar Barang Milik Daerah</h5>
+                <h5 class="card-header">{{ isset($edit) ? 'Edit Data BMD' : 'Tambah Data BMD' }}</h5>
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="kode-barang" class="col-sm-2 col-form-label">Kode Barang</label>
@@ -60,6 +60,14 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
         $(function() {
             $("#form").submit(function() {
                 $.ajax({

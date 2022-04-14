@@ -1,12 +1,14 @@
-<div id="sidebarV2" class="sidebarV2 collapsed " style=" margin-bottom: 100px; margin-right: 5px">
+<div id="sidebarV2" class="sidebarV2 collapsed "
+    style=" margin-bottom: 100px; margin-right: 5px; margin-top: min(70px, 10px);">
     <!-- Nav tabs -->
     <div class="sidebarV2-tabs">
-        <ul role="tablist">
-            <li><a href="#layers" role="tab"><i class="fas fa-layer-group"></i></a></li>
-            <li><a href="#query" role="tab"><i class="fas fa-search"></i></a></li>
-            <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-            @if (auth()->user()->hasRole('Super-Admin'))
-                <li><a href="/dashboard" role="tab"><i class="fa fa-cog"></i></a></li>
+        <ul role=" tablist">
+            <li><a href="#layers" title="Layer Wilayah" role="tab"><i class="fas fa-layer-group"></i></a></li>
+            <li><a href="#query" title="Pencarian Aset" role="tab"><i class="fas fa-search"></i></a></li>
+            <li><a href="#profile" title="Profil Pengguna" role="tab"><i class="fas fa-user-edit"></i></a></li>
+            @if (auth()->user()->hasPermissionTo('dashboard.index'))
+                <li><a href="/dashboard" title="Dashboard" role="tab"><i class="fas fa-desktop"></i></a>
+                </li>
             @endif
         </ul>
 
@@ -19,13 +21,13 @@
     <div class="sidebarV2-content">
         <div class="sidebarV2-pane" id="layers">
             <h1 class="sidebarV2-header">
-                Layer Wilayah dan Aset BMD
+                Layer Wilayah Kota Blitar
                 <span class="sidebarV2-close"><i class="fa fa-caret-right"></i></span>
             </h1>
         </div>
 
         <div class="sidebarV2-pane" id="query">
-            <h1 class="sidebarV2-header">Query Pencarian<span class="sidebarV2-close"><i
+            <h1 class="sidebarV2-header">Pencarian Aset<span class="sidebarV2-close"><i
                         class="fa fa-caret-right"></i></span>
             </h1>
 
@@ -36,7 +38,7 @@
                         PENCARIAN ASET SATUAN
                     </label>
                     <input type="text" name="inventarisSearch" id="inventarisSearch" class="form-control input-lg"
-                        placeholder="Masukkan nama inventaris" />
+                        placeholder="Masukkan nama inventaris / Dinas" autocomplete="off" />
                     <div id="inventarisList">
                     </div>
                 </div>
@@ -87,11 +89,13 @@
                         </select>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 align-center">
-                            <button type="" class="btn btn-primary mt-4">Cari</button>
+                        <div class="col-md ">
+                            <button type="" class="btn btn-primary mt-4"><i class="fas fa-search"></i>
+                                Cari &nbsp;&nbsp;</button>
+                            <button type="button" id="clear" class="btn btn-secondary mt-4"><i
+                                    class="fas fa-eraser"></i> Hapus</button>
                         </div>
-                        <div class="col-md-3 align-center">
-                            <button type="button" id="clear" class="btn btn-secondary mt-4">Clear</button>
+                        <div class="col-md ">
                         </div>
                     </div>
                 </form>
@@ -100,7 +104,8 @@
         </div>
 
         <div class="sidebarV2-pane" id="profile">
-            <h1 class="sidebarV2-header">Profile<span class="sidebarV2-close"><i class="fa fa-caret-right"></i></span>
+            <h1 class="sidebarV2-header">Profil Pengguna<span class="sidebarV2-close"><i
+                        class="fa fa-caret-right"></i></span>
             </h1>
             <div class="container-fluid mt-5">
 
@@ -108,30 +113,31 @@
                     <img id="avatar-image2" src="{{ asset('assets/avatar/' . Auth::user()->avatar) }}" alt="Admin"
                         class="rounded-circle" width="150" height="150" style="cursor:pointer">
                     <div class="mt-3">
-
                         <h4>{{ Auth::user()->username }}</h4>
                         <p class="text-secondary mb-1">{{ Auth::user()->master_skpd->nama_skpd }}</p>
                         <hr>
 
-                        <div class="row">
-                            <div class="col">
-                                <a data-target="#editProfile" data-toggle="modal" href="#editModal"
-                                    class="btn btn-success"> &nbsp; Edit &nbsp;</a>
-                            </div>
-                            <div class="col">
-                                <form method="POST" action="/logout">
-                                    {{ csrf_field() }}
-
-                                    <a href="#" class="btn btn-danger"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                        {{ __('adminlte::adminlte.log_out') }}
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
 
 
                     </div>
+                </div>
+                <div class="flex-column align-items-center">
+                    <div class="row">
+                        <div class="col-sm-6 float-end">
+                            <a data-target="#editProfile" data-toggle="modal" href="#editModal"
+                                class="btn btn-success btn-sm float-end"> &nbsp;<i class=" fas fa-edit fa-xs"></i> Edit
+                                &nbsp;</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <form method="POST" action="/logout">
+                                {{ csrf_field() }}
+                                <a class="btn btn-danger btn-sm"
+                                    onclick="event.preventDefault(); this.closest('form').submit();"><i
+                                        class="fas fa-sign-out-alt fa-xs"></i> keluar</a>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -142,13 +148,13 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="editProfileTitle">Edit Profile</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" onclick="defaultAvatar()"
-                            aria-label="Close"></button>
+                            aria-label="Tutup"></button>
                     </div>
 
                     <form id="editProfile-form" method="POST" class="form-horizontal" name="invent"
                         action="{{ route('users.selfupdate', ['user' => Auth::user()->id]) }}"
                         enctype="multipart/form-data">
-                        {{-- @method('PUT') --}}
+                        @method('PUT')
                         {{ csrf_field() }}
                         <div class="modal-body">
                             <div class="row">
@@ -162,7 +168,8 @@
                                     </label>
                                     <p class="" style="font-style: italic; font-size: 12px">
                                         *klik untuk merubah foto</p>
-                                    <input id="file-input" type="file" style="display: none;" />
+                                    <input id="file-input" type="file" style="display: none;"
+                                        accept="image/png, image/jpg, image/jpeg" />
                                     {{-- <p>klik foto untuk mengubah</p> --}}
                                 </div>
                                 <div class="col-md-8 d-flex align-items-center">
@@ -227,7 +234,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div id="detailData"></div>
-                            <div class="modalMap">
+                            <div id="modalMap">
                                 <div id="minimap" class="h4" style="height: 20vh"></div>
                             </div>
                         </div>
@@ -242,7 +249,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
             </div>
         </div>

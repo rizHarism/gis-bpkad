@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Inventaris | Simantab')
+@section('title', 'Data Aset | Aset Tanah')
 
 @section('content_header')
     {{-- <div class="h1 ">Data Aset Tanah Kota Blitar</div> --}}
@@ -27,7 +27,8 @@
                     &nbsp;&nbsp;</label>
 
                 <hr />
-                <table class="table table-striped table-hover table-bordered order-column table-sm" id="inventaris_kib_a">
+                <table class="table table-striped table-hover table-bordered order-column table-sm" id="inventaris_kib_a"
+                    style="width: 100%">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -111,7 +112,7 @@
 
 
 
-    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    {{-- <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -124,13 +125,13 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                {{-- <img src="..." class="d-block w-100" alt="..."> --}}
+                                <img src="..." class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                {{-- <img src="..." class="d-block w-100" alt="..."> --}}
+                                <img src="..." class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                {{-- <img src="..." class="d-block w-100" alt="..."> --}}
+                                <img src="..." class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -152,7 +153,7 @@
                 <button type="button" class="btn btn-primary">Understood</button>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @stop
 
@@ -176,6 +177,16 @@
     {{-- <script src="{{ asset('assets/inventaris/kib_a.js') }}"></script> --}}
 
     <script>
+        //call loader
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
+
         var sertifikat = function(data, type, full, meta) {
             var status = data == 1 ? "Bersertifikat" : "Belum Bersertifikat";
             // console.log(status);
@@ -419,140 +430,32 @@
                                             maxZoom: 19
                                         }).addTo(map);
 
-                                    L.PM.initialize({
-                                        optIn: true
+                                    var batasKota = {
+                                        "color": "#ffe312",
+                                        "weight": 2,
+                                        "opacity": 1
+                                    };
 
-                                    });
-
-                                    if (verifMap) {
-                                        map.pm.addControls({
-                                            drawMarker: false,
-                                            drawCircleMarker: false,
-                                            drawPolyline: false,
-                                            drawRectangle: false,
-                                            drawPolygon: false,
-                                            drawCircle: false,
-                                            cutPolygon: false,
-                                            rotateMode: false,
-                                            editControls: false,
+                                    var batasSananwetan = new L.GeoJSON.AJAX(
+                                        "{{ asset('assets/leaflet/geojson/sananwetan.geojson') }}", {
+                                            style: batasKota,
+                                            pmIgnore: true
                                         });
-                                    } else {
-                                        map.pm.addControls({
-                                            drawMarker: false,
-                                            drawCircleMarker: false,
-                                            drawPolyline: false,
-                                            drawRectangle: false,
-                                            drawPolygon: true,
-                                            drawCircle: false,
-                                            cutPolygon: false,
-                                            rotateMode: false,
-                                            editControls: false,
+                                    var batasKepanjenkidul = new L.GeoJSON.AJAX(
+                                        "{{ asset('assets/leaflet/geojson/kepanjenkidul.geojson') }}", {
+                                            style: batasKota,
+                                            pmIgnore: true
                                         });
-                                    }
-
-
-                                    map.on('pm:create', ({
-                                        layer
-                                    }) => {
-                                        layer.on('pm:edit', e => {
-                                            console.log(e);
-                                            var nf = Intl
-                                                .NumberFormat();
-                                            var seeArea =
-                                                turf.area(
-                                                    layer
-                                                    .toGeoJSON()
-                                                );
-                                            var ha =
-                                                seeArea /
-                                                10000;
-                                            var content =
-                                                "<table class='table table-striped table-bordered table-sm'>" +
-                                                "<tr><th colspan='2'>Luas</th></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(ha
-                                                    .toFixed(
-                                                        2)
-                                                ) +
-                                                " Hektare" +
-                                                "</td></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(
-                                                    seeArea
-                                                    .toFixed(
-                                                        2)
-                                                ) +
-                                                " Meter²" +
-                                                "</td></tr>" +
-                                                "</table>"
-                                            layer.bindPopup(
-                                                content);
-                                            console.log(
-                                                seeArea);
-                                            var g = JSON
-                                                .stringify(
-                                                    layer
-                                                    .toGeoJSON()
-                                                )
-                                            var g = JSON
-                                                .parse(g)
-                                            let gdb = JSON
-                                                .stringify(g
-                                                    .geometry
-                                                )
-
+                                    var batasSukorejo = new L.GeoJSON.AJAX(
+                                        "{{ asset('assets/leaflet/geojson/sukorejo.geojson') }}", {
+                                            style: batasKota,
+                                            pmIgnore: true
                                         });
-                                    });
-
-                                    map.on('pm:create', function(e) {
-                                        console.log(e);
-                                        var shape = e.shape,
-                                            layer = e.layer
-                                        var nf = Intl
-                                            .NumberFormat();
-                                        // alert(turf.area(layer.toGeoJSON()))
-
-                                        console.log(JSON.stringify(
-                                            layer
-                                            .toGeoJSON()))
-                                        if (shape === 'Polygon') {
-
-                                            var seeArea = turf.area(
-                                                layer
-                                                .toGeoJSON());
-                                            var ha = seeArea /
-                                                10000;
-                                            var content =
-                                                "<table class='table table-striped table-bordered table-sm'>" +
-                                                "<tr><th colspan='2'>Luas</th></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(ha
-                                                    .toFixed(2)) +
-                                                " Hektare" +
-                                                "</td></tr>" +
-                                                "<tr><td>" +
-                                                nf.format(seeArea
-                                                    .toFixed(
-                                                        2)) +
-                                                " Meter²" +
-                                                "</td></tr>" +
-                                                "</table>"
-
-                                            layer.bindPopup(
-                                                content);
-                                            var g = JSON.stringify(
-                                                layer
-                                                .toGeoJSON())
-                                            // var g = JSON.parse(g)
-                                            // let gdb = JSON.stringify(g.geometry)
-
-                                            // console.log(g)
-                                        }
-
-                                    });
+                                    batasSananwetan.addTo(map);
+                                    batasKepanjenkidul.addTo(map);
+                                    batasSukorejo.addTo(map);
 
 
-                                    // console.log(JSON.stringify(geo));
 
                                     $('#myModal').modal('show');
 
@@ -687,6 +590,7 @@
                                             processData: false,
                                             success: (data) => {
                                                 // alert(data);
+                                                // console.log(data);
                                                 Swal.fire(
                                                     'Terhapus!',
                                                     confirmNama +

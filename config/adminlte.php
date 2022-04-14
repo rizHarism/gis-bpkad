@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Simantab Kota Blitar',
+    'title' => 'GIS Aset Kota Blitar',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -48,7 +48,7 @@ return [
     'logo' => '<b>Si</b>MANTAB',
     // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img' => 'assets/logo-image/blitar.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'AdminLTE',
@@ -229,8 +229,9 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'dashboard',
-            'icon'        => 'fas fa-tachometer-alt',
-            'label_color' => 'success',
+            'icon'        => 'fas fa-chart-pie',
+            // 'label_color' => 'success',
+            'can'  => 'dashboard.index',
         ],
         // ['header' => '-----------------------------------------------'],
         [
@@ -239,22 +240,26 @@ return [
             'icon' => 'fas  fa-globe-asia',
             'topnav' => true,
         ],
-        ['header' => 'MANAJEMEN PENDATAAN'],
+        [
+            'header' => 'MANAJEMEN PENDATAAN',
+            'can'  => 'data dasar.index',
+        ],
 
         [
-            'text' => 'Data Dasar BMD',
+            'text' => 'Data Dasar',
             'url'  => 'datadasarbmd',
+            'can'  => 'data dasar.index',
             'icon' => 'fas fa-fw fa-file-alt',
             'submenu' => [
                 [
-                    'text'  => 'Barang Aset Daerah',
+                    'text'  => 'Data BMD',
                     'url'   => 'datadasarbmd',
-                    'can'  => 'dasar bmd.index',
+                    'can'  => 'data dasar.bmd',
                 ],
                 [
                     'text'  => 'Data OPD',
-                    'url'  => '/opd',
-                    'can'  => 'administrator.data opd',
+                    'url'  => 'opd',
+                    'can'  => 'data dasar.opd',
                 ]
             ]
         ],
@@ -267,17 +272,17 @@ return [
                 [
                     'text'  => 'Aset Tanah (KIB A)',
                     'url'   => 'inventaris',
-                    'can'   => 'data aset.inventaris kib a',
+                    'can'   => 'data aset.aset tanah',
                 ],
                 [
                     'text'  => 'Aset Gedung (KIB C)',
-                    'url'   => 'inventaris_kib_c',
-                    'can'   => 'data aset.inventaris kib c',
+                    'url'   => 'inventaris/gedung',
+                    'can'   => 'data aset.aset gedung',
                 ],
                 [
-                    'text'  => 'Aset jaringan (KIB D)',
-                    'url'   => 'inventaris_kib_d',
-                    'can'   => 'data aset.inventaris kib d',
+                    'text'  => 'Aset Jaringan (KIB D)',
+                    'url'   => 'inventaris/jaringan',
+                    'can'   => 'data aset.aset jaringan',
                 ],
             ],
         ],
@@ -300,7 +305,10 @@ return [
         //     ]
         // ],
 
-        ['header' => 'MANAJEMEN ADMIN'],
+        [
+            'header' => 'MANAJEMEN ADMIN',
+            'can'  => 'administrator.index',
+        ],
         [
             'text' => 'Administrator',
             'url'  => 'admin/opd',
@@ -314,17 +322,18 @@ return [
                 //     'icon' => 'fas fa-fw  fa-users',
                 // ],
                 [
-                    'text' => 'Role Setting',
-                    'url'  => 'admin/roles',
-                    'can'  => 'administrator.data opd',
+                    'text' => 'Manajemen User',
+                    'url'  => 'admin/users',
+                    'can'  => 'administrator.manajemen user',
                     'icon' => 'fas fa-fw  fa-users',
                 ],
                 [
-                    'text' => 'Users Management',
-                    'url'  => 'admin/users',
-                    'can'  => 'administrator.user management',
+                    'text' => 'Pengaturan Role',
+                    'url'  => 'admin/roles',
+                    'can'  => 'administrator.pengaturan role',
                     'icon' => 'fas fa-fw  fa-users',
                 ],
+
                 // [
                 //     'text'  => 'Setting Profil',
                 //     'url'   => 'admin/konfigurasi',
@@ -496,3 +505,10 @@ return [
 
     'livewire' => false,
 ];
+?>
+<script>
+    function comingSoon() {
+
+        alert('data belum tersedia')
+    }
+</script>

@@ -44,7 +44,7 @@ class UserController extends \App\Http\Controllers\Controller
             'username' => 'required|unique:users,username',
             // 'email' => 'required|email|unique:users,email',
             'password' => 'required',
-            'skpd' => 'exists:master_skpd,id_skpd',
+            'skpd' => 'required',
             'role' => 'required',
         ]);
 
@@ -55,6 +55,7 @@ class UserController extends \App\Http\Controllers\Controller
                 // 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'skpd_id' => $request->skpd,
+                'avatar' => 'default-avatar.png',
             ]);
 
             $role = Role::findById($request->role);
@@ -75,7 +76,6 @@ class UserController extends \App\Http\Controllers\Controller
         $role = $user->roles->first();
         $roles = Role::get();
         $skpd = Skpd::get();
-
         return view('users.form', [
             'edit' => $user,
             'role' => $role,
@@ -87,9 +87,8 @@ class UserController extends \App\Http\Controllers\Controller
     public function update(Request $request, $id)
     {
         $user = User::with('roles')->findOrFail($id);
-
+        $oldRole = $user->roles->first();
         $validations = [];
-
         if ($user->username != $request->username) {
             $validations['username'] = 'required|unique:users,username';
         }
@@ -120,6 +119,7 @@ class UserController extends \App\Http\Controllers\Controller
             $user->save();
 
             $role = Role::findById($request->role);
+            $user->removeRole($oldRole);
             $user->assignRole($role);
 
             DB::commit();

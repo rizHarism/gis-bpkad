@@ -19,7 +19,7 @@
     @php($password_reset_url = $password_reset_url ? url($password_reset_url) : '')
 @endif
 
-@section('auth_header', __('adminlte::adminlte.login_message'))
+{{-- @section('auth_header', __('adminlte::adminlte.login_message')) --}}
 
 @section('auth_body')
     <style>
@@ -31,27 +31,26 @@
             background-size: 100%;
         }
 
+        .form-box {
+            background-color: rgba(0, 0, 0, 0.1);
+            margin: auto auto;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #000;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 500px;
+            height: 430px;
+        }
+
     </style>
+
     <form action="{{ $login_url }}" method="post">
         @csrf
 
-        {{-- Email field --}}
-        {{-- <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
-
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
-            </div>
-
-            @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div> --}}
 
         <div class="input-group mb-3">
             <input type="username" name="username" class="form-control @error('username') is-invalid @enderror"

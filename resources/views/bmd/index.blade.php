@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard | Simantab')
+@section('title', 'Data Dasar | BMD')
 
 @section('content_header')
     <div class="mb-0"></div>
@@ -14,10 +14,11 @@
             <div class="card-body">
                 <a href="{{ route('bmd.create') }}" class="btn btn-primary">+ Data BMD</a>
                 <hr />
-                <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_barang">
+                <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_barang"
+                    style="width: 100%">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th width="5%">No</th>
                             {{-- <th>Id Master Barang</th> --}}
                             <th>Kode Barang</th>
                             <th>Nama Master Barang</th>
@@ -48,9 +49,17 @@
     <script src="{{ asset('assets/inventaris/kib_a.js') }}"></script> --}}
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
         $(function() {
             var table = $('#master_barang').DataTable({
-                processing: true,
+                // processing: true,
                 serverSide: true,
                 ajax: {
                     url: '/api/masterbarang',

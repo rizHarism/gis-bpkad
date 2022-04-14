@@ -14,7 +14,7 @@
                 action="{{ isset($edit) ? route('dataopd.update', ['opd' => $edit]) : route('dataopd.store') }}">
                 @method('PUT')
                 {{ csrf_field() }}
-                <h5 class="card-header">Data OPD</h5>
+                <h5 class="card-header">{{ isset($edit) ? 'Edit Data Opd' : 'Tambah Data OPD' }}</h5>
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="kode-opd" class="col-sm-2 col-form-label">Kode OPD</label>
@@ -60,6 +60,14 @@
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     <script>
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
         $(function() {
             $("#edit-form").submit(function() {
                 $.ajax({

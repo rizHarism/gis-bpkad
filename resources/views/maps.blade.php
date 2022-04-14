@@ -31,9 +31,9 @@
     {{-- <script src="{{ asset('assets/inventaris/maps.js') }}"></script> --}}
 
     <script>
-        var layerAll = L.featureGroup();
+        // var layerAll = L.featureGroup();
         // change avatar image
-        function chageAvatar(input) {
+        function changeAvatar(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
@@ -47,7 +47,24 @@
         }
 
         $("#file-input").change(function() {
-            chageAvatar(this);
+            var ext = $('#file-input').val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
+                // alert('invalid extension!');
+                $('#editProfile').hide();
+                swal.fire({
+                    title: 'Error',
+                    html: 'Foto Profile harus berupa Gambar',
+                    icon: 'warning',
+                }).then(function() {
+                    $('#editProfile').show();
+                })
+
+
+                $("#file-input").val("")
+            } else {
+                changeAvatar(this);
+            }
+
         });
 
         function defaultAvatar() {
@@ -83,7 +100,6 @@
                     contentType: false,
                     processData: false,
                     success: (data) => {
-                        console.log(data);
                         swal.fire({
                             title: 'Berhasil',
                             text: data,
@@ -164,7 +180,7 @@
             $(document).on('click', 'li', function() {
                 $('#inventarisSearch').val($(this).text());
                 var q = $(this).val()
-                console.log(q)
+                // console.log(q)
                 if (q !== 0) {
                     map.eachLayer(function(lay) {
                         if (lay.toGeoJSON) {
@@ -181,10 +197,10 @@
                         type: 'GET',
                         dataType: 'json',
                         success: function(json) {
-                            console.log(json)
+                            // console.log(json)
                             const x = json.data
                             $.each(x, (i, property) => {
-                                console.log(property.geometry.polygon)
+                                // console.log(property.geometry.polygon)
                                 var polygon = JSON.parse(property.geometry.polygon)
                                 var layer = L.geoJSON(polygon, {
                                         style: sertifikatStyle,
@@ -203,6 +219,21 @@
                                 var lng = property.geometry.lng
 
                                 layer.on('click', function() {
+                                    minimap.eachLayer(function(lay) {
+                                        if (lay.toGeoJSON) {
+                                            minimap.removeLayer(lay);
+                                        }
+
+                                    });
+                                    var mini = (JSON.parse(property.geometry
+                                        .polygon));
+                                    minilayer = L.geoJSON(mini, {
+                                        style: sertifikatStyle,
+                                        pmIgnore: true
+                                    });
+                                    minilayer.addTo(minimap);
+
+                                    // console.log(minilayer)
                                     const sertifikat = (property
                                             .status == 1) ?
                                         "Bersertifikat" :
@@ -238,7 +269,7 @@
                                     $('#detailData').append(`
                                                 <table class="table table-sm table-striped">
                                                 <tr>
-                                                  <th>Pemilik Inventaris </th>
+                                                  <th>Pengelola Inventaris </th>
                                                   <td>` + property.master_skpd.nama_skpd + `</td>
                                                 </tr>
                                                 <tr>
@@ -305,6 +336,7 @@
                                         property
                                         .nama + `</p>
                                                 <table class="table table-striped">
+
                                                 <tr>
                                                     <th>Pengelola</th>
                                                     <td>` + property.master_skpd.nama_skpd + `</td>
@@ -337,19 +369,17 @@
 
                                     $('#detailModal').on('shown.bs.modal',
                                         function() {
-                                            console.log('sasa')
+                                            // console.log('sasa')
                                             setTimeout(function() {
                                                 minimap
                                                     .invalidateSize();
-
-                                                minilayer.addTo(
-                                                    minimap);
                                                 minimap.fitBounds(
                                                     minilayer
                                                     .getBounds()
                                                 );
 
                                             }, 500);
+                                            // console.log(minilayer);
                                         });
                                 });
 
@@ -413,7 +443,7 @@
 
         // var basemaps = [esri, osm]
         var basemaps = {
-            label: 'Peta Base',
+            label: 'Peta Dasar',
             children: [{
                     label: 'Satelit',
                     layer: esri
@@ -455,7 +485,7 @@
 
         var sertifikatStyle = {
             "color": "#ff7700",
-            "weight": 5,
+            "weight": 3,
             "opacity": 1
         };
         var nonSertifikatStyle = {
@@ -478,12 +508,12 @@
             if (shape === 'Polygon') {
 
                 var seeArea = turf.area(layer.toGeoJSON());
-                console.log(seeArea)
-                console.log(layer)
+                // console.log(seeArea)
+                console.log(JSON.stringify(layer.toGeoJSON()))
                 var ha = seeArea / 10000;
                 var mPersegi = seeArea;
-                console.log(ha)
-                console.log(mPersegi)
+                // console.log(ha)
+                // console.log(mPersegi)
                 if (mPersegi > 10000) {
                     layer.bindPopup("Luas " + nf.format(ha.toFixed(2)) + " Ha");
                 } else {
@@ -496,12 +526,12 @@
             if (shape === 'Line') {
 
                 var seeArea = turf.length(layer.toGeoJSON());
-                console.log(seeArea)
-                console.log(layer)
+                // console.log(seeArea)
+                // console.log(layer)
                 var meter = seeArea * 1000;
                 var kilometer = seeArea;
-                console.log(meter)
-                console.log(kilometer)
+                // console.log(meter)
+                // console.log(kilometer)
                 if (meter < 1000) {
                     layer.bindPopup("Jarak " + nf.format(meter.toFixed(2)) + " Meter");
                 } else {
@@ -522,7 +552,7 @@
 
             }
 
-            console.log(JSON.stringify(layer.toGeoJSON()))
+            // console.log(JSON.stringify(layer.toGeoJSON()))
         })
         // membuat control sendiri
 
@@ -531,6 +561,7 @@
                 var img = L.DomUtil.create('img')
                 img.src = 'assets/logo-image/logo-center-bpkad-yellow.png'
                 img.style.width = '400px'
+                img.class = 'img-fluid'
                 // img.style.margin = '50px'
 
                 return img;
@@ -552,7 +583,7 @@
         // L.control.zoom().addTo(map)
         // zoom home
         var zoomHome = L.Control.zoomHome({
-            zoomHomeIcon: 'stop-circle',
+            zoomHomeIcon: 'dot-circle',
 
         });
         zoomHome.addTo(map);
@@ -571,6 +602,8 @@
             editMode: false,
             removalMode: true
         });
+
+        map.pm.setLang('id')
 
 
         // context menu
@@ -618,7 +651,7 @@
                 }
             });
             return polygonSearch;
-            console.log(polygonSearch);
+            // console.log(polygonSearch);
             // alert(polygonSearch);
         };
 
@@ -746,7 +779,7 @@
                 $('#varChange').append(
                     `<label for="">Nomor Sertifikat</label>
                     <input class=" form-control form-control-sm fw-bold noSertifikat" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="noSertifikat"
-                            id="noSertifikat" maxlength="5" placeholder="masukkan 5 digit terakhir sertifikat" required>`
+                            id="noSertifikat" maxlength="5" placeholder="Masukkan 5 digit terakhir sertifikat" required>`
                 );
             };
 
@@ -754,22 +787,24 @@
 
         // query pencarian
         $("#queryGeom").on('submit', function(e) {
-
+            layerAll = L.featureGroup();
             e.preventDefault(); // avoid to execute the actual submit of the form.
-
+            // map.removeLayer();
             var search = $('input[name="varQuery"]:checked').val();
             // var status = $('input[name="status"]:checked').val();
-            var status = 1;
+            // var status = 1;
             var kelurahan = $('#data_kelurahan').val();
             var skpd = $('#dataSkpd').val();
             var sertifikat = $('#noSertifikat').val();
-            var urlSkpd = "api/inventaris/" + status + "/" + kelurahan + "/" + skpd + "/queryskpd"
+            var urlSkpd = "api/inventaris/" + kelurahan + "/" + skpd + "/queryskpd"
             if (!sertifikat) {
-                var urlSertifikat = "api/inventaris/" + status + "/" + kelurahan + "/0/querysertifikat"
+                var urlSertifikat = "api/inventaris/" + kelurahan + "/0/querysertifikat"
             } else {
-                var urlSertifikat = "api/inventaris/" + status + "/" + kelurahan + "/" + sertifikat +
+                var urlSertifikat = "api/inventaris/" + kelurahan + "/" + sertifikat +
                     "/querysertifikat"
             }
+
+            // console.log(urlSkpd)
             map.eachLayer(function(lay) {
                 if (lay.toGeoJSON) {
                     map.removeLayer(lay);
@@ -792,7 +827,7 @@
                 success: function(q) {
                     // if q =
                     var geom = q.data
-
+                    console.log(geom);
                     if (geom === 0) {
                         swal.fire(
                             'Data tidak ditemukan',
@@ -824,15 +859,30 @@
                             var layer = L.geoJSON(x, {
                                 style: sertifikatStyle,
                                 pmIgnore: true
-                            });
-                            var minilayer = L.geoJSON(x, {
-                                style: sertifikatStyle,
-                                pmIgnore: true
-                            });
+                            }).addTo(map);
+                            // var minilayer = L.geoJSON(x, {
+                            //     style: sertifikatStyle,
+                            //     pmIgnore: true
+                            // });
 
                             layer.addTo(layerAll);
 
                             layer.on('click', function() {
+                                var minilayer = '';
+                                minimap.eachLayer(function(lay) {
+                                    if (lay.toGeoJSON) {
+                                        minimap.removeLayer(lay);
+                                    }
+
+                                });
+                                var mini = (JSON.parse(property.geometry.polygon));
+                                minilayer = L.geoJSON(mini, {
+                                    style: sertifikatStyle,
+                                    pmIgnore: true
+                                });
+                                minilayer.addTo(minimap);
+
+                                // console.log(minilayer)
                                 const sertifikat = (property
                                         .status == 1) ?
                                     "Bersertifikat" :
@@ -865,7 +915,7 @@
                                 $('#detailData').append(`
                                                 <table class="table table-sm table-striped">
                                                 <tr>
-                                                  <th>Pemilik Inventaris </th>
+                                                  <th>Pengelola Inventaris </th>
                                                   <td>` + property.master_skpd.nama_skpd + `</td>
                                                 </tr>
                                                 <tr>
@@ -931,6 +981,7 @@
                                     property
                                     .nama + `</p>
                                                 <table class="table table-striped">
+
                                                 <tr>
                                                     <th>Pengelola</th>
                                                     <td>` + property.master_skpd.nama_skpd + `</td>
@@ -965,17 +1016,17 @@
 
                                 $('#detailModal').on('shown.bs.modal',
                                     function() {
+
                                         setTimeout(function() {
                                             minimap.invalidateSize();
-                                            minilayer.addTo(minimap);
                                             minimap.fitBounds(minilayer
                                                 .getBounds());
+                                        }, 1000);
 
-                                        }, 500);
                                     });
                             });
                         })
-                        layerAll.addTo(map);
+                        // layer.addTo(map);
                         // pointAll.addTo(map);
                         map.fitBounds(layerAll.getBounds());
                         // setInterval(function() {
