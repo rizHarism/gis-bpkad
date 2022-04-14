@@ -351,16 +351,16 @@
                                                 <tr>
                                                     <td colspan="2" style="text-align:center"> <a href=# onclick="gMaps(` +
                                         coordinates +
-                                        `)">Buka di Maps </a></td>
+                                        `)"> <i class="fas fa-map-marker-alt"></i> Buka di Maps </a></td>
                                                 </tr>
                                                 </table>
                                                 <table class="table table-striped mt-0">
                                                 <tr>
                                                     <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
                                         property.id +
-                                        `)">Print</a></td>
+                                        `)"><i class="fas fa-print"></i> Print</a></td>
                                                     <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                        property.id + `">Detail</a></td>
+                                        property.id + `"> <i class="fas fa-info-circle"></i> Detail</a></td>
                                                 </tr>
                                                 </table>
                                                 <div style="text-align:center">`
@@ -1009,16 +1009,16 @@
                                                 <tr>
                                                     <td colspan="2" style="text-align:center"> <a href=# onclick="gMaps(` +
                                     coordinates +
-                                    `)">Buka di Maps </a></td>
+                                    `)"><i class="fas fa-map-marker-alt"></i> Buka Maps </a></td>
                                                 </tr>
                                                 </table>
                                                 <table class="table table-striped">
                                                 <tr>
                                                     <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
                                     property.id +
-                                    `)">Print</a></td>
+                                    `)"><i class="fas fa-print"></i> Print</a></td>
                                                     <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                    property.id + `">Detail</a></td>
+                                    property.id + `"></i><i class="fas fa-info-circle"></i> Detail</a></td>
                                                 </tr>
                                                 </table>
                                                 <div style="text-align:center">
