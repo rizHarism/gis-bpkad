@@ -217,6 +217,7 @@
 
                                 var lat = property.geometry.lat
                                 var lng = property.geometry.lng
+                                var coordinates = "'" + lat + "," + lng + "'";
 
                                 layer.on('click', function() {
                                     minimap.eachLayer(function(lay) {
@@ -306,7 +307,8 @@
                                                 </tr>
                                                 <tr>
                                                   <th>Koordinat </th>
-                                                  <td>` + lat + ` / ` + lng + `</td>
+                                                  <td><a href='#' onclick="gMaps(` + coordinates + `)">` + lat +
+                                        ` / ` + lng + `</a></td>
                                                 </tr>
                                                 <tr>
                                                   <th>Luas Tanah </th>
@@ -344,11 +346,15 @@
 
                                                 <tr>
                                                     <th>Alamat</th>
-                                                    <td>` + property.alamat +
-                                        `</td>
+                                                    <td>` + property.alamat + `</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center"> <a href=# onclick="gMaps(` +
+                                        coordinates +
+                                        `)">Buka di Maps </a></td>
                                                 </tr>
                                                 </table>
-                                                <table class="table table-striped">
+                                                <table class="table table-striped mt-0">
                                                 <tr>
                                                     <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
                                         property.id +
@@ -742,6 +748,12 @@
                 'width=1200,height=600');
         }
 
+        function gMaps(c) {
+            // console.log(c)
+            url = "https://www.google.com/maps/search/" + c;
+            window.open(url, '_blank');
+        }
+
         function kelurahan() {
             $.ajax({
                 type: "GET",
@@ -848,6 +860,7 @@
                             var geo = property.geometry.polygon
                             var lat = property.geometry.lat
                             var lng = property.geometry.lng
+                            var coordinates = "'" + lat + "," + lng + "'";
 
                             function myPrint() {
                                 window.open('/inventaris/' + id + '/print',
@@ -952,7 +965,8 @@
                                                 </tr>
                                                 <tr>
                                                   <th>Koordinat </th>
-                                                  <td>` + lat + ` / ` + lng + `</td>
+                                                  <td><a href='#' onclick="gMaps(` + coordinates + `)">` + lat +
+                                    ` / ` + lng + `</a></td>
                                                 </tr>
                                                 <tr>
                                                   <th>Luas Tanah </th>
@@ -992,6 +1006,11 @@
                                                     <td>` + property.alamat +
                                     `</td>
                                                 </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center"> <a href=# onclick="gMaps(` +
+                                    coordinates +
+                                    `)">Buka di Maps </a></td>
+                                                </tr>
                                                 </table>
                                                 <table class="table table-striped">
                                                 <tr>
@@ -1004,7 +1023,6 @@
                                                 </table>
                                                 <div style="text-align:center">
                                                 `
-
 
                                 var popup = L
                                     .popup()
