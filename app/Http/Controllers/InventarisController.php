@@ -584,20 +584,27 @@ class InventarisController extends Controller
         //
         $inventaris = Inventaris::findOrFail($id);
         $geometry = Geometry::where('inventaris_id', $id);
-        $galery = Galery::where('inventaris_id', $id)->firstOrFail();
-        $document = Document::where('inventaris_id', $id)->firstOrFail();
+        $galery = Galery::where('inventaris_id', $id);
+        // $fileGalery = Galery::where('inventaris_id', $id)->firstOrFail();
+        $document = Document::where('inventaris_id', $id);
         // $geometry = Geometry::find
-        // dd($galery->image_path, $document->doc_path);
+        // dd($galery->value('image_path'), $document->pluck('doc_path'));
         try {
             $inventaris->delete();
-            $geometry->delete();
-            $galery->delete();
-            $document->delete();
-            if (File::exists(public_path('assets/galery/' . $galery->image_path))) {
-                File::delete(public_path('assets/galery/' . $galery->image_path));
+            if ($geometry) {
+                $geometry->delete();
             }
-            if (File::exists(public_path('assets/document/' . $document->doc_path))) {
-                File::delete(public_path('assets/document/' . $document->doc_path));
+            if (File::exists(public_path('assets/galery/' . $galery->value('image_path')))) {
+                File::delete(public_path('assets/galery/' . $galery->value('image_path')));
+            }
+            if (File::exists(public_path('assets/document/' . $document->value('doc_path')))) {
+                File::delete(public_path('assets/document/' . $document->value('doc_path')));
+            }
+            if ($galery) {
+                $galery->delete();
+            }
+            if ($document) {
+                $document->delete();
             }
         } catch (\Exception $e) {
             return response($e->getMessage(), 500);
