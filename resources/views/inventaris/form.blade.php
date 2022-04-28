@@ -78,20 +78,27 @@
                                                             Belum Bersertifikat</option>
                                                     </select>
                                                 </div>
+                                                <div class="col-md-5 mb-2 noSertifikat">
+                                                    <label for="" class="form-label mb-0 fst-italic">No Sertifikat :</label>
+                                                    <input type="text" class="form-control " name="no_sertifikat"
+                                                        id="no_sertifikat" placeholder=""
+                                                        value="{{ $edit['no_dokumen_sertifikat'] ?? '' }}">
+                                                </div>
+
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5 mb-2 ">
+                                                    <label for="" class="form-label mb-0 fst-italic ">No Register :</label>
+                                                    <input type="text" class="form-control " name="noRegister"
+                                                        id="noRegister" placeholder=""
+                                                        value="{{ $edit['no_register'] ?? '' }}">
+                                                </div>
                                                 <div class="col-md-5 mb-2 ">
                                                     <label for="" class="form-label mb-0 fst-italic ">Luas (M<sup>2</sup>)
                                                         :</label>
                                                     <input type="text" class="form-control " name="luas" id="luas"
                                                         placeholder="" value="{{ $edit['luas'] ?? '' }}">
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">No Register :</label>
-                                                    <input type="text" class="form-control " name="noRegister"
-                                                        id="noRegister" placeholder=""
-                                                        value="{{ $edit['no_register'] ?? '' }}">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -128,12 +135,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-5 mb-2">
-                                                    <label for="" class="form-label mb-0 fst-italic">No Sertifikat :</label>
-                                                    <input type="text" class="form-control " name="no_sertifikat"
-                                                        id="no_sertifikat" placeholder=""
-                                                        value="{{ $edit['no_dokumen_sertifikat'] ?? '' }}">
-                                                </div>
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
@@ -192,17 +194,23 @@
 
 
                                             <div class="row">
-                                                <div class="col-md-5 mb-2  ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Foto :</label>
+                                                <div class="col-md-10 mb-2  ">
+                                                    <label for="" class="form-label mb-0 fst-italic">Foto : <span
+                                                            style="font-size: 11px">(*type file jpg,jpeg,png)</span></label>
                                                     <input type="file" name="image" id="image" class="form-control"
                                                         accept="image/png, image/jpg, image/jpeg">
+
                                                     <span
-                                                        style="font-size: 10px">{{ isset($edit->galery) ? 'Kosongkan form jika tidak ingin merubah foto' : '' }}</span>
+                                                        style="font-size: 10px">{{ isset($edit->galery) ? ' -Kosongkan form jika tidak ingin merubah foto' : '' }}</span>
                                                 </div>
-                                                <div class="col-md-5 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Dokumen :</label>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 mb-2 me-5 documentSertifikat">
+                                                    <label for="" class="form-label mb-0 fst-italic">Dokumen :
+                                                        <span style="font-size: 11px;">(*type file pdf)</span></label>
                                                     <input type="file" name="document" id="document" class="form-control"
                                                         accept="application/pdf">
+
                                                     <span
                                                         style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah dokumen' : '' }}</span>
                                                 </div>
@@ -239,7 +247,7 @@
                                                         alt="">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 documentPreview">
                                                 <span style="font-style: italic">Preview Sertifikat :</span>
                                                 <div class="ratio ratio-16x9">
                                                     <iframe id="doc-preview"
@@ -298,6 +306,25 @@
                 $("body").removeClass("loading");
             }
         });
+
+        //enable-disabled select status change
+        $('#status').change(function() {
+
+            var status_value = $(this).val();
+            console.log(status_value)
+            if (status_value == '' || status_value == '0') {
+                // $('#no_sertifikat').attr('disabled', 'disabled');
+                // $('#document').attr('disabled', 'disabled');
+                $('.noSertifikat').hide();
+                $('.documentSertifikat').hide();
+                $('.documentPreview').hide();
+            } else {
+                $('.noSertifikat').show()
+                $('.documentSertifikat').show()
+                $('.documentPreview').show()
+            }
+
+        }).trigger("change");
 
         //change Foto preview
         function changeFoto(input) {
