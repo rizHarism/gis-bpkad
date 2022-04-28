@@ -172,7 +172,8 @@
                                                     <label for="" class="form-label mb-0 fst-italic m">Lat :</label>
                                                     <input type="text" class="form-control " name="lat" id="lat"
                                                         placeholder=""
-                                                        value="{{ isset($edit->geometry) ? $edit->geometry->lat : '' }}">
+                                                        value="{{ isset($edit->geometry) ? $edit->geometry->lat : '' }}"
+                                                        disabled>
                                                     {{-- </div> --}}
                                                 </div>
                                                 <div class="col-md-5">
@@ -180,7 +181,8 @@
                                                     <label for="" class="form-label mb-0 fst-italic">Long :</label>
                                                     <input type="text" class="form-control " name="lng" id="lng"
                                                         placeholder=""
-                                                        value="{{ isset($edit->geometry) ? $edit->geometry->lng : '' }}">
+                                                        value="{{ isset($edit->geometry) ? $edit->geometry->lng : '' }}"
+                                                        disabled>
                                                     {{-- </div> --}}
                                                 </div>
                                             </div>
