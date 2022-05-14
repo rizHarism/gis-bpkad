@@ -34,10 +34,6 @@ class InventarisController extends Controller
     {
         return view('inventaris.index');
     }
-    public function indexGedung()
-    {
-        return view('inventaris.gedung.index');
-    }
 
     public function indexJaringan()
     {

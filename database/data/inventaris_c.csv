@@ -1,0 +1,446 @@
+id_inventaris,jenis_inventaris,Nama,no_registrasi,tahun_perolehan,nilai_aset,luas,status,alamat,kelurahan_id,kecamatan_id,kondisi,jenis_bangunan,jenis_konstruksi,skpd_id,master_barang_id
+1587E,C,Gedung SDN Bendo 1,,2007,53291100,381.64,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1051
+1775I,C,SPILUT SDN BENDO 1,,2013,1000000,115.29,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1006
+1587B,C,Pembangunan UKS,,2007,7200000,30.87,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1051
+1509F,C,PARKIR SDN BENDO 1,,2009,15000000,67.2,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1003
+1587C,C,Kontruksi Gedung MCK,,2007,6000000,37.4,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1051
+1546A,C,"GEDUNG SEKOLAH RKB	 SDN BENDO 1",,1990,1459080000,309.54,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1004
+1587D,C,DAK Gd Sekolah,,2007,7200000,162,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1051
+1646G,C,PAVING SDN BENDO 1,,2011,38736000,617.05,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1001
+2395J,C,"Termin (1,2,3) Pembangunan Jamban 1 Paket SDN Bendo 1 (DAK)",,2018,97953408,29.4,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1002
+1546K,C,Gedung Sekolah,,1990,59602000,211.11,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1004
+1512H,C,TUGU SDN BENDO 1,,2009,20350500,28.85,Pemda,"Jl. Ciliwung No.142, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1000,1003
+2699F,C,JAMBAN PUTRI SDN BENDOGERIT 1 (DIKDAS),,2019,55372125.72,24,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1001,1002
+1288A,C,Bangunan Pendidikan,,1990,141000000,150.3,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1001,1004
+1288D,C,Gedung RKB SDN Bendogerit 1,,1990,317000000,444.4,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1001,1004
+1288B,C,Bangunan Gedung Sekolah,,1990,261500000,887.36,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,BTK,BTN,1001,1004
+1565K,C,SDN BENDOGERIT 1,,2007,29265306,35.4,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1001,1051
+2398E,C,"Termin (1,2,3) Pembangunan Jamban SDN Bendogerit 1 (DAK)",,2018,97953408,28,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1001,1002
+1565I,C,Pembangunan UKS,,2007,7200000,197.6,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1001,1051
+1288C,C,Bangunan Gedung Sekolah,,1990,313800000,618,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1001,1004
+1813H,C,Gedung Penjaga Sekolah SDN Bendogerit 1,,2013,131545410,52.5,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BBTN,1001,1006
+1565J,C,Kontruksi Gedung MCK,,2007,6000000,19.5,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1001,1051
+1734G,C,Pagar dan Halaman SDN Bendogerit 1,,2012,131900000,0,Pemda,"Jl. Hasanudin Blitar No.1, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1001,1001
+1566G,C,Kontruksi Gedung MCK,,2007,6000000,23,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BBTN,1002,1051
+1297A,C,Gedung RKB SDN Bendogerit 2,,1990,150000000,372.22,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1002,1004
+1663E,C,Taman dan Parkir SDN Bendogerit 2,,2011,1255000,31,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1002,1001
+1297B,C,Bangunan Pendidikan,,1990,144000000,184,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1002,1004
+1297C,C,Bangunan Pendidikan,,1990,168000000,126,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1002,1004
+1297D,C,Bangunan Pendidikan,,1990,126000000,105.6,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1002,1004
+1726K,C,pembangunan pagar SDN Bendogerit 2,,2012,1255000,0,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1002,1001
+2725H,C,KANTIN SDN BENDOGERIT 2 (DIKDAS),,2019,1255000,55.2,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1002,1061
+1566I,C,SDN BENDOGERIT 2,,2007,29265306,1.98,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BTN,1002,1051
+1726F,C,Pagar dan halaman SDN Bendogerit 2,,2012,1255000,16.5,Pemda,"Jl. Pamenang No.49, Bendogerit, Kec. Sananwetan, Kota Blitar, Jawa Timur 66133",15,1,B,TTK,BBTN,1002,1001
+1496B,C,Gedung RKB SDN Gedog 1,,1990,702908500,237.54,Pemda,"Jl. S. Supriadi No.157, Gedog, Kec. Sananwetan, Kota Blitar",16,1,B,TTK,BTN,1003,1004
+1496A,C,Gedung Sekolah,,1990,223800000,210.9,Pemda,"Jl. S. Supriadi No.157, Gedog, Kec. Sananwetan, Kota Blitar",16,1,B,TTK,BTN,1003,1004
+1666C,C,Pagar SDN Gedog 1,,2011,1161250,36.2,Pemda,"Jl. S. Supriadi No.157, Gedog, Kec. Sananwetan, Kota Blitar",16,1,B,TTK,BTN,1003,1001
+2441D,C,Termin 1 (100%) Rehab SDN Gedog 1 (mushola) ( DIKDAS ),,2018,53439500,100.64,Pemda,"Jl. S. Supriadi No.157, Gedog, Kec. Sananwetan, Kota Blitar",16,1,B,TTK,BBTN,1003,1061
+1567F,C,"Termin II rehabilitasi SDN Gedog 1
+(DAK SD 2013)",,2007,26999000,37.17,Pemda,"Jl. S. Supriadi No.157, Gedog, Kec. Sananwetan, Kota Blitar",16,1,B,TTK,BTN,1003,1051
+1567E,C,Kontruksi Gedung MCK,,2007,6000000,4,Pemda,"Jl. S. Supriadi No.157, Gedog, Kec. Sananwetan, Kota Blitar",16,1,B,TTK,BTN,1003,1051
+1294A,C,R. Kelas II,,1990,33600000,415.32,Pemda,"Jl Irogati No.11, Gedog, Kec Sananwetan, Kota Blitar, Jawa Timur",16,1,B,TTK,BBTN,1004,1004
+1294B,C,Gedung RKB SDN Gedog 2,,1990,33600000,88.79,Pemda,"Jl Irogati No.11, Gedog, Kec Sananwetan, Kota Blitar, Jawa Timur",16,1,B,TTK,BTN,1004,1004
+2461C,C,Bangunan jamban SDN Gedog 2 (DAK),,2018,97953408,29.11,Pemda,"Jl Irogati No.11, Gedog, Kec Sananwetan, Kota Blitar, Jawa Timur",16,1,B,TTK,BTN,1004,1002
+1568D,C,SDN GEDOG 2,,2007,29265306,177.75,Pemda,"Jl Irogati No.11, Gedog, Kec Sananwetan, Kota Blitar, Jawa Timur",16,1,B,TTK,BTN,1004,1051
+1568E,C,pembangunan jamban SDN Gedog 2 (DAK SD 2016),,2007,47000000,14.4,Pemda,"Jl Irogati No.11, Gedog, Kec Sananwetan, Kota Blitar, Jawa Timur",16,1,B,TTK,BTN,1004,1051
+1568F,C,Kontruksi Gedung MCK,,2007,6000000,10,Pemda,"Jl Irogati No.11, Gedog, Kec Sananwetan, Kota Blitar, Jawa Timur",16,1,B,TTK,BTN,1004,1051
+1658G,C,Paving SDN Gedog 2,,2011,4850550,724,Pemda,"Jl Irogati No.11, Gedog, Kec Sananwetan, Kota Blitar, Jawa Timur",16,1,B,TTK,BTN,1004,1001
+1725H,C,Pagar SDN Gedog  2,,2012,38894500,62.8,Pemda,"Jl Irogati No.11, Gedog, Kec Sananwetan, Kota Blitar, Jawa Timur",16,1,B,TTK,BBTN,1004,1001
+1725I,C,Musholla SDN Gedog 2,,2019,0,0,Pemda,"Jl Irogati No.11, Gedog, Kec Sananwetan, Kota Blitar, Jawa Timur",16,1,B,TTK,BBTN,1004,14218
+1569A,C,DAK Gd Sekolah,,2007,7200000,241.57,Pemda,"Jl. Letda Markawi No.32, Gedog, Kec. Sananwetan, Kota Blitar, Jawa Timur 66132",16,1,B,TTK,BBTN,1005,1051
+1569B,C,Kontruksi Gedung MCK,,2007,6000000,39.2,Pemda,"Jl. Letda Markawi No.32, Gedog, Kec. Sananwetan, Kota Blitar, Jawa Timur 66132",16,1,B,TTK,BTN,1005,1051
+2707C,C,PARKIR DAN PAVING SDN GEDOG 3,,2019,77359621.43,27.5,Pemda,"Jl. Letda Markawi No.32, Gedog, Kec. Sananwetan, Kota Blitar, Jawa Timur 66132",16,1,B,TTK,BTN,1005,1061
+2707D,C,PAGAR,,2019,0,0,Pemda,"Jl. Letda Markawi No.32, Gedog, Kec. Sananwetan, Kota Blitar, Jawa Timur 66132",16,1,B,TTK,BTN,1005,1004
+1569E,C,SDN GEDOG 3,,2007,29265306,72.25,Pemda,"Jl. Letda Markawi No.32, Gedog, Kec. Sananwetan, Kota Blitar, Jawa Timur 66132",16,1,B,TTK,BBTN,1005,1051
+2428F,C,Termin 1 (100%) rehab sedang/berat SDN Gedog 3 (rumah penjaga) ( DIKDAS ),,2018,53439500,47.25,Pemda,"Jl. Letda Markawi No.32, Gedog, Kec. Sananwetan, Kota Blitar, Jawa Timur 66132",16,1,B,TTK,BTN,1005,1061
+1531A,C,Perumahan Kepala Sekolah,,1990,14000000,139.31,Pemda,"Jl. Cipemali No. 29, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1006,1010
+2485H,C,"Perencanaan pengawasan ,Pembangunan pagar SDN Ngadirejo 1",,2019,73290899,92.5,Pemda,"Jl. Cipemali No. 29, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BBTN,1006,1003
+1532B,C,GEDUNG SEKOLAH RKB SDN NGADIREJO 1,,1990,92680000,515.16,Pemda,"Jl. Cipemali No. 29, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1006,1004
+1531C,C,GEDUNG KANTOR / GURU SDN NGADIREJO 1,,1990,21000000,306.36,Pemda,"Jl. Cipemali No. 29, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1006,1010
+1531E,C,"Perencanaan, pengawasan, Rehab MCK dan Tempat Wudhu SDN Ngadirejo 1",,1990,21501750,14.84,Pemda,"Jl. Cipemali No. 29, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1006,1010
+1532D,C,Gedung Sekolah,,1990,112000000,120.99,Pemda,"Jl. Cipemali No. 29, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1006,1004
+2722G,C,PAVING SDN NGADIREJO 1 (DIKDAS),,2019,52727608.61,383.74,Pemda,"Jl. Cipemali No. 29, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1006,1061
+1312A,C,GEDUNG SEKOLAH RKB,,1990,1857000000,480,Bukan Pemda,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BBTN,865,1004
+1313C,C,PERPUSTAKAAN,,1990,75000000,470,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BTN,865,1004
+1315B,C,GEDUNG TU,,1990,3400000,211.2,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BTN,865,1004
+1315I,C,Perbaikan R. BP,,1990,7000000,41,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,TTK,BTN,865,1004
+1314D,C,MUSHOLA,,1990,10000000,45.5,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,TTK,BTN,865,1004
+1312H,C,Gedung Sekolah,,1990,176447137,385.32,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BTN,865,1004
+1316E,C,GEDUNG RUANG SENI,,1990,22750000,838.89,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BTN,865,1004
+1311J,C,Konstruksi Gedung,,2006,62506870,440,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BTN,865,1004
+2495G,C,"Ruang Perpustakaan dan Ruang Serbaguna (Aula) Bantah Renovasi Gedung Tahun 2018 (APBN)
+Jl. A.Yani No. 8.Kepanjenkidul Kota Blitar
+Bangunan  Rp. 297.343,854
+Perencanan . Rp. 6.014.200 dan manajemen
+Pengawasan.  Rp. 4.714.200",,2019,327740888,584.25,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BBTN,865,1061
+1311K,C,Pembangunan Gedung,,2006,21000000,448.5,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BTN,865,1004
+1311L,C,Kontruksi Gedung MCK,,2006,10800000,11.55,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,TTK,BBTN,865,1004
+1430F,C,PAGAR SEKOLAH,,2009,111625000,63.25,-,"Jl. Ahmad Yani No.8, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,TTK,BTN,865,1004
+2092C,C,PINTU DAN PAGAR SMPN 6,,2016,14268000,28.45,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,872,1001
+1277B,C,Pembangunan Perpustakaan,,2009,56700000,123.9,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,872,1061
+2093D,C,TEMPAT PARKIR SMN 6,,2016,15600000,48.75,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,872,1001
+2094E,C,GREEN HOUSE SMPN 6,,2016,6000000,58.5,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,872,1001
+1305A,C,BANGUNAN GEDUNG RKB SMPN 6,,1990,2898342122,1692.91,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BTN,872,1004
+2400F,C,Pasang Paving,,2018,61800000,601.75,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,872,1001
+2203G,C,Bangunan MCK dan Tempat Wudlu 1 Paket,,2017,20225000,379.9,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,872,1002
+1277H,C,Kontruksi Gedung MCK,,2009,10800000,100.32,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,872,1061
+1305I,C,Bangunan Gedung,,2009,214190000,134.75,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,872,1004
+1277J,C,Pembangunan Gedung,,2009,63000000,262.69,Pemda,"Jl. S. Supriadi No.34, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,BTK,BBTN,872,1061
+1216P,C,Bangunan sekolah,,2009,73366050,102.85,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,-,BTN,1009,1004
+1279O,C,Pembangunan Gedung,,2009,42000000,449.79,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1061
+1215A,C,GEDUNG TU DAN KANTOR,,1990,39200000,304,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1004
+1216B,C,Gedung RKB Sebelah Selatan,,1990,70400000,135,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1004
+1216C,C,Bangunan Sekolah,,1990,70400000,449.82,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1004
+1216D,C,Bangunan Sekolah,,1990,70400000,313.76,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1004
+1216E,C,Bangunan Sekolah,,1990,70400000,135.42,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1004
+1216F,C,Bangunan Sekolah,,1990,70400000,134.68,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1004
+1216G,C,Bangunan Sekolah,,1990,70400000,196.1,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1004
+1216H,C,Bangunan Sekolah,,1990,70400000,334.4,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1004
+1218I,C,MUSHOLA,,1990,70400000,131.75,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1014
+1219J,C,Laboratorium Fisika,,1990,193450000,496,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,BTK,BTN,1009,1006
+1219K,C,Laboratorium,,1990,70400000,126.16,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1006
+1846L,C,MCK sebelah barat,,2014,35800000,2.25,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1002
+2517N,C,Bangunan Konstruksi Depo Sampah,,2019,29760000,30.4,Pemda,"Jl. Kenari No.28, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1009,1001
+1317A,C,PERPUSTAKAAN,,1990,33600000,350.96,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,BTK,BTN,866,1051
+1318B,C,Bangunan Sekolah,,1990,25600000,400.4,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,TTK,BTN,866,1004
+1318C,C,Gedung Sekolah,,1990,6226846,411.04,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,TTK,BTN,866,1004
+1319D,C,JALAN HALAMAN,,1990,4500000,28.98,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,TTK,BTN,866,1001
+1321E,C,Mushola,,1990,125000000,207.58,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,TTK,BBTN,866,1001
+1321F,C,LABORATORIUM,,1990,39600000,946.68,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,BTK,BTN,866,1001
+1551G,C,LAPANGAN,,1990,531200000,554.4,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,TTK,BTN,866,1018
+2388H,C,taman   kolam,,2018,19750000,17.05,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,TTK,BBTN,866,1001
+1307I,C,Gedung RKB SMPN 2 Sebelah Utara,,2006,3815309000,1077.3,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,BTK,BBTN,866,1004
+1307J,C,Pembangunan Gedung,,2006,21000000,333.84,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,BTK,BTN,866,1004
+1867K,C,rehap gedung kantor aula,,2016,162133000,249.28,Pemda,"Jl. Melati No. 112, Kepanjenkidul, Kec. KepanjenKidul, Kota Blitar, Jawa Timur",10,2,B,BTK,BTN,866,1088
+1817H,C,PAGAR HALAMAN,,2013,25120500,36.9,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BBTN,1011,1003
+1220A,C,GEDUNG SEKOLAH RKB,,1990,1421600000,1214.99,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BBTN,1011,1004
+1220B,C,Gedung Sekolah Lainnya,,1990,16000000,325.5,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BTN,1011,1004
+1308C,C,"Gedung RKB Kls 8,9 SMPN 9",,2006,298500000,829.42,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BTN,1011,1004
+1308D,C,Pembangunan Gedung,,2006,42000000,202.95,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BTN,1011,1004
+1220E,C,Gedung Sekolah,,2011,49500000,582,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BTN,1011,1004
+1614F,C,TAMAN,,2010,18350000,129,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BTN,1011,1006
+1713G,C,TEMPAT PARKIR,,2012,97537000,113.4,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BBTN,1011,8627
+1308I,C,tahap III pembangunan jamban SMPN 9 DAK 2015,,2006,70685300,25.2,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BBTN,1011,1004
+1308J,C,RKB/Rehab (SMPN 9),,2006,237282000,207.54,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BTN,1011,1004
+1613K,C,LABORATORIUM,,2010,49267000,168.55,Pemda,"Jl. Widas No.29, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",3,3,B,TTK,BTN,1011,1006
+1194D,C,GEDUNG PENJAGA,,1990,19388000,110.25,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BTN,868,1087
+1192A,C,GEDUNG TU DAN KANTOR,,1990,50000000,319.5,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BTN,868,1012
+1195E,C,BANGUNAN PERPUSTAKAAN,,1990,96523000,281.2,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BTN,868,1051
+1550F,C,PEMBANGUNAN SARANA AIR BERSIH DAN SANITARY,,2008,46649000,2856,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,-,BTN,868,1031
+1193C,C,LABORATORIUM,,1990,100000000,331.25,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BTN,868,1026
+1191G,C,Bangunan Gedung Pagar bertingkat,,1990,135039000,38.4,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,868,1006
+1191B,C,GEDUNG SEKOLAH RKB,,1990,2500000000,951.82,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,BTK,BTN,868,1006
+1195H,C,Perpustakaan,,1990,0,862.5,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,BTK,BBTN,868,1051
+1432I,C,LAPANGAN,,2009,55691850,493,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,-,BTN,868,1019
+2460J,C,RKB,,2013,180000000,499.05,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BBTN,868,1061
+1310K,C,Gedung RKB SMPN 4,,2008,119129000,456.25,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BTN,868,1004
+1310L,C,Pembangunan Gedung,,2008,42000000,75,Pemda,"Jl. Dr. Sutomo No. 92, Bendogerit, Kec. Sananwetan, Kota Blitar",15,1,B,TTK,BTN,868,1004
+1208A,C,BANGUNAN GEDUNG SEKOLAH,,1990,6734852594,1184.07,Pemda,"Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan, Kota Blita",15,1,B,TTK,BTN,871,1004
+1209A1,C,Tempat Parkir kanopi galvalum; tidak bertingkat; alamat Jl. S. Supriadi no. 32,,2015,28000000,165.07,Pemda,"Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan, Kota Blita",15,1,B,TTK,BTN,871,1001
+1208B,C,Gedung Sekolah,,1990,19950000,355.5,Pemda,"Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan, Kota Blita",15,1,B,TTK,BTN,871,1001
+1209C,C,TAMAN DAN TEMPAT PARKIR,,1990,12500000,86.78,Pemda,"Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan, Kota Blita",15,1,B,TTK,BTN,871,1001
+1209C1,C,"pembangunan Taman, Lapangan Upacara dan fasilitas Parkir",,2014,38400000,161.12,Pemda,"Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan, Kota Blita",15,1,B,TTK,BTN,871,1001
+2502D,C,"Pengadaan bangunan gedung tempat pendidikan / kamar mandi siswa, Perencanaan, Pengawasan 5,979,600.00",,2019,96744563,14.27,Pemda,"Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan, Kota Blita",15,1,B,TTK,BBTN,871,1002
+1281F1,C,Pembangunan Gedung,,2009,63000000,412.5,Pemda,"Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan, Kota Blita",15,1,B,TTK,BBTN,871,1061
+1735F11,C,PAGAR,,2012,2565000,20.9,Pemda,"Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan, Kota Blita",15,1,B,TTK,BBTN,871,1001
+1281E,C,RKB SMPN 5,,2009,84000000,385.52,Pemda,"Jl. S. Supriadi No.32, Bendogerit, Kec. Sananwetan, Kota Blita",15,1,B,BTK,BTN,871,1061
+1210A,C,RUMAH DINAS KEPALA SEKOLAH,,1990,16800000,373.3,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1010
+1212C,C,BANGUNAN RKB,,1990,46800000,1410.104,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1004
+1213D,C,LABORATORIUM,,1990,64000000,298.3,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,BTK,BTN,873,1026
+1213E,C,Bangunan Lab. Fisika,,1990,33768500,309.72,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1026
+1724J,C,PENGOLAHAN SAMPAH TERPADU,,2012,42699000,13.5,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BBTN,873,1061
+1434H,C,RUMAH PENJAGA,,2009,19300000,103.71,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1001
+1435I,C,TAMAN,,2009,13700000,277.4,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1001
+1213F,C,Ruang Laboratorium Bahasa,,1990,48000000,261,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,BTK,BTN,873,1026
+2458O,C,pembangunan jamban SMPN 7 Blitar (DAK),,2018,97808600,33.84,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1002
+2458P,C,Pembangunan jamban SMPN 7 Blitar (DAK),,2018,235822797,28.56,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1002
+1282N,C,Gedung Sekolah,,2009,232548935,135.75,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1061
+1214G,C,LAPANGAN BASKET,,1990,9660000,653.25,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1018
+1282M,C,Ruang RKB SMPN 7,,2009,63000000,491.82,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BBTN,873,1061
+2168K,C,Tempat parkir :,,2017,207450000,550,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BBTN,873,8627
+1211B,C,MUSHOLA SEKOLAH,,1990,44000000,288.86,Pemda,"Jl. Raung No.01, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,873,1014
+1543A,C,Banguinan Sekolah,,1990,40320000,161.6,Pemda,"Jl. Cibareno No.39, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1015,1004
+1543B,C,GEDUNG SEKOLAH RKB SDLB BENDO,,1990,319200000,141,Pemda,"Jl. Cibareno No.39, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1015,1004
+1625C,C,tahap I pembangunan jamban DAK 2015,,2010,61053600,24.6,Pemda,"Jl. Cibareno No.39, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1015,1061
+1625D,C,SDLB  NEGERI BENDO,,2010,29507700,167.4,Pemda,"Jl. Cibareno No.39, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1015,1061
+1625E,C,RKB/Rehab,,2010,355945000,125,Pemda,"Jl. Cibareno No.39, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1015,1061
+1543F,C,Rehab pagar SDLB Bendo,,1990,15300000,42,Pemda,"Jl. Cibareno No.39, Bendo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66116",8,2,B,TTK,BTN,1015,1004
+1238A,C,LABORATORIUM SDN TANJUNGSARI 2,,1990,45000000,337.5,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1004
+1237B,C,GEDUNG KANTOR SDN TANJUNGSARI 2,,1990,38500000,96.6,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1022
+1230C,C,GEDUNG SEKOLAH RKB SDN TANJUNGSARI 2,,1990,283000000,252,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1004
+1237D,C,Rumah Dinas Guru,,1990,36000000,163.76,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1022
+2396E,C,"Termin (1,2,3) Pembangunan Jamban SDN Tanjungsari 2 (DAK)",,2018,97953408,31.95,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1002
+1564F,C,SDN TANJUNGSARI 2,,2007,29265306,25.46,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1051
+1564G,C,tahap I pembangunan RKB; perpustakaan; Ruang guru dan pembuatan jamban SDN Tanjungsari 2 DAK 2015,,2007,165399537,56,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1051
+1564I,C,DAK Gd Sekolah,,2007,100800000,378,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,BTK,BTN,1016,1051
+1630J,C,PAGAR SDN TANJUNGSARI 2,,2010,28940000,35.5,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1001
+1564L,C,Kontruksi Gedung MCK,,2007,10800000,17.64,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1051
+1564K,C,DAK Gd Sekolah,,2007,50400000,115.5,Pemda,"Jl. Mahakam No.135, Tanjungsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66122",5,3,B,TTK,BTN,1016,1051
+1242A,C,GEDUNG KANTOR SDN TURI 2,,1990,38000000,182,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1017,1022
+1226B,C,GEDUNG SEKOLAH RKB SDN TURI 2,,1990,528500000,147,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1017,1004
+1561C,C,SDN TURI 2,,2007,29265306,252,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1017,1051
+1561D,C,Kontruksi Gedung MCK,,2007,10800000,28,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1017,1051
+1561E,C,Pembangunan UKS,,2007,7200000,21.5,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1017,1051
+1561F,C,Termin I+II RKB SDN Turi 2,,2007,63693000,60,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1017,1051
+1561G,C,DAK Gd Sekolah,,2007,100800000,49,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1017,1051
+1795H,C,JARINGAN SANITASI SDN TURI 2,,2013,13459000,42,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1017,1006
+1754I,C,PAGAR SDN TURI 2,,2012,59266000,20.65,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1017,1006
+1492J,C,PAVING SDN TURI 2,,2009,32124250,324,Pemda,"Jl. Randu Agung No.54, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BBTN,1017,1001
+1225A,C,GEDUNG SEKOLAH RKB SDN TURI 1,,1990,455000000,583,Pemda,"Jl. Beringin 322, Turi, Kec. Sukorejo, Kota Blitar",7,3,B,TTK,BTN,1018,1004
+1241B,C,GEDUNG KANTOR SDN TURI 1,,1990,38000000,205.5,Pemda,"Jl. Beringin 322, Turi, Kec. Sukorejo, Kota Blitar",7,3,B,TTK,BTN,1018,1022
+1604C,C,Termin 1 Pusat Sumber Belajar SDN Turi 1 Kota Blitar,,2007,36558800,63.75,Pemda,"Jl. Beringin 322, Turi, Kec. Sukorejo, Kota Blitar",7,3,B,TTK,BTN,1018,1051
+1604D,C,Kontruksi Gedung MCK,,2007,10800000,64.61,Pemda,"Jl. Beringin 322, Turi, Kec. Sukorejo, Kota Blitar",7,3,B,TTK,BTN,1018,1051
+1604E,C,SDN TURI 1,,2007,29265306,16.2,Pemda,"Jl. Beringin 322, Turi, Kec. Sukorejo, Kota Blitar",7,3,B,TTK,BTN,1018,1051
+2277F,C,"Rehabilitasi Sedang/Berat Taman lapangan Upacara dan Tempat parkir SDN Turi 1 dan perencanaan, pengawasan ( DIKDAS )",,2018,109765000,714,Pemda,"Jl. Beringin 322, Turi, Kec. Sukorejo, Kota Blitar",7,3,B,TTK,BTN,1018,1001
+1244A,C,GEDUNG KANTOR SDN KARANGSARI 3,,1990,18000000,496,Pemda,"Jl. Mangga No.63, Karangsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66125",2,3,B,TTK,BTN,1019,1022
+1224B,C,GEDUNG SEKOLAH RKB SDN KARANGSARI 3,,1990,428000000,286,Pemda,"Jl. Mangga No.63, Karangsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66125",2,3,B,TTK,BTN,1019,1004
+1603C,C,Kontruksi Gedung MCK,,2007,10800000,24.5,Pemda,"Jl. Mangga No.63, Karangsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66125",2,3,B,TTK,BTN,1019,1051
+1603D,C,Pembangunan UKS,,2007,7200000,175.84,Pemda,"Jl. Mangga No.63, Karangsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66125",2,3,B,TTK,BTN,1019,1051
+1603E,C,Kontruksi Gedung MCK,,2007,10800000,60.74,Pemda,"Jl. Mangga No.63, Karangsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66125",2,3,B,TTK,BTN,1019,1051
+2731F,C,PAGAR SDN KARANGSARI 3 (DIKDAS),,2019,75539343,22.5,Pemda,"Jl. Mangga No.63, Karangsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66125",2,3,B,TTK,BTN,1019,1061
+1244G,C,Rumah Dinas Guru,,1990,18000000,83.7,Pemda,"Jl. Mangga No.63, Karangsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66125",2,3,B,TTK,BTN,1019,1022
+1603H,C,SDN KARANGSARI 3,,2007,29265306,324,Pemda,"Jl. Mangga No.63, Karangsari, Kec. Sukorejo, Kota Blitar, Jawa Timur 66125",2,3,B,TTK,BTN,1019,1051
+1240A,C,GEDUNG KANTOR SDN KARANGSARI 2,,1990,38000000,184,Pemda,"Jl. Randu Agung No.9, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1020,1022
+1602B,C,SDN KARANGSARI 2,,2007,29265306,361,Pemda,"Jl. Randu Agung No.9, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1020,1051
+1602C,C,DAK Gd Sekolah,,2007,25200000,415.36,Pemda,"Jl. Randu Agung No.9, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1020,1051
+1602D,C,Kontruksi Gedung MCK,,2007,10800000,28.98,Pemda,"Jl. Randu Agung No.9, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1020,1051
+1240E,C,Rumah Dinas Guru,,1990,36000000,58.5,Pemda,"Jl. Randu Agung No.9, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1020,1022
+2432F,C,Termin 1 (100%) Rehab pagar SDN Karangsari 2 ( DIKDAS ),,2018,43077500,27.25,Pemda,"Jl. Randu Agung No.9, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1020,1061
+1240G,C,Rumah Dinas Guru,,1990,27000000,129.45,Pemda,"Jl. Randu Agung No.9, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BBTN,1020,1022
+1544A,C,GEDUNG SEKOLAH RKB SDN TANGGUNG 2,,1990,256200000,367.8,Pemda,"Jl. Cipunegara No.149, Tanggung, Kec. Kepanjenkidul, Kota Blitar",14,2,B,TTK,BBTN,1021,1004
+1648B,C,PAVING SDN TANGGUNG 2,,2011,16127000,243.75,Pemda,"Jl. Cipunegara No.149, Tanggung, Kec. Kepanjenkidul, Kota Blitar",14,2,B,TTK,BTN,1021,1001
+1590C,C,SDN TANGGUNG 2,,2007,29265306,266.38,Pemda,"Jl. Cipunegara No.149, Tanggung, Kec. Kepanjenkidul, Kota Blitar",14,2,B,TTK,BTN,1021,1051
+1590D,C,Pembangunan UKS,,2007,12960000,324.98,Pemda,"Jl. Cipunegara No.149, Tanggung, Kec. Kepanjenkidul, Kota Blitar",14,2,B,TTK,BTN,1021,1051
+2435E,C,Rehab pagar SDN Tanggung 2 ( DIKDAS ),,2018,53850000,71.25,Pemda,"Jl. Cipunegara No.149, Tanggung, Kec. Kepanjenkidul, Kota Blitar",14,2,B,TTK,BTN,1021,1061
+1545A,C,GEDUNG SEKOLAH RKB SDN TANGGUNG 1,,1990,283360000,457.4,Pemda,"Jl. Ciliwung No 296, Tanggung, Kecamatan Kepanjenkidul Kota Blitar",14,2,B,TTK,BTN,1022,1004
+1545B,C,"Perencanaan, pengawasan, Rehab MCK dan Tempat Wudhu SDN Tanggung 1",,1990,21501750,347.52,Pemda,"Jl. Ciliwung No 296, Tanggung, Kecamatan Kepanjenkidul Kota Blitar",14,2,B,TTK,BTN,1022,1004
+1589C,C,Kontruksi Gedung MCK,,2007,6000000,23.92,Pemda,"Jl. Ciliwung No 296, Tanggung, Kecamatan Kepanjenkidul Kota Blitar",14,2,B,TTK,BTN,1022,1051
+2399D,C,"Termin (1,2,3) Pembangunan Jamban 1 Paket SDN Tanggung 1 (DAK)",,2018,97953408,29.2,Pemda,"Jl. Ciliwung No 296, Tanggung, Kecamatan Kepanjenkidul Kota Blitar",14,2,B,TTK,BTN,1022,1002
+1758E,C,"Lapangan Upacara,Tempat parkir,pagar dan Gapura SDN Tanggung 1",,2012,30399000,0,Pemda,"Jl. Ciliwung No 296, Tanggung, Kecamatan Kepanjenkidul Kota Blitar",14,2,B,TTK,BTN,1022,1001
+1540A,C,"GEDUNG PENJAGA SEKOLAH	SDN BENDO 2",,1990,10080000,50.35,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BTN,1023,1010
+1541B,C,GEDUNG KANTOR / GURU SDN BENDO 2,,1990,13440000,87.15,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BTN,1023,1010
+1542C,C,GEDUNG SEKOLAH RKB SDN BENDO 2,,1990,250960000,703.42,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BTN,1023,1004
+1541D,C,Rumah Dinas Kepala Sekolah,,1990,13440000,131.25,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BTN,1023,1010
+1647E,C,PAVING SDN BENDO 2,,2011,36602000,183.75,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BTN,1023,1001
+1759F,C,PARKIR SDN BENDO 2,,2012,14475000,48.09,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BBTN,1023,1001
+1805G,C,PAGAR SDN BENDO 2,,2013,46414000,63.75,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BBTN,1023,1061
+1878H,C,Perpustakaan SDN BENDO 2,,2014,31193000,90.36,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BBTN,1023,1001
+1588I,C,tahap I pembangunan jamban SDN Bendo 2 DAK 2015,,2007,17095098,14.4,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BTN,1023,1051
+1588J,C,DAK Gd Sekolah,,2007,7200000,218.4,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BTN,1023,1051
+1588K,C,SDN BENDO 2,,2007,29265306,75.2,Pemda,"Jl. Cimedang No.10, Bendo, Kec. Kepanjenkidul, Kota Blitar",8,2,B,TTK,BTN,1023,1051
+1520A,C,Gedung Sekolah,,1990,249800000,162.84,Pemda,"Jl. Kalibrantas No.55, Kauman, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",9,2,B,TTK,BTN,1024,1004
+1520B,C,Gedung Sekolah,,1990,593440000,158.11,Pemda,"Jl. Kalibrantas No.55, Kauman, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",9,2,B,BTK,BTN,1024,1004
+1520C,C,"GEDUNG SEKOLAH RKB	 SDN KAUMAN 2",,1990,175320000,161.25,Pemda,"Jl. Kalibrantas No.55, Kauman, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",9,2,B,-,BTN,1024,1004
+1585D,C,Kontruksi Gedung MCK,,2007,6000000,33.95,Pemda,"Jl. Kalibrantas No.55, Kauman, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",9,2,-,TTK,BTN,1024,1051
+1525A,C,"GEDUNG SEKOLAH RKB	 SDN KEPANJENKIDUL 3",,1990,28000000,765.68,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BTN,1025,1004
+1525B,C,Gedung Sekolah,,1990,219840000,280.86,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BTN,1025,1004
+1527C,C,Gedung Sekolah,,1990,256800000,402.48,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BTN,1025,1004
+1525D,C,Gedung Sekolah,,1990,178400000,269.89,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BTN,1025,1004
+1522E,C,LABORATORIUM SDN KEPANJENKIDUL 2,,1990,19600000,60,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BTN,1025,1004
+1774F,C,LAPANGAN SDN KEPANJENKIDUL 3,,2013,12936000,844.8,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BTN,1025,1006
+1525G,C,Gedung Sekolah,,1990,42840000,93.93,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BBTN,1025,1004
+1582H,C,Kontruksi Gedung MCK,,2007,6000000,30,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BTN,1025,1051
+2287I,C,"Termin (1,2,3) pembangunan jamban 1 paket SDN Kepanjenkidul 2 (DAK)",,2018,97953408,34.56,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BTN,1025,1002
+2705J,C,RUMAH PENJAGA SDN KEPANJENKIDUL 2 (DIKDAS),,2019,106542242.5,24.8,Pemda,"Jl. Veteran No. 90, Kepanjenkidul, Kecamatan KepanjenKidul Kota Blitar",10,2,B,TTK,BTN,1025,1061
+1239A,C,GEDUNG KANTOR SDN KARANGSARI 1,,1990,12000000,255.84,Pemda,"Jl. Cemara No.183, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1026,1022
+1223B,C,GEDUNG SEKOLAH RKB SDN KARANGSARI 1,,1990,115700000,435.4,Pemda,"Jl. Cemara No.183, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1026,1004
+1601C,C,DAK Gd Sekolah,,2007,8640000,144.15,Pemda,"Jl. Cemara No.183, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1026,1051
+1601D,C,Kontruksi Gedung MCK,,2007,10800000,27.81,Pemda,"Jl. Cemara No.183, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1026,1051
+1806E,C,PAVING SDN KARANGSARI 1,,2013,15679000,462,Pemda,"Jl. Cemara No.183, Karangsari, Kec. Sukorejo, Kota Blitar",2,3,B,TTK,BTN,1026,1006
+1246A,C,GEDUNG KANTOR  SDN TLUMPU,,1990,18000000,360,Pemda,"Jl. Cemara No.309, Tlumpu, Kec. Sukorejo, Kota Blitar",6,3,B,TTK,BTN,1027,1022
+1235B,C,GEDUNG SEKOLAH RKB SDN TLUMPU,,1990,163000000,149.6,Pemda,"Jl. Cemara No.309, Tlumpu, Kec. Sukorejo, Kota Blitar",6,3,B,TTK,BTN,1027,1004
+1246C,C,Rumah Dinas Guru,,1990,18000000,113.9,Pemda,"Jl. Cemara No.309, Tlumpu, Kec. Sukorejo, Kota Blitar",6,3,B,TTK,BTN,1027,1022
+1600D,C,Kontruksi Gedung MCK,,2007,10800000,19.72,Pemda,"Jl. Cemara No.309, Tlumpu, Kec. Sukorejo, Kota Blitar",6,3,B,TTK,BTN,1027,1051
+1600E,C,Pembangunan UKS,,2007,7200000,27.5,Pemda,"Jl. Cemara No.309, Tlumpu, Kec. Sukorejo, Kota Blitar",6,3,B,TTK,BTN,1027,1051
+1600F,C,Termin II RKB SDN Tlumpu Kota Blitar,,2007,54665400,70.2,Pemda,"Jl. Cemara No.309, Tlumpu, Kec. Sukorejo, Kota Blitar",6,3,B,TTK,BTN,1027,1051
+1524A,C,GEDUNG SEKOLAH RKB SDN KEPANJENKIDUL 1,,1990,54880000,321.3,Pemda,"Jl.kacapiring 23 Blitar, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BBTN,1028,1004
+1524B,C,Bangunan Gedung Sekolah,,1990,58800000,477,Pemda,"Jl.kacapiring 23 Blitar, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,BTK,BTN,1028,1004
+1524D,C,"Perencanaan, pengawasan, Rehab MCK dan Tempat Wudhu SDN Kepanjenkidul 1",,1990,21501750,37.6,Pemda,"Jl.kacapiring 23 Blitar, Kepanjenkidul, Kec. Kepanjenkidul, Kota Blitar",10,2,B,TTK,BTN,1028,1004
+1533A,C,GEDUNG SEKOLAH RKB SDN NGADIREJO 2,,1990,92680000,281.98,Pemda,"Jl. KH. Agus Salim 16, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BBTN,1029,1004
+1592B,C,SDN NGADIREJO 2,,2007,29265306,115,Pemda,"Jl. KH. Agus Salim 16, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1029,1051
+1533C,C,Rehap Ruang Gedung SDN Ngadirejo 2,,1990,132218000,184,Pemda,"Jl. KH. Agus Salim 16, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1029,1004
+1592D,C,DAK Gd Sekolah,,2007,37800000,83,Pemda,"Jl. KH. Agus Salim 16, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1029,1051
+2423E,C,SDN Ngadirejo 2 (mushola) ( DIKDAS ),,2018,53850000,47.5,Pemda,"Jl. KH. Agus Salim 16, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1029,1061
+1533F,C,Rehabilitasi Pagar SDN Ngadirejo 2,,1990,23411000,0,Pemda,"Jl. KH. Agus Salim 16, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1029,1004
+2714G,C,KANTIN SDN NGADIREJO 2 (DIKDAS),,2019,29084743.05,51.41,Pemda,"Jl. KH. Agus Salim 16, Ngadirejo, Kec. Kepanjenkidul, Kota Blitar",12,2,B,TTK,BTN,1029,1061
+1234A,C,Gedung Sekolahan,,1990,264500000,532,Pemda,"Jl. Joko Kandung 88, Blitar, Kec. Sukorejo Kota Blitar",1,3,B,TTK,BTN,1030,1004
+1234C,C,GEDUNG SEKOLAH RKB SDN BLITAR,,1990,412675000,12,Pemda,"Jl. Joko Kandung 88, Blitar, Kec. Sukorejo Kota Blitar",1,3,B,TTK,BTN,1030,1004
+1596D,C,Kontruksi Gedung MCK,,2007,10800000,10.35,Pemda,"Jl. Joko Kandung 88, Blitar, Kec. Sukorejo Kota Blitar",1,3,B,TTK,BTN,1030,1051
+2390E,C,"Termin (1,2,3) Pembangunan Jamban 1 Paket SDN Blitar (DAK)",,2018,97953408,30.24,Pemda,"Jl. Joko Kandung 88, Blitar, Kec. Sukorejo Kota Blitar",1,3,B,TTK,BTN,1030,1002
+1234B,C,Gedung Sekolahan,,1990,264000000,597.99,Pemda,"Jl. Joko Kandung 88, Blitar, Kec. Sukorejo Kota Blitar",1,3,B,BTK,BTN,1030,1004
+1780A,C,SLBN SUKOREJO,,2013,36000000,292.5,Pemda,"Jl. Tanjung No.94, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1031,1061
+1755C,C,TEMPAT IBADAH SDLB NEGERI SUKOREJO,,2012,44019000,27.72,Pemda,"Jl. Tanjung No.94, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1031,1014
+1779D,C,PAGAR SDLB NEGERI SUKOREJO,,2013,27449000,63,Pemda,"Jl. Tanjung No.94, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1031,1006
+1780E,C,tahap I pembangunan jamban SDLB Sukorejo DAK 2015,,2013,17095098,48,Pemda,"Jl. Tanjung No.94, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BBTN,1031,1061
+1227A,C,GEDUNG SEKOLAH RKB SDN PAKUNDEN 1,,1990,690000000,382.2,Pemda,"Jl. Bogowonto No.48A, Pakunden, Kec. Sukorejo, Kota Blitar",3,3,B,TTK,BBTN,1032,1004
+1605C,C,Pembangunan UKS,,2007,7200000,207.9,Pemda,"Jl. Bogowonto No.48A, Pakunden, Kec. Sukorejo, Kota Blitar",3,3,B,TTK,BTN,1032,1051
+1605D,C,Kontruksi Gedung MCK,,2007,8100000,26.24,Pemda,"Jl. Bogowonto No.48A, Pakunden, Kec. Sukorejo, Kota Blitar",3,3,B,TTK,BTN,1032,1051
+1628E,C,PAGAR SDN PAKUNDEN 1,,2010,47256000,52,Pemda,"Jl. Bogowonto No.48A, Pakunden, Kec. Sukorejo, Kota Blitar",3,3,B,TTK,BTN,1032,1001
+2709F,C,MUSHOLA SDN PAKUNDEN 1 (DIKDAS),,2019,75442283.48,80.36,Pemda,"Jl. Bogowonto No.48A, Pakunden, Kec. Sukorejo, Kota Blitar",3,3,B,TTK,BBTN,1032,1061
+2710G,C,KANOPI TEMPAT WUDHU SDN PAKUNDEN 1 (DIKDAS),,2019,53621097.78,63.5,Pemda,"Jl. Bogowonto No.48A, Pakunden, Kec. Sukorejo, Kota Blitar",3,3,B,TTK,BTN,1032,1061
+1243B,C,GEDUNG KANTOR SDN PAKUNDEN 1,,1990,30000000,289.8,Pemda,"Jl. Bogowonto No.48A, Pakunden, Kec. Sukorejo, Kota Blitar",3,3,B,TTK,BTN,1032,1022
+1300A,C,SDN Klampok,,1990,19200000,529,Pemda,"Jl. Ternate No.137, Klampok, Kec. Sananwetan, Kota Blitar",18,1,B,TTK,BTN,1033,1001
+1580B,C,SDN KLAMPOK 1,,2007,29265306,408.27,Pemda,"Jl. Ternate No.137, Klampok, Kec. Sananwetan, Kota Blitar",18,1,B,TTK,BTN,1033,1051
+2393C,C,"Termin (1,2,3) Pembangunan Jamban 1 Paket SDN Klampok (DAK)",,2018,97953408,26.52,Pemda,"Jl. Ternate No.137, Klampok, Kec. Sananwetan, Kota Blitar",18,1,B,TTK,BTN,1033,1002
+1580D,C,Kontruksi Gedung MCK,,2007,6000000,31.96,Pemda,"Jl. Ternate No.137, Klampok, Kec. Sananwetan, Kota Blitar",18,1,B,TTK,BTN,1033,1051
+1580E,C,DAK Gd Sekolah,,2007,144000000,305.76,Pemda,"Jl. Ternate No.137, Klampok, Kec. Sananwetan, Kota Blitar",18,1,B,TTK,BTN,1033,1051
+1507A,C,Gedung SDN Rembang 2,,1990,36995510,571.96,Pemda,"Jl. Akasia No.17, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BTN,1034,1001
+1577B,C,SDN REMBANG 2,,2007,29265306,39.57,Pemda,"Jl. Akasia No.17, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BTN,1034,1051
+1577C,C,Pembangunan UKS,,2007,7200000,87.36,Pemda,"Jl. Akasia No.17, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BTN,1034,1051
+1577D,C,tahap I pembangunan jamban SDN Rembang 2 DAK 2015,,2007,34190195,156,Pemda,"Jl. Akasia No.17, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BTN,1034,1051
+1303A,C,Gedung Sekolah,,1990,38400000,225.61,Pemda,"Jl. Palem No. 55, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BTN,1035,1001
+1576B,C,SDN REMBANG 1,,2007,29265306,104.3,Pemda,"Jl. Palem No. 55, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BTN,1035,1051
+1303C,C,Gedung RKB SDN Rembang 1,,1990,26904500,220,Pemda,"Jl. Palem No. 55, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BTN,1035,1001
+1576D,C,DAK Gd Sekolah,,2007,7200000,196,Pemda,"Jl. Palem No. 55, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BTN,1035,1051
+1657E,C,Pagar SDN Rembang 1,,2011,12550000,27.5,Pemda,"Jl. Palem No. 55, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BTN,1035,1001
+2728F,C,PAVING SDN REMBANG 1 (DIKDAS),,2019,35412513.25,198,Pemda,"Jl. Palem No. 55, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BBTN,1035,1061
+1576G,C,Kontruksi Gedung MCK,,2007,6000000,2.25,Pemda,"Jl. Palem No. 55, Rembang, Kec. Sananwetan, Kota Blitar",20,1,B,TTK,BBTN,1035,1051
+1579A,C,SDN PLOSOKEREP 2,,2007,29265306,262.86,Bukan Pemda,"Jl. Kenari No.58, Plosokerep, Kec. Sananwetan, Kota Blitar",19,1,B,TTK,BBTN,1036,1051
+1579B,C,Rehab ruang kls SDN Plosokerep 2 Kota Blitar,,2007,83400000,184,-,"Jl. Kenari No.58, Plosokerep, Kec. Sananwetan, Kota Blitar",19,1,B,TTK,BTN,1036,1051
+1579C,C,Rehab ruang kls SDN Plosokerep 2 (termin II),,2007,62550000,177.84,-,"Jl. Kenari No.58, Plosokerep, Kec. Sananwetan, Kota Blitar",19,1,B,TTK,BTN,1036,1051
+2420E,C,Termin 1 (100%) pembangunan kantin SDN Plosokerep 2 ( DIKDAS ),,2018,79683500,42.64,-,"Jl. Kenari No.58, Plosokerep, Kec. Sananwetan, Kota Blitar",19,1,B,TTK,BTN,1036,1061
+1579F,C,Kontruksi Gedung MCK,,2007,6000000,10.8,-,"Jl. Kenari No.58, Plosokerep, Kec. Sananwetan, Kota Blitar",19,1,B,TTK,BTN,1036,1051
+1578A,C,SDN PLOSOKEREP 1,,2007,29265306,167.48,Pemda,"Jl. Kenari No.9, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1037,1051
+1578B,C,RKB/Rehab (SDN Plosokerep 1),,2007,72990000,162.72,Pemda,"Jl. Kenari No.9, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1037,1051
+1578C,C,Termin I+II Rehab Ruang kelas SDN Plosokerep 01,,2007,72990000,181.44,Pemda,"Jl. Kenari No.9, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1037,1051
+2703D,C,TEMPAT SEPEDA SDN PLOSOKEREP 1 (DIKDAS),,2019,38306005,25.9,Pemda,"Jl. Kenari No.9, Plosokerep, Kec. Sananwetan, Kota Blitar, Jawa Timur 66134",19,1,B,TTK,BTN,1037,1061
+1298A,C,Gedung RKB SDN Karangtengah 2,,1990,268080000,253.14,Pemda,"Jl. Selayar No.9 Karangtengah, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BBTN,1038,1004
+1298B,C,Gedung Sekolah,,1990,443514000,56.16,Pemda,"Jl. Selayar No.9 Karangtengah, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1038,1004
+1298C,C,Gedung Sekolah,,1990,351000000,236.4,Pemda,"Jl. Selayar No.9 Karangtengah, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1038,1004
+1665D,C,Pembangunan Paving SDN Karangtengah 2,,2011,14624500,189,Pemda,"Jl. Selayar No.9 Karangtengah, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1038,1001
+1528A,C,GEDUNG SEKOLAH RKB SDN KEPANJENLOR 3,,1990,85960000,355.88,Pemda,"Jl.  Masjid Utara No. 22, Kauman, Kec. KepanjenKidul, Kota Blitar",9,2,B,BTK,BTN,1039,1004
+1529B,C,GEDUNG KANTOR / GURU SDN KEPANJENLOR 3,,1990,14000000,187.45,Pemda,"Jl.  Masjid Utara No. 22, Kauman, Kec. KepanjenKidul, Kota Blitar",9,2,B,-,BTN,1039,1086
+1559C,C,Kontruksi Gedung MCK,,2007,6000000,48.51,Pemda,"Jl.  Masjid Utara No. 22, Kauman, Kec. KepanjenKidul, Kota Blitar",9,2,B,-,BTN,1039,1051
+2686D,C,MUSHOLA KEPANJENLOR 3 (DIKDAS),,2019,64230831.23,74.48,Pemda,"Jl.  Masjid Utara No. 22, Kauman, Kec. KepanjenKidul, Kota Blitar",9,2,B,-,BTN,1039,1061
+2424E,C,Termin 1 (100%) Rehab SDN Kepanjenlor 3 (MCK) perencanaan dan pengawasan ( DIKDAS ),,2018,64000000,8.4,Pemda,"Jl.  Masjid Utara No. 22, Kauman, Kec. KepanjenKidul, Kota Blitar",9,2,B,-,BTN,1039,1061
+1937A,C,TAMAN SDN KEPANJENLOR 1,,2015,11200000,15.2,Pemda,"Jl. Masjid No.2, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BTN,1040,1001
+1936B,C,PARKIR SDN KEPANJENLOR 1,,2015,2350000,115.04,Pemda,"Jl. Masjid No.2, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,TTK,BBTN,1040,8627
+1526C,C,"GEDUNG SEKOLAH RKB	 SDN KEPANJENLOR 1",,1990,269400000,679.89,Pemda,"Jl. Masjid No.2, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,BTK,BBTN,1040,1004
+1583D,C,Kontruksi Gedung MCK,,2007,6000000,171.33,Pemda,"Jl. Masjid No.2, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar",11,2,B,BTK,BTN,1040,1051
+1295A,C,Gedung RKB SDN Sananwetan 1,,1990,33600000,281.78,Pemda,"Jl. Kep. Seribu No.06, Sananwetan, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",21,1,B,TTK,BTN,1041,1004
+1295B,C,R. Kelas V,,1990,33600000,262.08,Pemda,"Jl. Kep. Seribu No.06, Sananwetan, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",21,1,B,-,BTN,1041,1004
+1295C,C,R. Kelas VI,,1990,33600000,585.08,Pemda,"Jl. Kep. Seribu No.06, Sananwetan, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",21,1,B,TTK,BTN,1041,1004
+1570D,C,Kontruksi Gedung MCK,,2007,6000000,9.15,Pemda,"Jl. Kep. Seribu No.06, Sananwetan, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",21,1,B,TTK,BTN,1041,1051
+1664E,C,Pagar SDN Sananwetan 1,,2011,1341950,0,Pemda,"Jl. Kep. Seribu No.06, Sananwetan, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",21,1,B,TTK,BTN,1041,1001
+2392F,C,"Termin (1,2,3) Pembangunan Jamban 1 Paket SDN Sananwetan 1 (DAK)",,2018,97953408,28.8,Pemda,"Jl. Kep. Seribu No.06, Sananwetan, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",21,1,B,TTK,BBTN,1041,1002
+1534A,C,"GEDUNG SEKOLAH RKB	 SDN SENTUL 2",,1990,174160000,393.12,Pemda,"Jl. Ir. Soekarno No.23, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1042,1004
+1534B,C,Pengawasan Keramik SD Sentul 2,,1990,700000,608.72,Pemda,"Jl. Ir. Soekarno No.23, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1042,1004
+1534C,C,Gedung Sekolah,,1990,174160000,297.47,Pemda,"Jl. Ir. Soekarno No.23, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,BTK,BTN,1042,1004
+1594D,C,Kontruksi Gedung MCK,,2007,10800000,31.5,Pemda,"Jl. Ir. Soekarno No.23, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1042,1051
+1595A,C,SDN SENTUL 4,,2007,29265306,245.3,Pemda,"Jl. RM Suryo No.2 Blitar, Kelurahan Sentul, Kota Blitar Jawa Timur 66113",13,2,B,TTK,BTN,1043,1051
+1595C,C,Kontruksi Gedung MCK,,2007,10800000,145.13,Pemda,"Jl. RM Suryo No.2 Blitar, Kelurahan Sentul, Kota Blitar Jawa Timur 66113",13,2,B,TTK,BTN,1043,1051
+1595D,C,DAK Gd Sekolah,,2007,9360000,284.24,Pemda,"Jl. RM Suryo No.2 Blitar, Kelurahan Sentul, Kota Blitar Jawa Timur 66113",13,2,B,TTK,BTN,1043,1051
+1999E,C,PAGAR DAN HALAMAN SDN SENTUL 4,,2015,43641000,31.5,Pemda,"Jl. RM Suryo No.2 Blitar, Kelurahan Sentul, Kota Blitar Jawa Timur 66113",13,2,B,TTK,BTN,1043,1001
+1530A,C,GEDUNG SEKOLAH RKB SDN SENTUL 3,,1990,129400000,189.63,Pemda,"Jl. Ir. Soekarno No.239, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1044,1004
+1535B,C,"GEDUNG PENJAGA SEKOLAH	SDN SENTUL 3",,1990,11760000,115.5,Pemda,"Jl. Ir. Soekarno No.239, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1044,1010
+1560C,C,"Termin II rehabilitasi SDN Sentul 3
+(DAK SD 2013)",,2007,40492000,96,Pemda,"Jl. Ir. Soekarno No.239, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1044,1051
+1530D,C,Gedung Sekolah,,1990,47040000,189,Pemda,"Jl. Ir. Soekarno No.239, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1044,1004
+1530E,C,"Perencanaan, pengawasan, Rehab MCK dan Tempat Wudhu SDN Sentul 3",,1990,21501750,25.2,Pemda,"Jl. Ir. Soekarno No.239, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1044,1004
+1521A,C,"GEDUNG SEKOLAH RKB	 SDN KAUMAN 3",,1990,17920000,162.84,Bukan Pemda,"Jl. Barito Selatan No.32, Kauman, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",9,2,B,TTK,BBTN,1045,1004
+1521B,C,Gedung Sekolah,,1990,178400000,142.5,-,"Jl. Barito Selatan No.32, Kauman, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",9,2,B,TTK,BTN,1045,1004
+1521C,C,Gedung Sekolah,,1990,184000000,82.8,-,"Jl. Barito Selatan No.32, Kauman, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",9,2,B,TTK,BTN,1045,1004
+1586D,C,Kontruksi Gedung MCK,,2007,6000000,21.56,-,"Jl. Barito Selatan No.32, Kauman, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",9,2,B,TTK,BTN,1045,1051
+2070D,C,GEDUNG AULA SPILUT SDN KARANGTENGAH 1,,2016,68640000,183.7,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1009
+1497C,C,Gedung Sekolah,,1990,240000000,281.05,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1004
+1573K,C,RKB/Rehab (SDN Karangtengah 1),,2007,90962000,64.68,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1051
+1660F,C,Taman dan Parkir SDN Karangtengah 1,,2011,5840000,438.03,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1001
+1573G,C,uang muka rehabilitasi SDN Karangtengah 1 (DAK 2013),,2007,54000000,143.42,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1051
+1497A,C,Gedung Sekolah RKB SDN Karangtengah 1,,1990,288600000,301.6,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1004
+1573I,C,Pembangunan UKS,,2007,7200000,34.02,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1051
+1497B,C,Gedung Sekolah,,1990,214500000,260.3,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1004
+1573H,C,Kontruksi Gedung MCK,,2007,10800000,38.8,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1051
+1573J,C,SDN KARANGTENGAH 1,,2007,29265306,66.3,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1051
+1661E,C,Pagar SDN Karangtengah 1,,2011,2920000,43.6,Pemda,"Jl. Bali No.36, Karangtengah, Kec. Sananwetan, Kota Blitar, Jawa Timur 66137",17,1,B,TTK,BTN,1046,1001
+1575A,C,SDN KARANGTENGAH 4,,2007,29265306,222.4,Bukan Pemda,"Jl. Maluku No.14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1047,1051
+1575B,C,DAK Gd Sekolah,,2007,50400000,312.4,-,"Jl. Maluku No.14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1047,1051
+1575C,C,"rehabilitasi jamban SDN Karangtengah 4
+(DAK SD 2016)",,2007,23500000,7.4,-,"Jl. Maluku No.14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1047,1051
+2438D,C,"Termin (1,2,3) Rehab Ruang Kelas SDN Karangtengah 4 (DAK)",,2018,66041741,65.1,-,"Jl. Maluku No.14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1047,1061
+2691E,C,PAGAR DEPAN SDN KARANGTENGAH 4 (DIKDAS),,2019,68093025.2,42,-,"Jl. Maluku No.14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1047,1061
+1575F,C,RKB/Rehab (SDN Karangtengah 4),,2007,91000000,61.5,-,"Jl. Maluku No.14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BBTN,1047,1051
+1575G,C,Kontruksi Gedung MCK,,2007,6000000,9.69,-,"Jl. Maluku No.14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1047,1051
+1992H,C,PAVING SDN KARANGTENGAH 4,,2015,54852000,797,-,"Jl. Maluku No.14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1047,1001
+1290A,C,Gudang SDN Sananwetan 3,,1990,72000000,405,Pemda,"Jl. Kalimantan No.2, Sananwetan, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1048,1033
+1572B,C,SDN SANANWETAN 3,,2007,29265306,337.5,Pemda,"Jl. Kalimantan No.2, Sananwetan, Kec. Sananwetan, Kota Blitar",21,1,B,BTK,BTN,1048,1051
+1289C,C,Gedung Kantor/Guru SDN Sananwetan 3,,1990,36000000,371.8,Pemda,"Jl. Kalimantan No.2, Sananwetan, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1048,1003
+1733D,C,Pagar SDN Sananwetan 3,,2012,57400000,0,Pemda,"Jl. Kalimantan No.2, Sananwetan, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1048,1001
+1291E,C,Musholla SDN Sananwetan 3,,1990,36000000,25,Pemda,"Jl. Kalimantan No.2, Sananwetan, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BBTN,1048,1014
+1572F,C,Kontruksi Gedung MCK,,2007,6000000,10.73,Pemda,"Jl. Kalimantan No.2, Sananwetan, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1048,1051
+1572G,C,Pembangunan UKS,,2007,7200000,12,Pemda,"Jl. Kalimantan No.2, Sananwetan, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1048,1051
+2439H,C,Termin 1 (00%) pembangunan jamban 1 paket SDN Sananwetan 3 (DAK),,2018,97953408,3.96,Pemda,"Jl. Kalimantan No.2, Sananwetan, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1048,1061
+1494I,C,Gedung Penjaga Sekolah SDN Sananwetan 3,,1990,16000000,48,Pemda,"Jl. Kalimantan No.2, Sananwetan, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1048,1087
+1506A,C,Gedung RKB SDN Sananwetan 2,,1990,348000000,199.16,Pemda,"Jl. Imam Bonjol No. 2, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1049,1004
+1506B,C,Kelas,,1990,529200000,289.52,Pemda,"Jl. Imam Bonjol No. 2, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1049,1004
+1506C,C,Ruang Kelas,,1990,302400000,380.48,Pemda,"Jl. Imam Bonjol No. 2, Kec. Sananwetan, Kota Blitar",21,1,B,BTK,BTN,1049,1004
+1506D,C,Ruang kelas,,1990,432000000,547.36,Pemda,"Jl. Imam Bonjol No. 2, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1049,1004
+1571E,C,Kontruksi Gedung MCK,,2007,6000000,97.92,Pemda,"Jl. Imam Bonjol No. 2, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1049,1051
+1571F,C,Kontruksi Gedung MCK,,2007,6000000,25.28,Pemda,"Jl. Imam Bonjol No. 2, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1049,1051
+1571G,C,SDN SANANWETAN 2,,2007,29265306,212.79,Pemda,"Jl. Imam Bonjol No. 2, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1049,1051
+2462H,C,Bangunan jamban SDN Sananwetan 2 DAK),,2018,97953408,27.45,Pemda,"Jl. Imam Bonjol No. 2, Kec. Sananwetan, Kota Blitar",21,1,B,TTK,BTN,1049,1002
+1558A,C,SDN KARANGTENGAH 3,,2007,29265306,66,Bukan Pemda,"Jl. Sumatra No. 14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BBTN,1050,1051
+1558B,C,"pembangunan jamban SDN Karangtengah 3
+(DAK SD 2016)",,2007,47000000,33.5,-,"Jl. Sumatra No. 14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1050,1051
+1558C,C,DAK Gd Sekolah,,2007,50400000,272.7,-,"Jl. Sumatra No. 14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1050,1051
+1558D,C,Kontruksi Gedung MCK,,2007,10800000,51,-,"Jl. Sumatra No. 14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1050,1051
+1558E,C,DAK Gd Sekolah,,2007,7200000,214.5,-,"Jl. Sumatra No. 14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1050,1051
+1558F,C,DAK Gd Sekolah,,2007,7200000,236.16,-,"Jl. Sumatra No. 14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1050,1051
+2697G,C,RUMAH PENJAGA SDN KARANGTENGAH 3 (DIKDAS),,2019,55482008.59,22.5,-,"Jl. Sumatra No. 14, Karangtengah, Kec. Sananwetan, Kota Blitar",17,1,B,TTK,BTN,1050,1061
+1538A,C,GEDUNG SEKOLAH RKB SDN SENTUL 1,,1990,5040000,235,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1051,1004
+1538B,C,Gedung Sekolah,,1990,296320000,253,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1051,1004
+1538C,C,Bangunan 3 Gedung Kelas,,1990,26880000,506.05,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1051,1004
+1539D,C,GEDUNG KANTOR / GURU SDN SENTUL 1,,1990,42000000,50.31,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1051,1004
+1539E,C,Gedung Sekolah,,1990,20000000,225.9,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1051,1004
+1650F,C,PAGAR SDN SENTUL 1,,2011,14195000,49.5,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1051,1001
+1776G,C,PAVING SDN SENTUL 1,,2013,14028000,463.6,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BBTN,1051,1006
+1593H,C,Kontruksi Gedung MCK,,2007,10800000,15.18,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BBTN,1051,1051
+1593I,C,tahap I pembangunan RKB SDN Sentul 1 DAK 2015,,2007,100545382,115.02,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1051,1051
+1593J,C,pembangunan jamban SDN Sentul 1 (DAK SD 2016),,2007,47000000,43.75,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1051,1051
+2397K,C,"Termin (1,2,3) Pembangunan Jamban SDN Sentul 1 (DAK)",,2018,97953408,29.2,Pemda,"Jl. Trowulan No.2, Sentul, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66113",13,2,B,TTK,BTN,1051,1002
+1229A,C,GEDUNG SEKOLAH RKB SDN TANJUNGSARI 1,,1990,330000000,198.45,Pemda,"Jl. Kampar No.25, Tanjungsari, Kec. Sukorejo, Kota Blitar",5,3,B,TTK,BBTN,1052,1004
+1229B,C,Bangunan Gedung Sekolah,,1990,15107500,314.2,Pemda,"Jl. Kampar No.25, Tanjungsari, Kec. Sukorejo, Kota Blitar",5,3,B,TTK,BTN,1052,1004
+2678C,C,JAMBAN TANJUNGSARI 1 (DIKDAS),,2019,48378788.28,22.5,Pemda,"Jl. Kampar No.25, Tanjungsari, Kec. Sukorejo, Kota Blitar",5,3,B,TTK,BTN,1052,1002
+1563D,C,pembangunan jamban SDN Tanjungsari 1 (DAK SD 2016),,2007,47000000,20,Pemda,"Jl. Kampar No.25, Tanjungsari, Kec. Sukorejo, Kota Blitar",5,3,B,TTK,BTN,1052,1051
+1563E,C,Pembangunan UKS,,2007,7200000,24.5,Pemda,"Jl. Kampar No.25, Tanjungsari, Kec. Sukorejo, Kota Blitar",5,3,B,TTK,BTN,1052,1051
+1563F,C,SDN TANJUNGSARI 1,,2007,29265306,288,Pemda,"Jl. Kampar No.25, Tanjungsari, Kec. Sukorejo, Kota Blitar",5,3,B,TTK,BTN,1052,1051
+1232A,C,GEDUNG SEKOLAH RKB SDN SUKOREJO 1,,1990,284500000,176.4,Pemda,"Jl. Manggar No.57, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1053,1004
+1232B,C,Gedung Sekolah,,1990,182500000,279,Pemda,"Jl. Manggar No.57, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1053,1004
+2701C,C,"PAGAR SEKOLAH, KANOPI SDN SUKOREJO 1 (DIKDAS)",,2019,108315542.5,10.75,Pemda,"Jl. Manggar No.57, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1053,1061
+1233A,C,GEDUNG SEKOLAH RKB SDN SUKOREJO 2,,1990,210000000,269.7,Pemda,"Jl. Kerantil No.50 B, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BBTN,1054,1004
+1598B,C,SDN SUKOREJO 2,,2007,29265306,183.45,Pemda,"Jl. Kerantil No.50 B, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1054,1051
+1598C,C,Pembangunan UKS,,2007,7200000,77.05,Pemda,"Jl. Kerantil No.50 B, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1054,1051
+1598D,C,Kontruksi Gedung MCK,,2007,10800000,25,Pemda,"Jl. Kerantil No.50 B, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1054,1051
+1796E,C,PAGAR SDN SUKOREJO 2,,2013,18203000,14.9,Pemda,"Jl. Kerantil No.50 B, Sukorejo, Kec. Sukorejo, Kota Blitar",4,3,B,TTK,BTN,1054,1006
+1236A,C,GEDUNG SEKOLAH RKB SDN SUKOREJO 3,,1990,1435000000,545.4,Pemda,"Jl. Mawar No.40, Sukorejo, Kec. Sukorejo, Kota Blitar,  Jawa Timur 66121",4,3,B,BTK,BBTN,1055,1004
+1599D,C,SDN SUKOREJO 3,,2007,29265306,282.6,Pemda,"Jl. Mawar No.40, Sukorejo, Kec. Sukorejo, Kota Blitar,  Jawa Timur 66121",4,3,B,TTK,BTN,1055,1051
+1599B,C,DAK Gd Sekolah,,2007,100800000,127.5,Pemda,"Jl. Mawar No.40, Sukorejo, Kec. Sukorejo, Kota Blitar,  Jawa Timur 66121",4,3,B,BTK,BTN,1055,1051
+1245A,C,GEDUNG KANTOR SDN PAKUNDEN 2,,1990,18000000,230.4,Pemda,"Jl. Tanjung No.107, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 67122",3,3,B,TTK,BTN,1056,1022
+1228B,C,GEDUNG SEKOLAH RKB SDN PAKUNDEN 2,,1990,406000000,280.35,Pemda,"Jl. Tanjung No.107, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 67122",3,3,B,TTK,BTN,1056,1004
+1898C,C,PA √ ING SDN PAKUNDEN 2,,2014,40027000,516.75,Pemda,"Jl. Tanjung No.107, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 67122",3,3,B,TTK,BTN,1056,8627
+1899D,C,KAMAR MANDI SDN PAKUNDEN 2,,2014,43300000,18.75,Pemda,"Jl. Tanjung No.107, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 67122",3,3,B,TTK,BTN,1056,8627
+1562E,C,Kontruksi Gedung MCK,,2007,10800000,93,Pemda,"Jl. Tanjung No.107, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 67122",3,3,B,TTK,BBTN,1056,1051
+1562F,C,RKB/Rehab (SDN Pakunden 2),,2007,218320000,874.2,Pemda,"Jl. Tanjung No.107, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 67122",3,3,B,BTK,BTN,1056,1051
+1562G,C,Termyn I Rehab Berat SDN Pakunden 2 Kota Blitar,,2007,53488400,407.4,Pemda,"Jl. Tanjung No.107, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 67122",3,3,B,TTK,BTN,1056,1051
+1562H,C,SDN PAKUNDEN 2,,2007,29265306,112,Pemda,"Jl. Tanjung No.107, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 67122",3,3,B,TTK,BTN,1056,1051
+2261I,C,PINTU PAGAR HALAMAN SEKOLAH,,2017,9975000,50.5,Pemda,"Jl. Tanjung No.107, Pakunden, Kec. Sukorejo, Kota Blitar, Jawa Timur 67122",3,3,B,TTK,BTN,1056,1001
+2332A,C,"Pembangunan termin (1,2,3) RKB bertingkat SDN Kepanjenlor 2 (DAK)",,2018,435278346,329.26,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,BTK,BTN,1057,1061
+1584B,C,DAK Gd Sekolah,,2007,7200000,32.13,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1051
+1584C,C,DAK Gd Sekolah,,2007,7200000,79.57,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1051
+2680D,C,JAMBAN KEPANJENLOR 2 (DIKDAS),,2019,56711812.02,41.25,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BBTN,1057,1002
+1511E,C,GEDUNG SEKOLAH RKB SDN KEPANJENLOR 2,,2009,20000000,185.35,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1003
+1584F,C,pembangunan RKB SDN Kepanjenlor 2 (DAK SD 2016),,2007,768229342,1261.575,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1051
+1584G,C,SDN KEPANJENLOR 2,,2007,29265306,66.96,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1051
+1584H,C,Pembangunan UKS,,2007,12960000,29.2,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1051
+1584I,C,Kontruksi Gedung MCK,,2007,10800000,24.44,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1051
+2681K,C,PAPAN NAMA KEPANJENLOR 2 (DIKDAS),,2019,64336533.98,9.5,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1061
+2000L,C,PAVING SDN KEPANJENLOR 2,,2015,73520000,0,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1001
+2204M,C,Gapura Sekolah SD Kepanjenlor 2,,2017,8500000,0,Pemda,"Jl. Semeru No.28, Kepanjenlor, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117",11,2,B,TTK,BTN,1057,1006
+1190A,C,Gedung Komplek SMPN 3,,1990,2898342122,1270.75,Pemda,"Jl. Sudanco Supriyadi 30, Kel.Bendogerit, Kec.Sananwetan",15,1,B,TTK,BTN,1058,1004
+1190B,C,GEDUNG SEKOLAH RKB,,1990,195432500,741.6,Pemda,"Jl. Sudanco Supriyadi 30, Kel.Bendogerit, Kec.Sananwetan",15,1,B,TTK,BTN,1058,1004
+1190C,C,RKB,,1990,125000000,291.2,Pemda,"Jl. Sudanco Supriyadi 30, Kel.Bendogerit, Kec.Sananwetan",15,1,B,TTK,BTN,1058,1004
+1190D,C,Belanja modal konstruksi bangunan,,1990,47999980,450,Pemda,"Jl. Sudanco Supriyadi 30, Kel.Bendogerit, Kec.Sananwetan",15,1,B,TTK,BTN,1058,1004
+1190E,C,"Bangunan Ruang keamanan Sekolah : 6m2 , tidak bertingkat ,",,2014,19550000,25,Pemda,"Jl. Sudanco Supriyadi 30, Kel.Bendogerit, Kec.Sananwetan",15,1,B,TTK,BTN,1058,1004
+1280F,C,Konstruksi Gedung,,2009,3000000,448,Pemda,"Jl. Sudanco Supriyadi 30, Kel.Bendogerit, Kec.Sananwetan",15,1,B,BTK,BTN,1058,1061
+1280G,C,Pembangunan Gedung,,2009,63000000,333,Pemda,"Jl. Sudanco Supriyadi 30, Kel.Bendogerit, Kec.Sananwetan",15,1,B,TTK,BTN,1058,1061
+1280H,C,SMPN 3,,2009,84000000,157.5,Pemda,"Jl. Sudanco Supriyadi 30, Kel.Bendogerit, Kec.Sananwetan",15,1,B,TTK,BTN,1058,1061
+1280I,C,Termin III RKB SMPN 3 Kota Blitar,,2009,46611810,96,Pemda,"Jl. Sudanco Supriyadi 30, Kel.Bendogerit, Kec.Sananwetan",15,1,B,TTK,BTN,1058,1061

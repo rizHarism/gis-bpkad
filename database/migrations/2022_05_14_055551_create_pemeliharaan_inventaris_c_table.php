@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGeometriesTable extends Migration
+class CreatePemeliharaanInventarisCTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateGeometriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('geometry', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('pemeliharaan_inventaris_c', function (Blueprint $table) {
+            $table->id();
             $table->string('inventaris_id');
-            $table->longText('polygon');
-            $table->char('lat');
-            $table->char('lng');
+            $table->text('nama_pemeliharaan');
+            $table->Integer('tahun_pemeliharaan');
+            $table->bigInteger('nilai_aset');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateGeometriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('geometry');
+        Schema::dropIfExists('pemeliharaan_inventaris_c');
     }
 }

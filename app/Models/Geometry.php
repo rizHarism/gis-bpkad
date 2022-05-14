@@ -16,4 +16,8 @@ class Geometry extends Model
     {
         return $this->belongsTo(Inventaris::class);
     }
+    public function inventarisGedung()
+    {
+        return $this->belongsTo(InventarisBangunan::class, 'inventaris_id', 'id_inventaris');
+    }
 }

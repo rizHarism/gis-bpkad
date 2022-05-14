@@ -16,4 +16,8 @@ class Document extends Model
     {
         return $this->belongsTo(Inventaris::class);
     }
+    public function inventarisBangunan()
+    {
+        return $this->belongsTo(InventarisBangunan::class, 'id_inventaris', 'inventaris_id');
+    }
 }

@@ -76,6 +76,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/inventaris/{id}', [App\Http\Controllers\InventarisController::class, 'destroy'])->name('inventaris.destroy')->can('data aset.aset tanah');
     Route::post('/inventaris/fetch', [App\Http\Controllers\InventarisController::class, 'fetch'])->name('autocomplete.fetch');
 
-    Route::get('/inventaris/gedung', [App\Http\Controllers\InventarisController::class, 'indexGedung'])->name('inventaris_kib_c')->can('data aset.aset gedung');
+    Route::get('/inventaris/gedung', [App\Http\Controllers\InventarisBangunanController::class, 'index'])->name('inventaris_kib_c')->can('data aset.aset gedung');
+
+
     Route::get('/inventaris/jaringan', [App\Http\Controllers\InventarisController::class, 'indexJaringan'])->name('inventaris_kib_d')->can('data aset.aset jaringan');
 });
