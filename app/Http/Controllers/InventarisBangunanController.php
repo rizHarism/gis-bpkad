@@ -41,6 +41,27 @@ class InventarisBangunanController extends Controller
         // return $datatables->make(true);
         return $inventaris;
     }
+    public function querySkpd($skpd_id)
+    {
+        if ($skpd_id === 'Semua OPD') {
+            $inventarisBangunan =  InventarisBangunan::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry', 'pemeliharaan')
+                ->has('geometry')
+                ->get();
+        } else {
+            $inventarisBangunan =  InventarisBangunan::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry', 'pemeliharaan')
+                ->where('skpd_id',  $skpd_id)->has('geometry')
+                // ->where('kelurahan_id',  $kelurahan_id)->has('geometry')
+                // ->where('status',  $status)->has('geometry')
+                ->get();
+        }
+        $response = [
+            'message' => 'List Query Pencarian Data',
+            'count' => count($inventarisBangunan),
+            'data' => $inventarisBangunan
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+    }
 
     public function show($id)
     {

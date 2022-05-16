@@ -17,7 +17,7 @@ class GeometrySeeder extends Seeder
         //
         Geometry::truncate();
 
-        $csvFile = fopen(base_path("database/data/geometry-seed-new.csv"), "r");
+        $csvFile = fopen(base_path("database/data/geometry-seed-new-v2.csv"), "r");
 
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {

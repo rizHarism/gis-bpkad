@@ -17,7 +17,7 @@ class InventarisBangunanSeeder extends Seeder
         //run
         InventarisBangunan::truncate();
 
-        $csvFile = fopen(base_path("database/data/inventaris_c.csv"), "r");
+        $csvFile = fopen(base_path("database/data/inventaris_c_new.csv"), "r");
 
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {

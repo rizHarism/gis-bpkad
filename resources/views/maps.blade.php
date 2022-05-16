@@ -20,7 +20,7 @@
     <script src="{{ asset('assets/leaflet/plugin/js/L.Control.BetterScale.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/styledLayerControl.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-geoman.min.js') }}"></script>
-    <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"> </script>
+    <script src="{{ asset('assets/leaflet/plugin/js/leaflet.contextmenu.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-sidebar.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet-search.js') }}"></script>
     <script src="{{ asset('assets/leaflet/plugin/js/leaflet.responsive.popup.js') }}"></script>
@@ -33,6 +33,7 @@
     <script>
         // var layerAll = L.featureGroup();
         // change avatar image
+
         function changeAvatar(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -721,6 +722,7 @@
         setParentLayer(htmlObjectOverlay, a);
 
         // ambil data skpd untuk query pencarian
+
         function skpd() {
 
             $.ajax({
@@ -737,6 +739,8 @@
                             "</option>"
                     })
                     $("#dataSkpd").append(listItems);
+                    $("#dataSkpd2").append(listItems);
+                    // $("#dataSkpd").trigger("change");
                 }
             });
         }
@@ -797,7 +801,7 @@
 
         });
 
-        // query pencarian
+        // query pencarian tanah
         $("#queryGeom").on('submit', function(e) {
             layerAll = L.featureGroup();
             e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -1071,6 +1075,280 @@
             })
 
         });
+
+        // query pencarian gedung
+
+        $("#queryGeomGedung").on('submit', function(e) {
+            layerAll = L.featureGroup();
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            // map.removeLayer();
+            // var search = $('input[name="varQuery"]:checked').val();
+            // var status = $('input[name="status"]:checked').val();
+            // var status = 1;
+            // var kelurahan = $('#data_kelurahan').val();
+            var skpd = $('#dataSkpd2').val();
+            // console.log(skpd)
+            // var sertifikat = $('#noSertifikat').val();
+            var urlSkpd = "api/inventarisgedung/" + skpd + "/queryskpdgedung"
+            // if (!sertifikat) {
+            //     var urlSertifikat = "api/inventaris/" + kelurahan + "/0/querysertifikat"
+            // } else {
+            //     var urlSertifikat = "api/inventaris/" + kelurahan + "/" + sertifikat +
+            //         "/querysertifikat"
+            // }
+
+            // console.log(urlSkpd)
+            map.eachLayer(function(lay) {
+                if (lay.toGeoJSON) {
+                    map.removeLayer(lay);
+                }
+
+            });
+
+            map.addLayer(batasKepanjenkidul);
+            map.addLayer(batasSukorejo);
+            map.addLayer(batasSananwetan);
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                },
+                type: "POST",
+                url: urlSkpd,
+                dataType: "json",
+                success: function(q) {
+                    // if q =
+                    var geom = q.data
+                    console.log(geom);
+                    if (geom === 0) {
+                        swal.fire(
+                            'Data tidak ditemukan',
+                            'Data yang anda kirimkan tidak valid',
+                            'warning'
+                        );
+                    } else if (geom.length === 0) {
+                        swal.fire(
+                            'Data tidak ditemukan',
+                            'Data yang anda kirimkan tidak valid',
+                            'warning'
+                        );
+                    } else {
+
+                        $.each(geom, (i, property) => {
+
+                            var id = property.id
+                            var geo = property.geometry[0].polygon
+                            var lat = property.geometry[0].lat
+                            var lng = property.geometry[0].lng
+                            var coordinates = "'" + lat + "," + lng + "'";
+
+                            // function myPrint() {
+                            //     window.open('/inventaris/' + id + '/print',
+                            //         '',
+                            //         'width=1200,height=600');
+                            // }
+
+                            x = JSON.parse(geo)
+                            var layer = L.geoJSON(x, {
+                                style: sertifikatStyle,
+                                pmIgnore: true
+                            }).addTo(map);
+                            var minilayer = L.geoJSON(x, {
+                                style: sertifikatStyle,
+                                pmIgnore: true
+                            });
+
+                            layer.addTo(layerAll);
+
+                            layer.on('click', function() {
+                                var minilayer = '';
+                                minimap.eachLayer(function(lay) {
+                                    if (lay.toGeoJSON) {
+                                        minimap.removeLayer(lay);
+                                    }
+
+                                });
+                                var mini = (JSON.parse(property.geometry[0].polygon));
+                                minilayer = L.geoJSON(mini, {
+                                    style: sertifikatStyle,
+                                    pmIgnore: true
+                                });
+                                minilayer.addTo(minimap);
+
+                                // console.log(minilayer)
+                                // const sertifikat = (property
+                                //         .status == 1) ?
+                                //     "Bersertifikat" :
+                                //     "Belum Bersertifikat";
+                                const hb = property
+                                    .nilai_aset,
+                                    na = property
+                                    .nilai_aset,
+                                    lt = property
+                                    .luas,
+                                    ns = property
+                                    .nilai_aset
+                                // if (!property.document) {
+                                //     Sertifikat =
+                                //         `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
+                                // } else {
+                                //     Sertifikat = `<iframe src="assets/document/` +
+                                //         property
+                                //         .document.doc_path +
+                                //         `" style="width: 100%;height: 70vh; position: relative;"></iframe>`
+                                // }
+                                // $('#sertifikat').empty()
+                                // $('#sertifikat').append(Sertifikat)
+                                $('#detailTitle').empty()
+                                $('#detailData').empty()
+                                $('#detailTitle').append(
+                                    property.master_skpd
+                                    .nama_skpd + " / " +
+                                    property.nama)
+                                $('#detailData').append(`
+                                    <table class="table table-sm table-striped">
+                                    <tr>
+                                      <th>Pengelola Inventaris </th>
+                                      <td>` + property.master_skpd.nama_skpd + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Kategori Inventaris </th>
+                                      <td>` + property.master_barang.nama_barang + `</td>
+                                    </tr>
+                                      <th>Nama Inventaris </th>
+                                      <td>` + property.nama + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Kode Inventaris </th>
+                                      <td>` + property.master_barang.kode_barang + "/" + property
+                                    .no_register + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Tahun Perolehan</th>
+                                      <td>` + property.tahun_perolehan + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Nilai Aset </th>
+                                      <td>` + `Rp ` + rupiah(na) + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Alamat </th>
+                                      <td>` + property.alamat + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Kelurahan </th>
+                                      <td>` + property.kelurahan.nama_kelurahan + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Kecamatan </th>
+                                      <td>` + property.kecamatan.nama_kecamatan + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Koordinat </th>
+                                      <td><a href='#' onclick="gMaps(` + coordinates + `)">` + lat +
+                                    ` / ` + lng + `</a></td>
+                                    </tr>
+                                    <tr>
+                                      <th>Luas Tanah </th>
+                                      <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Status </th>
+                                      <td>` + property.status + `</td>
+                                    </tr>
+                                </table>
+                                    `);
+                                if (!property.galery) {
+                                    image =
+                                        `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
+                                } else {
+                                    image =
+                                        `<img class="img-fluid" src="assets/galery/` +
+                                        property.galery.image_path + `"></img>`
+                                }
+                                var content = image +
+                                    `<p class="text-center fw-bold m-2 p-0 h7">` +
+                                    property
+                                    .nama + `</p>
+                                        <table class="table table-striped">
+
+                                        <tr>
+                                            <th>Pengelola</th>
+                                            <td>` + property.master_skpd.nama_skpd + `</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Alamat</th>
+                                            <td>` + property.alamat +
+                                    `</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:center"> <a href=# onclick="gMaps(` +
+                                    coordinates +
+                                    `)"><i class="fas fa-map-marker-alt"></i> Buka Maps </a></td>
+                                        </tr>
+                                        </table>
+                                        <table class="table table-striped">
+                                        <tr>
+                                            <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                    property.id +
+                                    `)"><i class="fas fa-print"></i> Print</a></td>
+                                            <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                    property.id + `"></i><i class="fas fa-info-circle"></i> Detail</a></td>
+                                        </tr>
+                                        </table>
+                                        <div style="text-align:center">
+                                        `
+
+                                var popup = L
+                                    .popup()
+                                    .setContent(
+                                        content)
+
+                                layer.bindPopup(popup)
+                                    .openPopup();
+
+                                $('#detailModal').on('shown.bs.modal',
+                                    function() {
+
+                                        setTimeout(function() {
+                                            minimap.invalidateSize();
+                                            minimap.fitBounds(minilayer
+                                                .getBounds());
+                                        }, 1000);
+
+                                    });
+                            });
+                        })
+                        // layer.addTo(map);
+                        // pointAll.addTo(map);
+                        map.fitBounds(layerAll.getBounds());
+                        // setInterval(function() {
+                        //     map.removeLayer(pointAll);
+                        // }, 10520);
+
+                    }
+                    // console.log(sertifikatStyle['opacity'] = 0.1)
+                }
+            });
+
+            // menghapus layer yang ada di peta
+            $("#clear").on('click', function(e) {
+                map.eachLayer(function(lay) {
+                    if (lay.toGeoJSON) {
+                        map.removeLayer(lay);
+                    }
+
+                });
+
+                map.addLayer(batasKepanjenkidul);
+                map.addLayer(batasSukorejo);
+                map.addLayer(batasSananwetan);
+            })
+
+        });
+
         //update opacity layer
     </script>
 @stop

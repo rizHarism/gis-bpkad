@@ -39,6 +39,7 @@ Route::post('/inventaris/{kelurahan}/{skpd}/queryskpd', [InventarisController::C
 Route::post('/inventaris/{kelurahan}/{sertifikat}/querysertifikat', [InventarisController::Class, 'queryKelSertifikat']);
 Route::get('/inventaris/{id}', [InventarisController::Class, 'show']);
 Route::get('/inventarisgedung/{id}', [InventarisBangunanController::Class, 'show']);
+Route::post('/inventarisgedung/{skpd}/queryskpdgedung', [InventarisBangunanController::Class, 'querySkpd']);
 Route::put('/inventaris/{id}', [InventarisController::Class, 'update']);
 
 // menampilkan data master barang

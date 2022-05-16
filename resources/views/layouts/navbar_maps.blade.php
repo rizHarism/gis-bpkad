@@ -31,76 +31,113 @@
                         class="fa fa-caret-right"></i></span>
             </h1>
 
-            <div class="container-fluid">
-                {{-- <div class=" form-control-sm mt-3"> --}}
-                <div class="form-group form-group-sm mt-3">
-                    <label class="fw-bold" style="font-size: 14px">
-                        PENCARIAN ASET SATUAN
-                    </label>
-                    <input type="text" name="inventarisSearch" id="inventarisSearch" class="form-control input-lg"
-                        placeholder="Masukkan nama inventaris / Dinas" autocomplete="off" />
-                    <div id="inventarisList">
+            <nav class="mt-2">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#tanah"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">Tanah</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#gedung"
+                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Gedung</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="tanah" role="tabpanel" aria-labelledby="tanah-tab">
+                    <div class="container-fluid">
+                        {{-- <div class=" form-control-sm mt-3"> --}}
+                        <div class="form-group form-group-sm mt-3">
+                            <label class="fw-bold" style="font-size: 14px">
+                                PENCARIAN ASET SATUAN
+                            </label>
+                            <input type="text" name="inventarisSearch" id="inventarisSearch"
+                                class="form-control input-lg" placeholder="Masukkan nama inventaris / Dinas"
+                                autocomplete="off" />
+                            <div id="inventarisList">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="container-fluid">
+
+                            <div class="form-check form-control-sm mt-3">
+                                <input class="form-check-input" type="radio" name="varQuery" id="queryOpd1" value="opd"
+                                    checked>
+                                <label class="form-check-label fw-bold" for="queryOpd1">
+                                    PENCARIAN BERDASARKAN OPD PENGELOLA
+                                </label>
+                            </div>
+                            <div class="form-check form-control-sm">
+                                <input class="form-check-input" type="radio" name="varQuery" id="queryOpd2"
+                                    value="sertifikat">
+                                <label class="form-check-label fw-bold" for="queryOpd2">
+                                    PENCARIAN BERDASARKAN NOMOR SERTIFIKAT
+                                </label>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+
+                            {{-- <hr> --}}
+
+
+                            <form method="POST" id="queryGeom">
+                                {{ csrf_field() }}
+                                <div id="varChange" class="mt-3">
+                                    <label for="">Pilih OPD</label>
+                                    <select class="form-select form-control-sm fw-bold"
+                                        aria-label="Default select example" id="dataSkpd">
+                                        <option selected>Semua OPD</option>
+                                    </select>
+
+                                    {{-- <input class="mt-3 form-control form-control-sm fw-bold" type="number" name="noSertifikat"
+                                        id="noSertifikat"> --}}
+                                </div>
+                                <div id="kelChange" class="mt-2">
+                                    <label for="">Pilih Kelurahan</label>
+                                    <select class="form-select form-control-sm fw-bold"
+                                        aria-label="Default select example" id="data_kelurahan">
+                                        <option selected>Semua Kelurahan</option>
+
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md ">
+                                        <button type="" class="btn btn-primary mt-4"><i class="fas fa-search"></i>
+                                            Cari &nbsp;&nbsp;</button>
+                                        <button type="button" id="clear" class="btn btn-secondary mt-4"><i
+                                                class="fas fa-eraser"></i> Hapus</button>
+                                    </div>
+                                    <div class="col-md ">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        {{-- </div> --}}
                     </div>
                 </div>
-                {{-- </div> --}}
-            </div>
-            <hr>
-            {{-- <p class="mt-3">Pencarian geometry bidang tanah aset berdasarkan SKPD terkait, kelurahan dan
-                    sertifikat
-                </p> --}}
-            <div class="container-fluid">
-
-                <div class="form-check form-control-sm mt-3">
-                    <input class="form-check-input" type="radio" name="varQuery" id="queryOpd1" value="opd" checked>
-                    <label class="form-check-label fw-bold" for="queryOpd1">
-                        PENCARIAN BERDASARKAN OPD PENGELOLA
-                    </label>
-                </div>
-                <div class="form-check form-control-sm">
-                    <input class="form-check-input" type="radio" name="varQuery" id="queryOpd2" value="sertifikat">
-                    <label class="form-check-label fw-bold" for="queryOpd2">
-                        PENCARIAN BERDASARKAN NOMOR SERTIFIKAT
-                    </label>
-                </div>
-            </div>
-            <div class="container-fluid">
-
-                {{-- <hr> --}}
-
-
-                <form method="POST" id="queryGeom">
-                    {{ csrf_field() }}
-                    <div id="varChange" class="mt-3">
+                <div class="tab-pane fade" id="gedung" role="tabpanel" aria-labelledby="gedung-tab">
+                    <form method="POST" id="queryGeomGedung">
+                        {{ csrf_field() }}
                         <label for="">Pilih OPD</label>
                         <select class="form-select form-control-sm fw-bold" aria-label="Default select example"
-                            id="dataSkpd">
+                            id="dataSkpd2">
                             <option selected>Semua OPD</option>
                         </select>
 
                         {{-- <input class="mt-3 form-control form-control-sm fw-bold" type="number" name="noSertifikat"
                             id="noSertifikat"> --}}
-                    </div>
-                    <div id="kelChange" class="mt-2">
-                        <label for="">Pilih Kelurahan</label>
-                        <select class="form-select form-control-sm fw-bold" aria-label="Default select example"
-                            id="data_kelurahan">
-                            <option selected>Semua Kelurahan</option>
 
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div class="col-md ">
-                            <button type="" class="btn btn-primary mt-4"><i class="fas fa-search"></i>
-                                Cari &nbsp;&nbsp;</button>
-                            <button type="button" id="clear" class="btn btn-secondary mt-4"><i
-                                    class="fas fa-eraser"></i> Hapus</button>
+                        <div class="row">
+                            <div class="col-md ">
+                                <button type="" class="btn btn-primary mt-4"><i class="fas fa-search"></i>
+                                    Cari &nbsp;&nbsp;</button>
+                                <button type="button" id="clearGedung" class="btn btn-secondary mt-4"><i
+                                        class="fas fa-eraser"></i> Hapus</button>
+                            </div>
+                            <div class="col-md ">
+                            </div>
                         </div>
-                        <div class="col-md ">
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+
             </div>
-            {{-- <hr> --}}
+
         </div>
 
         <div class="sidebarV2-pane" id="profile">
@@ -215,7 +252,8 @@
         </div>
 
         <div class="sidebarV2-pane" id="settings">
-            <h1 class="sidebarV2-header">Settings<span class="sidebarV2-close"><i class="fa fa-caret-right"></i></span>
+            <h1 class="sidebarV2-header">Settings<span class="sidebarV2-close"><i
+                        class="fa fa-caret-right"></i></span>
             </h1>
         </div>
     </div>
