@@ -492,7 +492,12 @@
 
         var sertifikatStyle = {
             "color": "#ff7700",
-            "weight": 3,
+            "weight": 2,
+            "opacity": 1
+        };
+        var gedungStyle = {
+            "color": "#ffffff",
+            "weight": 2,
             "opacity": 1
         };
         var nonSertifikatStyle = {
@@ -695,6 +700,23 @@
                         label: 'Sukorejo',
                         // selectAllCheckbox: 'De/seleccionar todo',
                         layer: batasSukorejo
+                    }]
+                }]
+            },
+
+            {
+                label: 'Barang Milik Daerah',
+
+                children: [{
+                    label: 'BMD Kota',
+                    // selectAllCheckbox: true,
+                    children: [{
+                        label: 'Sananwetan',
+                        layer: L.layerControlOverlay
+                    }, {
+                        label: 'Kepanjen Kidul',
+                        // selectAllCheckbox: true,
+                        layer: L.layerControlOverlay
                     }]
                 }]
             },
@@ -1151,11 +1173,11 @@
 
                             x = JSON.parse(geo)
                             var layer = L.geoJSON(x, {
-                                style: sertifikatStyle,
+                                style: gedungStyle,
                                 pmIgnore: true
                             }).addTo(map);
                             var minilayer = L.geoJSON(x, {
-                                style: sertifikatStyle,
+                                style: gedungStyle,
                                 pmIgnore: true
                             });
 
@@ -1171,7 +1193,7 @@
                                 });
                                 var mini = (JSON.parse(property.geometry[0].polygon));
                                 minilayer = L.geoJSON(mini, {
-                                    style: sertifikatStyle,
+                                    style: gedungStyle,
                                     pmIgnore: true
                                 });
                                 minilayer.addTo(minimap);
