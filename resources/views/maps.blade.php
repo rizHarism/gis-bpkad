@@ -1206,6 +1206,23 @@
                                     property.master_skpd
                                     .nama_skpd + " / " +
                                     property.nama)
+                                if (!property.kecamatan) {
+                                    kecamatan = '-'
+                                } else {
+                                    kecamatan = property.kecamatan.nama_kecamatan
+                                }
+                                if (!property.kelurahan) {
+                                    kelurahan = '-'
+                                } else {
+                                    kelurahan = property.kelurahan.nama_kelurahan
+                                }
+                                if (!property.master_barang) {
+                                    nama_barang = '-'
+                                    kode_barang = '-'
+                                } else {
+                                    nama_barang = property.master_barang.nama_barang
+                                    kode_barang = property.master_barang.kode_barang
+                                }
                                 $('#detailData').append(`
                                     <table class="table table-sm table-striped">
                                     <tr>
@@ -1214,14 +1231,14 @@
                                     </tr>
                                     <tr>
                                       <th>Kategori Inventaris </th>
-                                      <td>` + property.master_barang.nama_barang + `</td>
+                                      <td>` + nama_barang + `</td>
                                     </tr>
                                       <th>Nama Inventaris </th>
                                       <td>` + property.nama + `</td>
                                     </tr>
                                     <tr>
                                       <th>Kode Inventaris </th>
-                                      <td>` + property.master_barang.kode_barang + "/" + property
+                                      <td>` + kode_barang + "/" + property
                                     .no_register + `</td>
                                     </tr>
                                     <tr>
@@ -1238,11 +1255,11 @@
                                     </tr>
                                     <tr>
                                       <th>Kelurahan </th>
-                                      <td>` + property.kelurahan.nama_kelurahan + `</td>
+                                      <td>` + kelurahan + `</td>
                                     </tr>
                                     <tr>
                                       <th>Kecamatan </th>
-                                      <td>` + property.kecamatan.nama_kecamatan + `</td>
+                                      <td>` + kelurahan + `</td>
                                     </tr>
                                     <tr>
                                       <th>Koordinat </th>
