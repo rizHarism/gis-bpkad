@@ -1044,22 +1044,22 @@
                                     if (!property.document) {
                                         penanda =
                                             // `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
-                                            `<img class="img-fluid" src="assets/galery/default-image.png" style="height:25vh;width:100%"></img>`
+                                            `<img class="img-fluid" src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
                                     } else {
                                         penanda =
                                             `<img class="img-fluid" src="assets/document/` +
                                             property
                                             .document.doc_path +
-                                            `" style="height:25vh;width:100%">`
+                                            `" style="height:30vh;width:100%">`
                                     }
                                     if (!property.galery) {
                                         image =
-                                            `<img src="assets/galery/default-image.png" style="height:25vh;width:100%"></img>`
+                                            `<img src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
                                     } else {
                                         image =
                                             `<img class="img-fluid" src="assets/galery/` +
                                             property.galery.image_path +
-                                            `" style="height:25vh;width:100%"></img>`
+                                            `" style="height:30vh;width:100%"></img>`
                                     }
                                     $('#sertifikat').empty()
                                     if (property.pemeliharaan.length == 0) {
@@ -1746,22 +1746,22 @@
                                 if (!property.document) {
                                     penanda =
                                         // `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
-                                        `<img class="img-fluid" src="assets/galery/default-image.png" style="height:25vh;width:100%"></img>`
+                                        `<img class="img-fluid" src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
                                 } else {
                                     penanda =
                                         `<img class="img-fluid" src="assets/document/` +
                                         property
                                         .document.doc_path +
-                                        `" style="height:25vh;width:100%">`
+                                        `" style="height:30vh;width:100%">`
                                 }
                                 if (!property.galery) {
                                     image =
-                                        `<img src="assets/galery/default-image.png" style="height:25vh;width:100%"></img>`
+                                        `<img src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
                                 } else {
                                     image =
                                         `<img class="img-fluid" src="assets/galery/` +
                                         property.galery.image_path +
-                                        `" style="height:25vh;width:100%"></img>`
+                                        `" style="height:30vh;width:100%"></img>`
                                 }
                                 $('#sertifikat').empty()
                                 if (property.pemeliharaan.length == 0) {
