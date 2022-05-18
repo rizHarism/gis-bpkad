@@ -496,7 +496,7 @@
             "opacity": 1
         };
         var gedungStyle = {
-            "color": "#ffffff",
+            "color": "#ff4040",
             "weight": 2,
             "opacity": 1
         };

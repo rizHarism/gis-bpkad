@@ -74,4 +74,99 @@ class InventarisBangunanController extends Controller
         ];
         return response()->json($response, Response::HTTP_OK);
     }
+
+    public function create()
+    {
+        //
+        $kecamatan = Kecamatan::get();
+        $kelurahan = Kelurahan::get();
+        $skpd = Skpd::get();
+        $master_barang = MasterBarang::get();
+        // $geometry = Geometry::where('inventaris_id', $id)->get();
+        // $galery = Galery::get();
+        // $document = Document::get();
+        return view('inventaris.gedung.form', [
+            // 'edit' => $inventaris,
+            'kecamatan' => $kecamatan,
+            'kelurahan' => $kelurahan,
+            'skpd' => $skpd,
+            'barang' => $master_barang
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        //
+        // dd($request->all());
+        // dd($request->status);
+        $this->validate($request, [
+            'nama_inventaris' => 'required|unique:inventaris,nama',
+            'tahun' => 'required',
+            'nilai_aset' => 'required',
+            'luas' => 'required',
+            'status' => 'required',
+            'no_register' => 'required',
+            'alamat' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            // 'no_sertifikat' => 'required',
+            'skpd' => 'exists:master_skpd,id_skpd',
+            'barang' => 'exists:master_barang,id_barang',
+        ]);
+        try {
+            DB::beginTransaction();
+            $inventaris = Inventaris::create([
+                'nama' => $request->nama_inventaris,
+                // 'nama' => $request->nama,
+                'jenis_inventaris' => 'A',
+                'tahun_perolehan' => $request->tahun,
+                'nilai_aset' => $request->nilai_aset,
+                'luas' => $request->luas,
+                'status' => $request->status,
+                'no_register' => $request->no_register,
+                'alamat' => $request->alamat,
+                'kelurahan_id' => $request->kelurahan,
+                'kecamatan_id' => $request->kecamatan,
+                'no_dokumen_sertifikat' => $request->no_sertifikat,
+                'skpd_id' => $request->skpd,
+                'master_barang_id' => $request->barang,
+            ]);
+
+            if (!empty($request->polygon)) {
+
+                $geometry = Geometry::create([
+                    'inventaris_id' => $inventaris->id,
+                    'polygon' => $request->polygon,
+                    'lat' => $request->lat,
+                    'lng' => $request->lng,
+                ]);
+            }
+
+            if ($request->hasfile('image')) {
+                $name = $request->file('image')->getClientOriginalName();
+                $galery = Galery::create([
+                    'inventaris_id' => $inventaris->id,
+                    'image_path' => $name
+                ]);
+                $request->file('image')->move(public_path('assets/galery'), $name);
+            }
+
+            if ($request->hasfile('document')) {
+                $name = $request->file('document')->getClientOriginalName();
+                $document = Document::create([
+                    'inventaris_id' => $inventaris->id,
+                    'doc_path' => $name
+                ]);
+                $request->file('document')->move(public_path('assets/document'), $name);
+            }
+
+            // dd($inventaris, $geometry, $galery, $document);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
+        }
+
+        return response("Data Inventaris Berhasil Ditambahkan");
+    }
 }

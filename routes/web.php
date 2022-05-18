@@ -77,7 +77,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/inventaris/fetch', [App\Http\Controllers\InventarisController::class, 'fetch'])->name('autocomplete.fetch');
 
     Route::get('/inventaris/gedung', [App\Http\Controllers\InventarisBangunanController::class, 'index'])->name('inventaris_kib_c')->can('data aset.aset gedung');
-
+    Route::get('/inventaris/gedung/create', [App\Http\Controllers\InventarisBangunanController::class, 'create'])->name('inventarisgedung.create')->can('data aset.aset gedung');
+    Route::post('/inventaris/gedung/store', [App\Http\Controllers\InventarisBangunanController::class, 'store'])->name('inventarisgedung.store')->can('data aset.aset gedung');
+    Route::get('/inventaris/gedung/{id}/edit', [App\Http\Controllers\InventarisBangunanController::class, 'edit'])->name('inventarisgedung.edit')->can('data aset.aset gedung');
+    Route::get('/inventaris/gedung/{id}/print', [App\Http\Controllers\InventarisBangunanController::class, 'print'])->name('inventarisgedung.print')->can('data aset.aset gedung');
+    Route::put('/inventaris/gedung/{id}', [App\Http\Controllers\InventarisBangunanController::class, 'update'])->name('inventarisgedung.update')->can('data aset.aset gedung');
+    Route::delete('/inventaris/gedung/{id}', [App\Http\Controllers\InventarisBangunanController::class, 'destroy'])->name('inventarisgedung.destroy')->can('data aset.aset gedung');
+    // Route::post('/inventaris/fetch', [App\Http\Controllers\InventarisBangunanController::class, 'fetch'])->name('autocomplete.fetch');
 
     Route::get('/inventaris/jaringan', [App\Http\Controllers\InventarisController::class, 'indexJaringan'])->name('inventaris_kib_d')->can('data aset.aset jaringan');
 });

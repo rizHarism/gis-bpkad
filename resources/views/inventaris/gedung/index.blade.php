@@ -13,7 +13,7 @@
         <div class="card">
             <h5 class="card-header">Data Aset Gedung Kota Blitar</h5>
             <div class="card-body">
-                <a href="{{ route('inventaris.create') }}" class="btn btn-primary">+ Inventaris</a>
+                <a href="{{ route('inventarisgedung.create') }}" class="btn btn-primary">+ Inventaris Gedung</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <input type=radio class="filter" name="status" value="all" id="im" checked="checked"><label
                     for="im">&nbsp; Seluruh Aset
