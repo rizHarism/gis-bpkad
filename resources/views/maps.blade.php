@@ -1769,7 +1769,7 @@
                                 } else {
                                     pemeliharaan = `
                                         <div class="container" style="display:block; overflow-x: auto; height:25vh" >
-                                            <table id="pemeliharaan" class="table table-sm table-strip" style="width:100%; height:25vh;overflow-y:scroll">
+                                            <table id="pemeliharaan" class="table table-sm table-striped" style="width:100%; height:25vh;overflow-y:scroll">
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">Pemeliharaan</th>
