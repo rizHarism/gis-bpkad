@@ -287,7 +287,7 @@ class InventarisController extends Controller
         // dd($request->all());
         // dd($request->status);
         $this->validate($request, [
-            'nama_inventaris' => 'required|unique:inventaris,nama',
+            'nama_inventaris' => 'required',
             'tahun' => 'required',
             'nilai_aset' => 'required',
             'luas' => 'required',
@@ -437,7 +437,7 @@ class InventarisController extends Controller
         // dd($inventaris);
 
         if ($inventaris->nama != $request->nama_inventaris) {
-            $validations['nama_inventaris'] = 'required|unique:inventaris,nama';
+            $validations['nama_inventaris'] = 'required';
         }
         if ($inventaris->tahun_perolehan != $request->tahun) {
             $validations['tahun'] = 'required';

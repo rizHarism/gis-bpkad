@@ -151,10 +151,11 @@
                                 <p class="mt-2">QR Sertifikat</p>
                                 @if (isset($inventaris->document))
                                     {!! QrCode::size(75)->generate(asset('assets/document/' . $inventaris->document->doc_path)) !!}
+                                    <p class="mt-2">Scan barcode untuk melihat Sertifikat</p>
                                 @else
-                                    {!! QrCode::size(75)->generate(asset('assets/document/default-sertifikat.pdf')) !!}
+                                    <p class="mt-0" style="font-size: 60px">X</p>
+                                    <p style="font-size: 12px">Sertifikat Aset Belum Tersedia</p>
                                 @endif
-                                <p class="mt-2">Scan barcode untuk melihat Sertifikat</p>
                             </div>
                         </div>
                         <div class="col-6 border">
@@ -162,10 +163,11 @@
                                 <p class="mt-2">QR Foto</p>
                                 @if (isset($inventaris->galery))
                                     {!! QrCode::size(75)->generate(asset('assets/galery/' . $inventaris->galery->image_path)) !!}
+                                    <p class="mt-2">Scan barcode untuk melihat Foto Aset</p>
                                 @else
-                                    {!! QrCode::size(75)->generate(asset('assets/galery/default-image.png')) !!}
+                                    <p class="mt-0" style="font-size: 60px">X</p>
+                                    <p style="font-size: 12px">Gambar Aset Belum Tersedia</p>
                                 @endif
-                                <p class="mt-2">Scan barcode untuk melihat Foto Aset</p>
                             </div>
                         </div>
                     </div>
