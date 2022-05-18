@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\File;
 // use Barryvdh\DomPDF\Facade\Pdf;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App;
+use App\Models\InventarisBangunan;
 
 class InventarisController extends Controller
 {
@@ -95,6 +96,12 @@ class InventarisController extends Controller
         $inventaris = count(Inventaris::get()->all());
         $non_sertifikat = count(Inventaris::where('status', 0)->GET());
         $sertifikat = count(Inventaris::where('status', 1)->GET());
+        $inventarisGedung = count(InventarisBangunan::get()->all());
+        $inventarisGedungTerpetakan = count(InventarisBangunan::with('geometry')->has('geometry')->GET());
+        // $inventarisBangunan =  InventarisBangunan::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry', 'pemeliharaan')
+        //         ->has('geometry')
+        //         ->get();
+        // $sertifikat = count(Inventaris::where('status', 1)->GET());
 
         //count aset bersertifikat terpetakan
         $mapped_sertifikat = count(Inventaris::with('geometry')
@@ -110,7 +117,10 @@ class InventarisController extends Controller
             'bersertifikat' => $sertifikat,
             'tidak_bersertifikat' => $non_sertifikat,
             'terpetakan' => $mapped_sertifikat,
-            'belum_terpetakan' => $not_mapped_inventaris
+            'belum_terpetakan' => $not_mapped_inventaris,
+            'aset_gedung' => '998',
+            'aset_gedung_terinvetaris' => $inventarisGedung,
+            'aset_gedung_terpetakan' => $inventarisGedungTerpetakan,
 
         ];
 

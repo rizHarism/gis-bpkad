@@ -271,13 +271,12 @@
                         data: 'nama'
                     },
                     {
-                        data: 'master_barang.nama_barang',
+                        data: 'master_barang',
+                        render: function(data) {
+                            return data === null ? "" : data.nama_barang
+                        }
 
                     },
-                    // {
-                    //     data: 'no_dokumen_sertifikat',
-
-                    // },
                     {
                         data: 'alamat'
                     },
@@ -614,7 +613,7 @@
                             // myWindow.write('/inventaris/' + id +'/print') //= '/inventaris/' + id + '/print'
                             break
                         case 'delete':
-                            $.getJSON('api/inventaris/' + id, (result) => {
+                            $.getJSON('/api/inventarisgedung/' + id, (result) => {
                                 let property = result.data[0];
                                 var confirmNama = property.nama
                                 Swal.fire({
@@ -634,13 +633,13 @@
                                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
                                             },
                                             type: "DELETE",
-                                            url: "inventaris/" + id,
+                                            url: "/inventaris/gedung/" + id,
                                             cache: false,
                                             contentType: false,
                                             processData: false,
                                             success: (data) => {
-                                                // alert(data);
-                                                // console.log(data);
+                                                alert(data);
+                                                console.log(data);
                                                 Swal.fire(
                                                     'Terhapus!',
                                                     confirmNama +

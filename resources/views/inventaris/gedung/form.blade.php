@@ -40,7 +40,7 @@
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="skpd" id="skpd">
-                                                        <option>-- Pilih OPD Pengelola --</option>
+                                                        <option value="">-- Pilih OPD Pengelola --</option>
                                                         @foreach ($skpd as $_skpd)
                                                             <option value="{{ $_skpd['id_skpd'] }}"
                                                                 {{ isset($edit) && $edit['skpd_id'] == $_skpd['id_skpd'] ? 'selected="selected"' : '' }}>
@@ -54,7 +54,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic">Kategori Aset :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="barang" id="barang">
-                                                        <option>-- Pilih Kategori Aset --</option>
+                                                        <option value="">-- Pilih Kategori Aset --</option>
                                                         @foreach ($barang as $_barang)
                                                             <option value="{{ $_barang['id_barang'] }}"
                                                                 {{ isset($edit) && $edit['master_barang_id'] == $_barang['id_barang'] ? 'selected="selected"' : '' }}>
@@ -93,6 +93,31 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="col-md-5 mb-2 ">
+                                                    <label for="" class="form-label mb-0 fst-italic ">No Register :</label>
+                                                    <input type="text" class="form-control " name="noRegister"
+                                                        id="noRegister" placeholder=""
+                                                        value="{{ $edit['no_register'] ?? '' }}">
+                                                </div>
+
+                                                <div class="col-md-3 mb-2 ">
+                                                    <label for="" class="form-label mb-0 fst-italic ">Luas (M<sup>2</sup>)
+                                                        :</label>
+                                                    <input type="text" class="form-control " name="luas" id="luas"
+                                                        placeholder="" value="{{ $edit['luas'] ?? '' }}">
+                                                </div>
+
+                                                <div class="col-md-2 mb-2 ">
+                                                    <label for="" class="form-label mb-0 fst-italic ">Kode Gedung
+                                                        :</label>
+                                                    <input type="text" class="form-control " name="kodeGedung"
+                                                        id="kodeGedung" placeholder=""
+                                                        value="{{ $edit['kode_gedung'] ?? '' }}">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
                                                 <div class="col-md-5 mb-2  ">
                                                     <label for="" class="form-label mb-0 fst-italic ">Status Gedung
                                                         :</label>
@@ -108,36 +133,20 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Luas (M<sup>2</sup>)
-                                                        :</label>
-                                                    <input type="text" class="form-control " name="luas" id="luas"
-                                                        placeholder="" value="{{ $edit['luas'] ?? '' }}">
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">No Register :</label>
-                                                    <input type="text" class="form-control " name="noRegister"
-                                                        id="noRegister" placeholder=""
-                                                        value="{{ $edit['no_register'] ?? '' }}">
-                                                </div>
                                                 <div class="col-md-5 mb-2  ">
                                                     <label for="" class="form-label mb-0 fst-italic ">Kondisi Gedung
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                        name="status" id="status">
+                                                        name="kondisiBangunan" id="kondisiBangunan">
                                                         <option value="">-- Pilih Kondisi Gedung --</option>
                                                         <option value="B"
                                                             {{ isset($edit) && $edit['kondisi_bangunan'] == 'B' ? 'selected="selected"' : '' }}>
                                                             Baik</option>
                                                         <option value="RR"
-                                                            {{ isset($edit) && $edit['kondisi_banguanan'] == 'RR' ? 'selected="selected"' : '' }}>
+                                                            {{ isset($edit) && $edit['kondisi_bangunan'] == 'RR' ? 'selected="selected"' : '' }}>
                                                             Rusak Ringan</option>
                                                         <option value="RB"
-                                                            {{ isset($edit) && $edit['kondisi_banguanan'] == 'RB' ? 'selected="selected"' : '' }}>
+                                                            {{ isset($edit) && $edit['kondisi_bangunan'] == 'RB' ? 'selected="selected"' : '' }}>
                                                             Rusak Berat</option>
                                                     </select>
                                                 </div>
@@ -149,7 +158,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic ">Jenis Konstruksi
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                        name="status" id="status">
+                                                        name="jenisBangunan" id="jenisBangunan">
                                                         <option value="">-- Pilih Jenis Konstruksi --</option>
                                                         <option value="BTK"
                                                             {{ isset($edit) && $edit['jenis_bangunan'] == 'BTK' ? 'selected="selected"' : '' }}>
@@ -163,7 +172,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic ">
                                                     </label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                        name="status" id="status">
+                                                        name="jenisKonstruksi" id="jenisKonstruksi">
                                                         <option value="">-- Pilih Bahan Konstuksi --</option>
                                                         <option value="BTN"
                                                             {{ isset($edit) && $edit['jenis_konstruksi'] == 'BTN' ? 'selected="selected"' : '' }}>
@@ -186,7 +195,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic ">Kelurahan :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="kelurahan" id="kelurahan">
-                                                        <option>-- Pilih Kelurahan --</option>
+                                                        <option value="">-- Pilih Kelurahan --</option>
                                                         @foreach ($kelurahan as $_kelurahan)
                                                             <option value="{{ $_kelurahan['id_kelurahan'] }}"
                                                                 {{ isset($edit) && $edit['kelurahan_id'] == $_kelurahan['id_kelurahan'] ? 'selected="selected"' : '' }}>
@@ -198,7 +207,7 @@
                                                     <label for="" class="form-label mb-0 fst-italic ">Kecamatan :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="kecamatan" id="kecamatan">
-                                                        <option>-- Pilih Kecamatan --</option>
+                                                        <option value="">-- Pilih Kecamatan --</option>
                                                         @foreach ($kecamatan as $_kecamatan)
                                                             <option value="{{ $_kecamatan['id_kecamatan'] }}"
                                                                 {{ isset($edit) && $edit['kecamatan_id'] == $_kecamatan['id_kecamatan'] ? 'selected="selected"' : '' }}>
@@ -249,14 +258,14 @@
                                                     <input type="file" name="image" id="image" class="form-control"
                                                         accept="image/png, image/jpg, image/jpeg">
                                                     <span
-                                                        style="font-size: 10px">{{ isset($edit->galery) ? 'Kosongkan form jika tidak ingin merubah foto' : '' }}</span>
+                                                        style="font-size: 10px">{{ isset($edit->galery) ? 'Kosongkan form jika tidak ingin merubah foto gedung' : '' }}</span>
                                                 </div>
                                                 <div class="col-md-5 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Dokumen :</label>
-                                                    <input type="file" name="document" id="document" class="form-control"
-                                                        accept="application/pdf">
+                                                    <input type="file" name="penanda" id="penanda" class="form-control"
+                                                        accept="image/png, image/jpg, image/jpeg">
                                                     <span
-                                                        style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah dokumen' : '' }}</span>
+                                                        style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah foto penanda' : '' }}</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -284,7 +293,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <span style="font-style: italic">Preview Foto :</span>
+                                                <span style="font-style: italic">Preview Foto Gedung:</span>
                                                 <div class="ratio ratio-16x9">
                                                     <img id="foto-preview" class=""
                                                         src="{{ isset($edit->galery) ? asset('assets/galery/' . $edit->galery->image_path) : asset('assets/galery/default-image.png') }}"
@@ -292,10 +301,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <span style="font-style: italic">Preview Sertifikat :</span>
+                                                <span style="font-style: italic">Preview Penanda Gedung:</span>
                                                 <div class="ratio ratio-16x9">
-                                                    <iframe id="doc-preview"
-                                                        src="{{ isset($edit->document) ? asset('assets/document/' . $edit->document->doc_path) : asset('assets/galery/default-image.pdf') }}"></iframe>
+                                                    <img id="penanda-preview"
+                                                        src="{{ isset($edit->document) ? asset('assets/document/' . $edit->document->doc_path) : asset('assets/galery/default-image.png') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -369,7 +378,7 @@
 
                 reader.onload = function(e) {
                     // $('#foto-preview').attr('class', 'img-thumbnail');
-                    $('#doc-preview').attr('src', e.target.result);
+                    $('#penanda-preview').attr('src', e.target.result);
                     // $('#avatar-image2').attr('src', e.target.result);
                 }
 
@@ -393,15 +402,15 @@
                 changeFoto(this);
             }
         });
-        $("#document").change(function() {
-            var ext = $('#document').val().split('.').pop().toLowerCase();
-            if ($.inArray(ext, ['pdf']) == -1) {
+        $("#penanda").change(function() {
+            var ext = $('#penanda').val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
                 swal.fire({
                     title: 'Error',
-                    html: 'File Sertifikat harus berupa PDF',
+                    html: 'File Foto harus berupa Gambar',
                     icon: 'warning',
                 });
-                $("#document").val("")
+                $("#penanda").val("")
             } else {
                 changeDocument(this);
             }
@@ -419,26 +428,35 @@
         $(function() {
             $("#edit-form").submit(function() {
 
+                let ms = new Date().getMilliseconds()
+                let kode = $("#kodeGedung").val()
+                let generate = Math.floor(ms + Math.random() * 90000) + kode
                 var formData = new FormData;
                 var putMethod = '{{ isset($edit) }}'
 
+
+                formData.append('id_inventaris', generate);
                 formData.append('nama_inventaris', $("#nama_inventaris").val());
                 formData.append('tahun', $("#tahun").val());
                 formData.append('nilai_aset', $("#value_nilai_aset").val());
                 formData.append('luas', $("#luas").val());
+                formData.append('kode_gedung', $("#kodeGedung").val());
                 formData.append('status', $("#status").val());
                 formData.append('no_register', $("#noRegister").val());
+                formData.append('kondisi_bangunan', $("#kondisiBangunan").val());
+                formData.append('jenis_bangunan', $("#jenisBangunan").val());
+                formData.append('jenis_konstruksi', $("#jenisKonstruksi").val());
                 formData.append('alamat', $("#alamat").val());
                 formData.append('kelurahan', $("#kelurahan").val());
                 formData.append('kecamatan', $("#kecamatan").val());
-                formData.append('no_sertifikat', $("#no_sertifikat").val());
+                // formData.append('no_sertifikat', $("#no_sertifikat").val());
                 formData.append('skpd', $("#skpd").val());
                 formData.append('barang', $("#barang").val());
                 formData.append('polygon', $("#geometry").val());
                 formData.append('lat', $("#lat").val());
                 formData.append('lng', $("#lng").val());
                 formData.append('image', $('input[type=file]')[0].files[0]);
-                formData.append('document', $('input[type=file]')[1].files[0]);
+                formData.append('penanda', $('input[type=file]')[1].files[0]);
 
                 if (putMethod) {
                     formData.append('_method', 'PUT')

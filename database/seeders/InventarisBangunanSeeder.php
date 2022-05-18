@@ -31,6 +31,7 @@ class InventarisBangunanSeeder extends Seeder
                     "nilai_aset" => $data["5"],
                     "luas" => $data["6"],
                     "status" => $data["7"],
+                    "kode_gedung" => $data["16"],
                     "alamat" => $data["8"],
                     "kelurahan_id" => $data["9"],
                     "kecamatan_id" => $data["10"],

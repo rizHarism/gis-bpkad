@@ -35,6 +35,35 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="col-md-10 mb-2 me-5 ">
+                                                    <label for="" class="form-label mb-0 fst-italic">SKPD Pengelola
+                                                        :</label>
+                                                    <select class="form-select" aria-label="Default select example"
+                                                        name="skpd" id="skpd">
+                                                        <option value="">-- Pilih OPD Pengelola --</option>
+                                                        @foreach ($skpd as $_skpd)
+                                                            <option value="{{ $_skpd['id_skpd'] }}"
+                                                                {{ isset($edit) && $edit['skpd_id'] == $_skpd['id_skpd'] ? 'selected="selected"' : '' }}>
+                                                                {{ $_skpd['nama_skpd'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 mb-2 me-5 ">
+                                                    <label for="" class="form-label mb-0 fst-italic">Kategori Aset :</label>
+                                                    <select class="form-select" aria-label="Default select example"
+                                                        name="barang" id="barang">
+                                                        <option value="">-- Pilih Kategori Aset --</option>
+                                                        @foreach ($barang as $_barang)
+                                                            <option value="{{ $_barang['id_barang'] }}"
+                                                                {{ isset($edit) && $edit['master_barang_id'] == $_barang['id_barang'] ? 'selected="selected"' : '' }}>
+                                                                {{ $_barang['nama_barang'] ?? '' }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-5 mb-2">
                                                     <label for="" class="form-label mb-0 fst-italic">Tahun Perolehan
                                                         :</label>
@@ -137,35 +166,7 @@
                                             <div class="row">
 
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">SKPD Pengelola
-                                                        :</label>
-                                                    <select class="form-select" aria-label="Default select example"
-                                                        name="skpd" id="skpd">
-                                                        <option>-- Pilih OPD Pengelola --</option>
-                                                        @foreach ($skpd as $_skpd)
-                                                            <option value="{{ $_skpd['id_skpd'] }}"
-                                                                {{ isset($edit) && $edit['skpd_id'] == $_skpd['id_skpd'] ? 'selected="selected"' : '' }}>
-                                                                {{ $_skpd['nama_skpd'] }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Kategori Aset :</label>
-                                                    <select class="form-select" aria-label="Default select example"
-                                                        name="barang" id="barang">
-                                                        <option>-- Pilih Kategori Aset --</option>
-                                                        @foreach ($barang as $_barang)
-                                                            <option value="{{ $_barang['id_barang'] }}"
-                                                                {{ isset($edit) && $edit['master_barang_id'] == $_barang['id_barang'] ? 'selected="selected"' : '' }}>
-                                                                {{ $_barang['nama_barang'] ?? '' }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+
                                             <div class="row mb-2">
                                                 <div class="col-md-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
@@ -242,10 +243,10 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <span style="font-style: italic">Preview Foto :</span>
+                                                <span style="font-style: italic">Preview Foto Gedung:</span>
                                                 <div class="ratio ratio-16x9">
                                                     <img id="foto-preview" class=""
-                                                        src="{{ isset($edit->galery)? asset('assets/galery/' . $edit->galery->image_path): asset('assets/galery/default-image.png') }}"
+                                                        src="{{ isset($edit->galery) ? asset('assets/galery/' . $edit->galery->image_path) : asset('assets/galery/default-image.png') }}"
                                                         alt="">
                                                 </div>
                                             </div>
@@ -253,7 +254,7 @@
                                                 <span style="font-style: italic">Preview Sertifikat :</span>
                                                 <div class="ratio ratio-16x9">
                                                     <iframe id="doc-preview"
-                                                        src="{{ isset($edit->document)? asset('assets/document/' . $edit->document->doc_path): asset('assets/galery/default-image.pdf') }}"></iframe>
+                                                        src="{{ isset($edit->document) ? asset('assets/document/' . $edit->document->doc_path) : asset('assets/document/default-sertifikat.pdf') }}"></iframe>
                                                 </div>
                                             </div>
                                         </div>
@@ -277,9 +278,7 @@
         </div>
     </section>
 
-    <script>
-
-    </script>
+    <script></script>
 
 @stop
 

@@ -23,6 +23,7 @@ class CreateInventarisCTable extends Migration
             $table->bigInteger('nilai_aset');
             $table->integer('luas');
             $table->string('status');
+            $table->string('kode_gedung')->nullable();
             $table->string('alamat');
             $table->integer('kelurahan_id');
             $table->integer('kecamatan_id');
