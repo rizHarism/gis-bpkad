@@ -277,7 +277,7 @@
                             </div>
                         </div>
                         <div class="col-md-6" style="">
-                            <div id="sertifikat" class="h4" style="20">
+                            <div id="sertifikat" class="" style="20">
                                 {{-- <iframe src="{{ asset('assets/document/03.KL.017 - STADION SUPRIYADI.pdf') }}"
                                     style="width: 100%;height: 63vh; position: relative;" allowfullscreen></iframe> --}}
                             </div>

@@ -1041,7 +1041,79 @@
                                         .luas,
                                         ns = property
                                         .nilai_aset
+                                    if (!property.document) {
+                                        penanda =
+                                            // `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
+                                            `<img class="img-fluid" src="assets/galery/default-image.png" style="height:23vh;width:100%"></img>`
+                                    } else {
+                                        penanda =
+                                            `<img class="img-fluid" src="assets/document/` +
+                                            property
+                                            .document.doc_path +
+                                            `" style="height:23vh;width:100%">`
+                                    }
+                                    if (!property.galery) {
+                                        image =
+                                            `<img src="assets/galery/default-image.png" style="height:23vh;width:100%"></img>`
+                                    } else {
+                                        image =
+                                            `<img class="img-fluid" src="assets/galery/` +
+                                            property.galery.image_path +
+                                            `" style="height:23vh;width:100%"></img>`
+                                    }
+                                    $('#sertifikat').empty()
+                                    if (property.pemeliharaan.length == 0) {
+                                        pemeliharaan = ""
+                                    } else {
+                                        pemeliharaan = `
+                                        <div class="container" style="display:block; overflow-x: auto; height:25vh" >
+                                            <table id="pemeliharaan" class="table table-sm table-strip" style="width:100%; height:25vh;overflow-y:scroll">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">Pemeliharaan</th>
+                                                    <th scope="col">Tahun</th>
+                                                    <th scope="col">Nilai</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>`
+                                    }
+                                    var trHTML = "";
+                                    $.each(property.pemeliharaan, function(i, item) {
+                                        console.log(item.nama_pemeliharaan);
+                                        trHTML += '<tr><td>' + item
+                                            .nama_pemeliharaan + '</td><td>' +
+                                            item.tahun_pemeliharaan +
+                                            '</td><td>' + item.nilai_aset +
+                                            '</td></tr>';
+                                    });
+                                    console.log(trHTML)
 
+
+
+                                    $('#sertifikat').append(
+                                        `<div class="row h-25 d-flex justify-content-center align-self-start">
+                                        <div class="h-25 col-md-10">
+                                            ` + image + `
+                                        </div>
+                                    </div>
+
+                                    <div class="row h-25 d-flex justify-content-center align-self-start mt-2" >
+                                        <div class=" h-25 col-md-10" style="">
+                                            ` + penanda + `
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex justify-content-center mt-2" >
+                                        <div class=" col-md" style="">
+                                            ` + pemeliharaan + `
+                                        </div>
+
+                                        </div>
+                                    </div>`
+                                    )
+                                    $('#pemeliharaan').append(trHTML);
                                     $('#detailTitle').empty()
                                     $('#detailData').empty()
                                     $('#detailTitle').append(
@@ -1578,23 +1650,8 @@
         $("#queryGeomGedung").on('submit', function(e) {
             layerAll = L.featureGroup();
             e.preventDefault(); // avoid to execute the actual submit of the form.
-            // map.removeLayer();
-            // var search = $('input[name="varQuery"]:checked').val();
-            // var status = $('input[name="status"]:checked').val();
-            // var status = 1;
-            // var kelurahan = $('#data_kelurahan').val();
             var skpd = $('#dataSkpd2').val();
-            // console.log(skpd)
-            // var sertifikat = $('#noSertifikat').val();
             var urlSkpd = "api/inventarisgedung/" + skpd + "/queryskpdgedung"
-            // if (!sertifikat) {
-            //     var urlSertifikat = "api/inventaris/" + kelurahan + "/0/querysertifikat"
-            // } else {
-            //     var urlSertifikat = "api/inventaris/" + kelurahan + "/" + sertifikat +
-            //         "/querysertifikat"
-            // }
-
-            // console.log(urlSkpd)
             map.eachLayer(function(lay) {
                 if (lay.toGeoJSON) {
                     map.removeLayer(lay);
@@ -1686,17 +1743,79 @@
                                     .luas,
                                     ns = property
                                     .nilai_aset
-                                // if (!property.document) {
-                                //     Sertifikat =
-                                //         `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
-                                // } else {
-                                //     Sertifikat = `<iframe src="assets/document/` +
-                                //         property
-                                //         .document.doc_path +
-                                //         `" style="width: 100%;height: 70vh; position: relative;"></iframe>`
-                                // }
-                                // $('#sertifikat').empty()
-                                // $('#sertifikat').append(Sertifikat)
+                                if (!property.document) {
+                                    penanda =
+                                        // `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
+                                        `<img class="img-fluid" src="assets/galery/default-image.png" style="height:23vh;width:100%"></img>`
+                                } else {
+                                    penanda =
+                                        `<img class="img-fluid" src="assets/document/` +
+                                        property
+                                        .document.doc_path +
+                                        `" style="height:23vh;width:100%">`
+                                }
+                                if (!property.galery) {
+                                    image =
+                                        `<img src="assets/galery/default-image.png" style="height:23vh;width:100%"></img>`
+                                } else {
+                                    image =
+                                        `<img class="img-fluid" src="assets/galery/` +
+                                        property.galery.image_path +
+                                        `" style="height:23vh;width:100%"></img>`
+                                }
+                                $('#sertifikat').empty()
+                                if (property.pemeliharaan.length == 0) {
+                                    pemeliharaan = ""
+                                } else {
+                                    pemeliharaan = `
+                                        <div class="container" style="display:block; overflow-x: auto; height:25vh" >
+                                            <table id="pemeliharaan" class="table table-sm table-strip" style="width:100%; height:25vh;overflow-y:scroll">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">Pemeliharaan</th>
+                                                    <th scope="col">Tahun</th>
+                                                    <th scope="col">Nilai</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>`
+                                }
+                                var trHTML = "";
+                                $.each(property.pemeliharaan, function(i, item) {
+                                    console.log(item.nama_pemeliharaan);
+                                    trHTML += '<tr><td>' + item
+                                        .nama_pemeliharaan + '</td><td>' +
+                                        item.tahun_pemeliharaan +
+                                        '</td><td>' + item.nilai_aset +
+                                        '</td></tr>';
+                                });
+                                console.log(trHTML)
+
+
+
+                                $('#sertifikat').append(
+                                    `<div class="row h-25 d-flex justify-content-center align-self-start">
+                                        <div class="h-25 col-md-10">
+                                            ` + image + `
+                                        </div>
+                                    </div>
+
+                                    <div class="row h-25 d-flex justify-content-center align-self-start mt-2" >
+                                        <div class=" h-25 col-md-10" style="">
+                                            ` + penanda + `
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex justify-content-center mt-2" >
+                                        <div class=" col-md" style="">
+                                            ` + pemeliharaan + `
+                                        </div>
+
+                                        </div>
+                                    </div>`
+                                )
+                                $('#pemeliharaan').append(trHTML);
                                 $('#detailTitle').empty()
                                 $('#detailData').empty()
                                 $('#detailTitle').append(
@@ -1773,14 +1892,7 @@
                                     </tr>
                                 </table>
                                     `);
-                                if (!property.galery) {
-                                    image =
-                                        `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
-                                } else {
-                                    image =
-                                        `<img class="img-fluid" src="assets/galery/` +
-                                        property.galery.image_path + `"></img>`
-                                }
+
                                 var content = image +
                                     `<p class="text-center fw-bold m-2 p-0 h7">` +
                                     property
