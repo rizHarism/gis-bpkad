@@ -1137,6 +1137,23 @@
                                         nama_barang = property.master_barang.nama_barang
                                         kode_barang = property.master_barang.kode_barang
                                     }
+                                    if (property.kondisi_bangunan == 'B') {
+                                        kondisi_bangunan = 'Baik'
+                                    } else if (property.kondisi_bangunan == 'RR') {
+                                        kondisi_bangunan = 'Rusak Ringan'
+                                    } else {
+                                        kondisi_bangunan = 'Rusak Berat'
+                                    }
+                                    if (property.jenis_bangunan == 'BTK') {
+                                        jenis_bangunan = 'Bertingkat'
+                                    } else {
+                                        jenis_bangunan = 'Tidak Bertingkat'
+                                    }
+                                    if (property.jenis_konstruksi == 'BTN') {
+                                        jenis_konstruksi = 'Beton'
+                                    } else {
+                                        jenis_konstruksi = 'Bukan Beton'
+                                    }
                                     $('#detailData').append(`
                                     <table class="table table-sm table-striped">
                                     <tr>
@@ -1187,6 +1204,14 @@
                                     <tr>
                                       <th>Status </th>
                                       <td>` + property.status + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Kondisi Bangunan </th>
+                                      <td>` + kondisi_bangunan + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Konstruksi </th>
+                                      <td>` + jenis_bangunan + " / " + jenis_konstruksi + `</td>
                                     </tr>
                                 </table>
                                     `);
@@ -1839,6 +1864,23 @@
                                     nama_barang = property.master_barang.nama_barang
                                     kode_barang = property.master_barang.kode_barang
                                 }
+                                if (property.kondisi_bangunan == 'B') {
+                                    kondisi_bangunan = 'Baik'
+                                } else if (property.kondisi_bangunan == 'RR') {
+                                    kondisi_bangunan = 'Rusak Ringan'
+                                } else {
+                                    kondisi_bangunan = 'Rusak Berat'
+                                }
+                                if (property.jenis_bangunan == 'BTK') {
+                                    jenis_bangunan = 'Bertingkat'
+                                } else {
+                                    jenis_bangunan = 'Tidak Bertingkat'
+                                }
+                                if (property.jenis_konstruksi == 'BTN') {
+                                    jenis_konstruksi = 'Beton'
+                                } else {
+                                    jenis_konstruksi = 'Bukan Beton'
+                                }
                                 $('#detailData').append(`
                                     <table class="table table-sm table-striped">
                                     <tr>
@@ -1889,6 +1931,14 @@
                                     <tr>
                                       <th>Status </th>
                                       <td>` + property.status + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Kondisi Bangunan </th>
+                                      <td>` + kondisi_bangunan + `</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Konstruksi </th>
+                                      <td>` + jenis_bangunan + " / " + jenis_konstruksi + `</td>
                                     </tr>
                                 </table>
                                     `);
