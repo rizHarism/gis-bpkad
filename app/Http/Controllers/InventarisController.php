@@ -110,6 +110,8 @@ class InventarisController extends Controller
             ->get());
         $not_mapped_inventaris = $sertifikat - $mapped_sertifikat;
 
+        $inventaris_sertifikat_belum_ketemu = Inventaris::with('document', 'master_skpd:nama_skpd,id_skpd', 'master_barang:nama_barang,id_barang')->where('status', 1)->doesnthave('document')->get();
+
         $response = [
             'message' => 'List Data Transaksi order by time',
             // 'data' => $sertifikat
@@ -121,10 +123,13 @@ class InventarisController extends Controller
             'aset_gedung' => '998',
             'aset_gedung_terinvetaris' => $inventarisGedung,
             'aset_gedung_terpetakan' => $inventarisGedungTerpetakan,
+            'jumlah_inventaris_sertifikat_ketemu' => count($inventaris_sertifikat_belum_ketemu),
+            'inventaris_sertifikat_belum_ketemu' => $inventaris_sertifikat_belum_ketemu
 
         ];
 
-        return response()->json($response, Response::HTTP_OK);
+        // return response()->json($response, Response::HTTP_OK);
+        return response($response, Response::HTTP_OK);
     }
 
     public function getInventaris()
