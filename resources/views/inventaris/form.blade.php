@@ -589,11 +589,12 @@
                 nf = Intl.NumberFormat();
             // console.log(layer)
             if (shape === 'Polygon') {
-
+                // getGeomanDrawLayers(layer);
                 var extract = layer.toGeoJSON().geometry
                 var geo = layer.toGeoJSON();
                 var polygon = new L
                     .geoJson(geo);
+                console.log(layer);
                 console.log(polygon);
                 point = L.marker(
                     polygon
@@ -601,7 +602,7 @@
                     .getCenter()
                 );
                 var polygon = JSON.stringify(extract);
-                console.log(point)
+                // console.log(point)
                 $('#geometry').val(polygon)
                 $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
                 $('#lng').val(point.toGeoJSON().geometry.coordinates[0])

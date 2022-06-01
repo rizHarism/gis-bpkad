@@ -128,8 +128,8 @@ class InventarisController extends Controller
 
         ];
 
-        // return response()->json($response, Response::HTTP_OK);
-        return response($response, Response::HTTP_OK);
+        return response()->json($response, Response::HTTP_OK);
+        // return response($response, Response::HTTP_OK);
     }
 
     public function getInventaris()

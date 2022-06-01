@@ -621,33 +621,42 @@
 
         }
 
+        // ----- PERCOBAAN ADD MULTIPOLYGON LEAFLET GEOMAN -------
 
+        var multiPoly = [];
 
         map.on('pm:create', (e) => {
             var layer = e.layer,
                 shape = e.shape,
                 nf = Intl.NumberFormat();
-            // console.log(layer)
-            if (shape === 'Polygon') {
+            // console.log(layer.toGeoJSON())
+            // if (shape === 'Polygon') {
 
-                var extract = layer.toGeoJSON().geometry
-                var geo = layer.toGeoJSON();
-                var polygon = new L
-                    .geoJson(geo);
-                console.log(polygon);
-                point = L.marker(
-                    polygon
-                    .getBounds()
-                    .getCenter()
-                );
-                var polygon = JSON.stringify(extract);
-                console.log(point)
-                $('#geometry').val(polygon)
-                $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
-                $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
+            var extract = layer.toGeoJSON().geometry.coordinates
+            var geo = layer.toGeoJSON();
+            var polygon = new L
+                .geoJson(geo);
+            multiPoly.push(extract)
+            console.log(JSON.stringify(extract));
+            console.log(JSON.stringify(multiPoly));
+            var multy = L.polygon(multiPoly).toGeoJSON().geometry
+            console.log(JSON.stringify(multy));
 
-            }
 
+            // console.log(multy.toGeoJSON().geometry);
+            point = L.marker(
+                polygon
+                .getBounds()
+                .getCenter()
+            );
+            var polygon = JSON.stringify(extract);
+            // console.log(point)
+            // $('#geometry').val(JSON.stringify(multy))
+            $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
+            $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
+
+            // }
+            L.geoJson(multy).addTo(map)
         })
 
         map.on('pm:create', ({
