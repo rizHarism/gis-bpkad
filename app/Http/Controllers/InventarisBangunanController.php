@@ -97,7 +97,16 @@ class InventarisBangunanController extends Controller
     {
         //
         // dd($request->all());
-        // dd($request->status);
+        // dd($request->polygon);
+        // dd(json_decode($request->polygon));
+        // dd(jso$poly[0]);
+        // $poly = json_decode($request->polygon);
+        // dd(json_encode($poly[0]));
+        // foreach ($poly as $value) {
+        //     dd(json_encode($value));
+        // }
+        // echo "$value <br>";
+
         $this->validate($request, [
             'nama_inventaris' => 'required',
             'tahun' => 'required',
@@ -141,12 +150,20 @@ class InventarisBangunanController extends Controller
 
             if (!empty($request->polygon)) {
 
-                $geometry = Geometry::create([
-                    'inventaris_id' => $request->id_inventaris,
-                    'polygon' => $request->polygon,
-                    'lat' => $request->lat,
-                    'lng' => $request->lng,
-                ]);
+                $polygon = json_decode($request->polygon);
+                foreach ($polygon as $p) {
+                    // $_polygon = json_encode($p);
+                    // $_inventaris_id = $request->id_inventaris;
+                    // $_lat = $request->lat;
+                    // $_lng = $request->lng;
+                    // dd($_polygon);
+                    Geometry::create([
+                        'inventaris_id' => $request->id_inventaris,
+                        'polygon' => json_encode($p),
+                        'lat' => $request->lat,
+                        'lng' => $request->lng,
+                    ]);
+                }
             }
 
             if ($request->hasfile('image')) {

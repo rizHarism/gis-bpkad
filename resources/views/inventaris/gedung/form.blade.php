@@ -631,63 +631,125 @@
                 nf = Intl.NumberFormat();
             // console.log(layer.toGeoJSON())
             // if (shape === 'Polygon') {
+            // var extract = layer.toGeoJSON().geometry
 
-            var extract = layer.toGeoJSON().geometry.coordinates
-            var geo = layer.toGeoJSON();
-            var polygon = new L
-                .geoJson(geo);
-            multiPoly.push(extract)
-            console.log(JSON.stringify(extract));
-            console.log(JSON.stringify(multiPoly));
-            var multy = L.polygon(multiPoly).toGeoJSON().geometry
-            console.log(JSON.stringify(multy));
+            function generateGeoJson() {
+                // var gedungGroup = L.featureGroup();
+                multiPoly = [];
+                var layers = map.pm.getGeomanLayers(); // or getGeomanLayers()
+                layers.forEach(function(layerGedung) {
+                    multiPoly.push(layerGedung.toGeoJSON().geometry)
+                    // gedungGroup.addLayer(layerGedung);
+                    // console.log(layerGedung.toGeoJSON().geometry)
+                });
+                console.log(multiPoly);
+                console.log(JSON.stringify(multiPoly));
+            }
 
+            generateGeoJson();
+            $('#geometry').val(JSON.stringify(multiPoly))
+            // var geo = layer.toGeoJSON();
+            // var polygon = new L
+            //     .geoJson(geo);
+            // multiPoly.push(extract)
+            // console.log(JSON.stringify(extract));
+            // console.log(multiPoly);
 
+            // gedungMulty = L.featureGroup();
+
+            // for (var i = 0; i < multiPoly.length; i++) {
+            //     var gedungPoly = multiPoly[i];
+            //     gedungMulty.addLayer(gedungPoly);
+            // }
+            // console.log(gedungMulty);
+
+            // var multy = L.polygon(multiPoly).toGeoJSON().geometry
+            // console.log(JSON.stringify(multy));
             // console.log(multy.toGeoJSON().geometry);
-            point = L.marker(
-                polygon
-                .getBounds()
-                .getCenter()
-            );
-            var polygon = JSON.stringify(extract);
+            // point = L.marker(
+            //     polygon
+            //     .getBounds()
+            //     .getCenter()
+            // );
+            // var polygon = JSON.stringify(extract);
             // console.log(point)
             // $('#geometry').val(JSON.stringify(multy))
-            $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
-            $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
+            // $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
+            // $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
 
             // }
-            L.geoJson(multy).addTo(map)
+            // L.geoJson(multy).addTo(map)
         })
 
         map.on('pm:create', ({
             layer
         }) => {
             layer.on('pm:edit', e => {
-                console.log(e);
+                // console.log(e);
 
-                var extract = layer.toGeoJSON().geometry
-                var geo = layer.toGeoJSON();
-                var polygon = new L
-                    .geoJson(geo);
-                console.log(polygon);
-                point = L.marker(
-                    polygon
-                    .getBounds()
-                    .getCenter()
-                );
-                var polygon = JSON.stringify(extract);
-                console.log(point)
-                $('#geometry').val(polygon);
-                $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
-                $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
+                // var extract = layer.toGeoJSON().geometry
+                // var geo = layer.toGeoJSON();
+                // var polygon = new L
+                //     .geoJson(geo);
+                // console.log(polygon);
+                // point = L.marker(
+                //     polygon
+                //     .getBounds()
+                //     .getCenter()
+                // );
+                // var polygon = JSON.stringify(extract);
+                // console.log(point)
+                // $('#geometry').val(polygon);
+                // $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
+                // $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
+                var layer = e.layer,
+                    shape = e.shape,
+                    nf = Intl.NumberFormat();
+                // console.log(layer.toGeoJSON())
+                // if (shape === 'Polygon') {
+                // var extract = layer.toGeoJSON().geometry
 
+                function generateGeoJson() {
+                    // var gedungGroup = L.featureGroup();
+                    multiPoly = [];
+                    var layers = map.pm.getGeomanLayers(); // or getGeomanLayers()
+                    layers.forEach(function(layerGedung) {
+                        multiPoly.push(layerGedung.toGeoJSON().geometry)
+                        // gedungGroup.addLayer(layerGedung);
+                        // console.log(layerGedung.toGeoJSON().geometry)
+                    });
+                    console.log(multiPoly);
+                    console.log(JSON.stringify(multiPoly));
+                }
+
+                generateGeoJson();
+                $('#geometry').val(JSON.stringify(multiPoly))
             });
         });
 
         map.on('pm:remove', (e) => {
-            $('#geometry').val('')
-            $('#lat').val('')
-            $('#lng').val('')
+            // $('#geometry').val('')
+            // $('#lat').val('')
+            // $('#lng').val('')
+            function generateGeoJson() {
+                // var gedungGroup = L.featureGroup();
+                multiPoly = [];
+                var layers = map.pm.getGeomanLayers(); // or getGeomanLayers()
+                layers.forEach(function(layerGedung) {
+                    multiPoly.push(layerGedung.toGeoJSON().geometry)
+                    // gedungGroup.addLayer(layerGedung);
+                    // console.log(layerGedung.toGeoJSON().geometry)
+                });
+                console.log(multiPoly);
+                console.log(JSON.stringify(multiPoly));
+            }
+
+            generateGeoJson();
+            if (multiPoly.length > 0) {
+                $('#geometry').val(JSON.stringify(multiPoly))
+            } else {
+                $('#geometry').val('')
+            }
         })
     </script>
 @stop
