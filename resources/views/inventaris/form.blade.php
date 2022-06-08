@@ -166,7 +166,7 @@
                                             <div class="row">
 
                                             </div>
-
+                                            {{ dd($edit->geometry) }}
                                             <div class="row mb-2">
                                                 <div class="col-md-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
@@ -190,8 +190,7 @@
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Geometri :</label>
-                                                    <textarea class="form-control" name="geometry" id="geometry" rows="3" name="geometry"
-                                                        disabled>{{ isset($edit->geometry) ? $edit->geometry->polygon : '' }}</textarea>
+                                                    <textarea class="form-control" name="geometry" id="geometry" rows="3" name="geometry" disabled>{{ isset($edit->geometry) ? $edit->geometry->polygon : '' }}</textarea>
                                                 </div>
                                             </div>
 

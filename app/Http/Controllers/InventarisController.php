@@ -458,7 +458,7 @@ class InventarisController extends Controller
             $validations['tahun'] = 'required';
         }
         if ($inventaris->nilai_aset != $request->nilai_aset) {
-            $validations['tahun'] = 'required';
+            $validations['nilai'] = 'required';
         }
         if ($inventaris->luas != $request->luas) {
             $validations['luas'] = 'required';

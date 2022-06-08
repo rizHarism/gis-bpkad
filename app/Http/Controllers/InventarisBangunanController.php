@@ -101,9 +101,11 @@ class InventarisBangunanController extends Controller
         // dd(json_decode($request->polygon));
         // dd(jso$poly[0]);
         // $poly = json_decode($request->polygon);
+        // $lat = json_decode($request->lat);
+        // $lng = json_decode($request->lng);
         // dd(json_encode($poly[0]));
-        // foreach ($poly as $value) {
-        //     dd(json_encode($value));
+        // foreach ($poly as $item => $value) {
+        //     dd(json_encode($value), json_encode($lat[$item]), " ", json_encode($lng[$item]));
         // }
         // echo "$value <br>";
 
@@ -151,17 +153,15 @@ class InventarisBangunanController extends Controller
             if (!empty($request->polygon)) {
 
                 $polygon = json_decode($request->polygon);
-                foreach ($polygon as $p) {
-                    // $_polygon = json_encode($p);
-                    // $_inventaris_id = $request->id_inventaris;
-                    // $_lat = $request->lat;
-                    // $_lng = $request->lng;
-                    // dd($_polygon);
+                $lat = json_decode($request->lat);
+                $lng = json_decode($request->lng);
+
+                foreach ($polygon as $item => $p) {
                     Geometry::create([
                         'inventaris_id' => $request->id_inventaris,
                         'polygon' => json_encode($p),
-                        'lat' => $request->lat,
-                        'lng' => $request->lng,
+                        'lat' => json_encode($lat[$item]),
+                        'lng' => json_encode($lng[$item]),
                     ]);
                 }
             }
@@ -195,7 +195,201 @@ class InventarisBangunanController extends Controller
     }
 
 
+    public function edit($id)
+    {
+        //
+        $inventarisBangunan = InventarisBangunan::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
+        $response = [
+            'message' => "Edit Inventaris",
+            'data' => $inventarisBangunan
+        ];
+        // dd($inventarisBangunan);
+        // dd($inventarisBangunan->geometry);
+        $kecamatan = Kecamatan::get();
+        $kelurahan = Kelurahan::get();
+        $skpd = Skpd::get();
+        $master_barang = MasterBarang::get();
+        // $geometry = Geometry::where('inventaris_id', $inventarisBangunan->id_inventaris)->get();
+        // $galery = Galery::where('inventaris_id', $$inventarisBangunan->id_inventaris)->get();
+        // $document = Document::where('inventaris_id', $$inventarisBangunan->id_inventaris)->get();
+        // return response()->json($response, Response::HTTP_OK);
+        return view('inventaris.gedung.form', [
+            'edit' => $inventarisBangunan,
+            'kecamatan' => $kecamatan,
+            'kelurahan' => $kelurahan,
+            'skpd' => $skpd,
+            'barang' => $master_barang,
+            'geometry' => $inventarisBangunan->geometry,
+            'galery' => $inventarisBangunan->galery,
+            'document' => $inventarisBangunan->document
+        ]);
+    }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Inventaris  $Inventaris
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        $inventarisBangunan = InventarisBangunan::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
+        $validations = [];
+
+        // dd($request->polygon);
+        dd($inventarisBangunan->geometry[0]->id);
+
+        if ($inventarisBangunan->nama != $request->nama_inventaris) {
+            $validations['nama_inventaris'] = 'required';
+        }
+        if ($inventarisBangunan->tahun_perolehan != $request->tahun) {
+            $validations['tahun'] = 'required';
+        }
+        if ($inventarisBangunan->nilai_aset != $request->nilai_aset) {
+            $validations['nilai_aset'] = 'required';
+        }
+        if ($inventarisBangunan->luas != $request->luas) {
+            $validations['luas'] = 'required';
+        }
+        if ($inventarisBangunan->no_registrasi != $request->no_registrasi) {
+            $validations['no_registrasi'] = 'required';
+        }
+        if ($inventarisBangunan->alamat != $request->alamat) {
+            $validations['alamat'] = 'required';
+        }
+        if ($inventarisBangunan->kelurahan_id != $request->kelurahan) {
+            $validations['kelurahan'] = 'required';
+        }
+        if ($inventarisBangunan->kecamatan_id != $request->kecamatan) {
+            $validations['kecamatan'] = 'required';
+        }
+        if ($inventarisBangunan->skpd_id != $request->skpd) {
+            $validations['skpd'] = 'exists:master_skpd,id_skpd';
+        }
+        if ($inventarisBangunan->master_barang_id != $request->barang) {
+            $validations['barang'] = 'exists:master_barang,id_barang';
+        }
+
+
+        $this->validate($request, $validations);
+
+        // dd($request->all());
+        try {
+            DB::beginTransaction();
+
+            $inventarisBangunan->nama = $request->nama_inventaris;
+            $inventarisBangunan->tahun_perolehan = $request->tahun;
+            $inventarisBangunan->nilai_aset = $request->nilai_aset;
+            $inventarisBangunan->luas = $request->luas;
+            $inventarisBangunan->status = $request->status;
+            $inventarisBangunan->no_register = $request->no_register;
+            $inventarisBangunan->alamat = $request->alamat;
+            $inventarisBangunan->kelurahan_id = $request->kelurahan;
+            $inventarisBangunan->kecamatan_id = $request->kecamatan;
+            $inventarisBangunan->no_dokumen_sertifikat = $request->no_sertifikat;
+            $inventarisBangunan->skpd_id = $request->skpd;
+            $inventarisBangunan->master_barang_id = $request->barang;
+            // if (!empty($request->password)) {
+            //     $user->password = Hash::make($request->password);
+            // }
+            $inventarisBangunan->save();
+            // dd($inventaris->geometry()->exists());
+            if (!empty($request->polygon)) {
+                // percobaan insert array database relasi
+                // $polygon = json_decode($request->polygon);
+                // $lat = json_decode($request->lat);
+                // $lng = json_decode($request->lng);
+
+                // foreach ($polygon as $item => $p) {
+                //     if (Geometry::where('id', $id)->exists()) {
+                //         Geometry::where('inventaris_id', $id)
+                //             ->update([
+                //                 'polygon' => $polygon,
+                //                 'lat' => $request->lat,
+                //                 'lng' => $request->lng,
+                //             ]);
+                //     }
+                // }
+
+
+                if ($inventarisBangunan->geometry()->exists() == true) {
+                    $geometry = Geometry::where('inventaris_id', $id)
+                        ->update([
+                            'polygon' => $request->polygon,
+                            'lat' => $request->lat,
+                            'lng' => $request->lng,
+                        ]);
+                } else {
+                    $geometry = Geometry::create([
+                        'inventaris_id' => $inventarisBangunan->id,
+                        'polygon' => $request->polygon,
+                        'lat' => $request->lat,
+                        'lng' => $request->lng,
+                    ]);
+                }
+            };
+            // dd($request->hasfile('image'), $request->hasfile('document'));
+            if ($request->hasfile('image')) {
+                $oldfile = Galery::where('inventaris_id', $id)->pluck('image_path');
+                $newfile = $request->file('image')->getClientOriginalName();
+                foreach ($oldfile as $old) {
+                    if (File::exists(public_path('assets/galery/' . $old))) {
+                        File::delete(public_path('assets/galery/' . $old));
+                    }
+                };
+
+                if (count($oldfile) == 0) {
+                    Galery::create([
+                        'inventaris_id' => $inventarisBangunan->id,
+                        'image_path' => $newfile
+                    ]);
+                } else {
+                    Galery::where('inventaris_id', $id)
+                        ->update([
+                            'image_path' => $newfile
+                        ]);
+                }
+                $request->file('image')->move(public_path('assets/galery'), $newfile);
+            };
+
+            if ($request->hasfile('document')) {
+                $oldfile = Document::where('inventaris_id', $id)->pluck('doc_path');
+                $newfile = $request->file('document')->getClientOriginalName();
+                foreach ($oldfile as $old) {
+                    if (File::exists(public_path('assets/document/' . $old))) {
+                        File::delete(public_path('assets/document/' . $old));
+                    };
+                };
+                if (count($oldfile) == 0) {
+                    Document::create([
+                        'inventaris_id' => $inventarisBangunan->id,
+                        'doc_path' => $newfile
+                    ]);
+                } else {
+                    Document::where('inventaris_id', $id)
+                        ->update([
+                            'doc_path' => $newfile
+                        ]);
+                }
+                $request->file('document')->move(public_path('assets/document'), $newfile);
+            };
+
+
+            //     $file_name = $document->pluck('doc_path');
+            //     if (File::exists(public_path('assets/files/' . $file_name))) {
+            //         File::delete(public_path('assets/files/' . $file_name));
+            //     }
+            // }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
+        }
+        return response("Data Inventaris Berhasil Diubah");
+    }
 
     //destroy inventaris bangunan
     public function destroy(Request $request, $id)

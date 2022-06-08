@@ -224,14 +224,28 @@
                                                         value="{{ $edit['no_dokumen_sertifikat'] ?? '' }}">
                                                 </div>
                                             </div> --}}
-
+                                            @if (isset($edit))
+                                                @php
+                                                    $polygon = [];
+                                                    $lat = [];
+                                                    $lng = [];
+                                                @endphp
+                                                @foreach ($edit->geometry as $geometry)
+                                                    @php
+                                                        array_push($polygon, json_decode($geometry->polygon));
+                                                        array_push($lat, json_decode($geometry->lat));
+                                                        array_push($lng, json_decode($geometry->lng));
+                                                    @endphp
+                                                @endforeach
+                                            @endif
                                             <div class="row mb-2">
                                                 <div class="col-md-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
                                                     <label for="" class="form-label mb-0 fst-italic m">Lat :</label>
+
                                                     <input type="text" class="form-control " name="lat" id="lat"
                                                         placeholder=""
-                                                        value="{{ isset($edit->geometry) ? $edit->geometry->lat : '' }}">
+                                                        value="{{ isset($edit->geometry) ? json_encode($lat) : '' }}">
                                                     {{-- </div> --}}
                                                 </div>
                                                 <div class="col-md-5">
@@ -239,15 +253,14 @@
                                                     <label for="" class="form-label mb-0 fst-italic">Long :</label>
                                                     <input type="text" class="form-control " name="lng" id="lng"
                                                         placeholder=""
-                                                        value="{{ isset($edit->geometry) ? $edit->geometry->lng : '' }}">
+                                                        value="{{ isset($edit->geometry) ? json_encode($lng) : '' }}">
                                                     {{-- </div> --}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Geometri :</label>
-                                                    <textarea class="form-control" name="geometry" id="geometry" rows="3" name="geometry"
-                                                        disabled>{{ isset($edit->geometry) ? $edit->geometry->polygon : '' }}</textarea>
+                                                    <textarea class="form-control" name="geometry" id="geometry" rows="3" name="geometry" disabled>{{ isset($edit->geometry) ? json_encode($polygon) : '' }}</textarea>
                                                 </div>
                                             </div>
 
@@ -624,106 +637,77 @@
         // ----- PERCOBAAN ADD MULTIPOLYGON LEAFLET GEOMAN -------
 
         var multiPoly = [];
+        var multiLat = []
+        var multiLng = []
 
         map.on('pm:create', (e) => {
             var layer = e.layer,
                 shape = e.shape,
                 nf = Intl.NumberFormat();
-            // console.log(layer.toGeoJSON())
-            // if (shape === 'Polygon') {
-            // var extract = layer.toGeoJSON().geometry
+
 
             function generateGeoJson() {
                 // var gedungGroup = L.featureGroup();
                 multiPoly = [];
+                multiLat = [];
+                multiLng = [];
                 var layers = map.pm.getGeomanLayers(); // or getGeomanLayers()
                 layers.forEach(function(layerGedung) {
+                    point = L.marker(
+                        layerGedung
+                        .getBounds()
+                        .getCenter()
+                    );
                     multiPoly.push(layerGedung.toGeoJSON().geometry)
-                    // gedungGroup.addLayer(layerGedung);
-                    // console.log(layerGedung.toGeoJSON().geometry)
+                    multiLat.push(point.toGeoJSON().geometry.coordinates[1])
+                    multiLng.push(point.toGeoJSON().geometry.coordinates[0])
                 });
                 console.log(multiPoly);
                 console.log(JSON.stringify(multiPoly));
+                console.log(JSON.stringify(multiLat));
+                console.log(JSON.stringify(multiLng));
             }
 
             generateGeoJson();
             $('#geometry').val(JSON.stringify(multiPoly))
-            // var geo = layer.toGeoJSON();
-            // var polygon = new L
-            //     .geoJson(geo);
-            // multiPoly.push(extract)
-            // console.log(JSON.stringify(extract));
-            // console.log(multiPoly);
-
-            // gedungMulty = L.featureGroup();
-
-            // for (var i = 0; i < multiPoly.length; i++) {
-            //     var gedungPoly = multiPoly[i];
-            //     gedungMulty.addLayer(gedungPoly);
-            // }
-            // console.log(gedungMulty);
-
-            // var multy = L.polygon(multiPoly).toGeoJSON().geometry
-            // console.log(JSON.stringify(multy));
-            // console.log(multy.toGeoJSON().geometry);
-            // point = L.marker(
-            //     polygon
-            //     .getBounds()
-            //     .getCenter()
-            // );
-            // var polygon = JSON.stringify(extract);
-            // console.log(point)
-            // $('#geometry').val(JSON.stringify(multy))
-            // $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
-            // $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
-
-            // }
-            // L.geoJson(multy).addTo(map)
+            $('#lat').val(JSON.stringify(multiLat))
+            $('#lng').val(JSON.stringify(multiLng))
         })
 
         map.on('pm:create', ({
             layer
         }) => {
             layer.on('pm:edit', e => {
-                // console.log(e);
-
-                // var extract = layer.toGeoJSON().geometry
-                // var geo = layer.toGeoJSON();
-                // var polygon = new L
-                //     .geoJson(geo);
-                // console.log(polygon);
-                // point = L.marker(
-                //     polygon
-                //     .getBounds()
-                //     .getCenter()
-                // );
-                // var polygon = JSON.stringify(extract);
-                // console.log(point)
-                // $('#geometry').val(polygon);
-                // $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
-                // $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
                 var layer = e.layer,
                     shape = e.shape,
                     nf = Intl.NumberFormat();
-                // console.log(layer.toGeoJSON())
-                // if (shape === 'Polygon') {
-                // var extract = layer.toGeoJSON().geometry
 
                 function generateGeoJson() {
                     // var gedungGroup = L.featureGroup();
                     multiPoly = [];
+                    multiLat = [];
+                    multiLng = [];
                     var layers = map.pm.getGeomanLayers(); // or getGeomanLayers()
                     layers.forEach(function(layerGedung) {
+                        point = L.marker(
+                            layerGedung
+                            .getBounds()
+                            .getCenter()
+                        );
                         multiPoly.push(layerGedung.toGeoJSON().geometry)
-                        // gedungGroup.addLayer(layerGedung);
-                        // console.log(layerGedung.toGeoJSON().geometry)
+                        multiLat.push(point.toGeoJSON().geometry.coordinates[1])
+                        multiLng.push(point.toGeoJSON().geometry.coordinates[0])
                     });
                     console.log(multiPoly);
                     console.log(JSON.stringify(multiPoly));
+                    console.log(JSON.stringify(multiLat));
+                    console.log(JSON.stringify(multiLng));
                 }
 
                 generateGeoJson();
                 $('#geometry').val(JSON.stringify(multiPoly))
+                $('#lat').val(JSON.stringify(multiLat))
+                $('#lng').val(JSON.stringify(multiLng))
             });
         });
 
@@ -734,21 +718,35 @@
             function generateGeoJson() {
                 // var gedungGroup = L.featureGroup();
                 multiPoly = [];
+                multiLat = [];
+                multiLng = [];
                 var layers = map.pm.getGeomanLayers(); // or getGeomanLayers()
                 layers.forEach(function(layerGedung) {
+                    point = L.marker(
+                        layerGedung
+                        .getBounds()
+                        .getCenter()
+                    );
                     multiPoly.push(layerGedung.toGeoJSON().geometry)
-                    // gedungGroup.addLayer(layerGedung);
-                    // console.log(layerGedung.toGeoJSON().geometry)
+                    multiLat.push(point.toGeoJSON().geometry.coordinates[1])
+                    multiLng.push(point.toGeoJSON().geometry.coordinates[0])
                 });
                 console.log(multiPoly);
                 console.log(JSON.stringify(multiPoly));
+                console.log(JSON.stringify(multiLat));
+                console.log(JSON.stringify(multiLng));
             }
 
             generateGeoJson();
+
             if (multiPoly.length > 0) {
                 $('#geometry').val(JSON.stringify(multiPoly))
+                $('#lat').val(JSON.stringify(multiLat))
+                $('#lng').val(JSON.stringify(multiLng))
             } else {
                 $('#geometry').val('')
+                $('#lat').val('')
+                $('#lng').val('')
             }
         })
     </script>

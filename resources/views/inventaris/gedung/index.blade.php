@@ -591,7 +591,7 @@
                             break
                         case 'edit':
                             // callMap()
-                            window.location.href = '/inventaris/' + id + '/edit'
+                            window.location.href = '/inventaris/gedung/' + id + '/edit'
                             break
                         case 'print':
                             // $.getJSON('api/inventaris/' + id, (result) => {
