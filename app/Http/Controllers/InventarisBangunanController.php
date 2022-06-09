@@ -237,9 +237,10 @@ class InventarisBangunanController extends Controller
 
         $inventarisBangunan = InventarisBangunan::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
         $validations = [];
+        // $cekGeom = Geometry::where('inventaris_id', $request->id_inventaris)->get();
 
-        // dd($request->polygon);
-        dd($inventarisBangunan->geometry[0]->id);
+        // dd($cekGeom);
+        // dd($inventarisBangunan->geometry[0]->id);
 
         if ($inventarisBangunan->nama != $request->nama_inventaris) {
             $validations['nama_inventaris'] = 'required';
@@ -253,7 +254,19 @@ class InventarisBangunanController extends Controller
         if ($inventarisBangunan->luas != $request->luas) {
             $validations['luas'] = 'required';
         }
+        if ($inventarisBangunan->kode_gedung != $request->luas) {
+            $validations['kode_gedung'] = 'required';
+        }
         if ($inventarisBangunan->no_registrasi != $request->no_registrasi) {
+            $validations['no_registrasi'] = 'required';
+        }
+        if ($inventarisBangunan->kondisi_bangunan != $request->kondisi_bangunan) {
+            $validations['no_registrasi'] = 'required';
+        }
+        if ($inventarisBangunan->jenis_bangunan != $request->jenis_bangunan) {
+            $validations['no_registrasi'] = 'required';
+        }
+        if ($inventarisBangunan->jenis_konstruksi != $request->jenis_konstruksi) {
             $validations['no_registrasi'] = 'required';
         }
         if ($inventarisBangunan->alamat != $request->alamat) {
@@ -279,16 +292,21 @@ class InventarisBangunanController extends Controller
         try {
             DB::beginTransaction();
 
+            $inventarisBangunan->id_inventaris = $request->id_inventaris;
             $inventarisBangunan->nama = $request->nama_inventaris;
             $inventarisBangunan->tahun_perolehan = $request->tahun;
             $inventarisBangunan->nilai_aset = $request->nilai_aset;
             $inventarisBangunan->luas = $request->luas;
+            $inventarisBangunan->kode_gedung = $request->kode_gedung;
             $inventarisBangunan->status = $request->status;
             $inventarisBangunan->no_register = $request->no_register;
+            $inventarisBangunan->kondisi_bangunan = $request->kondisi_bangunan;
+            $inventarisBangunan->jenis_bangunan = $request->jenis_bangunan;
+            $inventarisBangunan->jenis_konstruksi = $request->jenis_konstruksi;
             $inventarisBangunan->alamat = $request->alamat;
             $inventarisBangunan->kelurahan_id = $request->kelurahan;
             $inventarisBangunan->kecamatan_id = $request->kecamatan;
-            $inventarisBangunan->no_dokumen_sertifikat = $request->no_sertifikat;
+            // $inventarisBangunan->no_dokumen_sertifikat = $request->no_sertifikat;
             $inventarisBangunan->skpd_id = $request->skpd;
             $inventarisBangunan->master_barang_id = $request->barang;
             // if (!empty($request->password)) {
@@ -298,37 +316,39 @@ class InventarisBangunanController extends Controller
             // dd($inventaris->geometry()->exists());
             if (!empty($request->polygon)) {
                 // percobaan insert array database relasi
-                // $polygon = json_decode($request->polygon);
-                // $lat = json_decode($request->lat);
-                // $lng = json_decode($request->lng);
+                $cekGeom = Geometry::where('inventaris_id', $request->id_inventaris);
+                $polygon = json_decode($request->polygon);
+                $lat = json_decode($request->lat);
+                $lng = json_decode($request->lng);
 
-                // foreach ($polygon as $item => $p) {
-                //     if (Geometry::where('id', $id)->exists()) {
-                //         Geometry::where('inventaris_id', $id)
-                //             ->update([
-                //                 'polygon' => $polygon,
-                //                 'lat' => $request->lat,
-                //                 'lng' => $request->lng,
-                //             ]);
-                //     }
-                // }
-
-
-                if ($inventarisBangunan->geometry()->exists() == true) {
-                    $geometry = Geometry::where('inventaris_id', $id)
-                        ->update([
-                            'polygon' => $request->polygon,
-                            'lat' => $request->lat,
-                            'lng' => $request->lng,
-                        ]);
-                } else {
-                    $geometry = Geometry::create([
-                        'inventaris_id' => $inventarisBangunan->id,
-                        'polygon' => $request->polygon,
-                        'lat' => $request->lat,
-                        'lng' => $request->lng,
+                if ($cekGeom->exists()) {
+                    $cekGeom->delete();
+                }
+                foreach ($polygon as $item => $p) {
+                    Geometry::create([
+                        'inventaris_id' => $request->id_inventaris,
+                        'polygon' => json_encode($p),
+                        'lat' => json_encode($lat[$item]),
+                        'lng' => json_encode($lng[$item]),
                     ]);
                 }
+
+
+                // if ($inventarisBangunan->geometry()->exists() == true) {
+                //     $geometry = Geometry::where('inventaris_id', $id)
+                //         ->update([
+                //             'polygon' => $request->polygon,
+                //             'lat' => $request->lat,
+                //             'lng' => $request->lng,
+                //         ]);
+                // } else {
+                //     $geometry = Geometry::create([
+                //         'inventaris_id' => $inventarisBangunan->id,
+                //         'polygon' => $request->polygon,
+                //         'lat' => $request->lat,
+                //         'lng' => $request->lng,
+                //     ]);
+                // }
             };
             // dd($request->hasfile('image'), $request->hasfile('document'));
             if ($request->hasfile('image')) {

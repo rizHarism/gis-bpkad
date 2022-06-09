@@ -16,6 +16,7 @@
                     enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
+                    <input type="hidden" name="id_inventaris" id="id_inventaris" value="{{ $edit['id_inventaris'] }}">
                     <h5 class="card-header">{{ isset($edit) ? 'Edit - ' . $edit['nama'] : 'Tambah Inventaris Gedung' }}
                     </h5>
                     <div class="card-body">
@@ -447,8 +448,11 @@
                 var formData = new FormData;
                 var putMethod = '{{ isset($edit) }}'
 
-
-                formData.append('id_inventaris', generate);
+                if (putMethod) {
+                    formData.append('id_inventaris', $("#id_inventaris").val());
+                } else {
+                    formData.append('id_inventaris', generate);
+                }
                 formData.append('nama_inventaris', $("#nama_inventaris").val());
                 formData.append('tahun', $("#tahun").val());
                 formData.append('nilai_aset', $("#value_nilai_aset").val());
