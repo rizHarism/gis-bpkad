@@ -999,73 +999,79 @@
                             $.each(geom, (i, property) => {
 
                                 var id = property.id
-                                var geo = property.geometry[0].polygon
-                                var lat = property.geometry[0].lat
-                                var lng = property.geometry[0].lng
-                                var coordinates = "'" + lat + "," + lng + "'";
-
-                                x = JSON.parse(geo)
-                                var layer = L.geoJSON(x, {
-                                    style: gedungStyle,
-                                    pmIgnore: true
-                                })
-                                var minilayer = L.geoJSON(x, {
-                                    style: gedungStyle,
-                                    pmIgnore: true
-                                });
-
-                                layer.addTo(layerGedungGabungan);
-                                layerGedungGabungan.addTo(map)
-                                layer.on('click', function() {
-                                    var minilayer = '';
-                                    minimap.eachLayer(function(lay) {
-                                        if (lay.toGeoJSON) {
-                                            minimap.removeLayer(lay);
-                                        }
-
-                                    });
-                                    var mini = (JSON.parse(property.geometry[0]
-                                        .polygon));
-                                    minilayer = L.geoJSON(mini, {
+                                var geo = property.geometry
+                                var lat = property.geometry
+                                var lng = property.geometry
+                                var layer;
+                                var minilayer;
+                                $.each(geo, (i, prop) => {
+                                    console.log(prop)
+                                    console.log(i)
+                                    x = JSON.parse(prop.polygon)
+                                    var coordinates = "'" + prop.lat + "," + prop.lng +
+                                        "'";
+                                    layer = L.geoJSON(x, {
+                                        style: gedungStyle,
+                                        pmIgnore: true
+                                    })
+                                    minilayer = L.geoJSON(x, {
                                         style: gedungStyle,
                                         pmIgnore: true
                                     });
-                                    minilayer.addTo(minimap);
+                                    layer.addTo(layerGedungGabungan);
+
+                                    layerGedungGabungan.addTo(map)
+                                    layer.on('click', function() {
+                                        var minilayer = '';
+                                        minimap.eachLayer(function(lay) {
+                                            if (lay.toGeoJSON) {
+                                                minimap.removeLayer(
+                                                    lay);
+                                            }
+
+                                        });
+                                        var mini = (JSON.parse(prop
+                                            .polygon));
+                                        minilayer = L.geoJSON(mini, {
+                                            style: gedungStyle,
+                                            pmIgnore: true
+                                        });
+                                        minilayer.addTo(minimap);
 
 
-                                    const hb = property
-                                        .nilai_aset,
-                                        na = property
-                                        .nilai_aset,
-                                        lt = property
-                                        .luas,
-                                        ns = property
-                                        .nilai_aset
-                                    if (!property.document) {
-                                        penanda =
-                                            // `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
-                                            `<img class="img-fluid" src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
-                                    } else {
-                                        penanda =
-                                            `<img class="img-fluid" src="assets/document/` +
-                                            property
-                                            .document.doc_path +
-                                            `" style="height:30vh;width:100%">`
-                                    }
-                                    if (!property.galery) {
-                                        image =
-                                            `<img src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
-                                    } else {
-                                        image =
-                                            `<img class="img-fluid" src="assets/galery/` +
-                                            property.galery.image_path +
-                                            `" style="height:30vh;width:100%"></img>`
-                                    }
-                                    $('#sertifikat').empty()
-                                    if (property.pemeliharaan.length == 0) {
-                                        pemeliharaan = ""
-                                    } else {
-                                        pemeliharaan = `
+                                        const hb = property
+                                            .nilai_aset,
+                                            na = property
+                                            .nilai_aset,
+                                            lt = property
+                                            .luas,
+                                            ns = property
+                                            .nilai_aset
+                                        if (!property.document) {
+                                            penanda =
+                                                // `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
+                                                `<img class="img-fluid" src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
+                                        } else {
+                                            penanda =
+                                                `<img class="img-fluid" src="assets/document/` +
+                                                property
+                                                .document.doc_path +
+                                                `" style="height:30vh;width:100%">`
+                                        }
+                                        if (!property.galery) {
+                                            image =
+                                                `<img src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
+                                        } else {
+                                            image =
+                                                `<img class="img-fluid" src="assets/galery/` +
+                                                property.galery.image_path +
+                                                `" style="height:30vh;width:100%"></img>`
+                                        }
+                                        $('#sertifikat').empty()
+                                        if (property.pemeliharaan.length == 0) {
+                                            pemeliharaan = ""
+                                        } else {
+                                            pemeliharaan = `
                                         <div class="container" style="display:block; overflow-x: auto; height:25vh" >
                                             <table id="pemeliharaan" class="table table-sm table-strip" style="width:100%; height:25vh;overflow-y:scroll">
                                                 <thead>
@@ -1077,204 +1083,222 @@
                                                 </thead>
                                             </table>
                                         </div>`
-                                    }
-                                    var trHTML = "";
-                                    $.each(property.pemeliharaan, function(i, item) {
-                                        console.log(item.nama_pemeliharaan);
-                                        trHTML += '<tr><td>' + item
-                                            .nama_pemeliharaan + '</td><td>' +
-                                            item.tahun_pemeliharaan +
-                                            '</td><td>' + item.nilai_aset +
-                                            '</td></tr>';
-                                    });
-                                    console.log(trHTML)
+                                        }
+                                        var trHTML = "";
+                                        $.each(property.pemeliharaan, function(
+                                            i, item) {
+                                            console.log(item
+                                                .nama_pemeliharaan);
+                                            trHTML += '<tr><td>' + item
+                                                .nama_pemeliharaan +
+                                                '</td><td>' +
+                                                item
+                                                .tahun_pemeliharaan +
+                                                '</td><td>' + item
+                                                .nilai_aset +
+                                                '</td></tr>';
+                                        });
+                                        console.log(trHTML)
 
 
 
-                                    $('#sertifikat').append(
-                                        `<div class="row h-25 d-flex justify-content-center align-self-start">
+                                        $('#sertifikat').append(
+                                            `<div class="row h-25 d-flex justify-content-center align-self-start">
                                         <div class="h-25 col-md-10">
                                             ` + image + `
                                         </div>
-                                    </div>
+                                        </div>
 
-                                    <div class="row h-25 d-flex justify-content-center align-self-start mt-2" >
+                                        <div class="row h-25 d-flex justify-content-center align-self-start mt-2" >
                                         <div class=" h-25 col-md-10" style="">
                                             ` + penanda + `
                                         </div>
 
                                         </div>
-                                    </div>
-                                    <div class="row d-flex justify-content-center mt-2" >
+                                        </div>
+                                        <div class="row d-flex justify-content-center mt-2" >
                                         <div class=" col-md" style="">
                                             ` + pemeliharaan + `
                                         </div>
 
                                         </div>
-                                    </div>`
-                                    )
-                                    $('#pemeliharaan').append(trHTML);
-                                    $('#detailTitle').empty()
-                                    $('#detailData').empty()
-                                    $('#detailTitle').append(
-                                        property.master_skpd
-                                        .nama_skpd + " / " +
-                                        property.nama)
-                                    if (!property.kecamatan) {
-                                        kecamatan = '-'
-                                    } else {
-                                        kecamatan = property.kecamatan.nama_kecamatan
-                                    }
-                                    if (!property.kelurahan) {
-                                        kelurahan = '-'
-                                    } else {
-                                        kelurahan = property.kelurahan.nama_kelurahan
-                                    }
-                                    if (!property.master_barang) {
-                                        nama_barang = '-'
-                                        kode_barang = '-'
-                                    } else {
-                                        nama_barang = property.master_barang.nama_barang
-                                        kode_barang = property.master_barang.kode_barang
-                                    }
-                                    if (property.kondisi_bangunan == 'B') {
-                                        kondisi_bangunan = 'Baik'
-                                    } else if (property.kondisi_bangunan == 'RR') {
-                                        kondisi_bangunan = 'Rusak Ringan'
-                                    } else {
-                                        kondisi_bangunan = 'Rusak Berat'
-                                    }
-                                    if (property.jenis_bangunan == 'BTK') {
-                                        jenis_bangunan = 'Bertingkat'
-                                    } else {
-                                        jenis_bangunan = 'Tidak Bertingkat'
-                                    }
-                                    if (property.jenis_konstruksi == 'BTN') {
-                                        jenis_konstruksi = 'Beton'
-                                    } else {
-                                        jenis_konstruksi = 'Bukan Beton'
-                                    }
-                                    $('#detailData').append(`
-                                    <table class="table table-sm table-striped">
-                                    <tr>
-                                      <th>Pengelola Inventaris </th>
-                                      <td>` + property.master_skpd.nama_skpd + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kategori Inventaris </th>
-                                      <td>` + nama_barang + `</td>
-                                    </tr>
-                                      <th>Nama Inventaris </th>
-                                      <td>` + property.nama + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kode Inventaris </th>
-                                      <td>` + kode_barang + "/" + property
-                                        .no_register + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Tahun Perolehan</th>
-                                      <td>` + property.tahun_perolehan + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Nilai Aset </th>
-                                      <td>` + `Rp ` + rupiah(na) + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Alamat </th>
-                                      <td>` + property.alamat + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kelurahan </th>
-                                      <td>` + kelurahan + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kecamatan </th>
-                                      <td>` + kelurahan + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Koordinat </th>
-                                      <td><a href='#' onclick="gMaps(` + coordinates + `)">` + lat +
-                                        ` / ` + lng + `</a></td>
-                                    </tr>
-                                    <tr>
-                                      <th>Luas Tanah </th>
-                                      <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Status </th>
-                                      <td>` + property.status + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kondisi Bangunan </th>
-                                      <td>` + kondisi_bangunan + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Konstruksi </th>
-                                      <td>` + jenis_bangunan + " / " + jenis_konstruksi + `</td>
-                                    </tr>
-                                </table>
-                                    `);
-                                    if (!property.galery) {
-                                        image =
-                                            `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
-                                    } else {
-                                        image =
-                                            `<img class="img-fluid" src="assets/galery/` +
-                                            property.galery.image_path + `"></img>`
-                                    }
-                                    var content = image +
-                                        `<p class="text-center fw-bold m-2 p-0 h7">` +
-                                        property
-                                        .nama + `</p>
+                                        </div>`
+                                        )
+                                        $('#pemeliharaan').append(trHTML);
+                                        $('#detailTitle').empty()
+                                        $('#detailData').empty()
+                                        $('#detailTitle').append(
+                                            property.master_skpd
+                                            .nama_skpd + " / " +
+                                            property.nama)
+                                        if (!property.kecamatan) {
+                                            kecamatan = '-'
+                                        } else {
+                                            kecamatan = property.kecamatan
+                                                .nama_kecamatan
+                                        }
+                                        if (!property.kelurahan) {
+                                            kelurahan = '-'
+                                        } else {
+                                            kelurahan = property.kelurahan
+                                                .nama_kelurahan
+                                        }
+                                        if (!property.master_barang) {
+                                            nama_barang = '-'
+                                            kode_barang = '-'
+                                        } else {
+                                            nama_barang = property.master_barang
+                                                .nama_barang
+                                            kode_barang = property.master_barang
+                                                .kode_barang
+                                        }
+                                        if (property.kondisi_bangunan == 'B') {
+                                            kondisi_bangunan = 'Baik'
+                                        } else if (property.kondisi_bangunan ==
+                                            'RR') {
+                                            kondisi_bangunan = 'Rusak Ringan'
+                                        } else {
+                                            kondisi_bangunan = 'Rusak Berat'
+                                        }
+                                        if (property.jenis_bangunan == 'BTK') {
+                                            jenis_bangunan = 'Bertingkat'
+                                        } else {
+                                            jenis_bangunan = 'Tidak Bertingkat'
+                                        }
+                                        if (property.jenis_konstruksi ==
+                                            'BTN') {
+                                            jenis_konstruksi = 'Beton'
+                                        } else {
+                                            jenis_konstruksi = 'Bukan Beton'
+                                        }
+                                        $('#detailData').append(`
+                                            <table class="table table-sm table-striped">
+                                            <tr>
+                                            <th>Pengelola Inventaris </th>
+                                            <td>` + property.master_skpd.nama_skpd + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kategori Inventaris </th>
+                                            <td>` + nama_barang + `</td>
+                                            </tr>
+                                            <th>Nama Inventaris </th>
+                                            <td>` + property.nama + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kode Inventaris </th>
+                                            <td>` + kode_barang + "/" + property
+                                            .no_register + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Tahun Perolehan</th>
+                                            <td>` + property.tahun_perolehan + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Nilai Aset </th>
+                                            <td>` + `Rp ` + rupiah(na) + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Alamat </th>
+                                            <td>` + property.alamat + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kelurahan </th>
+                                            <td>` + kelurahan + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kecamatan </th>
+                                            <td>` + kelurahan + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Koordinat </th>
+                                            <td><a href='#' onclick="gMaps(` + coordinates + `)">` + prop.lat +
+                                            ` / ` + prop.lng + `</a></td>
+                                            </tr>
+                                            <tr>
+                                            <th>Luas Tanah </th>
+                                            <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Status </th>
+                                            <td>` + property.status + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kondisi Bangunan </th>
+                                            <td>` + kondisi_bangunan + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Konstruksi </th>
+                                            <td>` + jenis_bangunan + " / " + jenis_konstruksi + `</td>
+                                            </tr>
+                                            </table>
+                                        `);
+                                        if (!property.galery) {
+                                            image =
+                                                `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
+                                        } else {
+                                            image =
+                                                `<img class="img-fluid" src="assets/galery/` +
+                                                property.galery.image_path +
+                                                `"></img>`
+                                        }
+                                        var content = image +
+                                            `<p class="text-center fw-bold m-2 p-0 h7">` +
+                                            property
+                                            .nama + `</p>
                                         <table class="table table-striped">
 
                                         <tr>
-                                            <th>Pengelola</th>
-                                            <td>` + property.master_skpd.nama_skpd + `</td>
+                                        <th>Pengelola</th>
+                                        <td>` + property.master_skpd.nama_skpd + `</td>
                                         </tr>
 
                                         <tr>
-                                            <th>Alamat</th>
-                                            <td>` + property.alamat +
-                                        `</td>
+                                        <th>Alamat</th>
+                                        <td>` + property.alamat +
+                                            `</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" style="text-align:center"> <a href=# onclick="gMaps(` +
-                                        coordinates +
-                                        `)"><i class="fas fa-map-marker-alt"></i> Buka Maps </a></td>
+                                        <td colspan="2" style="text-align:center"> <a href=# onclick="gMaps(` +
+                                            coordinates +
+                                            `)"><i class="fas fa-map-marker-alt"></i> Buka Maps </a></td>
                                         </tr>
                                         </table>
                                         <table class="table table-striped">
                                         <tr>
-                                            <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
-                                        property.id +
-                                        `)"><i class="fas fa-print"></i> Print</a></td>
-                                            <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                        property.id + `"></i><i class="fas fa-info-circle"></i> Detail</a></td>
+                                        <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                            property.id +
+                                            `)"><i class="fas fa-print"></i> Print</a></td>
+                                        <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                            property.id + `"></i><i class="fas fa-info-circle"></i> Detail</a></td>
                                         </tr>
                                         </table>
                                         <div style="text-align:center">
                                         `
 
-                                    var popup = L
-                                        .popup()
-                                        .setContent(
-                                            content)
+                                        var popup = L
+                                            .popup()
+                                            .setContent(
+                                                content)
 
-                                    layer.bindPopup(popup)
-                                        .openPopup();
+                                        layer.bindPopup(popup)
+                                            .openPopup();
 
-                                    $('#detailModal').on('shown.bs.modal',
-                                        function() {
+                                        $('#detailModal').on('shown.bs.modal',
+                                            function() {
 
-                                            setTimeout(function() {
-                                                minimap.invalidateSize();
-                                                minimap.fitBounds(minilayer
-                                                    .getBounds());
-                                            }, 1000);
+                                                setTimeout(function() {
+                                                    minimap
+                                                        .invalidateSize();
+                                                    minimap
+                                                        .fitBounds(
+                                                            minilayer
+                                                            .getBounds()
+                                                        );
+                                                }, 1000);
 
-                                        });
+                                            }
+                                        );
+                                    });
                                 });
                             })
                         }
@@ -1697,7 +1721,6 @@
                 url: urlSkpd,
                 dataType: "json",
                 success: function(q) {
-                    // if q =
                     var geom = q.data
                     console.log(geom);
                     if (geom === 0) {
@@ -1717,84 +1740,81 @@
                         $.each(geom, (i, property) => {
 
                             var id = property.id
-                            var geo = property.geometry[0].polygon
-                            var lat = property.geometry[0].lat
-                            var lng = property.geometry[0].lng
-                            var coordinates = "'" + lat + "," + lng + "'";
-
-                            // function myPrint() {
-                            //     window.open('/inventaris/' + id + '/print',
-                            //         '',
-                            //         'width=1200,height=600');
-                            // }
-
-                            x = JSON.parse(geo)
-                            var layer = L.geoJSON(x, {
-                                style: gedungStyle,
-                                pmIgnore: true
-                            }).addTo(map);
-                            var minilayer = L.geoJSON(x, {
-                                style: gedungStyle,
-                                pmIgnore: true
-                            });
-
-                            layer.addTo(layerAll);
-
-                            layer.on('click', function() {
-                                var minilayer = '';
-                                minimap.eachLayer(function(lay) {
-                                    if (lay.toGeoJSON) {
-                                        minimap.removeLayer(lay);
-                                    }
-
-                                });
-                                var mini = (JSON.parse(property.geometry[0].polygon));
-                                minilayer = L.geoJSON(mini, {
+                            var geo = property.geometry
+                            var lat = property.geometry
+                            var lng = property.geometry
+                            var layer;
+                            var minilayer;
+                            $.each(geo, (i, prop) => {
+                                console.log(prop)
+                                console.log(i)
+                                x = JSON.parse(prop.polygon)
+                                var coordinates = "'" + prop.lat + "," + prop.lng +
+                                    "'";
+                                layer = L.geoJSON(x, {
+                                    style: gedungStyle,
+                                    pmIgnore: true
+                                })
+                                minilayer = L.geoJSON(x, {
                                     style: gedungStyle,
                                     pmIgnore: true
                                 });
-                                minilayer.addTo(minimap);
+                                layer.addTo(layerGedungGabungan);
 
-                                // console.log(minilayer)
-                                // const sertifikat = (property
-                                //         .status == 1) ?
-                                //     "Bersertifikat" :
-                                //     "Belum Bersertifikat";
-                                const hb = property
-                                    .nilai_aset,
-                                    na = property
-                                    .nilai_aset,
-                                    lt = property
-                                    .luas,
-                                    ns = property
-                                    .nilai_aset
-                                if (!property.document) {
-                                    penanda =
-                                        // `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
-                                        `<img class="img-fluid" src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
-                                } else {
-                                    penanda =
-                                        `<img class="img-fluid" src="assets/document/` +
-                                        property
-                                        .document.doc_path +
-                                        `" style="height:30vh;width:100%">`
-                                }
-                                if (!property.galery) {
-                                    image =
-                                        `<img src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
-                                } else {
-                                    image =
-                                        `<img class="img-fluid" src="assets/galery/` +
-                                        property.galery.image_path +
-                                        `" style="height:30vh;width:100%"></img>`
-                                }
-                                $('#sertifikat').empty()
-                                if (property.pemeliharaan.length == 0) {
-                                    pemeliharaan = ""
-                                } else {
-                                    pemeliharaan = `
+                                layerGedungGabungan.addTo(map)
+                                layer.on('click', function() {
+                                    var minilayer = '';
+                                    minimap.eachLayer(function(lay) {
+                                        if (lay.toGeoJSON) {
+                                            minimap.removeLayer(
+                                                lay);
+                                        }
+
+                                    });
+                                    var mini = (JSON.parse(prop
+                                        .polygon));
+                                    minilayer = L.geoJSON(mini, {
+                                        style: gedungStyle,
+                                        pmIgnore: true
+                                    });
+                                    minilayer.addTo(minimap);
+
+
+                                    const hb = property
+                                        .nilai_aset,
+                                        na = property
+                                        .nilai_aset,
+                                        lt = property
+                                        .luas,
+                                        ns = property
+                                        .nilai_aset
+                                    if (!property.document) {
+                                        penanda =
+                                            // `<iframe src="assets/document/default-sertifikat.pdf" style="width: 100%;height: 70vh; position: relative;"></iframe>`
+                                            `<img class="img-fluid" src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
+                                    } else {
+                                        penanda =
+                                            `<img class="img-fluid" src="assets/document/` +
+                                            property
+                                            .document.doc_path +
+                                            `" style="height:30vh;width:100%">`
+                                    }
+                                    if (!property.galery) {
+                                        image =
+                                            `<img src="assets/galery/default-image.png" style="height:30vh;width:100%"></img>`
+                                    } else {
+                                        image =
+                                            `<img class="img-fluid" src="assets/galery/` +
+                                            property.galery.image_path +
+                                            `" style="height:30vh;width:100%"></img>`
+                                    }
+                                    $('#sertifikat').empty()
+                                    if (property.pemeliharaan.length == 0) {
+                                        pemeliharaan = ""
+                                    } else {
+                                        pemeliharaan = `
                                         <div class="container" style="display:block; overflow-x: auto; height:25vh" >
-                                            <table id="pemeliharaan" class="table table-sm table-striped" style="width:100%; height:25vh;overflow-y:scroll">
+                                            <table id="pemeliharaan" class="table table-sm table-strip" style="width:100%; height:25vh;overflow-y:scroll">
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">Pemeliharaan</th>
@@ -1804,208 +1824,225 @@
                                                 </thead>
                                             </table>
                                         </div>`
-                                }
-                                var trHTML = "";
-                                $.each(property.pemeliharaan, function(i, item) {
-                                    console.log(item.nama_pemeliharaan);
-                                    trHTML += '<tr><td>' + item
-                                        .nama_pemeliharaan + '</td><td>' +
-                                        item.tahun_pemeliharaan +
-                                        '</td><td>' + item.nilai_aset +
-                                        '</td></tr>';
-                                });
-                                console.log(trHTML)
+                                    }
+                                    var trHTML = "";
+                                    $.each(property.pemeliharaan, function(
+                                        i, item) {
+                                        console.log(item
+                                            .nama_pemeliharaan);
+                                        trHTML += '<tr><td>' + item
+                                            .nama_pemeliharaan +
+                                            '</td><td>' +
+                                            item
+                                            .tahun_pemeliharaan +
+                                            '</td><td>' + item
+                                            .nilai_aset +
+                                            '</td></tr>';
+                                    });
+                                    console.log(trHTML)
 
 
 
-                                $('#sertifikat').append(
-                                    `<div class="row h-25 d-flex justify-content-center align-self-start">
+                                    $('#sertifikat').append(
+                                        `<div class="row h-25 d-flex justify-content-center align-self-start">
                                         <div class="h-25 col-md-10">
                                             ` + image + `
                                         </div>
-                                    </div>
+                                        </div>
 
-                                    <div class="row h-25 d-flex justify-content-center align-self-start mt-2" >
+                                        <div class="row h-25 d-flex justify-content-center align-self-start mt-2" >
                                         <div class=" h-25 col-md-10" style="">
                                             ` + penanda + `
                                         </div>
 
                                         </div>
-                                    </div>
-                                    <div class="row d-flex justify-content-center mt-2" >
+                                        </div>
+                                        <div class="row d-flex justify-content-center mt-2" >
                                         <div class=" col-md" style="">
                                             ` + pemeliharaan + `
                                         </div>
 
                                         </div>
-                                    </div>`
-                                )
-                                $('#pemeliharaan').append(trHTML);
-                                $('#detailTitle').empty()
-                                $('#detailData').empty()
-                                $('#detailTitle').append(
-                                    property.master_skpd
-                                    .nama_skpd + " / " +
-                                    property.nama)
-                                if (!property.kecamatan) {
-                                    kecamatan = '-'
-                                } else {
-                                    kecamatan = property.kecamatan.nama_kecamatan
-                                }
-                                if (!property.kelurahan) {
-                                    kelurahan = '-'
-                                } else {
-                                    kelurahan = property.kelurahan.nama_kelurahan
-                                }
-                                if (!property.master_barang) {
-                                    nama_barang = '-'
-                                    kode_barang = '-'
-                                } else {
-                                    nama_barang = property.master_barang.nama_barang
-                                    kode_barang = property.master_barang.kode_barang
-                                }
-                                if (property.kondisi_bangunan == 'B') {
-                                    kondisi_bangunan = 'Baik'
-                                } else if (property.kondisi_bangunan == 'RR') {
-                                    kondisi_bangunan = 'Rusak Ringan'
-                                } else {
-                                    kondisi_bangunan = 'Rusak Berat'
-                                }
-                                if (property.jenis_bangunan == 'BTK') {
-                                    jenis_bangunan = 'Bertingkat'
-                                } else {
-                                    jenis_bangunan = 'Tidak Bertingkat'
-                                }
-                                if (property.jenis_konstruksi == 'BTN') {
-                                    jenis_konstruksi = 'Beton'
-                                } else {
-                                    jenis_konstruksi = 'Bukan Beton'
-                                }
-                                $('#detailData').append(`
-                                    <table class="table table-sm table-striped">
-                                    <tr>
-                                      <th>Pengelola Inventaris </th>
-                                      <td>` + property.master_skpd.nama_skpd + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kategori Inventaris </th>
-                                      <td>` + nama_barang + `</td>
-                                    </tr>
-                                      <th>Nama Inventaris </th>
-                                      <td>` + property.nama + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kode Inventaris </th>
-                                      <td>` + kode_barang + "/" + property
-                                    .no_register + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Tahun Perolehan</th>
-                                      <td>` + property.tahun_perolehan + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Nilai Aset </th>
-                                      <td>` + `Rp ` + rupiah(na) + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Alamat </th>
-                                      <td>` + property.alamat + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kelurahan </th>
-                                      <td>` + kelurahan + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kecamatan </th>
-                                      <td>` + kelurahan + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Koordinat </th>
-                                      <td><a href='#' onclick="gMaps(` + coordinates + `)">` + lat +
-                                    ` / ` + lng + `</a></td>
-                                    </tr>
-                                    <tr>
-                                      <th>Luas Tanah </th>
-                                      <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Status </th>
-                                      <td>` + property.status + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Kondisi Bangunan </th>
-                                      <td>` + kondisi_bangunan + `</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Konstruksi </th>
-                                      <td>` + jenis_bangunan + " / " + jenis_konstruksi + `</td>
-                                    </tr>
-                                </table>
-                                    `);
-
-                                var content = image +
-                                    `<p class="text-center fw-bold m-2 p-0 h7">` +
-                                    property
-                                    .nama + `</p>
+                                        </div>`
+                                    )
+                                    $('#pemeliharaan').append(trHTML);
+                                    $('#detailTitle').empty()
+                                    $('#detailData').empty()
+                                    $('#detailTitle').append(
+                                        property.master_skpd
+                                        .nama_skpd + " / " +
+                                        property.nama)
+                                    if (!property.kecamatan) {
+                                        kecamatan = '-'
+                                    } else {
+                                        kecamatan = property.kecamatan
+                                            .nama_kecamatan
+                                    }
+                                    if (!property.kelurahan) {
+                                        kelurahan = '-'
+                                    } else {
+                                        kelurahan = property.kelurahan
+                                            .nama_kelurahan
+                                    }
+                                    if (!property.master_barang) {
+                                        nama_barang = '-'
+                                        kode_barang = '-'
+                                    } else {
+                                        nama_barang = property.master_barang
+                                            .nama_barang
+                                        kode_barang = property.master_barang
+                                            .kode_barang
+                                    }
+                                    if (property.kondisi_bangunan == 'B') {
+                                        kondisi_bangunan = 'Baik'
+                                    } else if (property.kondisi_bangunan ==
+                                        'RR') {
+                                        kondisi_bangunan = 'Rusak Ringan'
+                                    } else {
+                                        kondisi_bangunan = 'Rusak Berat'
+                                    }
+                                    if (property.jenis_bangunan == 'BTK') {
+                                        jenis_bangunan = 'Bertingkat'
+                                    } else {
+                                        jenis_bangunan = 'Tidak Bertingkat'
+                                    }
+                                    if (property.jenis_konstruksi ==
+                                        'BTN') {
+                                        jenis_konstruksi = 'Beton'
+                                    } else {
+                                        jenis_konstruksi = 'Bukan Beton'
+                                    }
+                                    $('#detailData').append(`
+                                            <table class="table table-sm table-striped">
+                                            <tr>
+                                            <th>Pengelola Inventaris </th>
+                                            <td>` + property.master_skpd.nama_skpd + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kategori Inventaris </th>
+                                            <td>` + nama_barang + `</td>
+                                            </tr>
+                                            <th>Nama Inventaris </th>
+                                            <td>` + property.nama + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kode Inventaris </th>
+                                            <td>` + kode_barang + "/" + property
+                                        .no_register + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Tahun Perolehan</th>
+                                            <td>` + property.tahun_perolehan + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Nilai Aset </th>
+                                            <td>` + `Rp ` + rupiah(na) + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Alamat </th>
+                                            <td>` + property.alamat + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kelurahan </th>
+                                            <td>` + kelurahan + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kecamatan </th>
+                                            <td>` + kelurahan + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Koordinat </th>
+                                            <td><a href='#' onclick="gMaps(` + coordinates + `)">` + prop.lat +
+                                        ` / ` + prop.lng + `</a></td>
+                                            </tr>
+                                            <tr>
+                                            <th>Luas Tanah </th>
+                                            <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Status </th>
+                                            <td>` + property.status + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Kondisi Bangunan </th>
+                                            <td>` + kondisi_bangunan + `</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Konstruksi </th>
+                                            <td>` + jenis_bangunan + " / " + jenis_konstruksi + `</td>
+                                            </tr>
+                                            </table>
+                                        `);
+                                    if (!property.galery) {
+                                        image =
+                                            `<img class="img-fluid" src="assets/galery/default-image.png"></img>`
+                                    } else {
+                                        image =
+                                            `<img class="img-fluid" src="assets/galery/` +
+                                            property.galery.image_path +
+                                            `"></img>`
+                                    }
+                                    var content = image +
+                                        `<p class="text-center fw-bold m-2 p-0 h7">` +
+                                        property
+                                        .nama + `</p>
                                         <table class="table table-striped">
 
                                         <tr>
-                                            <th>Pengelola</th>
-                                            <td>` + property.master_skpd.nama_skpd + `</td>
+                                        <th>Pengelola</th>
+                                        <td>` + property.master_skpd.nama_skpd + `</td>
                                         </tr>
 
                                         <tr>
-                                            <th>Alamat</th>
-                                            <td>` + property.alamat +
-                                    `</td>
+                                        <th>Alamat</th>
+                                        <td>` + property.alamat +
+                                        `</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" style="text-align:center"> <a href=# onclick="gMaps(` +
-                                    coordinates +
-                                    `)"><i class="fas fa-map-marker-alt"></i> Buka Maps </a></td>
+                                        <td colspan="2" style="text-align:center"> <a href=# onclick="gMaps(` +
+                                        coordinates +
+                                        `)"><i class="fas fa-map-marker-alt"></i> Buka Maps </a></td>
                                         </tr>
                                         </table>
                                         <table class="table table-striped">
                                         <tr>
-                                            <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
-                                    property.id +
-                                    `)"><i class="fas fa-print"></i> Print</a></td>
-                                            <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
-                                    property.id + `"></i><i class="fas fa-info-circle"></i> Detail</a></td>
+                                        <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                        property.id +
+                                        `)"><i class="fas fa-print"></i> Print</a></td>
+                                        <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
+                                        property.id + `"></i><i class="fas fa-info-circle"></i> Detail</a></td>
                                         </tr>
                                         </table>
                                         <div style="text-align:center">
                                         `
 
-                                var popup = L
-                                    .popup()
-                                    .setContent(
-                                        content)
+                                    var popup = L
+                                        .popup()
+                                        .setContent(
+                                            content)
 
-                                layer.bindPopup(popup)
-                                    .openPopup();
+                                    layer.bindPopup(popup)
+                                        .openPopup();
 
-                                $('#detailModal').on('shown.bs.modal',
-                                    function() {
+                                    $('#detailModal').on('shown.bs.modal',
+                                        function() {
 
-                                        setTimeout(function() {
-                                            minimap.invalidateSize();
-                                            minimap.fitBounds(minilayer
-                                                .getBounds());
-                                        }, 1000);
+                                            setTimeout(function() {
+                                                minimap
+                                                    .invalidateSize();
+                                                minimap
+                                                    .fitBounds(
+                                                        minilayer
+                                                        .getBounds()
+                                                    );
+                                            }, 1000);
 
-                                    });
+                                        }
+                                    );
+                                });
                             });
                         })
-                        // layer.addTo(map);
-                        // pointAll.addTo(map);
-                        map.fitBounds(layerAll.getBounds());
-                        // setInterval(function() {
-                        //     map.removeLayer(pointAll);
-                        // }, 10520);
-
                     }
-                    // console.log(sertifikatStyle['opacity'] = 0.1)
                 }
             });
 

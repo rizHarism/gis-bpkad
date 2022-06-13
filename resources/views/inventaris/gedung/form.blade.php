@@ -16,7 +16,8 @@
                     enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
-                    <input type="hidden" name="id_inventaris" id="id_inventaris" value="{{ $edit['id_inventaris'] }}">
+                    <input type="hidden" name="id_inventaris" id="id_inventaris"
+                        value="{{ isset($edit) ? $edit['id_inventaris'] : '' }}">
                     <h5 class="card-header">{{ isset($edit) ? 'Edit - ' . $edit['nama'] : 'Tambah Inventaris Gedung' }}
                     </h5>
                     <div class="card-body">
@@ -590,7 +591,7 @@
         var geometry = $('#geometry').val();
         // var layer;
         console.log(geometry)
-        if (geometry !== " " && geometry !== "") {
+        if (geometry !== " " && geometry !== "" && geometry !== "[]") {
 
             var geo = JSON.parse(geometry);
             var poly = new L
@@ -613,32 +614,13 @@
             map.fitBounds(
                 bound);
 
-            poly.on('pm:edit', ({
-                layer
-            }) => {
-                // var coords = lyr.getLatLngs();
-                // var polyedit = lyr.toGeoJSON();
-                console.log(JSON.stringify(layer.toGeoJSON().geometry));
-                var geo = layer.toGeoJSON();
-                var polygon = new L
-                    .geoJson(geo);
-                console.log(polygon);
-                point = L.marker(
-                    polygon
-                    .getBounds()
-                    .getCenter()
-                );
-                $('#geometry').val(JSON.stringify(layer.toGeoJSON().geometry))
-                $('#lat').val(point.toGeoJSON().geometry.coordinates[1])
-                $('#lng').val(point.toGeoJSON().geometry.coordinates[0])
-                // console.log(polyedit);
-                // console.log(point.toGeoJSON().geometry.coordinates[0])
-                // console.log(point.toGeoJSON().geometry.coordinates[1])
-            })
-
+        } else {
+            $('#geometry').val('')
+            $('#lat').val('')
+            $('#lng').val('')
         }
 
-        // ----- PERCOBAAN ADD MULTIPOLYGON LEAFLET GEOMAN -------
+        // ----- ADD MULTIPOLYGON LEAFLET GEOMAN -------
 
         var multiPoly = [];
         var multiLat = []

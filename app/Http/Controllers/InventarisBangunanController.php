@@ -349,7 +349,13 @@ class InventarisBangunanController extends Controller
                 //         'lng' => $request->lng,
                 //     ]);
                 // }
+            } else {
+                $cekGeom = Geometry::where('inventaris_id', $request->id_inventaris);
+                if ($cekGeom->exists()) {
+                    $cekGeom->delete();
+                }
             };
+
             // dd($request->hasfile('image'), $request->hasfile('document'));
             if ($request->hasfile('image')) {
                 $oldfile = Galery::where('inventaris_id', $id)->pluck('image_path');

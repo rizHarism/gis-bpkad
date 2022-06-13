@@ -262,10 +262,12 @@
                                 data +
                                 "'></i>";
                             return contextButton;
-                        }
+                        },
+                        searchable: false
                     },
                     {
                         data: 'master_skpd.nama_skpd',
+                        searchable: false
                     },
                     {
                         data: 'nama'
@@ -274,14 +276,17 @@
                         data: 'master_barang',
                         render: function(data) {
                             return data === null ? "" : data.nama_barang
-                        }
+                        },
+                        searchable: false
 
                     },
                     {
-                        data: 'alamat'
+                        data: 'alamat',
+                        searchable: false
                     },
                     {
                         data: 'status',
+                        serarchable: false
                         // render: sertifikat
                     },
                     {
@@ -289,6 +294,7 @@
                         orderable: false,
                         data: null,
                         defaultContent: '',
+                        searchable: false
                     },
                 ],
 
