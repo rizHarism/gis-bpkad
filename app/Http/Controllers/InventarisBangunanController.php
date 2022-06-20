@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\File;
 // use Barryvdh\DomPDF\Facade\Pdf;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App;
+use App\Models\PemeliharaanInventarisBangunan;
 
 class InventarisBangunanController extends Controller
 {
@@ -451,5 +452,48 @@ class InventarisBangunanController extends Controller
         }
 
         return response("Inventaris Berhasil Dihapus");
+    }
+
+    public function storePemeliharaan()
+    {
+        //
+
+    }
+
+    public function updatePemeliharaan(Request $request, $id)
+    {
+        //
+        $pemeliharaan = PemeliharaanInventarisBangunan::findOrFail($id);
+        // dd($request->id, $request->id_inventaris, $request->nama, $request->tahun, $request->nilai);
+        $validations = [];;
+
+        if ($pemeliharaan->nama_pemeliharaan != $request->nama) {
+            $validations['nama'] = 'required';
+        }
+        if ($pemeliharaan->tahun_pemeliharaan != $request->tahun) {
+            $validations['tahun'] = 'required';
+        }
+        if ($pemeliharaan->nilai_aset != $request->nilai) {
+            $validations['nilai'] = 'required';
+        }
+
+        $this->validate($request, $validations);
+
+        try {
+            DB::beginTransaction();
+
+            $pemeliharaan->nama_pemeliharaan = $request->nama;
+            $pemeliharaan->tahun_pemeliharaan = $request->tahun;
+            $pemeliharaan->nilai_aset = $request->nilai;
+
+            $pemeliharaan->save();
+            // dd($inventaris->geometry()->exists());
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
+        }
+        return response("Data Pemeliharaan Berhasil Diubah");
     }
 }

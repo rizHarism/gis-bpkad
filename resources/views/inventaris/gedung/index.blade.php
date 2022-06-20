@@ -19,10 +19,12 @@
                     for="im">&nbsp; Seluruh Aset
                     &nbsp;
                     &nbsp;</label>
-                <input type=radio class="filter" name="status" value="1" id="gm"><label for="gm">&nbsp; Aset
+                <input type=radio class="filter" name="status" value="1" id="gm"><label for="gm">&nbsp;
+                    Aset
                     Bersertifikat
                     &nbsp;&nbsp;</label>
-                <input type=radio class="filter" name="status" value="0" id="am"><label for="am">&nbsp; Aset Non
+                <input type=radio class="filter" name="status" value="0" id="am"><label for="am">&nbsp;
+                    Aset Non
                     Sertifikat
                     &nbsp;&nbsp;</label>
 
@@ -65,8 +67,8 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                                            aria-selected="true">Peta</button>
+                                            data-bs-target="#nav-home" type="button" role="tab"
+                                            aria-controls="nav-home" aria-selected="true">Peta</button>
                                         <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-profile" type="button" role="tab"
                                             aria-controls="nav-profile" aria-selected="false">Detail</button>
@@ -110,7 +112,90 @@
         </div>
     </div>
 
+    <div class="modal fade" id="edit-pemeliharaan" tabindex="-1" aria-labelledby="editPemeliharaan" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="edit-pemeliharaan-form">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pemeliharaan-title">Edit Pemeliharaan</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Mode:</label>
+                            <input type="text" class="form-control" id="mode-input">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">ID:</label>
+                            <input type="text" class="form-control" id="id-pemeliharaan">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">ID Inventaris:</label>
+                            <input type="text" class="form-control" id="id-inventaris">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Nama Pemeliharaan:</label>
+                            <input type="text" class="form-control" id="nama-pemeliharaan">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Tahun:</label>
+                            <input type="text" class="form-control" id="tahun-pemeliharaan">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Nilai:</label>
+                            <input type="text" class="form-control" id="nilai-pemeliharaan">
+                        </div>
 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- <div class="modal fade" id="tambahPemeliharaan" tabindex="-1" aria-labelledby="tambahPemeliharaan"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Pemeliharaan-title">Tambah Pemeliharaan</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="tambah-pemeliharaan">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">ID:</label>
+                            <input type="text" class="form-control" id="id">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">ID Inventaris:</label>
+                            <input type="text" class="form-control" id="id-inventaris1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Nama Pemeliharaan:</label>
+                            <input type="text" class="form-control" id="nama">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Tahun:</label>
+                            <input type="text" class="form-control" id="tahun">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Nilai:</label>
+                            <input type="text" class="form-control" id="nilai">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 
     {{-- <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -176,7 +261,7 @@
     <script src="{{ asset('assets/swal/sweetalert2.js') }}"></script>
     {{-- <script src="{{ asset('assets/inventaris/kib_a.js') }}"></script> --}}
 
-    <script>
+    <script type="text/javascript">
         //call loader
         $(document).on({
             ajaxStart: function() {
@@ -201,40 +286,75 @@
             return x;
         }
 
+        function updatePml(id, tahun, nilai, nama, idInventaris) {
+            console.log(nama)
+            console.log(tahun)
+            console.log(nilai)
+            $('#mode-input').val('edit')
+            $('#id-pemeliharaan').val(id)
+            $('#id-inventaris').val(idInventaris)
+            $('#nama-pemeliharaan').val(nama)
+            $('#tahun-pemeliharaan').val(tahun)
+            $('#nilai-pemeliharaan').val(nilai)
+        }
+
+        function createPml(idInventaris) {
+            $('#mode-input').val('create')
+            $('#id-pemeliharaan').val('')
+            $('#id-inventaris').val(idInventaris)
+            $('#nama-pemeliharaan').val('')
+            $('#tahun-pemeliharaan').val('')
+            $('#nilai-pemeliharaan').val('')
+        }
         // var api = "api/inventaris"
         $(function() {
 
             function format(d) {
                 // `d` is the original data object for the row
-                console.log(d.pemeliharaan);
+                console.log(d.id_inventaris);
+                // console.log(d.pemeliharaan);
                 var pml = ''; //just a variable to construct
+                // var idInventaris = '';
                 // var tahun = ''; //just a variable to construct
                 $.each($(d.pemeliharaan), function(key) {
-                    console.log(d.pemeliharaan[key])
+                    // console.log(d.pemeliharaan[key])
+                    var id = d.pemeliharaan[key].id
+                    var idInventaris = d.pemeliharaan[key].inventaris_id
+                    var nama = d.pemeliharaan[key].nama_pemeliharaan
+                    var tahun = d.pemeliharaan[key].tahun_pemeliharaan
+                    var nilai = d.pemeliharaan[key].nilai_aset
+                    console.log(idInventaris)
                     pml += '<tr>' +
                         '<td>#</td>' +
                         '<td>' + d.pemeliharaan[key].nama_pemeliharaan + '</td><td>' + d
                         .pemeliharaan[key].tahun_pemeliharaan +
                         '</td><td> Rp.' + rupiah(d.pemeliharaan[key].nilai_aset) +
-                        '</td><td> <a href=# class="btn btn-success btn-sm"><i class="fas fa-edit fa-xs"></i></a> ' +
+                        // '</td><td> <a href="#editPemeliharaan" data-toggle="modal" id="open-pemeliharaan" class="btn btn-success btn-sm" data-send="' +
+                        // d.pemeliharaan[key].nilai_aset +
+                        // '" data-target="#editPemeliharaan"><i class="fas fa-edit fa-xs"></i></a> ' +
+                        '</td><td> <a href="#editPemeliharaan" onclick="updatePml(' + id + ',' + tahun +
+                        ',' + nilai +
+                        ',\'' + nama +
+                        '\',\'' + idInventaris +
+                        '\')" data-toggle="modal" id="open-pemeliharaan" class="btn btn-success btn-sm" data-target="#edit-pemeliharaan"><i class="fas fa-edit fa-xs"></i></a> ' +
                         ' ' +
                         ' <a href=# class="btn btn-danger btn-sm"><i class="fas fa-trash fa-xs"></i></a></td>' +
                         '</tr>';
-                    // tahun += '<tr><td>' + value + '</td><td>' + d.pemeliharaan[key].tahun_pemeliharaan +
-                    //     '</td></tr>';
-                    //loop through each product and append it to trs and am hoping that number of price
-                    //values in array will be equal to number of products
                 })
                 // `d` is the original data object for the row
-                return '<table class="table table-border table-hover">' +
+                return '<table class="table table-hover">' +
                     '<thead>' +
                     '<th>#</th>' +
                     '<th>Nama Pemeliharaan</th>' +
                     '<th>Tahun</th>' +
                     '<th>Nilai</th>' +
+                    '<th><a href="#tambahPemeliharaan" onclick="createPml(\'' + d.id_inventaris +
+                    '\')" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#edit-pemeliharaan">+ Pemeliharaan</a></th>' +
                     '</thead><tbody>' +
                     pml +
                     '</tbody></table>';
+
+
             }
 
             var table = $('#inventaris_kib_c').DataTable({
@@ -318,6 +438,22 @@
                     row.child(format(row.data())).show();
                     tr.addClass('shown');
                 }
+            });
+
+            // get data for modal
+
+            $(document).ready(function() {
+                $("#open-pemeliharaan").click(function() {
+                    console.log('tes')
+                    // console.log($(this).data('send'))
+                    // $('#order-id').html($(this).data('id'));
+
+                    // $('#prod-id').html($(this).data('prod-id'));
+                    // $('#sell-id').html($(this).data('sell-id'));
+
+                    // show Modal
+                    $('#editPemeliharaan').modal('show');
+                });
             });
 
             // $('input:radio').on('change', function() {
@@ -727,6 +863,88 @@
                 }
             })
 
+        });
+
+        $(function() {
+            $("#edit-pemeliharaan").submit(function() {
+
+                // let ms = new Date().getMilliseconds()
+                // let kode = $("#kodeGedung").val()
+                // let generate = Math.floor(ms + Math.random() * 90000) + kode
+                // var formData = new FormData;
+                var modeInput = $("#mode-input").val()
+                var id = $("#id-pemeliharaan").val()
+                var url = '/inventaris/gedung/pemeliharaan/store'
+                var formData = new FormData
+                console.log(modeInput)
+
+                formData.append('id', $("#id-pemeliharaan").val());
+                formData.append('id_inventaris', $("#id-inventaris").val());
+                formData.append('nama', $("#nama-pemeliharaan").val());
+                formData.append('tahun', $("#tahun-pemeliharaan").val());
+                formData.append('nilai', $("#nilai-pemeliharaan").val());
+
+                if (modeInput == 'edit') {
+                    formData.append('_method', 'PUT')
+                    url = '/inventaris/gedung/pemeliharaan/' + id + '/update'
+                } else {
+                    formData.append('_method', 'POST')
+                }
+                console.log(url)
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        // 'Content-Type': 'application/json',
+                    },
+                    // type: "{{ isset($edit) ? 'PUT' : 'POST' }}",
+                    type: "POST",
+                    // url: "{{ route('inventaris.store') }}",
+                    url: url,
+                    data: formData,
+
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: (data) => {
+                        console.log(data);
+                        swal.fire({
+                            title: 'Berhasil',
+                            text: data,
+                            icon: 'success',
+                        }).then(function() {
+                            window.location = document.referrer;
+                        });
+                    },
+                    error: (xhr, ajaxOptions, thrownError) => {
+                        // alert(xhr.responseJSON.message);
+                        if (xhr.responseJSON.hasOwnProperty('errors')) {
+                            var html =
+                                "<ul style='justify-content: space-between;'>";
+                            for (item in xhr.responseJSON.errors) {
+                                if (xhr.responseJSON.errors[item].length) {
+                                    for (var i = 0; i < xhr.responseJSON.errors[item]
+                                        .length; i++) {
+                                        // alert(xhr.responseJSON.errors[item][i]);
+                                        html += "<li class='dropdown-item'>" +
+                                            "<i class='fas fa-times' style='color: red;'></i> &nbsp&nbsp&nbsp&nbsp" +
+                                            xhr
+                                            .responseJSON
+                                            .errors[item][i] +
+                                            "</li>"
+                                    }
+                                }
+                            }
+                            html += '</ul>';
+                            swal.fire({
+                                title: 'Error',
+                                html: html,
+                                icon: 'warning',
+                            });
+                        }
+                    }
+                });
+                return false;
+            });
         });
     </script>
 @stop

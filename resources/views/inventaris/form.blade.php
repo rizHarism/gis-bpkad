@@ -26,7 +26,8 @@
                                         <div class="container-fluid ms-3">
                                             <div class="row">
                                                 <div class="col-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic m">Nama Aset :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic m">Nama Aset
+                                                        :</label>
                                                     <input type="text" class="form-control" name="nama_inventaris"
                                                         id="nama_inventaris" placeholder=""
                                                         value="{{ $edit['nama'] ?? '' }}">
@@ -51,7 +52,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Kategori Aset :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic">Kategori Aset
+                                                        :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="barang" id="barang">
                                                         <option value="">-- Pilih Kategori Aset --</option>
@@ -81,7 +83,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Nilai Aset :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic">Nilai Aset
+                                                        :</label>
                                                     {{-- <input type="text" class="form-control " id="nilai_aset"
                                                     placeholder=""
                                                     value="{{ isset($edit) ? number_format($edit['nilai_aset'], 2, ',', '.') : '' }}"> --}}
@@ -94,7 +97,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-5 mb-2  ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Status Sertifikat
+                                                    <label for="" class="form-label mb-0 fst-italic ">Status
+                                                        Sertifikat
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="status" id="status">
@@ -108,7 +112,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-5 mb-2 noSertifikat">
-                                                    <label for="" class="form-label mb-0 fst-italic">No Sertifikat :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic">No Sertifikat
+                                                        :</label>
                                                     <input type="text" class="form-control " name="no_sertifikat"
                                                         id="no_sertifikat" placeholder=""
                                                         value="{{ $edit['no_dokumen_sertifikat'] ?? '' }}">
@@ -118,28 +123,34 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">No Register :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic ">No Register
+                                                        :</label>
                                                     <input type="text" class="form-control " name="noRegister"
                                                         id="noRegister" placeholder=""
                                                         value="{{ $edit['no_register'] ?? '' }}">
                                                 </div>
                                                 <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Luas (M<sup>2</sup>)
+                                                    <label for="" class="form-label mb-0 fst-italic ">Luas
+                                                        (M<sup>2</sup>)
                                                         :</label>
-                                                    <input type="text" class="form-control " name="luas" id="luas"
-                                                        placeholder="" value="{{ $edit['luas'] ?? '' }}">
+                                                    <input type="text" class="form-control " name="luas"
+                                                        id="luas" placeholder=""
+                                                        value="{{ $edit['luas'] ?? '' }}">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Alamat :</label>
-                                                    <input type="text" class="form-control " name="alamat" id="alamat"
-                                                        placeholder="" value="{{ $edit['alamat'] ?? '' }}">
+                                                    <label for="" class="form-label mb-0 fst-italic ">Alamat
+                                                        :</label>
+                                                    <input type="text" class="form-control " name="alamat"
+                                                        id="alamat" placeholder=""
+                                                        value="{{ $edit['alamat'] ?? '' }}">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Kelurahan :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic ">Kelurahan
+                                                        :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="kelurahan" id="kelurahan">
                                                         <option>-- Pilih Kelurahan --</option>
@@ -151,7 +162,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Kecamatan :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic ">Kecamatan
+                                                        :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="kecamatan" id="kecamatan">
                                                         <option>-- Pilih Kecamatan --</option>
@@ -166,22 +178,24 @@
                                             <div class="row">
 
                                             </div>
-                                            {{ dd($edit->geometry) }}
+
                                             <div class="row mb-2">
                                                 <div class="col-md-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
-                                                    <label for="" class="form-label mb-0 fst-italic m">Lat :</label>
-                                                    <input type="text" class="form-control " name="lat" id="lat"
-                                                        placeholder=""
+                                                    <label for="" class="form-label mb-0 fst-italic m">Lat
+                                                        :</label>
+                                                    <input type="text" class="form-control " name="lat"
+                                                        id="lat" placeholder=""
                                                         value="{{ isset($edit->geometry) ? $edit->geometry->lat : '' }}"
                                                         disabled>
                                                     {{-- </div> --}}
                                                 </div>
                                                 <div class="col-md-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
-                                                    <label for="" class="form-label mb-0 fst-italic">Long :</label>
-                                                    <input type="text" class="form-control " name="lng" id="lng"
-                                                        placeholder=""
+                                                    <label for="" class="form-label mb-0 fst-italic">Long
+                                                        :</label>
+                                                    <input type="text" class="form-control " name="lng"
+                                                        id="lng" placeholder=""
                                                         value="{{ isset($edit->geometry) ? $edit->geometry->lng : '' }}"
                                                         disabled>
                                                     {{-- </div> --}}
@@ -189,7 +203,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Geometri :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic">Geometri
+                                                        :</label>
                                                     <textarea class="form-control" name="geometry" id="geometry" rows="3" name="geometry" disabled>{{ isset($edit->geometry) ? $edit->geometry->polygon : '' }}</textarea>
                                                 </div>
                                             </div>
@@ -198,9 +213,10 @@
                                             <div class="row">
                                                 <div class="col-md-10 mb-2  ">
                                                     <label for="" class="form-label mb-0 fst-italic">Foto : <span
-                                                            style="font-size: 11px">(*type file jpg,jpeg,png)</span></label>
-                                                    <input type="file" name="image" id="image" class="form-control"
-                                                        accept="image/png, image/jpg, image/jpeg">
+                                                            style="font-size: 11px">(*type file
+                                                            jpg,jpeg,png)</span></label>
+                                                    <input type="file" name="image" id="image"
+                                                        class="form-control" accept="image/png, image/jpg, image/jpeg">
 
                                                     <span
                                                         style="font-size: 10px">{{ isset($edit->galery) ? ' -Kosongkan form jika tidak ingin merubah foto' : '' }}</span>
@@ -210,8 +226,8 @@
                                                 <div class="col-md-10 mb-2 me-5 documentSertifikat">
                                                     <label for="" class="form-label mb-0 fst-italic">Dokumen :
                                                         <span style="font-size: 11px;">(*type file pdf)</span></label>
-                                                    <input type="file" name="document" id="document" class="form-control"
-                                                        accept="application/pdf">
+                                                    <input type="file" name="document" id="document"
+                                                        class="form-control" accept="application/pdf">
 
                                                     <span
                                                         style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah dokumen' : '' }}</span>
@@ -235,7 +251,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <span class="mb-0" style="font-style: italic">Preview Peta :</span>
-                                        <div id="map" style="min-height: 500px; height:64vh ;max-height: 1000px"></div>
+                                        <div id="map" style="min-height: 500px; height:64vh ;max-height: 1000px">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card">

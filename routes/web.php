@@ -83,6 +83,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/inventaris/gedung/{id}/print', [App\Http\Controllers\InventarisBangunanController::class, 'print'])->name('inventarisgedung.print')->can('data aset.aset gedung');
     Route::put('/inventaris/gedung/{id}', [App\Http\Controllers\InventarisBangunanController::class, 'update'])->name('inventarisgedung.update')->can('data aset.aset gedung');
     Route::delete('/inventaris/gedung/{id}', [App\Http\Controllers\InventarisBangunanController::class, 'destroy'])->name('inventarisgedung.destroy')->can('data aset.aset gedung');
+    Route::post('/inventaris/gedung/pemeliharaan/store', [App\Http\Controllers\InventarisBangunanController::class, 'storePemeliharaan'])->name('inventarisgedung.storePemeliharaan')->can('data aset.aset gedung');
+    Route::put('/inventaris/gedung/pemeliharaan/{id}/update', [App\Http\Controllers\InventarisBangunanController::class, 'updatePemeliharaan'])->name('inventarisgedung.updatePemeliharaan')->can('data aset.aset gedung');
     // Route::post('/inventaris/fetch', [App\Http\Controllers\InventarisBangunanController::class, 'fetch'])->name('autocomplete.fetch');
 
     Route::get('/inventaris/jaringan', [App\Http\Controllers\InventarisController::class, 'indexJaringan'])->name('inventaris_kib_d')->can('data aset.aset jaringan');

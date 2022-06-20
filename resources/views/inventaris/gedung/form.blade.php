@@ -28,7 +28,8 @@
                                         <div class="container-fluid ms-3">
                                             <div class="row">
                                                 <div class="col-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic m">Nama Aset :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic m">Nama Aset
+                                                        :</label>
                                                     <input type="text" class="form-control" name="nama_inventaris"
                                                         id="nama_inventaris" placeholder=""
                                                         value="{{ $edit['nama'] ?? '' }}">
@@ -53,7 +54,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Kategori Aset :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic">Kategori Aset
+                                                        :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="barang" id="barang">
                                                         <option value="">-- Pilih Kategori Aset --</option>
@@ -83,7 +85,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Nilai Aset :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic">Nilai Aset
+                                                        :</label>
                                                     {{-- <input type="text" class="form-control " id="nilai_aset"
                                                     placeholder=""
                                                     value="{{ isset($edit) ? number_format($edit['nilai_aset'], 2, ',', '.') : '' }}"> --}}
@@ -96,17 +99,19 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">No Register :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic ">No Register
+                                                        :</label>
                                                     <input type="text" class="form-control " name="noRegister"
                                                         id="noRegister" placeholder=""
                                                         value="{{ $edit['no_register'] ?? '' }}">
                                                 </div>
 
                                                 <div class="col-md-3 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Luas (M<sup>2</sup>)
+                                                    <label for="" class="form-label mb-0 fst-italic ">Luas
+                                                        (M<sup>2</sup>)
                                                         :</label>
-                                                    <input type="text" class="form-control " name="luas" id="luas"
-                                                        placeholder="" value="{{ $edit['luas'] ?? '' }}">
+                                                    <input type="text" class="form-control " name="luas"
+                                                        id="luas" placeholder="" value="{{ $edit['luas'] ?? '' }}">
                                                 </div>
 
                                                 <div class="col-md-2 mb-2 ">
@@ -136,7 +141,8 @@
                                                 </div>
 
                                                 <div class="col-md-5 mb-2  ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Kondisi Gedung
+                                                    <label for="" class="form-label mb-0 fst-italic ">Kondisi
+                                                        Gedung
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="kondisiBangunan" id="kondisiBangunan">
@@ -157,7 +163,8 @@
 
                                             <div class="row">
                                                 <div class="col-md-5 mb-2  ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Jenis Konstruksi
+                                                    <label for="" class="form-label mb-0 fst-italic ">Jenis
+                                                        Konstruksi
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="jenisBangunan" id="jenisBangunan">
@@ -187,14 +194,17 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Alamat :</label>
-                                                    <input type="text" class="form-control " name="alamat" id="alamat"
-                                                        placeholder="" value="{{ $edit['alamat'] ?? '' }}">
+                                                    <label for="" class="form-label mb-0 fst-italic ">Alamat
+                                                        :</label>
+                                                    <input type="text" class="form-control " name="alamat"
+                                                        id="alamat" placeholder=""
+                                                        value="{{ $edit['alamat'] ?? '' }}">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Kelurahan :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic ">Kelurahan
+                                                        :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="kelurahan" id="kelurahan">
                                                         <option value="">-- Pilih Kelurahan --</option>
@@ -206,7 +216,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-5 mb-2 ">
-                                                    <label for="" class="form-label mb-0 fst-italic ">Kecamatan :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic ">Kecamatan
+                                                        :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="kecamatan" id="kecamatan">
                                                         <option value="">-- Pilih Kecamatan --</option>
@@ -243,25 +254,28 @@
                                             <div class="row mb-2">
                                                 <div class="col-md-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
-                                                    <label for="" class="form-label mb-0 fst-italic m">Lat :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic m">Lat
+                                                        :</label>
 
-                                                    <input type="text" class="form-control " name="lat" id="lat"
-                                                        placeholder=""
+                                                    <input type="text" class="form-control " name="lat"
+                                                        id="lat" placeholder=""
                                                         value="{{ isset($edit->geometry) ? json_encode($lat) : '' }}">
                                                     {{-- </div> --}}
                                                 </div>
                                                 <div class="col-md-5">
                                                     {{-- <div class="mb-2 me-5" style="width: 10vw"> --}}
-                                                    <label for="" class="form-label mb-0 fst-italic">Long :</label>
-                                                    <input type="text" class="form-control " name="lng" id="lng"
-                                                        placeholder=""
+                                                    <label for="" class="form-label mb-0 fst-italic">Long
+                                                        :</label>
+                                                    <input type="text" class="form-control " name="lng"
+                                                        id="lng" placeholder=""
                                                         value="{{ isset($edit->geometry) ? json_encode($lng) : '' }}">
                                                     {{-- </div> --}}
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Geometri :</label>
+                                                    <label for="" class="form-label mb-0 fst-italic">Geometri
+                                                        :</label>
                                                     <textarea class="form-control" name="geometry" id="geometry" rows="3" name="geometry" disabled>{{ isset($edit->geometry) ? json_encode($polygon) : '' }}</textarea>
                                                 </div>
                                             </div>
@@ -269,16 +283,18 @@
 
                                             <div class="row">
                                                 <div class="col-md-5 mb-2  ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Foto :</label>
-                                                    <input type="file" name="image" id="image" class="form-control"
-                                                        accept="image/png, image/jpg, image/jpeg">
+                                                    <label for="" class="form-label mb-0 fst-italic">Foto
+                                                        :</label>
+                                                    <input type="file" name="image" id="image"
+                                                        class="form-control" accept="image/png, image/jpg, image/jpeg">
                                                     <span
                                                         style="font-size: 10px">{{ isset($edit->galery) ? 'Kosongkan form jika tidak ingin merubah foto gedung' : '' }}</span>
                                                 </div>
                                                 <div class="col-md-5 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Dokumen :</label>
-                                                    <input type="file" name="penanda" id="penanda" class="form-control"
-                                                        accept="image/png, image/jpg, image/jpeg">
+                                                    <label for="" class="form-label mb-0 fst-italic">Dokumen
+                                                        :</label>
+                                                    <input type="file" name="penanda" id="penanda"
+                                                        class="form-control" accept="image/png, image/jpg, image/jpeg">
                                                     <span
                                                         style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah foto penanda' : '' }}</span>
                                                 </div>
@@ -301,7 +317,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <span class="mb-0" style="font-style: italic">Preview Peta :</span>
-                                        <div id="map" style="min-height: 500px; height:64vh ;max-height: 1000px"></div>
+                                        <div id="map" style="min-height: 500px; height:64vh ;max-height: 1000px">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card">
@@ -614,6 +631,38 @@
             map.fitBounds(
                 bound);
 
+            poly.on('pm:edit', ({
+                layer
+            }) => {
+                //
+                function generateGeoJson() {
+                    // var gedungGroup = L.featureGroup();
+                    multiPoly = [];
+                    multiLat = [];
+                    multiLng = [];
+                    var layers = map.pm.getGeomanLayers(); // or getGeomanLayers()
+                    layers.forEach(function(layerGedung) {
+                        point = L.marker(
+                            layerGedung
+                            .getBounds()
+                            .getCenter()
+                        );
+                        multiPoly.push(layerGedung.toGeoJSON().geometry)
+                        multiLat.push(point.toGeoJSON().geometry.coordinates[1])
+                        multiLng.push(point.toGeoJSON().geometry.coordinates[0])
+                    });
+                    console.log(multiPoly);
+                    console.log(JSON.stringify(multiPoly));
+                    console.log(JSON.stringify(multiLat));
+                    console.log(JSON.stringify(multiLng));
+                }
+
+                generateGeoJson();
+                $('#geometry').val(JSON.stringify(multiPoly))
+                $('#lat').val(JSON.stringify(multiLat))
+                $('#lng').val(JSON.stringify(multiLng))
+            });
+
         } else {
             $('#geometry').val('')
             $('#lat').val('')
@@ -664,6 +713,7 @@
             layer
         }) => {
             layer.on('pm:edit', e => {
+                console.log(e)
                 var layer = e.layer,
                     shape = e.shape,
                     nf = Intl.NumberFormat();
