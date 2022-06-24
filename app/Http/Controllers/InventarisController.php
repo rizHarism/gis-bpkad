@@ -391,11 +391,18 @@ class InventarisController extends Controller
     }
 
 
-    public function print($id)
+    public function print($kib, $id)
     {
         //
-        $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
+        // dd($kib, $id);
+        if ($kib == 'tanah') {
+            $inventaris = Inventaris::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
+        } else if ($kib == 'bangunan') {
+            $inventaris = InventarisBangunan::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
+        }
+        // dd($inventaris);
         return view('inventaris.print', [
+            'kib' => $kib,
             'inventaris' => $inventaris,
         ]);
     }

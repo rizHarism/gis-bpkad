@@ -357,6 +357,8 @@
                                                 <table class="table table-striped mt-0">
                                                 <tr>
                                                     <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                        '\'tanah\'' +
+                                        ',' +
                                         property.id +
                                         `)"><i class="fas fa-print"></i> Print</a></td>
                                                     <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
@@ -765,7 +767,7 @@
                         } else {
 
                             $.each(geom, (i, property) => {
-
+                                var kib = 'tanah'
                                 var id = property.id
                                 var geo = property.geometry.polygon
                                 var lat = property.geometry.lat
@@ -773,7 +775,8 @@
                                 var coordinates = "'" + lat + "," + lng + "'";
 
                                 function myPrint() {
-                                    window.open('/inventaris/' + id + '/print',
+                                    window.open('/inventaris/' + '\'tanah\'' + '/' + id +
+                                        '/print',
                                         '',
                                         'width=1200,height=600');
                                 }
@@ -903,6 +906,7 @@
                                             `<img class="img-fluid" src="assets/galery/` +
                                             property.galery.image_path + `"></img>`
                                     }
+                                    var kib = "tanah";
                                     var content = image +
                                         `<p class="text-center fw-bold m-2 p-0 h7">` +
                                         property
@@ -928,6 +932,8 @@
                                                 <table class="table table-striped">
                                                 <tr>
                                                     <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                        '\'tanah\'' +
+                                        ',' +
                                         property.id +
                                         `)"><i class="fas fa-print"></i> Print</a></td>
                                                     <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
@@ -1266,6 +1272,8 @@
                                         <table class="table table-striped">
                                         <tr>
                                         <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                            '\'bangunan\'' +
+                                            ',' +
                                             property.id +
                                             `)"><i class="fas fa-print"></i> Print</a></td>
                                         <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
@@ -1364,8 +1372,8 @@
         }
         skpd();
 
-        function myPrint(id) {
-            window.open('/inventaris/' + id + '/print',
+        function myPrint(kib, id) {
+            window.open('/inventaris/' + kib + '/' + id + '/print',
                 '',
                 'width=1200,height=600');
         }
@@ -1477,7 +1485,7 @@
                     } else {
 
                         $.each(geom, (i, property) => {
-
+                            var kib = 'tanah'
                             var id = property.id
                             var geo = property.geometry.polygon
                             var lat = property.geometry.lat
@@ -1485,7 +1493,7 @@
                             var coordinates = "'" + lat + "," + lng + "'";
 
                             function myPrint() {
-                                window.open('/inventaris/' + id + '/print',
+                                window.open('/inventaris/' + '\'tanah\'' + '/' + id + '/print',
                                     '',
                                     'width=1200,height=600');
                             }
@@ -1637,6 +1645,8 @@
                                                 <table class="table table-striped">
                                                 <tr>
                                                     <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                    '\'tanah\'' +
+                                    ',' +
                                     property.id +
                                     `)"><i class="fas fa-print"></i> Print</a></td>
                                                     <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +
@@ -2007,6 +2017,8 @@
                                         <table class="table table-striped">
                                         <tr>
                                         <td style="text-align:center"><a class="" href="#" onclick="myPrint(` +
+                                        '\'bangunan\'' +
+                                        ',' +
                                         property.id +
                                         `)"><i class="fas fa-print"></i> Print</a></td>
                                         <td style="text-align:center"><a class="" id="openModal" href="#"  data-target="#detailModal" data-toggle="modal" data-value"` +

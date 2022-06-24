@@ -122,123 +122,47 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Mode:</label>
-                            <input type="text" class="form-control" id="mode-input">
+                            <input type="hidden" class="form-control" id="mode-input">
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">ID:</label>
-                            <input type="text" class="form-control" id="id-pemeliharaan">
+                            <input type="hidden" class="form-control" id="id-pemeliharaan">
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">ID Inventaris:</label>
-                            <input type="text" class="form-control" id="id-inventaris">
+                            <input type="hidden" class="form-control" id="id-inventaris">
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Nama Pemeliharaan:</label>
+                            <label for="recipient-name" class="col-form-label">Nama Pemeliharaan :</label>
                             <input type="text" class="form-control" id="nama-pemeliharaan">
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Tahun:</label>
-                            <input type="text" class="form-control" id="tahun-pemeliharaan">
+                            <label for="recipient-name" class="col-form-label">Tahun Pemeliharaan:</label>
+                            {{-- <input type="text" class="form-control" id="tahun-pemeliharaan"> --}}
+                            <select class="form-select" aria-label="Default select example" name="tahun-pemeliharaan"
+                                id="tahun-pemeliharaan">
+                                {{ $last = date('Y') - 120 }}
+                                {{ $now = date('Y') }}
+
+                                @for ($i = $now; $i >= $last; $i--)
+                                    <option value="{{ $i }}" {{-- {{ isset($edit) && $i == $edit['tahun_perolehan'] ? 'selected="selected"' : $now }} --}}>
+                                        {{ $i }}
+                                    </option>
+                                @endfor
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Nilai:</label>
+                            <label for="recipient-name" class="col-form-label">Nilai Pemeliharaan :</label>
                             <input type="text" class="form-control" id="nilai-pemeliharaan">
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" id="submit-button" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-    {{-- <div class="modal fade" id="tambahPemeliharaan" tabindex="-1" aria-labelledby="tambahPemeliharaan"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="Pemeliharaan-title">Tambah Pemeliharaan</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="tambah-pemeliharaan">
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">ID:</label>
-                            <input type="text" class="form-control" id="id">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">ID Inventaris:</label>
-                            <input type="text" class="form-control" id="id-inventaris1">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Nama Pemeliharaan:</label>
-                            <input type="text" class="form-control" id="nama">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Tahun:</label>
-                            <input type="text" class="form-control" id="tahun">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Nilai:</label>
-                            <input type="text" class="form-control" id="nilai">
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editTitle">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="container-fluid">
-
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="..." class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="..." class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="..." class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-        </div>
-    </div> --}}
 
 @stop
 
@@ -287,9 +211,6 @@
         }
 
         function updatePml(id, tahun, nilai, nama, idInventaris) {
-            console.log(nama)
-            console.log(tahun)
-            console.log(nilai)
             $('#mode-input').val('edit')
             $('#id-pemeliharaan').val(id)
             $('#id-inventaris').val(idInventaris)
@@ -299,11 +220,12 @@
         }
 
         function createPml(idInventaris) {
+            var tahunSekarang = new Date().getFullYear()
             $('#mode-input').val('create')
             $('#id-pemeliharaan').val('')
             $('#id-inventaris').val(idInventaris)
             $('#nama-pemeliharaan').val('')
-            $('#tahun-pemeliharaan').val('')
+            $('#tahun-pemeliharaan').val(tahunSekarang)
             $('#nilai-pemeliharaan').val('')
         }
         // var api = "api/inventaris"
@@ -312,7 +234,7 @@
             function format(d) {
                 // `d` is the original data object for the row
                 console.log(d.id_inventaris);
-                // console.log(d.pemeliharaan);
+                console.log(d.pemeliharaan.length);
                 var pml = ''; //just a variable to construct
                 // var idInventaris = '';
                 // var tahun = ''; //just a variable to construct
@@ -338,22 +260,34 @@
                         '\',\'' + idInventaris +
                         '\')" data-toggle="modal" id="open-pemeliharaan" class="btn btn-success btn-sm" data-target="#edit-pemeliharaan"><i class="fas fa-edit fa-xs"></i></a> ' +
                         ' ' +
-                        ' <a href=# class="btn btn-danger btn-sm"><i class="fas fa-trash fa-xs"></i></a></td>' +
+                        ' <a href=# class="btn btn-danger btn-sm" onclick="deletePml(' + id + ',\'' + nama +
+                        '\')"><i class="fas fa-trash fa-xs"></i></a></td>' +
                         '</tr>';
                 })
                 // `d` is the original data object for the row
-                return '<table class="table table-hover">' +
-                    '<thead>' +
-                    '<th>#</th>' +
-                    '<th>Nama Pemeliharaan</th>' +
-                    '<th>Tahun</th>' +
-                    '<th>Nilai</th>' +
-                    '<th><a href="#tambahPemeliharaan" onclick="createPml(\'' + d.id_inventaris +
-                    '\')" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#edit-pemeliharaan">+ Pemeliharaan</a></th>' +
-                    '</thead><tbody>' +
-                    pml +
-                    '</tbody></table>';
-
+                if (d.pemeliharaan.length == 0) {
+                    // var kosong = 0;
+                    return '<table class="table table-success table-hover " style="text-align: center;">' +
+                        '<thead>' +
+                        // '<th>Tidak ada Data Pemeliharaan</th>' +
+                        '<th>Tidak ada Data Pemeliharaan &nbsp <a href="#tambahPemeliharaan" onclick="createPml(\'' +
+                        d
+                        .id_inventaris +
+                        '\')" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#edit-pemeliharaan">+ Data</a></th>' +
+                        '</thead></table>';
+                } else {
+                    return '<table class="table table-success table-hover ">' +
+                        '<thead>' +
+                        '<th>#</th>' +
+                        '<th>Nama Pemeliharaan</th>' +
+                        '<th>Tahun</th>' +
+                        '<th>Nilai</th>' +
+                        '<th><a href="#tambahPemeliharaan" onclick="createPml(\'' + d.id_inventaris +
+                        '\')" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#edit-pemeliharaan">+ Data</a></th>' +
+                        '</thead><tbody>' +
+                        pml +
+                        '</tbody></table>';
+                }
 
             }
 
@@ -371,10 +305,12 @@
                     method: "GET"
                 },
                 columns: [{
+                        "width": "2%",
                         data: 'DT_RowIndex',
                         searchable: false
                     },
                     {
+                        "width": "3%",
                         data: 'id',
                         render: function(data) {
                             var contextButton =
@@ -386,6 +322,7 @@
                         searchable: false
                     },
                     {
+                        "width": "15%",
                         data: 'master_skpd.nama_skpd',
                         searchable: false
                     },
@@ -393,6 +330,7 @@
                         data: 'nama'
                     },
                     {
+                        "width": "15%",
                         data: 'master_barang',
                         render: function(data) {
                             return data === null ? "" : data.nama_barang
@@ -401,15 +339,18 @@
 
                     },
                     {
+                        "width": "20%",
                         data: 'alamat',
                         searchable: false
                     },
                     {
+                        "width": "5%",
                         data: 'status',
                         serarchable: false
                         // render: sertifikat
                     },
                     {
+                        "width": "5%",
                         className: 'dt-control',
                         orderable: false,
                         data: null,
@@ -442,19 +383,19 @@
 
             // get data for modal
 
-            $(document).ready(function() {
-                $("#open-pemeliharaan").click(function() {
-                    console.log('tes')
-                    // console.log($(this).data('send'))
-                    // $('#order-id').html($(this).data('id'));
+            // $(document).ready(function() {
+            //     $("#open-pemeliharaan").click(function() {
+            //         console.log('tes')
+            //         // console.log($(this).data('send'))
+            //         // $('#order-id').html($(this).data('id'));
 
-                    // $('#prod-id').html($(this).data('prod-id'));
-                    // $('#sell-id').html($(this).data('sell-id'));
+            //         // $('#prod-id').html($(this).data('prod-id'));
+            //         // $('#sell-id').html($(this).data('sell-id'));
 
-                    // show Modal
-                    $('#editPemeliharaan').modal('show');
-                });
-            });
+            //         // show Modal
+            //         $('#editPemeliharaan').modal('show');
+            //     });
+            // });
 
             // $('input:radio').on('change', function() {
             //     //build a regex filter string with an or(|) condition
@@ -505,7 +446,7 @@
                                         ns = property.nilai_aset
                                     console.log(property)
 
-                                    var verifMap = property.geometry
+                                    var verifMap = property.geometry.length
                                     console.log(verifMap)
 
                                     if (!property.kecamatan) {
@@ -513,6 +454,12 @@
                                     } else {
                                         kecamatan = property.kecamatan
                                             .nama_kecamatan
+                                    }
+                                    if (!property.master_barang) {
+                                        kode_barang = ""
+                                    } else {
+                                        kode_barang = property.master_barang
+                                            .kode_barang
                                     }
 
                                     if (!property.kelurahan) {
@@ -560,7 +507,7 @@
                                         </tr>
                                         <tr>
                                           <th>Kode Inventaris </th>
-                                          <td>` + property.master_barang.kode_barang + `</td>
+                                          <td>` + kode_barang + `</td>
                                         </tr>
                                         <tr>
                                           <th>Tahun Perolehan :</th>
@@ -574,7 +521,7 @@
                                         <tr>
                                           <th>Alamat </th>
                                           <td>` + property.alamat + `</td>
-                                        </tr>` + (verifMap ? `
+                                        </tr>` + (verifMap > 0 ? `
                                         <tr>
                                           <th>Koordinat </th>
                                           <td>` + property.geometry[0].lat + ` / ` + property.geometry[0].lng + `</td>
@@ -665,14 +612,17 @@
                                                         property
                                                         .geometry[0]
                                                         .polygon
-                                                    geo = JSON.parse(x)
+                                                    geo = JSON
+                                                        .parse(x)
                                                     var poly = new L
-                                                        .geoJson(geo);
-                                                    point = L.marker(
-                                                        poly
-                                                        .getBounds()
-                                                        .getCenter()
-                                                    );
+                                                        .geoJson(
+                                                            geo);
+                                                    point = L
+                                                        .marker(
+                                                            poly
+                                                            .getBounds()
+                                                            .getCenter()
+                                                        );
                                                     poly.addTo(
                                                         map);
                                                     point.addTo(map)
@@ -780,7 +730,7 @@
                                             contentType: false,
                                             processData: false,
                                             success: (data) => {
-                                                alert(data);
+                                                // alert(data);
                                                 console.log(data);
                                                 Swal.fire(
                                                     'Terhapus!',
@@ -798,17 +748,21 @@
                                                     .hasOwnProperty(
                                                         'errors')) {
                                                     for (item in xhr
-                                                        .responseJSON.errors
+                                                        .responseJSON
+                                                        .errors
                                                     ) {
-                                                        if (xhr.responseJSON
-                                                            .errors[item]
+                                                        if (xhr
+                                                            .responseJSON
+                                                            .errors[
+                                                                item]
                                                             .length) {
                                                             for (var i =
                                                                     0; i <
                                                                 xhr
                                                                 .responseJSON
                                                                 .errors[
-                                                                    item]
+                                                                    item
+                                                                ]
                                                                 .length; i++
                                                             ) {
                                                                 alert(xhr
@@ -816,7 +770,10 @@
                                                                     .errors[
                                                                         item
                                                                     ]
-                                                                    [i]);
+                                                                    [
+                                                                        i
+                                                                    ]
+                                                                );
                                                             }
                                                         }
                                                     }
@@ -867,7 +824,6 @@
 
         $(function() {
             $("#edit-pemeliharaan").submit(function() {
-
                 // let ms = new Date().getMilliseconds()
                 // let kode = $("#kodeGedung").val()
                 // let generate = Math.floor(ms + Math.random() * 90000) + kode
@@ -907,12 +863,19 @@
                     processData: false,
                     success: (data) => {
                         console.log(data);
+                        // $('#edit-pemeliharaan').hide()
+                        $('#edit-pemeliharaan').hide();
+                        $('.modal-backdrop').remove();
+                        $('#open-pemeliharaan').click();
                         swal.fire({
                             title: 'Berhasil',
                             text: data,
                             icon: 'success',
                         }).then(function() {
-                            window.location = document.referrer;
+                            // window.location = document.referrer;
+                            $('#inventaris_kib_c').DataTable().ajax.reload(null,
+                                false)
+                            // $('#inventaris_kib_c').DataTable().draw()
                         });
                     },
                     error: (xhr, ajaxOptions, thrownError) => {
@@ -943,8 +906,89 @@
                         }
                     }
                 });
+
+                // $('#myModal').modal('hide');
+                // $("body").removeClass('modal-open');
+                // $('.modal-backdrop').remove();
+                // $('.modal-backdrop').add();
+                // $(document.body).addClass('modal-open');
                 return false;
             });
         });
+
+        function deletePml(id, nama) {
+            Swal.fire({
+                title: 'Hapus Pemeliharaan ' +
+                    nama,
+                text: ' Apakah Anda yakin ?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        type: "DELETE",
+                        url: "/inventaris/gedung/" + id + "/pemeliharaan",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: (data) => {
+                            // alert(data);
+                            // console.log(data);
+                            Swal.fire(
+                                'Terhapus!',
+                                nama +
+                                'Berhasil dihapus',
+                                'success',
+                            );
+                            $('#inventaris_kib_c').DataTable().ajax.reload(null, false)
+                        },
+                        error: (xhr, ajaxOptions,
+                            thrownError) => {
+                            alert(xhr.responseJSON
+                                .message);
+                            if (xhr.responseJSON
+                                .hasOwnProperty(
+                                    'errors')) {
+                                for (item in xhr
+                                    .responseJSON.errors
+                                ) {
+                                    if (xhr.responseJSON
+                                        .errors[item]
+                                        .length) {
+                                        for (var i =
+                                                0; i <
+                                            xhr
+                                            .responseJSON
+                                            .errors[
+                                                item]
+                                            .length; i++
+                                        ) {
+                                            alert(xhr
+                                                .responseJSON
+                                                .errors[
+                                                    item
+                                                ]
+                                                [i]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    // Swal.fire(
+                    //     title: 'Terhapus!',
+                    //     text: 'Berhasil dihapus',
+                    //     icon: 'success'
+                    // );
+                };
+            })
+        }
     </script>
 @stop

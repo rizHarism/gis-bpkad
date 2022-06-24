@@ -454,10 +454,34 @@ class InventarisBangunanController extends Controller
         return response("Inventaris Berhasil Dihapus");
     }
 
-    public function storePemeliharaan()
+    public function storePemeliharaan(Request $request)
     {
         //
+        $this->validate($request, [
+            'nama' => 'required',
+            'tahun' => 'required',
+            'nilai' => 'required',
+        ]);
 
+        // dd($request->id, $request->id_inventaris, $request->nama, $request->tahun, $request->nilai);
+
+        try {
+            DB::beginTransaction();
+            $pemeliharaan = PemeliharaanInventarisBangunan::create([
+
+                'inventaris_id' => $request->id_inventaris,
+                'nama_pemeliharaan' => $request->nama,
+                'tahun_pemeliharaan' => $request->tahun,
+                'nilai_aset' => $request->nilai,
+            ]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 500);
+        }
+
+        return response("Data Pemeliharaan Berhasil Ditambahkan");
     }
 
     public function updatePemeliharaan(Request $request, $id)
@@ -495,5 +519,19 @@ class InventarisBangunanController extends Controller
             return response($e->getMessage(), 500);
         }
         return response("Data Pemeliharaan Berhasil Diubah");
+    }
+
+    public function destroyPemeliharaan(Request $request, $id)
+    {
+        //
+        $destroyPemeliharaan = PemeliharaanInventarisBangunan::findOrFail($id);
+
+        try {
+            $destroyPemeliharaan->delete();
+        } catch (\Exception $e) {
+            return response($e->getMessage(), 500);
+        }
+
+        return response("Inventaris Berhasil Dihapus");
     }
 }

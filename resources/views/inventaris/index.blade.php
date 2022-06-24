@@ -19,10 +19,12 @@
                     for="im">&nbsp; Seluruh Aset
                     &nbsp;
                     &nbsp;</label>
-                <input type=radio class="filter" name="status" value="1" id="gm"><label for="gm">&nbsp; Aset
+                <input type=radio class="filter" name="status" value="1" id="gm"><label for="gm">&nbsp;
+                    Aset
                     Bersertifikat
                     &nbsp;&nbsp;</label>
-                <input type=radio class="filter" name="status" value="0" id="am"><label for="am">&nbsp; Aset Non
+                <input type=radio class="filter" name="status" value="0" id="am"><label for="am">&nbsp;
+                    Aset Non
                     Sertifikat
                     &nbsp;&nbsp;</label>
 
@@ -65,8 +67,8 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                                            aria-selected="true">Peta</button>
+                                            data-bs-target="#nav-home" type="button" role="tab"
+                                            aria-controls="nav-home" aria-selected="true">Peta</button>
                                         <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-profile" type="button" role="tab"
                                             aria-controls="nav-profile" aria-selected="false">Detail</button>
@@ -549,7 +551,8 @@
                             //     let property = result.data[0];
                             //     console.log(property.nama)
                             // });
-                            myWindow = window.open('/inventaris/' + id + '/print', '',
+                            var kib = 'tanah'
+                            myWindow = window.open('/inventaris/' + kib + '/' + id + '/print', '',
                                 'width=1200,height=600');
 
                             // setTimeout(function() {

@@ -71,7 +71,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/inventaris/create', [App\Http\Controllers\InventarisController::class, 'create'])->name('inventaris.create')->can('data aset.aset tanah');
     Route::post('/inventaris/store', [App\Http\Controllers\InventarisController::class, 'store'])->name('inventaris.store')->can('data aset.aset tanah');
     Route::get('/inventaris/{id}/edit', [App\Http\Controllers\InventarisController::class, 'edit'])->name('inventaris.edit')->can('data aset.aset tanah');
-    Route::get('/inventaris/{id}/print', [App\Http\Controllers\InventarisController::class, 'print'])->name('inventaris.print')->can('data aset.aset tanah');
+    Route::get('/inventaris/{kib}/{id}/print', [App\Http\Controllers\InventarisController::class, 'print'])->name('inventaris.print')->can('data aset.aset tanah');
     Route::put('/inventaris/{id}', [App\Http\Controllers\InventarisController::class, 'update'])->name('inventaris.update')->can('data aset.aset tanah');
     Route::delete('/inventaris/{id}', [App\Http\Controllers\InventarisController::class, 'destroy'])->name('inventaris.destroy')->can('data aset.aset tanah');
     Route::post('/inventaris/fetch', [App\Http\Controllers\InventarisController::class, 'fetch'])->name('autocomplete.fetch');
@@ -85,6 +85,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/inventaris/gedung/{id}', [App\Http\Controllers\InventarisBangunanController::class, 'destroy'])->name('inventarisgedung.destroy')->can('data aset.aset gedung');
     Route::post('/inventaris/gedung/pemeliharaan/store', [App\Http\Controllers\InventarisBangunanController::class, 'storePemeliharaan'])->name('inventarisgedung.storePemeliharaan')->can('data aset.aset gedung');
     Route::put('/inventaris/gedung/pemeliharaan/{id}/update', [App\Http\Controllers\InventarisBangunanController::class, 'updatePemeliharaan'])->name('inventarisgedung.updatePemeliharaan')->can('data aset.aset gedung');
+    Route::delete('/inventaris/gedung/{id}/pemeliharaan', [App\Http\Controllers\InventarisBangunanController::class, 'destroyPemeliharaan'])->name('inventarisgedung.destroypemeliharran')->can('data aset.aset gedung');
     // Route::post('/inventaris/fetch', [App\Http\Controllers\InventarisBangunanController::class, 'fetch'])->name('autocomplete.fetch');
 
     Route::get('/inventaris/jaringan', [App\Http\Controllers\InventarisController::class, 'indexJaringan'])->name('inventaris_kib_d')->can('data aset.aset jaringan');

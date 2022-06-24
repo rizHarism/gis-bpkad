@@ -14,6 +14,7 @@
     {{-- @include('contents.inventaris_kib_a_edit_content') --}}
     {{-- @import url("another_file.css"); --}}
     {{-- content --}}
+    {{ dd($kib, $inventaris) }}
     <section class="content mt-5">
         <div class="container-fluid">
             <h6 class="d-flex justify-content-center" style="font-size: 24px !important">
@@ -28,7 +29,8 @@
                     <div class="row mt-2 mb-0">
                         <div class="col-3 mt-2 mb-2">
                             <div class="d-flex justify-content-center ms-1">
-                                <img src="{{ asset('assets/logo-image/blitar.png') }}" alt="" width="55" height="70">
+                                <img src="{{ asset('assets/logo-image/blitar.png') }}" alt="" width="55"
+                                    height="70">
                             </div>
                         </div>
                         <div class="col-9 mt-2 mb-2">
@@ -77,7 +79,7 @@
                                 Kode Inventaris
                             </td>
                             <td>
-                                {{ isset($inventaris->master_barang) && isset($inventaris->no_register)? $inventaris->master_barang->kode_barang . ' / ' . $inventaris->no_register: '' }}
+                                {{ isset($inventaris->master_barang) && isset($inventaris->no_register) ? $inventaris->master_barang->kode_barang . ' / ' . $inventaris->no_register : '' }}
 
                             </td>
                         </tr>
@@ -104,7 +106,7 @@
                                 Kelurahan / Kecamatan
                             </td>
                             <td>
-                                {{ isset($inventaris->kelurahan->nama_kelurahan) && isset($inventaris->kecamatan->nama_kecamatan)? $inventaris->kelurahan->nama_kelurahan . ' / ' . $inventaris->kecamatan->nama_kecamatan: '' }}
+                                {{ isset($inventaris->kelurahan->nama_kelurahan) && isset($inventaris->kecamatan->nama_kecamatan) ? $inventaris->kelurahan->nama_kelurahan . ' / ' . $inventaris->kecamatan->nama_kecamatan : '' }}
 
                             </td>
                         </tr>
