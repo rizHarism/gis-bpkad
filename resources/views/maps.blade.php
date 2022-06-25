@@ -1710,6 +1710,7 @@
             layerAll = L.featureGroup();
             e.preventDefault(); // avoid to execute the actual submit of the form.
             var skpd = $('#dataSkpd2').val();
+            console.log(skpd)
             var urlSkpd = "api/inventarisgedung/" + skpd + "/queryskpdgedung"
             map.eachLayer(function(lay) {
                 if (lay.toGeoJSON) {
@@ -1731,8 +1732,8 @@
                 url: urlSkpd,
                 dataType: "json",
                 success: function(q) {
+                    layerGedungGabungan.clearLayers();
                     var geom = q.data
-                    console.log(geom);
                     if (geom === 0) {
                         swal.fire(
                             'Data tidak ditemukan',
@@ -1756,8 +1757,8 @@
                             var layer;
                             var minilayer;
                             $.each(geo, (i, prop) => {
-                                console.log(prop)
-                                console.log(i)
+                                // console.log(prop)
+                                // console.log(i)
                                 x = JSON.parse(prop.polygon)
                                 var coordinates = "'" + prop.lat + "," + prop.lng +
                                     "'";

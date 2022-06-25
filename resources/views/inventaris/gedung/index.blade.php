@@ -690,7 +690,8 @@
                             //     let property = result.data[0];
                             //     console.log(property.nama)
                             // });
-                            myWindow = window.open('/inventaris/' + id + '/print', '',
+                            var kib = 'bangunan';
+                            myWindow = window.open('/inventaris/' + kib + '/' + id + '/print', '',
                                 'width=1200,height=600');
 
                             // setTimeout(function() {

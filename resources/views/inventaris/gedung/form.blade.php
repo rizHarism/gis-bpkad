@@ -348,7 +348,7 @@
                             &nbsp; --}}
                                     <button type="submit" class="btn btn-info float-right">Simpan</button>
 
-                                    <a href="{{ route('inventaris_kib_a') }}"
+                                    <a href="{{ route('inventaris_kib_c') }}"
                                         class="btn btn-default float-right me-3">Batal</a>
                                 </div>
                             </div>

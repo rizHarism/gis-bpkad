@@ -14,7 +14,7 @@
     {{-- @include('contents.inventaris_kib_a_edit_content') --}}
     {{-- @import url("another_file.css"); --}}
     {{-- content --}}
-    {{ dd($kib, $inventaris) }}
+    {{-- {{ dd($kib, $inventaris) }} --}}
     <section class="content mt-5">
         <div class="container-fluid">
             <h6 class="d-flex justify-content-center" style="font-size: 24px !important">
@@ -124,8 +124,11 @@
                                 Koordinat
                             </td>
                             <td>
-                                {{ isset($inventaris->geometry) ? $inventaris->geometry->lat . ' , ' . $inventaris->geometry->lng : '' }}
-
+                                @if ($kib == 'tanah')
+                                    {{ isset($inventaris->geometry) ? $inventaris->geometry->lat . ' , ' . $inventaris->geometry->lng : '' }}
+                                @else
+                                    {{ isset($inventaris->geometry) ? $inventaris->geometry[0]->lat . ' , ' . $inventaris->geometry[0]->lng : '' }}
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -142,33 +145,57 @@
                             </td>
                             <td>
                                 {{ isset($inventaris->no_dokumen_sertifikat) ? $inventaris->no_dokumen_sertifikat : '' }}
-                                <input type="hidden" id="polygon"
-                                    value="{{ isset($inventaris->geometry) ? $inventaris->geometry->polygon : '' }}">
+                                @if ($kib == 'tanah')
+                                    <input type="hidden" id="polygon"
+                                        value="{{ isset($inventaris->geometry) ? $inventaris->geometry->polygon : '' }}">
+                                @else
+                                    @php
+                                        $polygon = [];
+                                    @endphp
+                                    @foreach ($inventaris->geometry as $geometry)
+                                        @php
+                                            array_push($polygon, json_decode($geometry->polygon));
+                                        @endphp
+                                    @endforeach
+                                    <input type="hidden" id="polygon"
+                                        value="{{ isset($inventaris->geometry) ? json_encode($polygon) : '' }}">
+                                @endif
                             </td>
                         </tr>
                     </table>
                     <div class="row mt-3">
                         <div class="col-6 border">
                             <div class="visible-print text-center" style="font-size: 10px !important">
-                                <p class="mt-2">QR Sertifikat</p>
-                                @if (isset($inventaris->document))
-                                    {!! QrCode::size(75)->generate(asset('assets/document/' . $inventaris->document->doc_path)) !!}
-                                    <p class="mt-2">Scan barcode untuk melihat Sertifikat</p>
+                                @if ($kib == 'tanah')
+                                    <p class="mt-2">QR Sertifikat Aset</p>
+                                    @if (isset($inventaris->document))
+                                        {!! QrCode::size(75)->generate(asset('assets/document/' . $inventaris->document->doc_path)) !!}
+                                        <p class="mt-2">Scan barcode untuk melihat Sertifikat</p>
+                                    @else
+                                        <p class="mt-0" style="font-size: 60px">X</p>
+                                        <p style="font-size: 12px">Sertifikat Aset Belum Tersedia</p>
+                                    @endif
                                 @else
-                                    <p class="mt-0" style="font-size: 60px">X</p>
-                                    <p style="font-size: 12px">Sertifikat Aset Belum Tersedia</p>
+                                    <p class="mt-2">QR Penanda Aset</p>
+                                    @if (isset($inventaris->document))
+                                        {!! QrCode::size(75)->generate(asset('assets/document/' . $inventaris->document->doc_path)) !!}
+                                        <p class="mt-2">Scan barcode untuk Foto Penanda Aset</p>
+                                    @else
+                                        <p class="mt-0" style="font-size: 60px">X</p>
+                                        <p style="font-size: 12px">Foto Penanda Aset Belum Tersedia</p>
+                                    @endif
                                 @endif
                             </div>
                         </div>
                         <div class="col-6 border">
                             <div class="visible-print text-center" style="font-size: 10px !important">
-                                <p class="mt-2">QR Foto</p>
+                                <p class="mt-2">QR Foto Aset</p>
                                 @if (isset($inventaris->galery))
                                     {!! QrCode::size(75)->generate(asset('assets/galery/' . $inventaris->galery->image_path)) !!}
                                     <p class="mt-2">Scan barcode untuk melihat Foto Aset</p>
                                 @else
                                     <p class="mt-0" style="font-size: 60px">X</p>
-                                    <p style="font-size: 12px">Gambar Aset Belum Tersedia</p>
+                                    <p style="font-size: 12px">Foto Aset Belum Tersedia</p>
                                 @endif
                             </div>
                         </div>
