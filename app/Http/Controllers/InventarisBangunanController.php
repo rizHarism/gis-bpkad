@@ -240,7 +240,8 @@ class InventarisBangunanController extends Controller
         $validations = [];
         // $cekGeom = Geometry::where('inventaris_id', $request->id_inventaris)->get();
 
-        // dd($cekGeom);
+        // dd($inventarisBangunan);
+        // dd($request->hasfile('document'));
         // dd($inventarisBangunan->geometry[0]->id);
 
         if ($inventarisBangunan->nama != $request->nama_inventaris) {
@@ -333,23 +334,6 @@ class InventarisBangunanController extends Controller
                         'lng' => json_encode($lng[$item]),
                     ]);
                 }
-
-
-                // if ($inventarisBangunan->geometry()->exists() == true) {
-                //     $geometry = Geometry::where('inventaris_id', $id)
-                //         ->update([
-                //             'polygon' => $request->polygon,
-                //             'lat' => $request->lat,
-                //             'lng' => $request->lng,
-                //         ]);
-                // } else {
-                //     $geometry = Geometry::create([
-                //         'inventaris_id' => $inventarisBangunan->id,
-                //         'polygon' => $request->polygon,
-                //         'lat' => $request->lat,
-                //         'lng' => $request->lng,
-                //     ]);
-                // }
             } else {
                 $cekGeom = Geometry::where('inventaris_id', $request->id_inventaris);
                 if ($cekGeom->exists()) {
@@ -359,7 +343,7 @@ class InventarisBangunanController extends Controller
 
             // dd($request->hasfile('image'), $request->hasfile('document'));
             if ($request->hasfile('image')) {
-                $oldfile = Galery::where('inventaris_id', $id)->pluck('image_path');
+                $oldfile = Galery::where('inventaris_id', $inventarisBangunan->id_inventaris)->pluck('image_path');
                 $newfile = $request->file('image')->getClientOriginalName();
                 foreach ($oldfile as $old) {
                     if (File::exists(public_path('assets/galery/' . $old))) {
@@ -369,20 +353,32 @@ class InventarisBangunanController extends Controller
 
                 if (count($oldfile) == 0) {
                     Galery::create([
-                        'inventaris_id' => $inventarisBangunan->id,
+                        'inventaris_id' => $inventarisBangunan->id_inventaris,
                         'image_path' => $newfile
                     ]);
                 } else {
-                    Galery::where('inventaris_id', $id)
+                    Galery::where('inventaris_id', $inventarisBangunan->id_inventaris)
                         ->update([
                             'image_path' => $newfile
                         ]);
                 }
                 $request->file('image')->move(public_path('assets/galery'), $newfile);
+            } else {
+                $oldfile = Galery::where('inventaris_id', $inventarisBangunan->id_inventaris)->pluck('image_path');
+                // dd($oldfile);
+                $galery = Galery::where('inventaris_id', $inventarisBangunan->id_inventaris);
+                if ($galery) {
+                    foreach ($oldfile as $old) {
+                        if (File::exists(public_path('assets/galery/' . $old))) {
+                            File::delete(public_path('assets/galery/' . $old));
+                        }
+                    };
+                    $galery->delete();
+                }
             };
 
             if ($request->hasfile('document')) {
-                $oldfile = Document::where('inventaris_id', $id)->pluck('doc_path');
+                $oldfile = Document::where('inventaris_id', $inventarisBangunan->id_inventaris)->pluck('doc_path');
                 $newfile = $request->file('document')->getClientOriginalName();
                 foreach ($oldfile as $old) {
                     if (File::exists(public_path('assets/document/' . $old))) {
@@ -391,16 +387,27 @@ class InventarisBangunanController extends Controller
                 };
                 if (count($oldfile) == 0) {
                     Document::create([
-                        'inventaris_id' => $inventarisBangunan->id,
+                        'inventaris_id' => $inventarisBangunan->id_inventaris,
                         'doc_path' => $newfile
                     ]);
                 } else {
-                    Document::where('inventaris_id', $id)
+                    Document::where('inventaris_id', $inventarisBangunan->id_inventaris)
                         ->update([
                             'doc_path' => $newfile
                         ]);
                 }
                 $request->file('document')->move(public_path('assets/document'), $newfile);
+            } else {
+                $oldfile = Document::where('inventaris_id', $inventarisBangunan->id_inventaris)->pluck('doc_path');
+                $document = Document::where('inventaris_id', $inventarisBangunan->id_inventaris);
+                if ($document) {
+                    foreach ($oldfile as $old) {
+                        if (File::exists(public_path('assets/document/' . $old))) {
+                            File::delete(public_path('assets/document/' . $old));
+                        };
+                    };
+                    $document->delete();
+                }
             };
 
 

@@ -260,16 +260,23 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <span style="font-style: italic">Preview Foto Gedung:</span>
-                                                <div class="ratio ratio-16x9">
-                                                    <img id="foto-preview" class=""
+                                                <div class="ratio ratio-16x9 img-wrap">
+                                                    <span id="delete-foto"
+                                                        class="{{ isset($edit->galery) ? 'close' : '' }}">&nbsp;<i
+                                                            class="delete-button fas fa-times"></i>&nbsp;</span>
+                                                    <img id="foto-preview" data-id="foto"
                                                         src="{{ isset($edit->galery) ? asset('assets/galery/' . $edit->galery->image_path) : asset('assets/galery/default-image.png') }}"
                                                         alt="">
+                                                    {{-- </div> --}}
                                                 </div>
                                             </div>
                                             <div class="col-md-6 documentPreview">
                                                 <span style="font-style: italic">Preview Sertifikat :</span>
-                                                <div class="ratio ratio-16x9">
-                                                    <iframe id="doc-preview"
+                                                <div class="ratio ratio-16x9 img-wrap">
+                                                    <span id="delete-sertifikat"
+                                                        class="{{ isset($edit->document) ? 'close' : '' }}">&nbsp;<i
+                                                            class="delete-button fas fa-times"></i>&nbsp;</span>
+                                                    <iframe id="doc-preview" data-id="sertifikat"
                                                         src="{{ isset($edit->document) ? asset('assets/document/' . $edit->document->doc_path) : asset('assets/document/default-sertifikat.pdf') }}"></iframe>
                                                 </div>
                                             </div>
@@ -300,6 +307,35 @@
 
 @section('css')
     {{-- <link rel="stylesheet" href="{{ asset('assets/datatables/table.css') }}"> --}}
+    <style>
+        .img-wrap {
+            position: relative;
+            display: inline-block;
+            border: black;
+            font-size: 0;
+        }
+
+        .img-wrap .close {
+            position: absolute;
+            top: 0px;
+            right: 5px;
+            z-index: 100;
+            background-color: white;
+            padding: 2px 2px 2px;
+            color: rgb(236, 13, 13);
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.1;
+            text-align: right;
+            font-size: 25px;
+            line-height: 10px;
+            border-radius: 0%;
+        }
+
+        .img-wrap:hover .close {
+            opacity: 1;
+        }
+    </style>
 @stop
 
 @section('js')
@@ -355,6 +391,7 @@
 
                 reader.readAsDataURL(input.files[0]);
             }
+            $('#delete-foto').addClass('close');
         }
 
         function changeDocument(input) {
@@ -369,9 +406,45 @@
 
                 reader.readAsDataURL(input.files[0]);
             }
+            $('#delete-sertifikat').addClass('close');
         }
 
+        function defaultFoto() {
+            $('#foto-preview').attr('src', '{{ asset('assets/galery/default-image.png') }}');
+            $('#delete-foto').removeClass('close');
+            $("#image").val("")
+        }
 
+        function defaultSertifikat() {
+            $('#doc-preview').attr('src', '{{ asset('assets/document/default-sertifikat.pdf') }}');
+            $('#delete-sertifikat').removeClass('close');
+            $("#document").val("")
+        }
+
+        $('.delete-button').on('click', function() {
+            var id = $(this).closest('.img-wrap').find('img').data('id');
+            if (!id) {
+                id = "Sertifikat"
+            } else {
+                id = "Gambar"
+            }
+            swal.fire({
+                title: 'Hapus ' + id + ' Tanah?',
+                // html: '',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                console.log(result)
+                if (result.isConfirmed) {
+                    (id == 'Gambar') ? defaultFoto(): defaultSertifikat();
+                };
+            });
+
+        });
 
         $("#image").change(function() {
             var ext = $('#image').val().split('.').pop().toLowerCase();

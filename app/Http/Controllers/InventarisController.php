@@ -552,6 +552,18 @@ class InventarisController extends Controller
                         ]);
                 }
                 $request->file('image')->move(public_path('assets/galery'), $newfile);
+            } else if (!$request->hasfile('image')) {
+                $oldfile = Galery::where('inventaris_id', $id)->pluck('image_path');
+                // $newfile = $request->file('image')->getClientOriginalName();
+                $galery = Galery::where('inventaris_id', $id);
+                if ($galery) {
+                    foreach ($oldfile as $old) {
+                        if (File::exists(public_path('assets/galery/' . $old))) {
+                            File::delete(public_path('assets/galery/' . $old));
+                        }
+                    };
+                    $galery->delete();
+                }
             };
 
             if ($request->hasfile('document')) {
@@ -574,6 +586,17 @@ class InventarisController extends Controller
                         ]);
                 }
                 $request->file('document')->move(public_path('assets/document'), $newfile);
+            } else {
+                $oldfile = Document::where('inventaris_id', $id)->pluck('doc_path');
+                $document = Document::where('inventaris_id', $id);
+                if ($document) {
+                    foreach ($oldfile as $old) {
+                        if (File::exists(public_path('assets/document/' . $old))) {
+                            File::delete(public_path('assets/document/' . $old));
+                        };
+                    };
+                    $document->delete();
+                }
             };
 
 

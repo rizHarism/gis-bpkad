@@ -283,31 +283,32 @@
 
                                             <div class="row">
                                                 <div class="col-md-5 mb-2  ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Foto
+                                                    <label for="" class="form-label mb-0 fst-italic">Foto Gedung
                                                         :</label>
                                                     <input type="file" name="image" id="image"
                                                         class="form-control" accept="image/png, image/jpg, image/jpeg">
-                                                    <span
-                                                        style="font-size: 10px">{{ isset($edit->galery) ? 'Kosongkan form jika tidak ingin merubah foto gedung' : '' }}</span>
+                                                    {{-- <span
+                                                        style="font-size: 10px">{{ isset($edit->galery) ? $edit->galery->image_path : '' }}</span> --}}
                                                 </div>
                                                 <div class="col-md-5 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">Dokumen
+                                                    <label for="" class="form-label mb-0 fst-italic">Penanda
+                                                        Penanda
                                                         :</label>
                                                     <input type="file" name="penanda" id="penanda"
                                                         class="form-control" accept="image/png, image/jpg, image/jpeg">
-                                                    <span
-                                                        style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah foto penanda' : '' }}</span>
+                                                    {{-- <span
+                                                        style="font-size: 10px">{{ isset($edit->document) ? $edit->document->doc_path : '' }}</span> --}}
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                {{-- <div class="col-md-5 mb-2 me-5 ">
+                                            {{-- <div class="row"> --}}
+                                            {{-- <div class="col-md-5 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Dokumen :</label>
                                                     <input type="file" name="document" id="document" class="form-control"
                                                         accept="application/pdf">
                                                     <span
                                                         style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah dokumen' : '' }}</span>
                                                 </div> --}}
-                                            </div>
+                                            {{-- </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -326,16 +327,24 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <span style="font-style: italic">Preview Foto Gedung:</span>
-                                                <div class="ratio ratio-16x9">
-                                                    <img id="foto-preview" class=""
+                                                {{-- <div class=""> --}}
+                                                <div class="ratio ratio-16x9 img-wrap">
+                                                    <span id="delete-foto"
+                                                        class="{{ isset($edit->galery) ? 'close' : '' }}">&nbsp;<i
+                                                            class="delete-button fas fa-times"></i>&nbsp;</span>
+                                                    <img id="foto-preview" data-id="foto"
                                                         src="{{ isset($edit->galery) ? asset('assets/galery/' . $edit->galery->image_path) : asset('assets/galery/default-image.png') }}"
                                                         alt="">
+                                                    {{-- </div> --}}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <span style="font-style: italic">Preview Penanda Gedung:</span>
-                                                <div class="ratio ratio-16x9">
-                                                    <img id="penanda-preview"
+                                                <div class="ratio ratio-16x9 img-wrap">
+                                                    <span id="delete-penanda"
+                                                        class="{{ isset($edit->document) ? 'close' : '' }}">&nbsp;<i
+                                                            class="delete-button fas fa-times"></i>&nbsp;</span>
+                                                    <img id="penanda-preview" data-id="penanda"
                                                         src="{{ isset($edit->document) ? asset('assets/document/' . $edit->document->doc_path) : asset('assets/galery/default-image.png') }}">
                                                 </div>
                                             </div>
@@ -366,6 +375,36 @@
 
 @section('css')
     {{-- <link rel="stylesheet" href="{{ asset('assets/datatables/table.css') }}"> --}}
+    <style>
+        .img-wrap {
+            position: relative;
+            display: inline-block;
+            border: black;
+            font-size: 0;
+        }
+
+        .img-wrap .close {
+            position: absolute;
+            top: 0px;
+            right: 5px;
+            z-index: 100;
+            background-color: white;
+            padding: 2px 2px 2px;
+            color: rgb(236, 13, 13);
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.1;
+            text-align: right;
+            font-size: 25px;
+            line-height: 10px;
+            border-radius: 0%;
+        }
+
+        .img-wrap:hover .close {
+            opacity: 1;
+        }
+    </style>
+
 @stop
 
 @section('js')
@@ -396,11 +435,11 @@
                 var reader = new FileReader();
 
                 reader.onload = function(e) {
-                    // $('#foto-preview').attr('class', 'img-thumbnail');
                     $('#foto-preview').attr('src', e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
+                $('#delete-foto').addClass('close');
             }
         }
 
@@ -409,15 +448,45 @@
                 var reader = new FileReader();
 
                 reader.onload = function(e) {
-                    // $('#foto-preview').attr('class', 'img-thumbnail');
                     $('#penanda-preview').attr('src', e.target.result);
-                    // $('#avatar-image2').attr('src', e.target.result);
                 }
-
                 reader.readAsDataURL(input.files[0]);
+                $('#delete-penanda').addClass('close');
             }
         }
 
+        function defaultFoto() {
+            $('#foto-preview').attr('src', '{{ asset('assets/galery/default-image.png') }}');
+            $('#delete-foto').removeClass('close');
+            $("#image").val("")
+        }
+
+        function defaultPenanda() {
+            $('#penanda-preview').attr('src', '{{ asset('assets/galery/default-image.png') }}');
+            $('#delete-penanda').removeClass('close');
+            $("#penanda").val("")
+        }
+
+        $('.delete-button').on('click', function() {
+            var id = $(this).closest('.img-wrap').find('img').data('id');
+            (id == 'foto') ? id = 'Gedung': id = 'Penanda';
+            swal.fire({
+                title: 'Hapus Foto ' + id + ' ?',
+                // html: '',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                console.log(result)
+                if (result.isConfirmed) {
+                    (id == 'Gedung') ? defaultFoto(): defaultPenanda();
+                };
+            });
+
+        });
 
 
         $("#image").change(function() {
@@ -491,7 +560,7 @@
                 formData.append('lat', $("#lat").val());
                 formData.append('lng', $("#lng").val());
                 formData.append('image', $('input[type=file]')[0].files[0]);
-                formData.append('penanda', $('input[type=file]')[1].files[0]);
+                formData.append('document', $('input[type=file]')[1].files[0]);
 
                 if (putMethod) {
                     formData.append('_method', 'PUT')
