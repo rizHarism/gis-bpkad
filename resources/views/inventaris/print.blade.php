@@ -15,10 +15,32 @@
     {{-- @import url("another_file.css"); --}}
     {{-- content --}}
     {{-- {{ dd($kib, $inventaris) }} --}}
+    @php
+    if ($kib == 'bangunan') {
+        $jenis_bangunan = '';
+        $jenis_konstruksi = '';
+
+        if ($inventaris->jenis_bangunan == 'TTK') {
+            $jenis_bangunan = 'Tidak Bertingkat';
+        } elseif ($inventaris->jenis_bangunan == 'BTK') {
+            $jenis_bangunan = 'Bertingkat';
+        } else {
+            $jenis_bangunan = '-';
+        }
+
+        if ($inventaris->jenis_konstruksi == 'BTN') {
+            $jenis_konstruksi = 'Beton';
+        } elseif ($inventaris->jenis_konstruksi == 'BBTN') {
+            $jenis_konstruksi = 'Bukan Beton';
+        } else {
+            $jenis_konstruksi = '-';
+        }
+    }
+    @endphp
     <section class="content mt-5">
         <div class="container-fluid">
             <h6 class="d-flex justify-content-center" style="font-size: 24px !important">
-                {{ $inventaris->nama . ' - ' . $inventaris->master_barang->nama_barang }}
+                {{ $inventaris->nama . ' - ' . (isset($inventaris->master_barang->nama_barang) ? $inventaris->master_barang->nama_barang : '') }}
             </h6>
             <div class="row mt-4">
                 <div class="col-8 border">
@@ -133,36 +155,66 @@
                         </tr>
                         <tr>
                             <td>
-                                Luas Tanah
+                                {{ $kib == 'tanah' ? 'Luas Tanah' : 'Luas Bangunan' }}
                             </td>
                             <td>
                                 {{ isset($inventaris->luas) ? number_format($inventaris->luas, 0, ',', '.') . ' Meter Persegi' : '' }}
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                No Sertifikat
-                            </td>
-                            <td>
-                                {{ isset($inventaris->no_dokumen_sertifikat) ? $inventaris->no_dokumen_sertifikat : '' }}
-                                @if ($kib == 'tanah')
-                                    <input type="hidden" id="polygon"
-                                        value="{{ isset($inventaris->geometry) ? $inventaris->geometry->polygon : '' }}">
-                                @else
-                                    @php
-                                        $polygon = [];
-                                    @endphp
-                                    @foreach ($inventaris->geometry as $geometry)
-                                        @php
-                                            array_push($polygon, json_decode($geometry->polygon));
-                                        @endphp
-                                    @endforeach
-                                    <input type="hidden" id="polygon"
-                                        value="{{ isset($inventaris->geometry) ? json_encode($polygon) : '' }}">
-                                @endif
-                            </td>
-                        </tr>
+
+                        @if ($kib == 'tanah')
+                            <tr>
+                                <td>
+                                    No Sertifikat
+                                </td>
+                                <td>
+                                    {{ isset($inventaris->no_dokumen_sertifikat) ? $inventaris->no_dokumen_sertifikat : '' }}
+                                </td>
+                            </tr>
+                        @else
+                            <tr>
+                                <td>
+                                    Kondisi
+                                </td>
+                                <td>
+                                    @if ($inventaris->kondisi_bangunan == 'B')
+                                        {{ isset($inventaris->kondisi_bangunan) ? 'Baik' : '' }}
+                                    @elseif ($inventaris->kondisi_bangunan == 'RR')
+                                        {{ isset($inventaris->kondisi_bangunan) ? 'ٌRusak Ringan' : '' }}
+                                    @elseif ($inventaris->kondisi_bangunan == 'RB')
+                                        {{ isset($inventaris->kondisi_bangunan) ? 'ٌRusak Berat' : '' }}
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Konstruksi
+                                </td>
+                                <td>
+                                    {{ isset($inventaris->jenis_konstruksi) ? $jenis_konstruksi : '' }}
+                                    /
+                                    {{ isset($inventaris->jenis_bangunan) ? $jenis_bangunan : '' }}
+                                </td>
+                            </tr>
+                        @endif
                     </table>
+                    @if ($kib == 'tanah')
+                        <input type="hidden" id="polygon"
+                            value="{{ isset($inventaris->geometry) ? $inventaris->geometry->polygon : '' }}">
+                    @else
+                        @php
+                            $polygon = [];
+                        @endphp
+                        @foreach ($inventaris->geometry as $geometry)
+                            @php
+                                array_push($polygon, json_decode($geometry->polygon));
+                            @endphp
+                        @endforeach
+                        <input type="hidden" id="polygon"
+                            value="{{ isset($inventaris->geometry) ? json_encode($polygon) : '' }}">
+                    @endif
                     <div class="row mt-3">
                         <div class="col-6 border">
                             <div class="visible-print text-center" style="font-size: 10px !important">

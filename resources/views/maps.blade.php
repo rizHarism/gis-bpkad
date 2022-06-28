@@ -888,7 +888,7 @@
                                                   <th>Luas Tanah </th>
                                                   <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
                                                 </tr>
-                                                <td>
+                                                <tr>
                                                   <th>No Sertifikat </th>
                                                   <td>` + property.no_dokumen_sertifikat + `</td>
                                                 </tr>
@@ -1163,19 +1163,28 @@
                                         } else if (property.kondisi_bangunan ==
                                             'RR') {
                                             kondisi_bangunan = 'Rusak Ringan'
-                                        } else {
+                                        } else if (property.kondisi_bangunan ==
+                                            'RB') {
                                             kondisi_bangunan = 'Rusak Berat'
+                                        } else {
+                                            kondisi_bangunan = '-'
                                         }
                                         if (property.jenis_bangunan == 'BTK') {
                                             jenis_bangunan = 'Bertingkat'
-                                        } else {
+                                        } else if (property.jenis_bangunan ==
+                                            'TTK') {
                                             jenis_bangunan = 'Tidak Bertingkat'
+                                        } else {
+                                            jenis_bangunan = '-'
                                         }
                                         if (property.jenis_konstruksi ==
                                             'BTN') {
                                             jenis_konstruksi = 'Beton'
-                                        } else {
+                                        } else if (property.jenis_konstruksi ==
+                                            'BBTN') {
                                             jenis_konstruksi = 'Bukan Beton'
+                                        } else {
+                                            jenis_konstruksi = '-'
                                         }
                                         $('#detailData').append(`
                                             <table class="table table-sm table-striped">
@@ -1221,7 +1230,7 @@
                                             ` / ` + prop.lng + `</a></td>
                                             </tr>
                                             <tr>
-                                            <th>Luas Tanah </th>
+                                            <th>Luas Bangunan </th>
                                             <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
                                             </tr>
                                             <tr>
@@ -1229,7 +1238,7 @@
                                             <td>` + property.status + `</td>
                                             </tr>
                                             <tr>
-                                            <th>Kondisi Bangunan </th>
+                                            <th>Kondisi  </th>
                                             <td>` + kondisi_bangunan + `</td>
                                             </tr>
                                             <tr>
@@ -1909,19 +1918,28 @@
                                     } else if (property.kondisi_bangunan ==
                                         'RR') {
                                         kondisi_bangunan = 'Rusak Ringan'
-                                    } else {
+                                    } else if (property.kondisi_bangunan ==
+                                        'RB') {
                                         kondisi_bangunan = 'Rusak Berat'
+                                    } else {
+                                        kondisi_bangunan = '-'
                                     }
                                     if (property.jenis_bangunan == 'BTK') {
                                         jenis_bangunan = 'Bertingkat'
-                                    } else {
+                                    } else if (property.jenis_bangunan ==
+                                        'TTK') {
                                         jenis_bangunan = 'Tidak Bertingkat'
+                                    } else {
+                                        jenis_bangunan = '-'
                                     }
                                     if (property.jenis_konstruksi ==
                                         'BTN') {
                                         jenis_konstruksi = 'Beton'
-                                    } else {
+                                    } else if (property.jenis_konstruksi ==
+                                        'BBTN') {
                                         jenis_konstruksi = 'Bukan Beton'
+                                    } else {
+                                        jenis_konstruksi = '-'
                                     }
                                     $('#detailData').append(`
                                             <table class="table table-sm table-striped">
@@ -1967,7 +1985,7 @@
                                         ` / ` + prop.lng + `</a></td>
                                             </tr>
                                             <tr>
-                                            <th>Luas Tanah </th>
+                                            <th>Luas Bangunan </th>
                                             <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
                                             </tr>
                                             <tr>
@@ -2060,7 +2078,7 @@
             });
 
             // menghapus layer yang ada di peta
-            $("#clear").on('click', function(e) {
+            $("#clearGedung").on('click', function(e) {
                 map.eachLayer(function(lay) {
                     if (lay.toGeoJSON) {
                         map.removeLayer(lay);
