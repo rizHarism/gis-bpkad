@@ -134,7 +134,6 @@ class UserController extends \App\Http\Controllers\Controller
     public function selfUpdate(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        dd($request->all());
         $validations = [];
 
         if ($user->username != $request->username) {
