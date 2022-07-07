@@ -140,18 +140,6 @@ class UserController extends \App\Http\Controllers\Controller
             $validations['username'] = 'required|unique:users,username';
         }
 
-        // if ($user->email != $request->email) {
-        //     $validations['email'] = 'required|email|unique:users,email';
-        // }
-
-        // if ($user->skpd_id != $request->skpd) {
-        //     $validations['skpd'] = 'exists:master_skpd,id_skpd';
-        // }
-
-        // if ($user->roles->first()->id != $request->role) {
-        //     $validations['role'] = 'required';
-        // }
-
         $this->validate($request, $validations);
         // dd($request->hasfile('avatar'));
         try {
@@ -165,9 +153,7 @@ class UserController extends \App\Http\Controllers\Controller
             if ($request->hasfile('avatar')) {
                 $oldfile = $user->pluck('avatar');
                 $newfile = $request->file('avatar')->getClientOriginalName();
-                // $user->avatar = $newfile;
-                // dd($newfile);
-                // foreach ($oldfile as $old) {
+
                 if ($oldfile[0] != "default-avatar.png") {
                     if (File::exists(public_path('assets/avatar/' . $oldfile[0]))) {
                         File::delete(public_path('assets/avatar/' . $oldfile[0]));
@@ -176,10 +162,8 @@ class UserController extends \App\Http\Controllers\Controller
                 // };
                 $request->file('avatar')->move(public_path('assets/avatar'), $newfile);
                 // $newfile = $request->file('avatar')->getClientOriginalName();
-                // dd($newfile);
                 $user->avatar = $newfile;
             };
-            dd($user->username, $user->password, $user->avatar);
 
             $user->save();
 
