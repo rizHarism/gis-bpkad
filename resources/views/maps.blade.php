@@ -100,6 +100,7 @@
                     contentType: false,
                     processData: false,
                     success: (data) => {
+                        console.log(data);
                         swal.fire({
                             title: 'Berhasil',
                             text: data,

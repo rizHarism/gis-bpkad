@@ -134,7 +134,7 @@ class UserController extends \App\Http\Controllers\Controller
     public function selfUpdate(Request $request, $id)
     {
         $user = User::findOrFail($id);
-
+        dd($request->all());
         $validations = [];
 
         if ($user->username != $request->username) {
@@ -175,16 +175,16 @@ class UserController extends \App\Http\Controllers\Controller
                     }
                 }
                 // };
-
-
                 $request->file('avatar')->move(public_path('assets/avatar'), $newfile);
                 $newfile = $request->file('avatar')->getClientOriginalName();
-                dd($newfile);
+                // dd($newfile);
                 $user->avatar = $newfile;
             };
+            dd($user->username, $user->password, $user->avatar);
+
+            $user->save();
 
             // $user->skpd_id = $request->skpd;
-            $user->save();
 
             // $role = Role::findById($request->role);
             // $user->assignRole($role);
