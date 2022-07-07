@@ -1026,7 +1026,10 @@
                                         pmIgnore: true
                                     });
                                     layer.addTo(layerGedungGabungan);
-
+                                    layer.bindTooltip(property.kode_gedung, {
+                                        permanent: false,
+                                        direction: "center"
+                                    })
                                     layerGedungGabungan.addTo(map)
                                     layer.on('click', function() {
                                         var minilayer = '';
@@ -1200,6 +1203,9 @@
                                             <th>Nama Inventaris </th>
                                             <td>` + property.nama + `</td>
                                             </tr>
+                                            <th>Kode Gedung </th>
+                                            <td>` + property.kode_gedung + `</td>
+                                            </tr>
                                             <tr>
                                             <th>Kode Inventaris </th>
                                             <td>` + kode_barang + "/" + property
@@ -1263,6 +1269,10 @@
                                             .nama + `</p>
                                         <table class="table table-striped">
 
+                                        <tr>
+                                        <th>Kode</th>
+                                        <td>` + property.kode_gedung + `</td>
+                                        </tr>
                                         <tr>
                                         <th>Pengelola</th>
                                         <td>` + property.master_skpd.nama_skpd + `</td>
@@ -1781,7 +1791,10 @@
                                     pmIgnore: true
                                 });
                                 layer.addTo(layerGedungGabungan);
-
+                                layer.bindTooltip(property.kode_gedung, {
+                                    permanent: false,
+                                    direction: "center"
+                                })
                                 layerGedungGabungan.addTo(map)
                                 layer.on('click', function() {
                                     var minilayer = '';
@@ -1955,6 +1968,9 @@
                                             <th>Nama Inventaris </th>
                                             <td>` + property.nama + `</td>
                                             </tr>
+                                            <th>Kode Gedung </th>
+                                            <td>` + property.kode_gedung + `</td>
+                                            </tr>
                                             <tr>
                                             <th>Kode Inventaris </th>
                                             <td>` + kode_barang + "/" + property
@@ -2018,6 +2034,10 @@
                                         .nama + `</p>
                                         <table class="table table-striped">
 
+                                        <tr>
+                                        <th>Kode</th>
+                                        <td>` + property.kode_gedung + `</td>
+                                        </tr>
                                         <tr>
                                         <th>Pengelola</th>
                                         <td>` + property.master_skpd.nama_skpd + `</td>

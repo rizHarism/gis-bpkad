@@ -1,113 +1,113 @@
-﻿id,nama,kode_skpd,
-836,Dinas Pendidikan,1.01.01,
-837,Dinas Kesehatan,1.02.01,
-838,Rumah Sakit Umum Daerah Mardi Waluyo,1.02.02,
-839,Dinas Pekerjaan Umum dan Penataan Ruang,1.03.01,
-840,Badan Perencanaan Pembangunan Daerah,4.03.01,
-841,Dinas Lingkungan Hidup,2.05.01,
-842,Dinas Kependudukan dan Pencatatan Sipil,2.06.01,
-843,Dinas Ketahanan Pangan dan Pertanian,2.03.01,
-844,"Badan Kesatuan Bangsa, Politik dan Penanggulangan Bencana",4.01.06,
-845,Satuan Polisi Pamong Praja,1.05.01,
-848,Pengelola Barang Milik Daerah,4.01.02,
-849,Sekretariat DPRD,4.01.04,
-850,Badan Pendapatan, Keuangan dan Aset Daerah,4.04.01
-851,Inspektorat,4.02.01,
-852,Kecamatan Kepanjenkidul,4.01.0501,
-853,Kecamatan Sukorejo,4.01.0502,
-854,Kecamatan Sananwetan,4.01.0503,
-856,"Dinas Pemberdayaan Perempuan, Perlindungan Anak, PP dan KB",2.02.01,
-855,Kelurahan Ngadirejo,4.01.050102,
-857,Dinas Pariwisata dan Kebudayaan,3.02.01,
-858,Dinas Sosial,1.06.01,
-859,"Dinas Komunikasi, Informatika dan Statistik",2.10.01,
-860,Kelurahan Sentul,4.01.050103,
-861,Dinas Perdagangan dan Perindustrian,3.06.01,
-865,UPT Satuan Pendidikan SMPN 1,1.01.010201,
-866,UPT Satuan Pendidikan SMPN 2,1.01.010202,
-868,UPT Satuan Pendidikan SMPN 4,1.01.010204,
-871,UPT Satuan Pendidikan SMPN 7,1.01.010207,
-872,UPT Satuan Pendidikan SMPN 8,1.01.010208,
-873,UPT Satuan Pendidikan SMPN 9,1.01.010209,
-877,Bagian Umum,4.01.0204,
-882,Kelurahan Kauman,4.01.050104,
-883,Kelurahan Tanggung,4.01.050105,
-884,Kelurahan Bendo,4.01.050106,
-885,Kelurahan Kepanjenlor,4.01.050107,
-886,Kelurahan Kepanjenkidul,4.01.050101,
-887,Kelurahan Pakunden,4.01.050201,
-888,Kelurahan Blitar,4.01.050202,
-889,Kelurahan Tlumpu,4.01.050203,
-890,Kelurahan Turi,4.01.050204,
-891,Kelurahan Karangsari,4.01.050205,
-892,Kelurahan Sukorejo,4.01.050206,
-893,Kelurahan Tanjungsari,4.01.050207,
-894,Kelurahan Gedog,4.01.050301,
-895,Kelurahan Plosokerep,4.01.050302,
-896,Kelurahan Klampok,4.01.050303,
-897,Kelurahan Sananwetan,4.01.050304,
-898,Kelurahan Rembang,4.01.050305,
-899,Kelurahan Karangtengah,4.01.050306,
-900,Kelurahan Bendogerit,4.01.050307,
-905,Dinas Koperasi dan Usaha Mikro,2.11.01,
-906,Dinas Perumahan Rakyat,1.04.01,
-907,Dinas Perhubungan,2.09.01,
-908,Dinas Penanaman Modal,Tenaga Kerja dan PTSP,2.12.01
-911,Dinas Kepemudaan dan Olah Raga,2.13.01,
-912,Dinas Perpustakaan dan Kearsipan,2.17.01,
-982,UPTD DINAS KESEHATAN KEC.KEPANJENKIDUL,1.02.0201,
-983,UPTD DINAS KESEHATAN KEC.SANANWETAN,1.02.0202,
-984,UPTD DINAS KESEHATAN KEC.SUKOREJO,1.02.0203,
-1000,UPT Satuan Pendidikan SD BENDO 1,1.01.010210,
-1001,UPT Satuan Pendidikan SD Bendogerit 1,1.01.010211,
-1002,UPT Satuan Pendidikan SD Bendogerit 2,1.01.010212,
-1003,UPT Satuan Pendidikan SD GEDOG 1,1.01.010213,
-1004,UPT Satuan Pendidikan SD GEDOG 2,1.01.010214,
-1005,UPT Satuan Pendidikan SD GEDOG 3,1.01.010215,
-1006,UPT Satuan Pendidikan SD NGADIREJO 1,1.01.010216,
-1007,UPT Satuan Pendidikan SMPN 5,1.01.010217,
-1008,UPT Satuan Pendidikan SMPN 6,1.01.010218,
-1009,UPT Satuan Pendidikan SDLB BENDO,1.01.010219,
-1010,UPT Satuan Pendidikan SDN TANJUNGSARI 2,1.01.010220,
-1011,UPT Satuan Pendidikan SD TURI 2,1.01.010221,
-1012,UPT Satuan Pendidikan SD TURI 1,1.01.010222,
-1013,UPT Satuan Pendidikan SDN KARANGSARI 3,1.01.010223,
-1014,UPT Satuan Pendidikan SD KARANGSARI 2,1.01.010224,
-1015,UPT Satuan Pendidikan SD TANGGUNG 2,1.01.010225,
-1016,UPT Satuan Pendidikan SD TANGGUNG 1,1.01.010226,
-1017,UPT Satuan Pendidikan SD BENDO 2,1.01.010227,
-1018,UPT Satuan Pendidikan SDN KAUMAN 2,1.01.010228,
-1019,UPT Satuan Pendidikan SDN KEPANJENKIDUL 2&3,1.01.010229,
-1020,UPT Satuan Pendidikan SD KARANGSARI 1,1.01.010230,
-1021,UPT Satuan Pendidikan SD TLUMPU,1.01.010231,
-1022,UPT Satuan Pendidikan SD KEPANJENKIDUL 1,1.01.010232,
-1023,UPT Satuan Pendidikan SDN NGADIREJO 2,1.01.010233,
-1024,UPT Satuan Pendidikan SD BLITAR,1.01.010234,
-1025,UPT Satuan Pendidikan SDLB SLBN SUKOREJO,1.01.010235,
-1026,UPT Satuan Pendidikan SD PAKUNDEN 1,1.01.010236,
-1027,UPT Satuan Pendidikan SD KLAMPOK,1.01.010237,
-1028,UPT Satuan Pendidikan SD REMBANG 2,1.01.010238,
-1029,UPT Satuan Pendidikan SD REMBANG 1,1.01.010239,
-1030,UPT Satuan Pendidikan SD PLOSOKEREP 2,1.01.010240,
-1031,UPT Satuan Pendidikan SD Plosokerep 1,1.01.010241,
-1032,UPT Satuan Pendidikan SD KARANGTENGAH 2,1.01.010242,
-1033,UPT Satuan Pendidikan SDN KEPANJENLOR 3,1.01.010243,
-1034,UPT Satuan Pendidikan SD KEPANJENLOR 1,1.01.010244,
-1035,UPT Satuan Pendidikan SDN Sananwetan 1,1.01.010245,
-1036,UPT Satuan Pendidikan SD SENTUL 2,1.01.010246,
-1037,UPT Satuan Pendidikan SDN SENTUL 4,1.01.010247,
-1038,UPT Satuan Pendidikan SD SENTUL 3,1.01.010248,
-1039,UPT Satuan Pendidikan SD KAUMAN 1 DAN 2,1.01.010249,
-1040,UPT Satuan Pendidikan SD KARANGTENGAH 1,1.01.010250,
-1041,UPT Satuan Pendidikan SD KARANGTENGAH 4,1.01.010251,
-1042,UPT Satuan Pendidikan SDN Sananwetan 3,1.01.010252,
-1043,UPT Satuan Pendidikan SD SANANWETAN 2,1.01.010253,
-1044,UPT Satuan Pendidikan SD KARANGTENGAH 3,1.01.010254,
-1045,UPT Satuan Pendidikan SD SENTUL 1,1.01.010255,
-1046,UPT Satuan Pendidikan SD TANJUNGSARI 1,1.01.010256,
-1047,UPT Satuan Pendidikan SD SUKOREJO 1,1.01.010257,
-1048,UPT Satuan Pendidikan SD SUKOREJO 2,1.01.010258,
-1049,UPT Satuan Pendidikan SDN SUKOREJO 3,1.01.010259,
-1050,UPT Satuan Pendidikan SDN PAKUNDEN 2,1.01.010260,
-1051,UPT Satuan Pendidikan SD KEPANJENLOR 2,1.01.010261,
-1052,UPT Satuan Pendidikan SMPN 3 BLITAR,1.01.010262,
+﻿id,nama,kode_skpd
+836,Dinas Pendidikan,1.01.01
+837,Dinas Kesehatan,1.02.01
+838,Rumah Sakit Umum Daerah Mardi Waluyo,1.02.02
+839,Dinas Pekerjaan Umum dan Penataan Ruang,1.03.01
+840,Badan Perencanaan Pembangunan Daerah,4.03.01
+841,Dinas Lingkungan Hidup,2.05.01
+842,Dinas Kependudukan dan Pencatatan Sipil,2.06.01
+843,Dinas Ketahanan Pangan dan Pertanian,2.03.01
+844,"Badan Kesatuan Bangsa, Politik dan Penanggulangan Bencana",4.01.06
+845,Satuan Polisi Pamong Praja,1.05.01
+848,Pengelola Barang Milik Daerah,4.01.02
+849,Sekretariat DPRD,4.01.04
+850,Badan Pendapatan Keuangan dan Aset Daerah,4.04.01
+851,Inspektorat,4.02.01
+852,Kecamatan Kepanjenkidul,4.01.0501
+853,Kecamatan Sukorejo,4.01.0502
+854,Kecamatan Sananwetan,4.01.0503
+856,"Dinas Pemberdayaan Perempuan, Perlindungan Anak, PP dan KB",2.02.01
+855,Kelurahan Ngadirejo,4.01.050102
+857,Dinas Pariwisata dan Kebudayaan,3.02.01
+858,Dinas Sosial,1.06.01
+859,"Dinas Komunikasi, Informatika dan Statistik",2.10.01
+860,Kelurahan Sentul,4.01.050103
+861,Dinas Perdagangan dan Perindustrian,3.06.01
+865,UPT Satuan Pendidikan SMPN 1,1.01.010201
+866,UPT Satuan Pendidikan SMPN 2,1.01.010202
+868,UPT Satuan Pendidikan SMPN 4,1.01.010204
+871,UPT Satuan Pendidikan SMPN 7,1.01.010207
+872,UPT Satuan Pendidikan SMPN 8,1.01.010208
+873,UPT Satuan Pendidikan SMPN 9,1.01.010209
+877,Bagian Umum,4.01.0204
+882,Kelurahan Kauman,4.01.050104
+883,Kelurahan Tanggung,4.01.050105
+884,Kelurahan Bendo,4.01.050106
+885,Kelurahan Kepanjenlor,4.01.050107
+886,Kelurahan Kepanjenkidul,4.01.050101
+887,Kelurahan Pakunden,4.01.050201
+888,Kelurahan Blitar,4.01.050202
+889,Kelurahan Tlumpu,4.01.050203
+890,Kelurahan Turi,4.01.050204
+891,Kelurahan Karangsari,4.01.050205
+892,Kelurahan Sukorejo,4.01.050206
+893,Kelurahan Tanjungsari,4.01.050207
+894,Kelurahan Gedog,4.01.050301
+895,Kelurahan Plosokerep,4.01.050302
+896,Kelurahan Klampok,4.01.050303
+897,Kelurahan Sananwetan,4.01.050304
+898,Kelurahan Rembang,4.01.050305
+899,Kelurahan Karangtengah,4.01.050306
+900,Kelurahan Bendogerit,4.01.050307
+905,Dinas Koperasi dan Usaha Mikro,2.11.01
+906,Dinas Perumahan Rakyat,1.04.01
+907,Dinas Perhubungan,2.09.01
+908,Dinas Penanaman Modal Tenaga Kerja dan PTSP,2.12.01
+911,Dinas Kepemudaan dan Olah Raga,2.13.01
+912,Dinas Perpustakaan dan Kearsipan,2.17.01
+982,UPTD DINAS KESEHATAN KEC.KEPANJENKIDUL,1.02.0201
+983,UPTD DINAS KESEHATAN KEC.SANANWETAN,1.02.0202
+984,UPTD DINAS KESEHATAN KEC.SUKOREJO,1.02.0203
+1000,UPT Satuan Pendidikan SD BENDO 1,1.01.010210
+1001,UPT Satuan Pendidikan SD Bendogerit 1,1.01.010211
+1002,UPT Satuan Pendidikan SD Bendogerit 2,1.01.010212
+1003,UPT Satuan Pendidikan SD GEDOG 1,1.01.010213
+1004,UPT Satuan Pendidikan SD GEDOG 2,1.01.010214
+1005,UPT Satuan Pendidikan SD GEDOG 3,1.01.010215
+1006,UPT Satuan Pendidikan SD NGADIREJO 1,1.01.010216
+1007,UPT Satuan Pendidikan SMPN 5,1.01.010217
+1008,UPT Satuan Pendidikan SMPN 6,1.01.010218
+1009,UPT Satuan Pendidikan SDLB BENDO,1.01.010219
+1010,UPT Satuan Pendidikan SDN TANJUNGSARI 2,1.01.010220
+1011,UPT Satuan Pendidikan SD TURI 2,1.01.010221
+1012,UPT Satuan Pendidikan SD TURI 1,1.01.010222
+1013,UPT Satuan Pendidikan SDN KARANGSARI 3,1.01.010223
+1014,UPT Satuan Pendidikan SD KARANGSARI 2,1.01.010224
+1015,UPT Satuan Pendidikan SD TANGGUNG 2,1.01.010225
+1016,UPT Satuan Pendidikan SD TANGGUNG 1,1.01.010226
+1017,UPT Satuan Pendidikan SD BENDO 2,1.01.010227
+1018,UPT Satuan Pendidikan SDN KAUMAN 2,1.01.010228
+1019,UPT Satuan Pendidikan SDN KEPANJENKIDUL 2&3,1.01.010229
+1020,UPT Satuan Pendidikan SD KARANGSARI 1,1.01.010230
+1021,UPT Satuan Pendidikan SD TLUMPU,1.01.010231
+1022,UPT Satuan Pendidikan SD KEPANJENKIDUL 1,1.01.010232
+1023,UPT Satuan Pendidikan SDN NGADIREJO 2,1.01.010233
+1024,UPT Satuan Pendidikan SD BLITAR,1.01.010234
+1025,UPT Satuan Pendidikan SDLB SLBN SUKOREJO,1.01.010235
+1026,UPT Satuan Pendidikan SD PAKUNDEN 1,1.01.010236
+1027,UPT Satuan Pendidikan SD KLAMPOK,1.01.010237
+1028,UPT Satuan Pendidikan SD REMBANG 2,1.01.010238
+1029,UPT Satuan Pendidikan SD REMBANG 1,1.01.010239
+1030,UPT Satuan Pendidikan SD PLOSOKEREP 2,1.01.010240
+1031,UPT Satuan Pendidikan SD Plosokerep 1,1.01.010241
+1032,UPT Satuan Pendidikan SD KARANGTENGAH 2,1.01.010242
+1033,UPT Satuan Pendidikan SDN KEPANJENLOR 3,1.01.010243
+1034,UPT Satuan Pendidikan SD KEPANJENLOR 1,1.01.010244
+1035,UPT Satuan Pendidikan SDN Sananwetan 1,1.01.010245
+1036,UPT Satuan Pendidikan SD SENTUL 2,1.01.010246
+1037,UPT Satuan Pendidikan SDN SENTUL 4,1.01.010247
+1038,UPT Satuan Pendidikan SD SENTUL 3,1.01.010248
+1039,UPT Satuan Pendidikan SD KAUMAN 1 DAN 2,1.01.010249
+1040,UPT Satuan Pendidikan SD KARANGTENGAH 1,1.01.010250
+1041,UPT Satuan Pendidikan SD KARANGTENGAH 4,1.01.010251
+1042,UPT Satuan Pendidikan SDN Sananwetan 3,1.01.010252
+1043,UPT Satuan Pendidikan SD SANANWETAN 2,1.01.010253
+1044,UPT Satuan Pendidikan SD KARANGTENGAH 3,1.01.010254
+1045,UPT Satuan Pendidikan SD SENTUL 1,1.01.010255
+1046,UPT Satuan Pendidikan SD TANJUNGSARI 1,1.01.010256
+1047,UPT Satuan Pendidikan SD SUKOREJO 1,1.01.010257
+1048,UPT Satuan Pendidikan SD SUKOREJO 2,1.01.010258
+1049,UPT Satuan Pendidikan SDN SUKOREJO 3,1.01.010259
+1050,UPT Satuan Pendidikan SDN PAKUNDEN 2,1.01.010260
+1051,UPT Satuan Pendidikan SD KEPANJENLOR 2,1.01.010261
+1052,UPT Satuan Pendidikan SMPN 3 BLITAR,1.01.010262

@@ -20,7 +20,7 @@
                             <th width="5%">No</th>
                             <th>Username</th>
                             {{-- <th>Email</th> --}}
-                            <th>Nama SKPD</th>
+                            <th>Nama OPD</th>
                             <th>Role</th>
                             <th style="width: 15%">Aksi</th>
                         </tr>

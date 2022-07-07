@@ -57,8 +57,8 @@
                         <div class="container-fluid">
 
                             <div class="form-check form-control-sm mt-3">
-                                <input class="form-check-input" type="radio" name="varQuery" id="queryOpd1" value="opd"
-                                    checked>
+                                <input class="form-check-input" type="radio" name="varQuery" id="queryOpd1"
+                                    value="opd" checked>
                                 <label class="form-check-label fw-bold" for="queryOpd1">
                                     PENCARIAN BERDASARKAN OPD PENGELOLA
                                 </label>
@@ -97,14 +97,16 @@
                                     </select>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md ">
-                                        <button type="" class="btn btn-primary mt-4"><i class="fas fa-search"></i>
+                                    <div class="col-sm-8">
+                                        <button type="" class="btn btn-primary mt-4"><i
+                                                class="fas fa-search fa-xs"></i>
                                             Cari &nbsp;&nbsp;</button>
                                         <button type="button" id="clear" class="btn btn-secondary mt-4"><i
-                                                class="fas fa-eraser"></i> Hapus</button>
+                                                class="fas fa-eraser fa-xs"></i> Hapus</button>
                                     </div>
-                                    <div class="col-md ">
-                                    </div>
+                                    {{-- <div class="col-sm-6 float-start">
+
+                                    </div> --}}
                                 </div>
                             </form>
                         </div>
@@ -125,12 +127,11 @@
 
                         <div class="row">
                             <div class="col-md ">
-                                <button type="" class="btn btn-primary mt-4"><i class="fas fa-search"></i>
+                                <button type="" class="btn btn-primary mt-4"><i
+                                        class="fas fa-search fa-xs"></i>
                                     Cari &nbsp;&nbsp;</button>
-                                <button type="button" id="clearGedung" class="btn btn-secondary mt-4"><i
+                                <button type="button" id="clearGedung" class="btn btn-secondary mt-4 fa-xs"><i
                                         class="fas fa-eraser"></i> Hapus</button>
-                            </div>
-                            <div class="col-md ">
                             </div>
                         </div>
                     </form>
@@ -147,8 +148,8 @@
             <div class="container-fluid mt-5">
 
                 <div class="d-flex flex-column align-items-center text-center">
-                    <img id="avatar-image2" src="{{ asset('assets/avatar/' . Auth::user()->avatar) }}" alt="Admin"
-                        class="rounded-circle" width="150" height="150" style="cursor:pointer">
+                    <img id="avatar-image2" src="{{ asset('assets/avatar/' . Auth::user()->avatar) }}"
+                        alt="Admin" class="rounded-circle" width="150" height="150" style="cursor:pointer">
                     <div class="mt-3">
                         <h4>{{ Auth::user()->username }}</h4>
                         <p class="text-secondary mb-1">{{ Auth::user()->master_skpd->nama_skpd }}</p>
@@ -162,7 +163,8 @@
                     <div class="row">
                         <div class="col-sm-6 float-end">
                             <a data-target="#editProfile" data-toggle="modal" href="#editModal"
-                                class="btn btn-success btn-sm float-end"> &nbsp;<i class=" fas fa-edit fa-xs"></i> Edit
+                                class="btn btn-success btn-sm float-end"> &nbsp;<i class=" fas fa-edit fa-xs"></i>
+                                Edit
                                 &nbsp;</a>
                         </div>
                         <div class="col-sm-6">
@@ -199,8 +201,9 @@
                                     <label for="file-input">
                                         <a title="Edit Foto">
                                             <img id="avatar-image"
-                                                src="{{ asset('assets/avatar/' . Auth::user()->avatar) }}" alt="Admin"
-                                                class="rounded-circle" width="150" height="150" style="cursor:pointer">
+                                                src="{{ asset('assets/avatar/' . Auth::user()->avatar) }}"
+                                                alt="Admin" class="rounded-circle" width="150" height="150"
+                                                style="cursor:pointer">
                                         </a>
                                     </label>
                                     <p class="" style="font-style: italic; font-size: 12px">
@@ -221,7 +224,8 @@
                                                 placeholder="Masukkan nama pengguna baru">
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">&nbsp;Password
+                                            <span class="input-group-text"
+                                                id="inputGroup-sizing-default">&nbsp;Password
                                             </span>
                                             <input type="password" id="password" class="form-control"
                                                 aria-label="Sizing example input"

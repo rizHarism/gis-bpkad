@@ -40,10 +40,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="skpd" class="col-sm-2 col-form-label">SKPD</label>
+                        <label for="skpd" class="col-sm-2 col-form-label">OPD</label>
                         <div class="col-sm-10">
                             <select class="form-select" name="skpd" id="skpd">
-                                <option value="">Pilih SKPD</option>
+                                <option value="">Pilih OPD</option>
                                 @foreach ($skpd as $_skpd)
                                     <option value="{{ $_skpd['id_skpd'] }}"
                                         {{ isset($edit) && $edit['skpd_id'] == $_skpd['id_skpd'] ? 'selected="selected"' : '' }}>

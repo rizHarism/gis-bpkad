@@ -12,7 +12,7 @@
         <div class="card">
             <h5 class="card-header">Data Dasar Milik Daerah</h5>
             <div class="card-body">
-                <a href="{{ route('bmd.create') }}" class="btn btn-primary">+ Data BMD</a>
+                <a href="{{ route('bmd.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Data BMD</a>
                 <hr />
                 <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_barang"
                     style="width: 100%">

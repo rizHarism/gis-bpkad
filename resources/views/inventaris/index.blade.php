@@ -13,7 +13,8 @@
         <div class="card">
             <h5 class="card-header">Data Aset Tanah Kota Blitar</h5>
             <div class="card-body">
-                <a href="{{ route('inventaris.create') }}" class="btn btn-primary">+ Inventaris</a>
+                <a href="{{ route('inventaris.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Data
+                    KIB A</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <input type=radio class="filter" name="status" value="all" id="im" checked="checked"><label
                     for="im">&nbsp; Seluruh Aset
@@ -36,7 +37,7 @@
                             <th>No</th>
                             {{-- <th id="aksi">Aksi</th> --}}
                             <th>Aksi</th>
-                            <th>SKPD Pengelola</th>
+                            <th>OPD Pengelola</th>
                             {{-- <th>Kode Inventaris</th> --}}
                             <th>Nama Inventaris</th>
                             <th>Jenis Inventaris</th>

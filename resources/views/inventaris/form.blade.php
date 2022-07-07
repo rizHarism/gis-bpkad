@@ -16,7 +16,7 @@
                     enctype="multipart/form-data">
                     @method('PUT')
                     {{ csrf_field() }}
-                    <h5 class="card-header">{{ isset($edit) ? 'Edit - ' . $edit['nama'] : 'Tambah Inventaris' }}
+                    <h5 class="card-header">{{ isset($edit) ? 'Edit - ' . $edit['nama'] : 'Tambah Data KIB A ' }}
                     </h5>
                     <div class="card-body">
                         <div class="row">
@@ -37,7 +37,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">SKPD Pengelola
+                                                    <label for="" class="form-label mb-0 fst-italic">OPD Pengelola
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="skpd" id="skpd">

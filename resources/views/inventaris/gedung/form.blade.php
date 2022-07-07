@@ -18,7 +18,7 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="id_inventaris" id="id_inventaris"
                         value="{{ isset($edit) ? $edit['id_inventaris'] : '' }}">
-                    <h5 class="card-header">{{ isset($edit) ? 'Edit - ' . $edit['nama'] : 'Tambah Inventaris Gedung' }}
+                    <h5 class="card-header">{{ isset($edit) ? 'Edit - ' . $edit['nama'] : 'Tambah Data KIB C' }}
                     </h5>
                     <div class="card-body">
                         <div class="row">
@@ -39,7 +39,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 mb-2 me-5 ">
-                                                    <label for="" class="form-label mb-0 fst-italic">SKPD Pengelola
+                                                    <label for="" class="form-label mb-0 fst-italic">OPD Pengelola
                                                         :</label>
                                                     <select class="form-select" aria-label="Default select example"
                                                         name="skpd" id="skpd">

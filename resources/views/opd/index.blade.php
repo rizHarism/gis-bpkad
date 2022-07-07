@@ -11,7 +11,8 @@
         <div class="card">
             <h5 class="card-header">Data Organisasi Perangkat Daerah</h5>
             <div class="card-body">
-                <a href="{{ route('dataopd.create') }}" class="btn btn-primary">+ Data OPD</a>
+                <a href="{{ route('dataopd.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Data
+                    OPD</a>
                 <hr />
                 <table class="table table-striped table-hover table-bordered order-column table-sm" id="master_skpd"
                     style="width: 100%">
@@ -19,8 +20,8 @@
                         <tr>
                             <th width="5%">No</th>
                             {{-- <th>Id Master Barang</th> --}}
-                            <th>Kode SKPD</th>
-                            <th>Nama SKPD</th>
+                            <th>Kode OPD</th>
+                            <th>Nama OPD</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
