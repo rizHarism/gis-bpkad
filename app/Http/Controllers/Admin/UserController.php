@@ -165,8 +165,8 @@ class UserController extends \App\Http\Controllers\Controller
             if ($request->hasfile('avatar')) {
                 $oldfile = $user->pluck('avatar');
                 $newfile = $request->file('avatar')->getClientOriginalName();
-                $user->avatar = $newfile;
-                dd($newfile);
+                // $user->avatar = $newfile;
+                // dd($newfile);
                 // foreach ($oldfile as $old) {
                 if ($oldfile[0] != "default-avatar.png") {
                     if (File::exists(public_path('assets/avatar/' . $oldfile[0]))) {
@@ -175,7 +175,7 @@ class UserController extends \App\Http\Controllers\Controller
                 }
                 // };
                 $request->file('avatar')->move(public_path('assets/avatar'), $newfile);
-                $newfile = $request->file('avatar')->getClientOriginalName();
+                // $newfile = $request->file('avatar')->getClientOriginalName();
                 // dd($newfile);
                 $user->avatar = $newfile;
             };
