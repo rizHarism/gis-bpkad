@@ -179,6 +179,7 @@ class UserController extends \App\Http\Controllers\Controller
 
                 $request->file('avatar')->move(public_path('assets/avatar'), $newfile);
                 $newfile = $request->file('avatar')->getClientOriginalName();
+                dd($newfile);
                 $user->avatar = $newfile;
             };
 
