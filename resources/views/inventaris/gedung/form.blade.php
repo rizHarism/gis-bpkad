@@ -187,7 +187,7 @@
                                                             {{ isset($edit) && $edit['jenis_konstruksi'] == 'BTN' ? 'selected="selected"' : '' }}>
                                                             Beton</option>
                                                         <option value="BBTN"
-                                                            {{ isset($edit) && $edit['jenis_kosntruksi'] == 'BBTN' ? 'selected="selected"' : '' }}>
+                                                            {{ isset($edit) && $edit['jenis_konstruksi'] == 'BBTN' ? 'selected="selected"' : '' }}>
                                                             Bukan Beton</option>
                                                     </select>
                                                 </div>
@@ -287,8 +287,8 @@
                                                         :</label>
                                                     <input type="file" name="image" id="image"
                                                         class="form-control" accept="image/png, image/jpg, image/jpeg">
-                                                    {{-- <span
-                                                        style="font-size: 10px">{{ isset($edit->galery) ? $edit->galery->image_path : '' }}</span> --}}
+                                                    <span id="image-gedung"
+                                                        style="font-size: 10px">{{ isset($edit->galery) ? $edit->galery->image_path : '' }}</span>
                                                 </div>
                                                 <div class="col-md-5 mb-2 me-5 ">
                                                     <label for="" class="form-label mb-0 fst-italic">Penanda
@@ -296,8 +296,8 @@
                                                         :</label>
                                                     <input type="file" name="penanda" id="penanda"
                                                         class="form-control" accept="image/png, image/jpg, image/jpeg">
-                                                    {{-- <span
-                                                        style="font-size: 10px">{{ isset($edit->document) ? $edit->document->doc_path : '' }}</span> --}}
+                                                    <span id="image-penanda"
+                                                        style="font-size: 10px">{{ isset($edit->document) ? $edit->document->doc_path : '' }}</span>
                                                 </div>
                                             </div>
                                             {{-- <div class="row"> --}}
@@ -459,12 +459,13 @@
             $('#foto-preview').attr('src', '{{ asset('assets/galery/default-image.png') }}');
             $('#delete-foto').removeClass('close');
             $("#image").val("")
+            $("#image-gedung").text("")
         }
 
         function defaultPenanda() {
             $('#penanda-preview').attr('src', '{{ asset('assets/galery/default-image.png') }}');
             $('#delete-penanda').removeClass('close');
-            $("#penanda").val("")
+            $("#image-penanda").text("")
         }
 
         $('.delete-button').on('click', function() {
@@ -559,6 +560,8 @@
                 formData.append('polygon', $("#geometry").val());
                 formData.append('lat', $("#lat").val());
                 formData.append('lng', $("#lng").val());
+                formData.append('image_gedung', $("#image-gedung").text());
+                formData.append('image_penanda', $("#image-penanda").text());
                 formData.append('image', $('input[type=file]')[0].files[0]);
                 formData.append('document', $('input[type=file]')[1].files[0]);
 
@@ -582,6 +585,7 @@
                     processData: false,
                     success: (data) => {
                         console.log(data);
+                        // alert.log(data);
                         swal.fire({
                             title: 'Berhasil',
                             text: data,

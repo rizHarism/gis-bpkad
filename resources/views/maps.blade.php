@@ -482,14 +482,6 @@
             style: batasKota,
             pmIgnore: true
         });
-        var asetTanah = new L.GeoJSON.AJAX('http://localhost:8000/api/getinventarisgedung', {
-            style: batasKota,
-            pmIgnore: true
-        });
-        var asetGedung = new L.GeoJSON.AJAX('http://localhost:8000/api/getinventarisgedung', {
-            style: batasKota,
-            pmIgnore: true
-        });
         batasSananwetan.addTo(map)
         batasKepanjenkidul.addTo(map)
         batasSukorejo.addTo(map)

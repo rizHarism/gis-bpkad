@@ -238,9 +238,11 @@ class InventarisBangunanController extends Controller
 
         $inventarisBangunan = InventarisBangunan::with('master_barang', 'master_skpd', 'geometry', 'kelurahan', 'kecamatan', 'galery', 'document')->findOrFail($id);
         $validations = [];
+
+        // dd($request);
         // $cekGeom = Geometry::where('inventaris_id', $request->id_inventaris)->get();
 
-        // dd($inventarisBangunan);
+        // dd($inventarisBangunan->no_register);
         // dd($request->hasfile('document'));
         // dd($inventarisBangunan->geometry[0]->id);
 
@@ -256,20 +258,23 @@ class InventarisBangunanController extends Controller
         if ($inventarisBangunan->luas != $request->luas) {
             $validations['luas'] = 'required';
         }
-        if ($inventarisBangunan->kode_gedung != $request->luas) {
+        if ($inventarisBangunan->kode_gedung != $request->kode_gedung) {
             $validations['kode_gedung'] = 'required';
         }
-        if ($inventarisBangunan->no_registrasi != $request->no_registrasi) {
-            $validations['no_registrasi'] = 'required';
+        if ($inventarisBangunan->status != $request->status) {
+            $validations['status'] = 'required';
+        }
+        if ($inventarisBangunan->no_register != $request->no_register) {
+            $validations['no_register'] = 'required';
         }
         if ($inventarisBangunan->kondisi_bangunan != $request->kondisi_bangunan) {
-            $validations['no_registrasi'] = 'required';
+            $validations['kondisi_bangunan'] = 'required';
         }
         if ($inventarisBangunan->jenis_bangunan != $request->jenis_bangunan) {
-            $validations['no_registrasi'] = 'required';
+            $validations['jenis_bangunan'] = 'required';
         }
         if ($inventarisBangunan->jenis_konstruksi != $request->jenis_konstruksi) {
-            $validations['no_registrasi'] = 'required';
+            $validations['jenis_konstruksi'] = 'required';
         }
         if ($inventarisBangunan->alamat != $request->alamat) {
             $validations['alamat'] = 'required';
@@ -287,10 +292,9 @@ class InventarisBangunanController extends Controller
             $validations['barang'] = 'exists:master_barang,id_barang';
         }
 
-
+        // dd($validations);
         $this->validate($request, $validations);
 
-        // dd($request->all());
         try {
             DB::beginTransaction();
 
@@ -367,7 +371,7 @@ class InventarisBangunanController extends Controller
                 $oldfile = Galery::where('inventaris_id', $inventarisBangunan->id_inventaris)->pluck('image_path');
                 // dd($oldfile);
                 $galery = Galery::where('inventaris_id', $inventarisBangunan->id_inventaris);
-                if ($galery) {
+                if (!$request->image_gedung) {
                     foreach ($oldfile as $old) {
                         if (File::exists(public_path('assets/galery/' . $old))) {
                             File::delete(public_path('assets/galery/' . $old));
@@ -400,7 +404,7 @@ class InventarisBangunanController extends Controller
             } else {
                 $oldfile = Document::where('inventaris_id', $inventarisBangunan->id_inventaris)->pluck('doc_path');
                 $document = Document::where('inventaris_id', $inventarisBangunan->id_inventaris);
-                if ($document) {
+                if (!$request->image_penanda) {
                     foreach ($oldfile as $old) {
                         if (File::exists(public_path('assets/document/' . $old))) {
                             File::delete(public_path('assets/document/' . $old));

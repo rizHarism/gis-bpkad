@@ -228,7 +228,6 @@
                                                         <span style="font-size: 11px;">(*type file pdf)</span></label>
                                                     <input type="file" name="document" id="document"
                                                         class="form-control" accept="application/pdf">
-
                                                     <span
                                                         style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah dokumen' : '' }}</span>
                                                 </div>
