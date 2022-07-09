@@ -62,9 +62,11 @@
             const allaset = new Chart(pieAll, {
                 type: 'pie',
                 data: {
-                    labels: ['Bersertifikat', 'Belum Bersertifikat'],
+                    labels: ['Bersertifikat : ' + data.bersertifikat, 'Belum Bersertifikat : ' + data
+                        .tidak_bersertifikat
+                    ],
                     datasets: [{
-                        label: '# of Votes',
+                        label: [data.bersertifikat, data.tidak_bersertifikat],
                         data: [data.bersertifikat, data
                             .tidak_bersertifikat
                         ],
@@ -88,10 +90,23 @@
                             fontSize: 14
                         },
                         legend: {
-                            position: 'left',
+                            position: 'bottom',
+                            // align: 'start',
                             labels: {
                                 font: {
-                                    size: 16
+                                    size: 16,
+                                }
+                            }
+                        },
+                        tooltip: {
+                            // enabled: false,
+                            callbacks: {
+                                label: function(data) {
+                                    // let label = context.dataset.label || '';
+                                    console.log(data)
+                                    var result = (data.dataIndex == 0) ? 'Bersertifikat : ' + data
+                                        .parsed : 'Belum bersertifikat : ' + data.parsed;
+                                    return result;
                                 }
                             }
                         }
@@ -103,7 +118,9 @@
             const mapped = new Chart(countMap, {
                 type: 'pie',
                 data: {
-                    labels: ['Terpetakan', 'Belum Terpetakan'],
+                    labels: ['Terpetakan : ' + data.terpetakan, 'Belum Terpetakan : ' + data
+                        .belum_terpetakan
+                    ],
                     datasets: [{
                         label: '# of Votes',
                         data: [data.terpetakan, data.belum_terpetakan],
@@ -127,10 +144,24 @@
                             fontSize: 14
                         },
                         legend: {
-                            position: 'left',
+                            position: 'bottom',
+                            // align: 'start',
                             labels: {
                                 font: {
-                                    size: 16
+                                    size: 16,
+                                    textAlign: 'left',
+                                }
+                            }
+                        },
+                        tooltip: {
+                            // enabled: false,
+                            callbacks: {
+                                label: function(data) {
+                                    // let label = context.dataset.label || '';
+                                    console.log(data)
+                                    var result = (data.dataIndex == 0) ? 'Terpetakan : ' + data
+                                        .parsed : 'Belum terpetakan : ' + data.parsed;
+                                    return result;
                                 }
                             }
                         }
@@ -142,15 +173,18 @@
             const gedungTerinvent = new Chart(gedungTerinventaris, {
                 type: 'pie',
                 data: {
-                    labels: ['Belum Terinventaris', 'Terinventaris'],
+                    labels: ['Terinventaris : ' + data.aset_gedung_terinvetaris, 'Belum terinventaris : ' +
+                        (data.aset_gedung - data
+                            .aset_gedung_terinvetaris)
+                    ],
                     datasets: [{
                         label: '# of Votes',
-                        data: [data.aset_gedung - data.aset_gedung_terinvetaris, data
+                        data: [data.aset_gedung_terinvetaris, data.aset_gedung - data
                             .aset_gedung_terinvetaris
                         ],
                         backgroundColor: [
-                            '#e33642',
                             '#3fa123',
+                            '#e33642',
 
                         ],
                         borderColor: [
@@ -168,10 +202,24 @@
                             fontSize: 14
                         },
                         legend: {
-                            position: 'left',
+                            position: 'bottom',
+                            // align: 'start',
                             labels: {
                                 font: {
-                                    size: 16
+                                    size: 16,
+                                    textAlign: 'left',
+                                }
+                            }
+                        },
+                        tooltip: {
+                            // enabled: false,
+                            callbacks: {
+                                label: function(data) {
+                                    // let label = context.dataset.label || '';
+                                    console.log(data)
+                                    var result = (data.dataIndex == 0) ? 'Belum terinventaris : ' + data
+                                        .parsed : 'Terinventaris : ' + data.parsed;
+                                    return result;
                                 }
                             }
                         }
@@ -185,10 +233,11 @@
             const terpetakan = new Chart(gedungTerpetakan, {
                 type: 'pie',
                 data: {
-                    labels: ['Terpetakan', 'Belum Terpetakan'],
+                    labels: ['Terpetakan : ' + data.aset_gedung_terpetakan, 'Belum Terpetakan : ' + (data
+                        .aset_gedung_terinvetaris - data.aset_gedung_terpetakan)],
                     datasets: [{
                         label: '# of Votes',
-                        data: [data.aset_gedung_terinvetaris, data.aset_gedung_terinvetaris - data
+                        data: [data.aset_gedung_terpetakan, data.aset_gedung_terinvetaris - data
                             .aset_gedung_terpetakan
                         ],
                         backgroundColor: [
@@ -211,10 +260,24 @@
                             fontSize: 14
                         },
                         legend: {
-                            position: 'left',
+                            position: 'bottom',
+                            // align: 'start',
                             labels: {
                                 font: {
-                                    size: 16
+                                    size: 16,
+                                    textAlign: 'left',
+                                }
+                            }
+                        },
+                        tooltip: {
+                            // enabled: false,
+                            callbacks: {
+                                label: function(data) {
+                                    // let label = context.dataset.label || '';
+                                    console.log(data)
+                                    var result = (data.dataIndex == 0) ? 'Terpetakan : ' + data
+                                        .parsed : 'Belum terpetakan : ' + data.parsed;
+                                    return result;
                                 }
                             }
                         }

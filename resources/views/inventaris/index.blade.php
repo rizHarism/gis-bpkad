@@ -41,9 +41,10 @@
                             {{-- <th>Kode Inventaris</th> --}}
                             <th>Nama Inventaris</th>
                             <th>Jenis Inventaris</th>
-                            <th>No. Sertifikat</th>
                             <th>Alamat</th>
                             <th>Status</th>
+                            <th>Status</th>
+                            <th>Terpetakan</th>
 
                         </tr>
                     </thead>
@@ -114,54 +115,20 @@
     </div>
 
 
-
-    {{-- <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editTitle">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="container-fluid">
-
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="..." class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="..." class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="..." class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-        </div>
-    </div> --}}
-
 @stop
 
 @section('css')
     {{-- <link rel="stylesheet" href="{{ asset('assets/datatables/table.css') }}"> --}}
+    <style>
+        th.dt-center,
+        td.dt-center {
+            text-align: center;
+        }
+
+        table.dataTable tbody td {
+            vertical-align: middle;
+        }
+    </style>
 @stop
 
 @section('js')
@@ -191,9 +158,18 @@
         });
 
         var sertifikat = function(data, type, full, meta) {
-            var status = data == 1 ? "Bersertifikat" : "Belum Bersertifikat";
+            var status = data == 1 ? "Bersertifikat" : "Belum bersertifikat";
             // console.log(status);
             return status;
+        }
+
+        var terpetakan = function(data) {
+            // var result = (data) ? "<i class='fas fa-check-circle' style='color: green'></i>" :
+            //     "<i class='fas fa-times-circle' style='color:red'></i>";
+            var result = (data) ?
+                "<span style='font-size: 0;'>A</span> <i class='fas fa-check-circle' style='color: green'></i>" :
+                "<span style='font-size: 0;'>B</span> <i class='fas fa-times-circle' style='color:red'></i>";
+            return result;
         }
 
         function rupiah(x) {
@@ -209,7 +185,7 @@
 
             var table = $('#inventaris_kib_a').DataTable({
                 // processing: true,
-                serverSide: true,
+                // serverSide: true,
                 responsive: true,
                 // "scrollX": true,
                 "autoWidth": true,
@@ -245,22 +221,34 @@
 
                     },
                     {
-                        data: 'no_dokumen_sertifikat',
-
-                    },
-                    {
                         data: 'alamat'
                     },
                     {
                         data: 'status',
-                        render: sertifikat
+                        visible: false,
+                    },
+                    {
+                        data: 'status',
+                        render: sertifikat,
+                        searchable: false
+                    },
+                    {
+                        data: 'geometry.polygon',
+                        render: terpetakan,
+                        searchable: false
                     },
                 ],
 
                 columnDefs: [{
                     orderable: false,
-                    targets: [0]
-                }],
+                    targets: []
+                }, {
+                    "className": "dt-center",
+                    "targets": [8]
+                }, {
+                    target: 6,
+                    visible: false,
+                }, ],
 
             });
 
@@ -276,10 +264,10 @@
                 var v = $(this).val();
                 console.log(v)
                 // console.log(table.columns(8).search(v).draw())
-                if ((v == 0) || (v == 1)) {
-                    table.columns(7).search(v).draw();
+                if ((v == 1) || (v == 0)) {
+                    table.columns(6).search(v).draw();
                 } else if (v === 'all') {
-                    table.columns(7).search('').draw();
+                    table.columns(6).search('').draw();
                 }
             });
 

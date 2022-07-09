@@ -20,13 +20,11 @@
                     for="im">&nbsp; Seluruh Aset
                     &nbsp;
                     &nbsp;</label>
-                <input type=radio class="filter" name="status" value="1" id="gm"><label for="gm">&nbsp;
-                    Aset
-                    Bersertifikat
+                <input type=radio class="filter" name="status" value="abc" id="gm"><label for="gm">&nbsp;
+                    Aset Terpetakan
                     &nbsp;&nbsp;</label>
-                <input type=radio class="filter" name="status" value="0" id="am"><label for="am">&nbsp;
-                    Aset Non
-                    Sertifikat
+                <input type=radio class="filter" name="status" value="xyz" id="am"><label for="am">&nbsp;
+                    Aset Belum Terpetakan
                     &nbsp;&nbsp;</label>
 
                 <hr />
@@ -45,6 +43,7 @@
                             <th>Alamat</th>
                             <th>Status</th>
                             <th>Pemeliharaan</th>
+                            <th>geometri</th>
                         </tr>
                     </thead>
                 </table>
@@ -169,6 +168,16 @@
 
 @section('css')
     {{-- <link rel="stylesheet" href="{{ asset('assets/datatables/table.css') }}"> --}}
+    <style>
+        th.dt-center,
+        td.dt-center {
+            text-align: center;
+        }
+
+        table.dataTable tbody td {
+            vertical-align: middle;
+        }
+    </style>
 @stop
 
 @section('js')
@@ -197,11 +206,11 @@
             }
         });
 
-        // var sertifikat = function(data, type, full, meta) {
-        //     var status = data == 1 ? "Bersertifikat" : "Belum Bersertifikat";
-        //     // console.log(status);
-        //     return status;
-        // }
+        var terpetakan = function(data) {
+            // console.log(data);
+            var result = (data) ? "abc" : "xyz";
+            return result;
+        }
 
         function rupiah(x) {
             x = x.toString();
@@ -294,7 +303,7 @@
 
             var table = $('#inventaris_kib_c').DataTable({
                 // processing: true,
-                serverSide: true,
+                // serverSide: true,
                 responsive: true,
                 // "scrollX": true,
                 "autoWidth": true,
@@ -358,6 +367,10 @@
                         defaultContent: '',
                         searchable: false
                     },
+                    {
+                        data: 'geometry[0].polygon',
+                        render: terpetakan,
+                    },
                 ],
 
                 columnDefs: [{
@@ -379,6 +392,18 @@
                     // Open this row
                     row.child(format(row.data())).show();
                     tr.addClass('shown');
+                }
+            });
+
+            $('input:radio').on('change', function() {
+                // var i = $(this).attr('data-column');
+                var v = $(this).val();
+                console.log(v)
+                // console.log(table.columns(8).search(v).draw())
+                if ((v == 'abc') || (v == "xyz")) {
+                    table.columns(8).search(v).draw();
+                } else if (v === 'all') {
+                    table.columns(8).search('').draw();
                 }
             });
 
