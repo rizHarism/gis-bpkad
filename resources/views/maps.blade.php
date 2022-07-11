@@ -1815,7 +1815,6 @@
                                     });
                                     minilayer.addTo(minimap);
 
-
                                     const hb = property
                                         .nilai_aset,
                                         na = property

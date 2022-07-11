@@ -556,7 +556,7 @@ class InventarisController extends Controller
                 $oldfile = Galery::where('inventaris_id', $id)->pluck('image_path');
                 // $newfile = $request->file('image')->getClientOriginalName();
                 $galery = Galery::where('inventaris_id', $id);
-                if ($galery) {
+                if (!$request->image_tanah) {
                     foreach ($oldfile as $old) {
                         if (File::exists(public_path('assets/galery/' . $old))) {
                             File::delete(public_path('assets/galery/' . $old));
@@ -589,7 +589,7 @@ class InventarisController extends Controller
             } else {
                 $oldfile = Document::where('inventaris_id', $id)->pluck('doc_path');
                 $document = Document::where('inventaris_id', $id);
-                if ($document) {
+                if (!$request->file_sertifikat) {
                     foreach ($oldfile as $old) {
                         if (File::exists(public_path('assets/document/' . $old))) {
                             File::delete(public_path('assets/document/' . $old));

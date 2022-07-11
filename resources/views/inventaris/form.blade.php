@@ -217,9 +217,10 @@
                                                             jpg,jpeg,png)</span></label>
                                                     <input type="file" name="image" id="image"
                                                         class="form-control" accept="image/png, image/jpg, image/jpeg">
-
-                                                    <span
-                                                        style="font-size: 10px">{{ isset($edit->galery) ? ' -Kosongkan form jika tidak ingin merubah foto' : '' }}</span>
+                                                    <span id="image-tanah"
+                                                        style="font-size: 10px">{{ isset($edit->galery) ? $edit->galery->image_path : '' }}</span>
+                                                    {{-- <span
+                                                        style="font-size: 10px">{{ isset($edit->galery) ? ' -Kosongkan form jika tidak ingin merubah foto' : '' }}</span> --}}
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -228,8 +229,10 @@
                                                         <span style="font-size: 11px;">(*type file pdf)</span></label>
                                                     <input type="file" name="document" id="document"
                                                         class="form-control" accept="application/pdf">
-                                                    <span
-                                                        style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah dokumen' : '' }}</span>
+                                                    <span id="file-sertifikat"
+                                                        style="font-size: 10px">{{ isset($edit->document) ? $edit->document->doc_path : '' }}</span>
+                                                    {{-- <span
+                                                        style="font-size: 10px">{{ isset($edit->document) ? 'Kosongkan form jika tidak ingin merubah dokumen' : '' }}</span> --}}
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -258,7 +261,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <span style="font-style: italic">Preview Foto Gedung:</span>
+                                                <span style="font-style: italic">Preview Foto Aset:</span>
                                                 <div class="ratio ratio-16x9 img-wrap">
                                                     <span id="delete-foto"
                                                         class="{{ isset($edit->galery) ? 'close' : '' }}">&nbsp;<i
@@ -412,12 +415,14 @@
             $('#foto-preview').attr('src', '{{ asset('assets/galery/default-image.png') }}');
             $('#delete-foto').removeClass('close');
             $("#image").val("")
+            $("#image-tanah").text("")
         }
 
         function defaultSertifikat() {
             $('#doc-preview').attr('src', '{{ asset('assets/document/default-sertifikat.pdf') }}');
             $('#delete-sertifikat').removeClass('close');
             $("#document").val("")
+            $("#file-sertifikat").text("")
         }
 
         $('.delete-button').on('click', function() {
@@ -503,6 +508,8 @@
                 formData.append('polygon', $("#geometry").val());
                 formData.append('lat', $("#lat").val());
                 formData.append('lng', $("#lng").val());
+                formData.append('image_tanah', $("#image-tanah").text());
+                formData.append('file_sertifikat', $("#file-sertifikat").text());
                 formData.append('image', $('input[type=file]')[0].files[0]);
                 formData.append('document', $('input[type=file]')[1].files[0]);
 
