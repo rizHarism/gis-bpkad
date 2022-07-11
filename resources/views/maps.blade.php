@@ -1790,12 +1790,14 @@
                                     style: gedungStyle,
                                     pmIgnore: true
                                 });
-                                layer.addTo(layerGedungGabungan);
                                 layer.bindTooltip(property.kode_gedung, {
                                     permanent: false,
                                     direction: "center"
                                 })
+                                layer.addTo(layerGedungGabungan);
                                 layerGedungGabungan.addTo(map)
+                                layer.addTo(layerAll);
+                                // layerAll.addTo(map)
                                 layer.on('click', function() {
                                     var minilayer = '';
                                     minimap.eachLayer(function(lay) {
@@ -2002,7 +2004,7 @@
                                         ` / ` + prop.lng + `</a></td>
                                             </tr>
                                             <tr>
-                                            <th>Luas Bangunan </th>
+                                            <th>Luas </th>
                                             <td>` + rupiah(lt) + ` Meter Persegi` + `</td>
                                             </tr>
                                             <tr>
@@ -2010,7 +2012,7 @@
                                             <td>` + property.status + `</td>
                                             </tr>
                                             <tr>
-                                            <th>Kondisi Bangunan </th>
+                                            <th>Kondisi </th>
                                             <td>` + kondisi_bangunan + `</td>
                                             </tr>
                                             <tr>
@@ -2093,7 +2095,9 @@
                                     );
                                 });
                             });
+                            map.fitBounds(layerAll.getBounds());
                         })
+
                     }
                 }
             });

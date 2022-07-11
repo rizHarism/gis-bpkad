@@ -370,6 +370,7 @@
                     {
                         data: 'geometry[0].polygon',
                         render: terpetakan,
+                        visible: false
                     },
                 ],
 
@@ -400,7 +401,7 @@
                 var v = $(this).val();
                 console.log(v)
                 // console.log(table.columns(8).search(v).draw())
-                if ((v == 'abc') || (v == "xyz")) {
+                if ((v == 'abc') || (v == 'xyz')) {
                     table.columns(8).search(v).draw();
                 } else if (v === 'all') {
                     table.columns(8).search('').draw();
