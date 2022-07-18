@@ -217,8 +217,8 @@
                                 label: function(data) {
                                     // let label = context.dataset.label || '';
                                     console.log(data)
-                                    var result = (data.dataIndex == 0) ? 'Belum terinventaris : ' + data
-                                        .parsed : 'Terinventaris : ' + data.parsed;
+                                    var result = (data.dataIndex == 0) ? 'Terinventaris : ' + data
+                                        .parsed : 'Belum Terinventaris : ' + data.parsed;
                                     return result;
                                 }
                             }
@@ -234,10 +234,10 @@
                 type: 'pie',
                 data: {
                     labels: ['Terpetakan : ' + data.aset_gedung_terpetakan, 'Belum Terpetakan : ' + (data
-                        .aset_gedung_terinvetaris - data.aset_gedung_terpetakan)],
+                        .aset_gedung - data.aset_gedung_terpetakan)],
                     datasets: [{
                         label: '# of Votes',
-                        data: [data.aset_gedung_terpetakan, data.aset_gedung_terinvetaris - data
+                        data: [data.aset_gedung_terpetakan, data.aset_gedung - data
                             .aset_gedung_terpetakan
                         ],
                         backgroundColor: [

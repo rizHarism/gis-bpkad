@@ -1785,7 +1785,7 @@
                                 layer = L.geoJSON(x, {
                                     style: gedungStyle,
                                     pmIgnore: true
-                                })
+                                }).addTo(map);
                                 minilayer = L.geoJSON(x, {
                                     style: gedungStyle,
                                     pmIgnore: true
@@ -1794,9 +1794,10 @@
                                     permanent: false,
                                     direction: "center"
                                 })
-                                layer.addTo(layerGedungGabungan);
-                                layerGedungGabungan.addTo(map)
+                                // layer.addTo(layerGedungGabungan);
+                                // layerGedungGabungan.addTo(map)
                                 layer.addTo(layerAll);
+                                // layerAll.addTo(map)
                                 // layerAll.addTo(map)
                                 layer.on('click', function() {
                                     var minilayer = '';
@@ -2094,8 +2095,8 @@
                                     );
                                 });
                             });
-                            map.fitBounds(layerAll.getBounds());
                         })
+                        map.fitBounds(layerAll.getBounds());
 
                     }
                 }

@@ -334,7 +334,7 @@
                     {
                         "width": "15%",
                         data: 'master_skpd.nama_skpd',
-                        searchable: false
+                        // searchable: false
                     },
                     {
                         data: 'nama'

@@ -97,7 +97,8 @@ class InventarisController extends Controller
         $non_sertifikat = count(Inventaris::where('status', 0)->GET());
         $sertifikat = count(Inventaris::where('status', 1)->GET());
         $inventarisGedung = count(InventarisBangunan::get()->all());
-        $inventarisGedungTerpetakan = count(InventarisBangunan::with('geometry')->has('geometry')->GET());
+        $inventarisGedungTerinventaris = count(InventarisBangunan::where('kode_gedung', '!=', 'TB')->get()->all());
+        $inventarisGedungTerpetakan = count(InventarisBangunan::where('kode_gedung', '!=', 'TB')->with('geometry')->has('geometry')->GET());
         // $inventarisBangunan =  InventarisBangunan::with('master_barang', 'master_skpd', 'kelurahan', 'kecamatan', 'document', 'galery', 'geometry', 'pemeliharaan')
         //         ->has('geometry')
         //         ->get();
@@ -120,8 +121,8 @@ class InventarisController extends Controller
             'tidak_bersertifikat' => $non_sertifikat,
             'terpetakan' => $mapped_sertifikat,
             'belum_terpetakan' => $not_mapped_inventaris,
-            'aset_gedung' => '998',
-            'aset_gedung_terinvetaris' => $inventarisGedung,
+            'aset_gedung' => $inventarisGedung,
+            'aset_gedung_terinvetaris' => $inventarisGedungTerinventaris,
             'aset_gedung_terpetakan' => $inventarisGedungTerpetakan,
             'jumlah_inventaris_sertifikat_ketemu' => count($inventaris_sertifikat_belum_ketemu),
             'inventaris_sertifikat_belum_ketemu' => $inventaris_sertifikat_belum_ketemu
