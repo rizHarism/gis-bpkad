@@ -173,7 +173,8 @@
             const gedungTerinvent = new Chart(gedungTerinventaris, {
                 type: 'pie',
                 data: {
-                    labels: ['Terinventaris : ' + data.aset_gedung_terinvetaris, 'Belum terinventaris : ' +
+                    labels: ['Teridentifikasi : ' + data.aset_gedung_terinvetaris,
+                        'Belum Teridentifikasi : ' +
                         (data.aset_gedung - data
                             .aset_gedung_terinvetaris)
                     ],
@@ -217,8 +218,8 @@
                                 label: function(data) {
                                     // let label = context.dataset.label || '';
                                     console.log(data)
-                                    var result = (data.dataIndex == 0) ? 'Terinventaris : ' + data
-                                        .parsed : 'Belum Terinventaris : ' + data.parsed;
+                                    var result = (data.dataIndex == 0) ? 'Teridentifikasi : ' + data
+                                        .parsed : 'Belum Teridentifikasi : ' + data.parsed;
                                     return result;
                                 }
                             }
@@ -276,7 +277,7 @@
                                     // let label = context.dataset.label || '';
                                     console.log(data)
                                     var result = (data.dataIndex == 0) ? 'Terpetakan : ' + data
-                                        .parsed : 'Belum terpetakan : ' + data.parsed;
+                                        .parsed : 'Belum Terpetakan : ' + data.parsed;
                                     return result;
                                 }
                             }

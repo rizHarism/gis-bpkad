@@ -109,7 +109,7 @@
                             <div class="inner">
                                 <h3 class="mt-3" id="aset_gedung_terdata"></h3>
 
-                                <p class="fs-3 mt-2">Aset Terinventaris</p>
+                                <p class="fs-3 mt-2">Aset Teridentifikasi</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-building"></i>
@@ -135,7 +135,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="card">
-                                    <h5 class="mt-1" style="text-align:center">Aset Gedung Terinventaris</h5>
+                                    <h5 class="mt-1" style="text-align:center">Aset Gedung Teridentifikasi</h5>
                                     <div class="card-body">
                                         <canvas id="asetGedungTerinventaris"
                                             style="min-height: 250px; height: 400; max-height: 400px; max-width: 100%;"></canvas>
