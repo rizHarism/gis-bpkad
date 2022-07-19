@@ -1250,7 +1250,7 @@
                                             </tr>
                                             <tr>
                                             <th>Konstruksi </th>
-                                            <td>` + jenis_bangunan + " / " + jenis_konstruksi + `</td>
+                                            <td>` + jenis_konstruksi + " - " + jenis_bangunan + `</td>
                                             </tr>
                                             </table>
                                         `);
@@ -2017,7 +2017,7 @@
                                             </tr>
                                             <tr>
                                             <th>Konstruksi </th>
-                                            <td>` + jenis_bangunan + " / " + jenis_konstruksi + `</td>
+                                            <td>` + jenis_konstruksi + " - " + jenis_bangunan + `</td>
                                             </tr>
                                             </table>
                                         `);

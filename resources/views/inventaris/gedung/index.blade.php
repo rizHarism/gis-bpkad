@@ -408,41 +408,6 @@
                 }
             });
 
-            // get data for modal
-
-            // $(document).ready(function() {
-            //     $("#open-pemeliharaan").click(function() {
-            //         console.log('tes')
-            //         // console.log($(this).data('send'))
-            //         // $('#order-id').html($(this).data('id'));
-
-            //         // $('#prod-id').html($(this).data('prod-id'));
-            //         // $('#sell-id').html($(this).data('sell-id'));
-
-            //         // show Modal
-            //         $('#editPemeliharaan').modal('show');
-            //     });
-            // });
-
-            // $('input:radio').on('change', function() {
-            //     //build a regex filter string with an or(|) condition
-            //     console.log($(this).val())
-
-
-            // });
-
-            // $('input:radio').on('change', function() {
-            //     // var i = $(this).attr('data-column');
-            //     var v = $(this).val();
-            //     console.log(v)
-            //     // console.log(table.columns(8).search(v).draw())
-            //     if ((v == 0) || (v == 1)) {
-            //         table.columns(7).search(v).draw();
-            //     } else if (v === 'all') {
-            //         table.columns(7).search('').draw();
-            //     }
-            // });
-
             $.contextMenu({
                 selector: '#contextButton',
                 trigger: 'left',
@@ -513,6 +478,35 @@
                                         </div>`
                                     }
 
+                                    if (property.kondisi_bangunan == 'B') {
+                                        kondisi_bangunan = 'Baik'
+                                    } else if (property.kondisi_bangunan ==
+                                        'RR') {
+                                        kondisi_bangunan = 'Rusak Ringan'
+                                    } else if (property.kondisi_bangunan ==
+                                        'RB') {
+                                        kondisi_bangunan = 'Rusak Berat'
+                                    } else {
+                                        kondisi_bangunan = '-'
+                                    }
+                                    if (property.jenis_bangunan == 'BTK') {
+                                        jenis_bangunan = 'Bertingkat'
+                                    } else if (property.jenis_bangunan ==
+                                        'TTK') {
+                                        jenis_bangunan = 'Tidak Bertingkat'
+                                    } else {
+                                        jenis_bangunan = '-'
+                                    }
+                                    if (property.jenis_konstruksi ==
+                                        'BTN') {
+                                        jenis_konstruksi = 'Beton'
+                                    } else if (property.jenis_konstruksi ==
+                                        'BBTN') {
+                                        jenis_konstruksi = 'Bukan Beton'
+                                    } else {
+                                        jenis_konstruksi = '-'
+                                    }
+
                                     $('#detailTitle').empty()
                                     $('#detailData').empty()
                                     $('#image').empty()
@@ -571,6 +565,14 @@
                                         <tr>
                                           <th>Status </th>
                                           <td>` + property.status + `</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Kondisi </th>
+                                          <td>` + kondisi_bangunan + `</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Konstruksi </th>
+                                          <td>` + jenis_konstruksi + `/` + jenis_bangunan + `</td>
                                         </tr>
 
                                     </table>
